@@ -6,9 +6,9 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope', '$rootScope', 'appManageService', '$sessionStorage', function($scope, $rootScope, appManageService, $sessionStorage){
+        var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', function($scope, $rootScope, appManageService, $localStorage){
 
-            $scope.param = {"orgId": $sessionStorage.orgId, "userId": $sessionStorage.userId, "sessionId": $sessionStorage.sessionId}
+            $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId}
 
             appManageService.getAppList($scope.param,function(data){
                  if (data.code == 0) {

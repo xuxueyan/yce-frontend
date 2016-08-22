@@ -6,9 +6,12 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope','$http','deploymentService','$sessionStorage', function($scope,$http, deploymentService, $sessionStorage){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', function($scope,$http, deploymentService, $localStorage){
             $scope.param = {
-                dataCenters : [],
+                orgId: $localStorage.orgId,
+                userId: $localStorage.userId,
+                sessionId: $localStorage.sessionId,
+                dcIdList : [],
                 deployment : {
                     metadata : {
                         name : '',
@@ -30,25 +33,23 @@ define([
                     }
                 }
             };
-            $scope.param.deployment.metadata.labels = {
-                name : $scope.param.deployment.metadata.name,
-                namespace : $scope.param.deployment.metadata.namespace,
-                author : $sessionStorage.userName
-            };
             $scope.dataTrans = {
                 dataCenters : [],
                 labels : [],
-                quotas : ''
+                quotas : '',
+                author : $localStorage.userName
             };
             $scope.stepNum = 1;
 
             deploymentService.getDeploymentIint({
-                orgId : $sessionStorage.orgId,
-                userId :$sessionStorage.userId
+                sessionId : $localStorage.sessionId,
+                orgId : $localStorage.orgId,
+                userId :$localStorage.userIid
             },function(data){
                 if(data.code == 0){
-                    $scope.initData = data.data;
+                    $scope.initData = JSON.parse(data.data);
                     $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
+                    $scope.param.orgName = $scope.initData.orgName;
                     $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
                 }
                 $scope.nextStep = function(stepNum){
@@ -76,11 +77,19 @@ define([
 
             /*提交表单*/
             $scope.submit = function(){
-                $scope.param.dataCenters = [];
+                $scope.param.deployment.metadata.labels = {
+                    "name" : $scope.param.deployment.metadata.name,
+                    "author" : $localStorage.userName
+                };
+                $scope.param.dcIdList = [];
+                $scope.param.appName = $scope.param.deployment.metadata.name;
                 $scope.dataTrans.dataCenters.forEach(function(elem, index){
                     if(elem){
-                        $scope.param.dataCenters.push($scope.initData.dataCenters[index].id);
+                        $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
                     }
+                });
+                $scope.dataTrans.labels.forEach(function(elem,index){
+                    $scope.param.deployment.metadata.labels[elem.key] = elem.value;
                 });
                 var limits = $scope.initData.quotas.filter(function(item){
                     return item.id == $scope.dataTrans.quotas;
@@ -97,20 +106,56 @@ define([
             };
 
             // Image
-            $scope.shows=false;
-            $scope.getImages = function() {
-                $http({
-                    method: 'GET',
-                    url: '/api/v1/registry/images'
-                })
-                    .success(function(data) {
-                        $scope.images=data.data;
-                        console.log("getImages success")
-                    })
-                    .error(function() {
-                        console.log("getImages error")
-                    })
-            }
+            $http({
+                method: 'GET',
+                url: '/api/v1/registry/images'
+            })
+            .success(function(data) {
+                var dataObject = JSON.parse(data.data);
+                console.log("getImages success");
+
+
+                // cycle print images name and tags
+                /*
+                $scope.imageList=dataObject;
+                for (var i in dataObject) {
+                    console.log("images: " + dataObject[i].name);
+                    var list = dataObject[i].tags;
+                    $scope.tagList=list;
+                    for (var j in list) {
+                        console.log("tags: " + list[j]);
+                    }
+                }
+                */
+
+                // make new images:tags
+                var imageArr = new Array();
+                var k = 0
+                for (var i in dataObject) {
+                    var list = dataObject[i].tags;
+                    for (var j in list) {
+                        imageArr[k] = dataObject[i].name + ":" + list[j]
+                        k=k+1
+                    }
+                }
+
+                $scope.imageList=imageArr;
+                $scope.getImages = function(x) {
+                    $scope.param.deployment.spec.template.spec.containers[0].image=x;
+                    x.replace(/:(\S+)$/,function($0,$1){
+                        $scope.param.deployment.metadata.labels.version = $1;
+                    });
+                }
+                /*
+                $scope.getImages = function($index) {
+                    $scope.param.image=imageArr[$index];
+                }
+                */
+
+            })
+            .error(function() {
+                console.log("getImages error")
+            })
         }];
 
 

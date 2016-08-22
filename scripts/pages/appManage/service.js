@@ -6,7 +6,7 @@ define([
 	var getApis = function($http){
 		var apis = {};
 
-		apis.getAppList = function(param, success, error, $sessionStorage){
+		apis.getAppList = function(param, success, error, $localStorage){
 		    var orgId = param.orgId
 		    var userId = param.userId
 			return utils.http($http, 'get', '/api/v1/organizations/' + orgId + '/users/' + userId + '/deployments', param, success, error);

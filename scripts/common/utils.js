@@ -1,6 +1,8 @@
-define([], function(){
+define([
+    'ngStorage'
+], function(){
 	var yce = {};
-	yce.preUrl = 'http://10.0.0.1:8080';
+	yce.preUrl = '';
 
 	yce.http = function($http, method, url, param, success, error){
 		$http.defaults.headers.common['Authorization'] = param.sessionId || '';

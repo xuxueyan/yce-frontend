@@ -6,7 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope', '$rootScope', '$state', 'mainService', '$sessionStorage', '$stateParams', function($scope, $rootScope, $state, mainService, $sessionStorage, $stateParams){
+        var ctrl = ['$scope', '$rootScope', '$state', 'mainService', '$stateParams', '$localStorage', function($scope, $rootScope, $state, mainService, $stateParams, $localStorage){
             // login
             $scope.login = function () {
                 mainService.login({
@@ -15,10 +15,10 @@ define([
                 }, function (data) {
                     if (data.code == 0) {
                         $scope.loginData = JSON.parse(data.data);
-                        $sessionStorage.userName =  $scope.loginData.userName;
-                        $sessionStorage.sessionId =  $scope.loginData.sessionId;
-                        $sessionStorage.userId = $scope.loginData.userId;
-                        $sessionStorage.orgId = $scope.loginData.orgId;
+                        $localStorage.userName =  $scope.loginData.userName;
+                        $localStorage.sessionId =  $scope.loginData.sessionId;
+                        $localStorage.userId = $scope.loginData.userId;
+                        $localStorage.orgId = $scope.loginData.orgId;
                         $scope.jump();
                     }else{
                         alert("用户名密码错误");
@@ -29,11 +29,11 @@ define([
             // logout
             $scope.logout = function(){
                 mainService.logout({
-                    'username':  $sessionStorage.userName,
-                    'sessionId': $sessionStorage.sessionId
+                    'username':  $localStorage.userName,
+                    'sessionId': $localStorage.sessionId
                 }, function(data) {
                     if (data.code == 0) {
-                        $sessionStorage.$reset();
+                        $localStorage.$reset();
                         // alert("退出成功~");
                         $state.go('login');
                     }
@@ -41,14 +41,14 @@ define([
             }
 
             $scope.jump = function(){
-                $state.go('main.appManageDeployment');
+                $state.go('main.dashboard');
                 $rootScope.widget = {};
                 $scope.data = {
-                    username : $sessionStorage.userName,
+                    username : $localStorage.userName,
                     showSubnav: [],
                     toggleNav : false
                 };
-                mainService.getNavlist({"sessionId": $sessionStorage.sessionId}, function (data) {
+                mainService.getNavlist({"sessionId": $localStorage.sessionId}, function (data) {
                     $scope.navList = data.list;
                 });
 
@@ -57,7 +57,7 @@ define([
                 };
             };
 
-            if(!$sessionStorage.userId) {
+            if(!$localStorage.userId) {
                 $state.go('login');
             }else{
                 $scope.jump();

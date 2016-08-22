@@ -52,7 +52,7 @@
                                 <span class="desc">镜像是您创建应用的根据</span>
 
                                 <div class="controls">
-                                    <input type="text" class="form-control" required id="field-image" ng-model="param.deployment.spec.template.spec.containers[0].image" ng-focus="changeName = !shows" ng-click="getImages()">
+                                    <input type="text" value="" class="form-control" id="field-image" ng-model="param.deployment.spec.template.spec.containers[0].image" ng-focus=" changeName = !shows ">
                                 </div>
                             </div>
 
@@ -107,14 +107,14 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Key</span>
-                                            <p class="form-control">namespace</p>
+                                            <p class="form-control">version</p>
                                         </div>
                                     </div>
                                     <div class="delimiter"><i class="fa fa-minus"></i></div>
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Value</span>
-                                            <p class="form-control">{{param.deployment.metadata.namespace}}</p>
+                                            <p class="form-control">{{param.deployment.metadata.labels.version}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Value</span>
-                                            <p class="form-control">{{param.deployment.metadata.labels.author}}</p>
+                                            <p class="form-control">{{dataTrans.author}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -193,18 +193,24 @@
 
                         <!-- Image -->
                         <div class="replica_wrap" ng-show="changeName">
+
                             <div class="replica_box1">
                                 <span class="replica_close" ng-click="changeName = shows">×</span>
 
-                                    <span class="replica_inp">
-                                        <input class="input__field input__field--yoko" type="text" style="outline: none;" id="input-17" ng-model="test" />
-                                        <label class="input__label input__label--yoko" for="input-17">
-                                            <span class="input__label-content input__label-content--yoko"></span>
-                                        </label>
-                                    </span>
+                                <span class="replica_inp">
+                                    <input class="input__field input__field--yoko" type="text" style="outline: none;" id="input-17" ng-model="test" />
+                                    <label class="input__label input__label--yoko" for="input-17">
+                                        <span class="input__label-content input__label-content--yoko"></span>
+                                    </label>
+                                </span>
 
+                                <!--<p ng-repeat=" x in imageList | filter:test" ng-show="test"> &nbsp {{ x.name }} : {{x.tags[0]}} </p>-->
+                                <!--<p ng-repeat=" x in imageList | filter:test" ng-show="test"> &nbsp {{ x }} </p>-->
                                 <div class="replica_content" ng-click="changeName = shows">
-                                    <p ng-repeat=" x in images | filter:test" ng-show="test"> &nbsp {{ x.name }} </p>
+                                    <p class="images_list" ng-repeat=" x in imageList | filter:test" ng-click="getImages(x)">
+                                        <span ng-bind="$index+1"></span>
+                                        <span>{{ x }}</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
