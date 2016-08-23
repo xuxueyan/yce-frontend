@@ -98,22 +98,10 @@ define([
                     memory : limits.mem
                 };
 
-                /*
-                $scope.param.deployment.spec.selector = {
-                    "matchLabels": "any",
-                    "matchExpressions": [{}]
-                    "matchExpressions": [{
-                        "key": "",
-                        "operator": "",
-                        "values": [""]
-                    }]
-                };
-                */
-                //$scope.param.deployment.spec.selector.matchLabels = "any";
-                //$scope.param.deployment.spec.selector.matchExpressions[0] = $scope.param.deployment.metadata.labels;
                 $scope.param.deployment.spec.template.metadata = {
                     labels : $scope.param.deployment.metadata.labels
                 };
+
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
