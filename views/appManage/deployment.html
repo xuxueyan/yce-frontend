@@ -1,0 +1,333 @@
+<section class="wrapper main-wrapper row deployment">
+    <div class="col-xs-12">
+        <div class="page-title">
+
+            <div class="pull-left">
+                <h1 class="title">应用发布</h1>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <form name="form" novalidate>
+            <section class="box" ng-if="stepNum==1">
+                <header class="panel_header">
+                    <h2 class="title pull-left">基本配置</h2>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group">
+                                <label class="form-label" for="field-name">应用名：</label>
+                                <span class="desc">应用名是您将要创建的应用的名称，组织内唯一</span>
+
+                                <div class="controls">
+                                    <input type="text" value="Color" required class="form-control" id="field-name" ng-model="param.deployment.metadata.name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">组织名：</label>
+                                <span class="desc">组织名是您所属的组织</span>
+
+                                <div class="controls">
+                                    <p class="form-control">{{param.deployment.metadata.namespace}}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">数据中心：</label>
+                                <span class="desc">数据中心是您的应用将要部署到的位置</span>
+
+                                <div class="controls data-center">
+                                    <label ng-repeat="item in initData.dataCenters" class="form-label" ng-class="{checked:dataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataTrans.dataCenters[$index]">{{item.name}}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-image">镜像：</label>
+                                <span class="desc">镜像是您创建应用的根据</span>
+
+                                <div class="controls">
+                                    <input type="text" value="" class="form-control" id="field-image" ng-model="param.deployment.spec.template.spec.containers[0].image" ng-focus=" changeName = !shows ">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-replicas">副本数：</label>
+                                <span class="desc">副本数是您创建应用的实例个数</span>
+
+                                <div class="controls">
+                                    <input type="number" value="color" required min="0" pattern="[0-9]" class="form-control" required id="field-replicas" ng-model="param.deployment.spec.replicas">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">规格：</label>
+                                <span class="desc">规格是您为应用所申请的资源规格</span>
+
+                                <div class="controls resource-spec">
+                                    <label ng-repeat="item in initData.quotas" class="form-label" ng-class="{checked:(dataTrans.quotas==item.id)}">
+                                        <span class="resource-spec-title">{{item.name}}</span>
+                                        <p>
+                                            <input type="radio" name="limits" ng-checked="$first" value="{{item.id}}" ng-model="dataTrans.quotas">
+                                            &nbsp;CPU：{{item.cpu}}C<br>MEM：{{item.mem}}G
+                                        </p>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group labels-group">
+                                <div class="controls row">
+                                    <label class="form-label">标签组：</label>
+                                    <span class="desc"></span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addLabel()"></i>
+                                    </span>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">name</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{param.deployment.metadata.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">version</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{param.deployment.metadata.labels.version}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">author</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{dataTrans.author}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row" ng-repeat="label in dataTrans.labels">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <input type="text" class="form-control" ng-model="label.key" required>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <input type="text" class="form-control" ng-model="label.value" required>
+                                        </div>
+                                    </div>
+                                    <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-minus-square" ng-click="deleteLabel($index)"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">环境变量：</label>
+                                    <span class="desc"></span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addEnv()"></i>
+                                    </span>
+                                </div>
+                                <div class="controls row" ng-repeat="env in param.deployment.spec.template.spec.containers[0].env">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Name</span>
+                                            <input type="text" class="form-control" ng-model="env.name" required>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <input type="text" class="form-control" ng-model="env.value" required>
+                                        </div>
+                                    </div>
+                                    <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-minus-square" ng-click="deleteEnv($index)"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 padding-bottom-30">
+                                <div class="text-left">
+                                    <button type="button" class="btn btn-primary" ng-click="submit()">提交</button>
+                                    <!--<button type="button" class="btn">Cancel</button>-->
+                                    <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Image -->
+                        <div class="replica_wrap" ng-show="changeName">
+
+                            <div class="replica_box1">
+                                <span class="replica_close" ng-click="changeName = shows">×</span>
+
+                                <span class="replica_inp">
+                                    <input class="input__field input__field--yoko" type="text" style="outline: none;" id="input-17" ng-model="test" />
+                                    <label class="input__label input__label--yoko" for="input-17">
+                                        <span class="input__label-content input__label-content--yoko"></span>
+                                    </label>
+                                </span>
+
+                                <div class="replica_content" ng-click="changeName = shows">
+                                    <p class="images_list" ng-repeat=" x in imageList | filter:test" ng-click="getImages(x)">
+                                        <span ng-bind="$index+1"></span>
+                                        <span>{{ x }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="box" ng-if="stepNum==2">
+                <header class="panel_header">
+                    <h2 class="title pull-left">高级配置</h2>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[0]">
+                                    <label class="form-label">健康检查</label>
+                                    <span class="desc">确定应用的健康程度</span>
+                                    <div class="row">
+                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
+                                            <label class="form-label">HTTP</label>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">URL</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[0]" ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.path">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">Port</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[0]" ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.port">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">每隔</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[0]" ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.periodSeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">生效时间</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[0]" ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[1]">
+                                    <label class="form-label">可读性检查</label>
+                                    <span class="desc">确定应用的可读性</span>
+                                    <div class="row">
+                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
+                                            <label class="form-label">HTTP</label>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">URL</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.httpGet.path">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">Port</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.httpGet.port">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">每隔</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.periodSeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">生效时间</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.initialDelaySeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[2]">
+                                    <label class="form-label">启动准备</label>
+                                    <span class="desc"></span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[2]" ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.postStart.exec.command[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[3]">
+                                    <label class="form-label">优雅停止</label>
+                                    <span class="desc">在应用结束后做好收尾工作</span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[3]" ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.preStop.exec.command[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="field-image">执行命令</label>
+                                    <span class="desc">除应用外还需执行的命令</span>
+
+                                    <div class="controls">
+                                        <input type="text" class="form-control" ng-model="param.deployment.spec.template.spec.containers[0].command[0]">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="field-image">参数</label>
+                                    <span class="desc">执行命令所需的参数</span>
+
+                                    <div class="controls">
+                                        <input type="text" class="form-control" ng-model="param.deployment.spec.template.spec.containers[0].args[0]">
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <button type="button" class="btn btn-primary" ng-click="submit()">提交</button>
+                                    <button type="button" class="btn btn-primary" ng-click="nextStep(1)">上一步</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</section>

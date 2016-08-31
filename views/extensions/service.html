@@ -1,0 +1,137 @@
+<section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">创建服务</h1>                            
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left"></h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form action ="#" method="post">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">服务名称：</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <input type="text" value="" class="form-control" id="field-1678" ng-model="param.serviceName" required >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">数据中心：</label>
+                                <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                                <div class="data-center">
+                                    <label class="server-servers" ng-repeat="i in extentServerLei.dataCenters" ng-class="{radio_bg:serverVal}">
+
+                                        <input type="checkbox" name="dataCenters"value="item" ng-model="serverVal">
+                                        {{ i.name }}
+
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">服务类型：</label>
+                                <span class="desc"></span>
+                                <div class="data-center">
+                                    <label class="server-label2">
+                                        <input type="radio" name="dataCenters" checked ng-model="serverRadios" value="0" ng-click="serverClick1()" ng-bind="ccccc"> ClusterIP
+                                    </label>
+                                    <label class="server-label2">
+                                        <input type="radio" name="dataCenters" ng-model="serverRadios" value="1" ng-click="serverClick1()" ng-bind="ccccc"> NodePort
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">选择器：</label>
+                                <div class="controls">
+                                    <input type="checkbox" ng-model="serverCheckbox" class="portInputch"> 
+                                    <label class="server-label3">假如您没有创建访问点，请先创建访问点。
+                                    </label>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="!serverCheckbox"> ：
+                                    <input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="!serverCheckbox">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">端口组：</label>
+                                <span class="desc"></span>
+                                <div class="controls">
+                                    <p class="server-p-1">
+                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678"> 
+                                        <span>协议</span><input type="text" value="" class="form-control server-btn" id="field-1678">
+                                        <b class="server-jia" ng-click="addPort()">+</b>
+                                    </p>
+                                    <p class="server-p-1">
+                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678">
+                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678"> 
+                                    </p>
+                                    <p class="server-p-1">
+                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled">
+                                    </p>
+                                </div>
+                                
+                                <div class="controls" ng-repeat="portlists in ports">
+                                    <p class="server-p-1">
+                                        <span>名称</span>
+                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portsname"> 
+                                        <span>协议</span>
+                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portsarrange">
+                                        <b class="server-jia" ng-click="delPort($index)">-</b>
+                                    </p>
+                                    <p class="server-p-1">
+                                        <span>port</span>
+                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portsport">
+                                        <span>Target Port</span>
+                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portstargetport"> 
+                                    </p>
+                                    <p class="server-p-1">
+                                        <span>NodePort</span>
+                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portsnodeport">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">标签组：</label>
+                                <span class="desc"></span>
+                                <div class="controls" >
+                                    <input type="text" class="form-control server-btn"> ：
+                                    <input type="text" class="form-control server-btn">
+                                    <b class="server-jia" ng-click="addLabels()">+</b>
+                                </div>
+                                <div class="controls" ng-repeat="lei in leis">
+                                    <input type="text" class="form-control server-btn"  ng-model=" leiKey "> ：
+                                    <input type="text" class="form-control server-btn"  ng-model=" leiValue ">
+                                    <b class="server-jia" ng-click="delLabels($index)">-</b>
+                                </div>
+                            </div>
+
+
+
+
+
+                        <!--       ******       -->
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button type="button" class="btn btn-primary" ng-click="serversubmit()">提交</button>
+                                    <button type="button" class="btn">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

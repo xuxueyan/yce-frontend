@@ -1,0 +1,191 @@
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+            "dcId": 1,
+            "dcName": "办公网",
+            "endpointList": {
+            	"metadata": {
+            		"selfLink": "/api/v1/namespaces/ops/endpoints",
+            		"resourceVersion": "xxxxx",
+            	},
+            	"items":[
+            		{
+
+            		},
+            		{
+            			
+            		}
+            	]
+            },
+            "serviceList": {
+                "metadata": {
+                    "selfLink": "/api/v1/namespaces/ops/services",
+                    "resourceVersion": "17476014"
+                },
+                "items": [
+                    {
+                        "metadata": {
+                            "name": "external-service",
+                            "namespace": "ops",
+                            "selfLink": "/api/v1/namespaces/ops/services/external-service",
+                            "uid": "236be44f-6830-11e6-b957-44a84240716a",
+                            "resourceVersion": "16541998",
+                            "creationTimestamp": "2016-08-22T06:17:44Z"
+                        },
+                        "spec": {
+                            "type": "ClusterIP",
+                            "ports": [
+                                {
+                                    "name": "http",
+                                    "protocol": "TCP",
+                                    "port": 80,
+                                    "targetPort": 9375,
+                                    "nodePort": 0
+                                }
+                            ],
+                            "selector": {
+                                "app": "MyApp"
+                            },
+                            "clusterIP": "192.168.3.205",
+                            "externalIPs": [
+                                "80.11.12.10"
+                            ],
+                            "sessionAffinity": "None"
+                        },
+                        "status": {
+                            "loadBalancer": {}
+                        }
+                    },
+                    {
+                        "metadata": {
+                            "name": "lb-service",
+                            "namespace": "ops",
+                            "selfLink": "/api/v1/namespaces/ops/services/lb-service",
+                            "uid": "ef0d6835-682f-11e6-b957-44a84240716a",
+                            "resourceVersion": "16541925",
+                            "creationTimestamp": "2016-08-22T06:16:16Z"
+                        },
+                        "spec": {
+                            "type": "LoadBalancer",
+                            "ports": [
+                                {
+                                    "name": "",
+                                    "protocol": "TCP",
+                                    "port": 80,
+                                    "targetPort": 9380,
+                                    "nodePort": 30061
+                                }
+                            ],
+                            "selector": {
+                                "app": "MyApp"
+                            },
+                            "clusterIP": "192.168.3.42",
+                            "loadBalancerIP": "78.11.24.19",
+                            "sessionAffinity": "None"
+                        },
+                        "status": {
+                            "loadBalancer": {}
+                        }
+                    },
+                    {
+                        "metadata": {
+                            "name": "multiport-service",
+                            "namespace": "ops",
+                            "selfLink": "/api/v1/namespaces/ops/services/multiport-service",
+                            "uid": "168f41e6-682f-11e6-b957-44a84240716a",
+                            "resourceVersion": "16541626",
+                            "creationTimestamp": "2016-08-22T06:10:13Z"
+                        },
+                        "spec": {
+                            "type": "ClusterIP",
+                            "ports": [
+                                {
+                                    "name": "http",
+                                    "protocol": "TCP",
+                                    "port": 80,
+                                    "targetPort": 9378,
+                                    "nodePort": 0
+                                },
+                                {
+                                    "name": "https",
+                                    "protocol": "TCP",
+                                    "port": 443,
+                                    "targetPort": 9379,
+                                    "nodePort": 0
+                                }
+                            ],
+                            "selector": {
+                                "app": "MyApp"
+                            },
+                            "clusterIP": "192.168.3.194",
+                            "sessionAffinity": "None"
+                        },
+                        "status": {
+                            "loadBalancer": {}
+                        }
+                    },
+                    {
+                        "metadata": {
+                            "name": "service-withoutselectors",
+                            "namespace": "ops",
+                            "selfLink": "/api/v1/namespaces/ops/services/service-withoutselectors",
+                            "uid": "8540cb8b-682e-11e6-b957-44a84240716a",
+                            "resourceVersion": "16541430",
+                            "creationTimestamp": "2016-08-22T06:06:09Z"
+                        },
+                        "spec": {
+                            "type": "ClusterIP",
+                            "ports": [
+                                {
+                                    "name": "",
+                                    "protocol": "TCP",
+                                    "port": 80,
+                                    "targetPort": 9377,
+                                    "nodePort": 0
+                                }
+                            ],
+                            "selector": null,
+                            "clusterIP": "192.168.3.40",
+                            "sessionAffinity": "None"
+                        },
+                        "status": {
+                            "loadBalancer": {}
+                        }
+                    },
+                    {
+                        "metadata": {
+                            "name": "service-withselectors",
+                            "namespace": "ops",
+                            "selfLink": "/api/v1/namespaces/ops/services/service-withselectors",
+                            "uid": "16ad29ed-682e-11e6-b957-44a84240716a",
+                            "resourceVersion": "16541275",
+                            "creationTimestamp": "2016-08-22T06:03:03Z"
+                        },
+                        "spec": {
+                            "type": "ClusterIP",
+                            "ports": [
+                                {
+                                    "name": "",
+                                    "protocol": "TCP",
+                                    "port": 80,
+                                    "targetPort": 9376,
+                                    "nodePort": 0
+                                }
+                            ],
+                            "selector": {
+                                "app": "MyApp"
+                            },
+                            "clusterIP": "192.168.3.74",
+                            "sessionAffinity": "None"
+                        },
+                        "status": {
+                            "loadBalancer": {}
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

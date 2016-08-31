@@ -1,0 +1,71 @@
+<section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">扩展功能</h1>                            
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">服务和访问点</h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-3 input-group primary pull-right appManageSearch">
+                        <input type="text" ng-model="extentTest" placeholder="输入应用名称..." class="form-control search-page-input">
+                        <span class="input-group-addon">
+                            <span class="arrow"></span>
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="extensions-table" ng-repeat="app in newExtensions ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名称</th>
+                            <th>数据中心</th>
+                            <th>类型</th>
+                            <th>运行时长</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-length" ng-repeat="item in app.serviceList.items | filter:extentTest">
+                            <td>{{$index+1}}</td>
+                            <td>{{ item.metadata.name }}</td>
+                            <td>{{ app.dcName }}</td>
+                            <td> 服务 </td>
+                            <td>{{ item.metadata.creationTimestamp }}</td>
+                            <td>
+                                <p class="Images-more-p2">
+                                    <a href="javascript:void(0);">滚动升级</a>
+                                    <a href="javascript:void(0);">回滚</a>
+                                    <a href="javascript:void(0);">撤销</a>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="item in app.endpointsList.items">
+                            <td>{{ itemLength-(-$index-2) }}</td>
+                            <td>{{ item.metadata.name }}</td>
+                            <td>{{ app.dcName }}</td>
+                            <td>访问点</td>
+                            <td>{{ item.metadata.creationTimestamp }}</td>
+                            <td>
+                                <p class="Images-more-p2">
+                                    <a href="javascript:void(0);">滚动升级</a>
+                                    <a href="javascript:void(0);">回滚</a>
+                                    <a href="javascript:void(0);">撤销</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
