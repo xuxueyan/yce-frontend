@@ -37,6 +37,7 @@ define([
                         // alert("退出成功~");
                         $state.go('login');
                     }
+
                 });
             }
 

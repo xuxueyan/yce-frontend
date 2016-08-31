@@ -14,7 +14,11 @@ define([
 		};
 
 		return apis;
+<<<<<<< HEAD
 	};
+=======
+	};	
+>>>>>>> 497c39254dd7c2386a796d12deefb970c5b4bc4f
 
 	var services = {
 		module: 'appManage',

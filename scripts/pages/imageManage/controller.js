@@ -6,6 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
+
         var ctrl = ['$scope','$http', function($scope,$http){
 
             $http({
@@ -25,13 +26,6 @@ define([
                     console.log(data.message)
                 }
             })
-
-
-
-
-
-
-
 
 
 

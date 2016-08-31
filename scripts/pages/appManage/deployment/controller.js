@@ -56,6 +56,7 @@ define([
                     $scope.stepNum = stepNum;
                 };
             });
+
             /*添加标签*/
             $scope.addLabel = function(){
                 $scope.dataTrans.labels.push({key:'',value:''});
@@ -102,7 +103,6 @@ define([
                 };
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
-                
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
                 },function(){
@@ -117,7 +117,6 @@ define([
             })
             .success(function(data) {
                 var dataObject = JSON.parse(data.data);
-
 
                 // make new images:tags
                 var imageArr = new Array();
@@ -137,6 +136,7 @@ define([
                         $scope.param.deployment.metadata.labels.version = $1;
                     });
                 }
+
 
             })
             .error(function() {
