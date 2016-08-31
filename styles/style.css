@@ -4439,10 +4439,10 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus,
 }
 
 .team-member {
-    display: inline-block;
+/*    display: inline-block;*/
     padding: 0px;
     border: 0px solid #eaeaea;
-    margin: 0 0 30px 0;
+/*    margin: 0 0 30px 0;*/
     background-color: transparent;
 }
 
@@ -4479,16 +4479,15 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus,
 
 .team-member.col .team-info{
     padding-left: 15px;
-    margin-top: 0px;
 }
 
 .team-member.col .team-info h4{
     margin: 0px 0 5px 0 !important;
 }
 
-.team-img{
+/*.team-img{
     padding: 0px;
-}
+}*/
 
 .team-member h4,
 .tab-pane .team-info h4{

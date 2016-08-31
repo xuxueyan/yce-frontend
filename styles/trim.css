@@ -1,0 +1,9 @@
+.content-body .col-xs-12 .row>div{
+	padding: 15px 15px;
+}
+.content-body .col-xs-12 .row .team-img img{
+	position: absolute;
+	height: 147px;
+	top: 0;
+	left: 0;
+}
