@@ -117,21 +117,6 @@ define([
             })
             .success(function(data) {
                 var dataObject = JSON.parse(data.data);
-                console.log("getImages success");
-
-
-                // cycle print images name and tags
-                /*
-                $scope.imageList=dataObject;
-                for (var i in dataObject) {
-                    console.log("images: " + dataObject[i].name);
-                    var list = dataObject[i].tags;
-                    $scope.tagList=list;
-                    for (var j in list) {
-                        console.log("tags: " + list[j]);
-                    }
-                }
-                */
 
                 // make new images:tags
                 var imageArr = new Array();
@@ -139,7 +124,7 @@ define([
                 for (var i in dataObject) {
                     var list = dataObject[i].tags;
                     for (var j in list) {
-                        imageArr[k] = dataObject[i].name + ":" + list[j]
+                        imageArr[k] = dataObject[i].name + ":" + list[j];
                         k=k+1
                     }
                 }
@@ -151,11 +136,7 @@ define([
                         $scope.param.deployment.metadata.labels.version = $1;
                     });
                 }
-                /*
-                $scope.getImages = function($index) {
-                    $scope.param.image=imageArr[$index];
-                }
-                */
+
 
             })
             .error(function() {

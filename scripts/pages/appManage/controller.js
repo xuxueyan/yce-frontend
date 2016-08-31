@@ -11,9 +11,11 @@ define([
             $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId}
 
             appManageService.getAppList($scope.param,function(data){
+
+                console.log(data+"@@@@@@@@@@@@@@")
                  if (data.code == 0) {
                     $scope.appList = JSON.parse(data.data);
-                    console.log($scope.appList);
+                //    console.log($scope.appList);
                  }
             });
 

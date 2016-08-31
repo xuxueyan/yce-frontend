@@ -9,7 +9,9 @@ define([
 
 		$http[method](yce.preUrl + url, param)
 		.success(function(data){
-				console.log(url,data);
+
+		//	console.log(url,data);
+
 			success(data);
 		})
 		.error(function(){
