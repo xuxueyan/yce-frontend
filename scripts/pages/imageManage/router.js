@@ -16,6 +16,11 @@ define([], function(){
 			url: '/delete',
 			templateUrl: 'views/imageManage/delete.html',
 			controller: 'imageManageController'
+		},
+		basics: {
+			url: '/basics',
+			templateUrl: 'views/imageManage/basics.html',
+			controller: 'imageManageController'
 		}
 	};
 
