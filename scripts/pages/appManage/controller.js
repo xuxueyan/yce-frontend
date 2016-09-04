@@ -11,26 +11,37 @@ define([
             $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId}
 
             appManageService.getAppList($scope.param,function(data){
-
-                console.log(data+"@@@@@@@@@@@@@@")
-                 if (data.code == 0) {
-                    $scope.appList = JSON.parse(data.data);
-                //    console.log($scope.appList);
-                 }
+                if (data.code == 0) {
+                   $scope.appList = JSON.parse(data.data);
+                }
             });
 
-            $scope.showAppDetail = function(item){
-                $scope.appDetailConf = {
-                    widgetId : 'widgetAppDetail',
-                    widgetTitle : '应用详情',
-                    isAppDetail : true,
+            // 发布详情
+            $scope.showAppDeployDetail = function(item){
+                    $scope.appDeployDetailConf = {
+                        widgetId : 'widgetAppDeployDetail',
+                        widgetTitle : '发布详情',
+                        isAppDeployDetail : true,
+                        data : item
+                    };
+                    $rootScope.widget = {
+                        showDeployAppDetail : true
+                    };
+            };
+
+
+            // 应用实例详情
+            $scope.showAppPodDetail = function(item){
+                $scope.appPodDetailConf = {
+                    widgetId : 'widgetAppPodDetail',
+                    widgetTitle : '应用实例详情',
+                    isAppPodDetail : true,
                     data : item
                 };
                 $rootScope.widget = {
-                    showAppDetail : true
+                    showPodAppDetail : true
                 };
             };
-
         }];
 
 

@@ -24,10 +24,22 @@ define([
                         }]
 			        };
     			})
-    			.directive('uiAppDetail', function(){
+    			.directive('uiAppPodDetail', function(){
         			return {
             			restrict: 'A',
-                        templateUrl : './views/widget/appDetail.html',
+                        templateUrl : './views/widget/appPodDetail.html',
+                        scope : {
+                            orginalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                            console.log($scope.orginalData);
+                        }]
+			        };
+    			})
+    			.directive('uiAppDeployDetail', function(){
+        			return {
+            			restrict: 'A',
+                        templateUrl : './views/widget/appDeployDetail.html',
                         scope : {
                             orginalData : '='
                         },
