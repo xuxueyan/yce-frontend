@@ -14,7 +14,7 @@
             </header>
             <div class="content-body">
                 <div class="row">
-                    <form action ="#" method="post">
+                    <form ng-submit="serversubmit()" name="login" >
                         <div class="col-xs-12 col-sm-9 col-md-8">
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">服务名称：</label>
@@ -23,44 +23,16 @@
                                     <input type="text" value="" class="form-control" id="field-1678" ng-model="param.serviceName" required >
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">数据中心：</label>
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="data-center">
-                                    <label class="server-servers" ng-repeat="i in extentServerLei.dataCenters" ng-class="{radio_bg:param.dcIdList[$index]}">
-
-                                        <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="param.dcIdList[$index]" value="{{i.id}}">
+                                    <label class="server-servers" ng-repeat="i in extentServerLei.dataCenters" ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
                                         {{ i.name }}
-
                                     </label>
-
-                    
-            <label class="server-servers" ng-class="{radio_bg:formData.Case.case1}">
-                <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="formData.Case.case1" >
-                case1
-            </label><br>
-
-            <label class="server-servers" ng-class="{radio_bg:formData.Case.case2}">
-                <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="formData.Case.case2" >case2
-            </label><br>
-
-            <label class="server-servers" ng-class="{radio_bg:formData.Case.case3}">
-                <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="formData.Case.case3" >case3
-            </label><br>
-
-
-
-            <span ng-click="postData()">提交</span>
-
-
-
-
-
-
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">服务类型：</label>
                                 <span class="desc"></span>
@@ -73,7 +45,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">选择器：</label>
                                 <div class="controls">
@@ -81,44 +52,10 @@
                                     <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="mocks.mylistValue">
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">端口组：</label>
                                 <span class="desc"></span>
                                 <i class="fa fa-plus-square server-adds" ng-click="addPort()"></i>
-                                <!--
-                                <div class="controls">
-                                    <p class="server-p-1">
-                                        <span>名称</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678"> 
-                                        <span>协议</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678">
-                                        <b class="server-jia" ng-click="addPort()">+</b>
-                                    </p>
-                                    <p class="server-p-1">
-                                        <span>port</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678">
-                                        <span>Target Port</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678"> 
-                                    </p>
-                                    <p class="server-p-1">
-                                        <span>NodePort</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled">
-                                    </p>
-                                </div>
-                                -->
-
                                 <div class="controls" ng-repeat="portlists in ports">
                                     <p class="server-p-1">
                                         <span>名称</span>
@@ -142,19 +79,19 @@
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">标签组：</label>
                                 <span class="desc"></span>
-                                        <i class="fa fa-plus-square server-add" ng-click="addLabels()"></i>
-                                    <p class="server-p-3">
-                                        <span>key</span>
-                                        <input type="text" placeholder="name" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
-                                        <span>value</span>
-                                        <input type="text" placeholder="{{ param.serviceName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
-                                    </p>
-                                    <p class="server-p-3">
-                                        <span>key</span>
-                                        <input type="text" placeholder="author" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
-                                        <span>value</span>
-                                        <input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
-                                    </p>
+                                <i class="fa fa-plus-square server-add" ng-click="addLabels()"></i>
+                                <p class="server-p-3">
+                                    <span>key</span>
+                                    <input type="text" placeholder="name" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
+                                    <span>value</span>
+                                    <input type="text" placeholder="{{ param.serviceName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                </p>
+                                <p class="server-p-3">
+                                    <span>key</span>
+                                    <input type="text" placeholder="author" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
+                                    <span>value</span>
+                                    <input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                </p>
 
                                 <div class="controls" ng-repeat="lei in leis">
                                     <p class="server-p-3">
@@ -169,8 +106,7 @@
 
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
                                 <div class="text-left">
-                                    <button type="button" class="btn btn-primary" ng-click="serversubmit()">提交</button>
-                                    <button type="button" class="btn">取消</button>
+                                    <button class="btn btn-primary" ng-disabled="login.$invalid">提交</button>
                                 </div>
                             </div>
                         </div>

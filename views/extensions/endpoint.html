@@ -1,64 +1,106 @@
 <section class="wrapper main-wrapper row">
-    <div class='col-xs-12'>
-        <div class="page-title">
-            <div class="pull-left">
-                <h1 class="title">创建访问点</h1>                            
-            </div>
-
-            <!--
-            <div class="pull-right hidden-xs">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html"><i class="fa fa-home"></i>主页</a>
-                    </li>
-                    <li>
-                        <a href="eco-categories.html">扩展功能</a>
-                    </li>
-                    <li class="active">
-                        <strong>访问点创建</strong>
-                    </li>
-                </ol>
-            </div>
-            -->
-
+<div class='col-xs-12'>
+    <div class="page-title">
+        <div class="pull-left">
+            <h1 class="title">创建访问点</h1>                            
         </div>
     </div>
-    <div class="clearfix"></div>
-        <div class="col-xs-12">
-            <section class="box ">
-                <header class="panel_header">
-                    <h2 class="title pull-left"></h2>
-                </header>
-                <div class="content-body">
-                    <div class="row">
-                        <form action ="#" method="post">
-                            <div class="col-xs-12 col-sm-9 col-md-8">
-                                <div class="form-group">
-                                    <label class="form-label" for="field-15121">应用名称</label>
-                                    <span class="desc"></span>
-                                    <div class="controls">
-                                        <input type="text" value="" class="form-control" id="field-15121">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label" for="field-1678">访问点</label>
-                                    <span class="desc"></span>
-                                    <div class="controls">
-                                        <input type="text" value="" class="form-control" id="field-1678">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
-                                    <div class="text-left">
-                                        <button type="button" class="btn btn-primary">提交</button>
-                                        <button type="button" class="btn">取消</button>
-                                    </div>
-                                </div>
+</div>
+<div class="clearfix"></div>
+<div class="col-xs-12">
+    <section class="box ">
+        <header class="panel_header">
+            <h2 class="title pull-left"></h2>
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <form action ="#" method="post">
+                    <div class="col-xs-12 col-sm-9 col-md-8">
+                        <div class="form-group">
+                            <label class="form-label" for="field-15121">访问点名称</label>
+                            <span class="desc"></span>
+                            <div class="controls">
+                                <input type="text" value="" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName">
                             </div>
-                        </form>
-                    </div>    
-                </div>
+                        </div>
 
-        </section>
-    </div>
+                        <div class="form-group">
+                            <label class="form-label">数据中心：</label>
+                            <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                            <div class="data-center">
+                                 <label class="server-servers" ng-repeat="i in endpointsData.dataCenters" ng-class="{radio_bg:endDataTrans.endDataCenters[$index]}">
+                                    <input type="checkbox" ng-true-value="true" ng-false-value="false"  value="{{i.id}}" ng-model="endDataTrans.endDataCenters[$index]">
+                                    {{ i.id }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-1678">标签组：</label>
+                            <span class="desc"></span>
+                            <i class="fa fa-plus-square server-add" ng-click="addendpointjlabel()"></i>
+                            <p class="server-p-3">
+                                <span>key</span>
+                                <input type="text" placeholder="name" class="form-control server-btn" id="field-1678" disabled>：
+                                <span>value</span>
+                                <input type="text" placeholder="{{ endpointsJson.endpointsName }}" class="form-control server-btn" id="field-1678" disabled>
+                            </p>
+                            <p class="server-p-3">
+                                <span>key</span>
+                                <input type="text" placeholder="author" class="form-control server-btn" id="field-1678" disabled>：
+                                <span>value</span>
+                                <input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" disabled>
+                            </p>
+                            <div class="controls" ng-repeat="endlei in endleis">
+                                <p class="server-p-3">
+                                    <span>key</span>
+                                    <input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" >：
+                                    <span>value</span>
+                                    <input type="text" class="form-control server-btn" ng-model="endlei.endlabelValue">
+                                    <b class="server-jia fa fa-minus-square" ng-click="delendpointjlabel($index)"></b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="field-1678">选择器：</label>
+                            <div class="controls">
+                                <input type="text" value="" class="form-control server-btn" id="field-1678" > ：
+                                <input type="text" value="" class="form-control server-btn" id="field-1678" >
+                                <i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
+                            </div>
+
+
+
+
+                            <div class="controls" ng-repeat=" epI in mockEnd">
+
+                                <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="epI.ip"> ：
+                                
+                                <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="epI.port" >
+
+                            <i class="fa fa-minus-square endP-add" ng-click="delendpointEx($index)"></i>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                            <div class="text-left">
+                                <button type="button" class="btn btn-primary" ng-click="endpointBtn()">提交</button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+
+    </section>
+</div>
 </section>

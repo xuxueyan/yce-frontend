@@ -8775,7 +8775,10 @@ table.dataTable.display tbody tr:first-child td {
     font-size: 20px;
 }
 
-
+.endP-add{
+    font-size: 20px;
+    margin-left: 30px;
+}
 
 
 
