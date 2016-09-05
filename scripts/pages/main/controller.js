@@ -32,11 +32,11 @@ define([
                     'username':  $localStorage.userName,
                     'sessionId': $localStorage.sessionId
                 }, function(data) {
-                    if (data.code == 0) {
-                        $localStorage.$reset();
+                    // if (data.code == 0) {
+                    $localStorage.$reset();
                         // alert("退出成功~");
-                        $state.go('login');
-                    }
+                    $state.go('login');
+                    // }
 
                 });
             }
