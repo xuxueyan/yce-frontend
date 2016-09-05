@@ -20,15 +20,56 @@ define([
         })
         .success(function(data){
             if(data.code == 0){
-              $scope.newExtensions = JSON.parse(data.data);
-              var NewExtensions = JSON.parse(data.data);
-              NewExtensions.forEach(function(v){
-
+            $scope.newExtensions = JSON.parse(data.data);
+            var NewExtensions = JSON.parse(data.data);
+            NewExtensions.forEach(function(v){
                 for(var itemLength in v.serviceList.items){ }
                 $scope.itemLength = itemLength;
+            });
+            $scope.delItem = function(dcIds,item){
 
-              })
+              //  console.log(angular.toJson(dcIds))
+             //   console.log(angular.toJson(item))
+               // console.log(angular.toJson(item.metadata.labels.type))
+                var lebelType = item.metadata.labels.type;
+            //    console.log(angular.toJson(item.metadata.labels.type))
+                if(lebelType == "service"){
+                    console.log(1234);
+ $http.delete('/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/users/'+userId+'/services/'+lebelType).success(function(){
+                        alert("ok")
+                    }).error(function(data) {
+                        alert("lose");
+                    });
+
+
+
+
+
+                }else{
+                    console.log(7890)
+                }
+
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        //    console.log(angular.toJson(data));
         })
         .error(function(){
             if(data.code != 0){
@@ -89,7 +130,8 @@ define([
                         "labels": {
                             "name": "",
                             "namespace":"",
-                            "author" : ""
+                            "author" : "",
+                            "type" : "service"
                         }
                     },
                     "spec": {
@@ -235,8 +277,7 @@ define([
             $scope.endDataTrans = {
                 endDataCenters : []
             };
-            var subsets = [];
-            var adds = {};
+            var adds = [];
             adds.addresses = [];
             adds.ports = [];
 
@@ -263,14 +304,30 @@ define([
 
                 // 选择器
 
-                for(var i=0; i<$scope.mockEnd.length; i++){
-                    adds.addresses.push({ip : $scope.mockEnd[i].ip})
-                    adds.ports.push({port :Number( $scope.mockEnd[i].port)})
+                for(var i = 0; i < $scope.mockEnd.length; i ++) {
+                    adds.push({
+                        addresses : [ 
+                            $scope.mockEnd[i].addresses
+                        ],
+                        ports : [
+                            {
+                                name : $scope.mockEnd[i].ports.name,
+                                protocol : $scope.mockEnd[i].ports.protocol,
+                                port : Number($scope.mockEnd[i].ports.port)
+                            }
+                        ]
+                    });
                 }
-                subsets.push(adds)
-                $scope.endpointsJson.endpoints.subsets = subsets;
+                $scope.endpointsJson.endpoints.subsets = adds;
 
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
+
+
+
+      
+           //     adds.push({addresses : [ $scope.mock[i].addresses],ports : [{name : $scope.mock[i].ports.name,protocol : $scope.mock[i].ports.protocol,port : Number($scope.mock[i].ports.port)}]});
+    console.log($scope.mockEnd)
+
 
                 //  提交 post
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/new', $scope.endpointsJson).success(function(){

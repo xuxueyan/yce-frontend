@@ -27,7 +27,7 @@
                                 <label class="form-label">数据中心：</label>
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="data-center">
-                                    <label class="server-servers" ng-repeat="i in extentServerLei.dataCenters" ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
+                                    <label class="server-servers ngs_hide" ng-repeat="i in extentServerLei.dataCenters" ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
                                         <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
                                         {{ i.name }}
                                     </label>
@@ -91,6 +91,12 @@
                                     <input type="text" placeholder="author" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
                                     <span>value</span>
                                     <input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                </p>
+                                <p class="server-p-3">
+                                    <span>key</span>
+                                    <input type="text" placeholder="type" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
+                                    <span>value</span>
+                                    <input type="text" placeholder="service" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
                                 </p>
 
                                 <div class="controls" ng-repeat="lei in leis">

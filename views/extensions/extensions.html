@@ -27,6 +27,7 @@
                         <tr>
                             <th>ID</th>
                             <th>名称</th>
+                            <th>创建者</th>
                             <th>数据中心</th>
                             <th>类型</th>
                             <th>运行时长</th>
@@ -37,13 +38,15 @@
                         <tr class="tr-length" ng-repeat="item in app.serviceList.items | filter:extentTest">
                             <td>{{$index+1}}</td>
                             <td>{{ item.metadata.name }}</td>
+                            <td>{{ item.metadata.labels["author"] }}</td>
+
                             <td>{{ app.dcName }}</td>
                             <td> 服务 </td>
                             <td>{{ item.metadata.creationTimestamp }}</td>
                             <td>
                                 <p class="Images-more-p2">
                                     <a href="javascript:void(0);">修改</a>
-                                    <a href="javascript:void(0);">删除</a>
+                                    <a href="javascript:void(0);" ng-click="delItem(app.dcId,item)">删除</a>
                                 </p>
                             </td>
                         </tr>
@@ -51,6 +54,7 @@
                         <tr ng-repeat="item in app.endpointsList.items">
                             <td>{{ itemLength-(-$index-2) }}</td>
                             <td>{{ item.metadata.name }}</td>
+                            <td>{{ item.metadata.labels["author"] }}</td>
                             <td>{{ app.dcName }}</td>
                             <td>访问点</td>
                             <td>{{ item.metadata.creationTimestamp }}</td>
