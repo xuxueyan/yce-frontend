@@ -2,7 +2,8 @@
     <div class="widget">
         <div class="widget-header">{{config.widgetTitle}}</div>
         <div class="widget-content">
-            <div ui-app-detail ng-if="config.isAppDetail" orginal-data="config.data"></div>
+            <div ui-app-pod-detail ng-if="config.isAppPodDetail" orginal-data="config.data"></div>
+            <div ui-app-deploy-detail ng-if="config.isAppDeployDetail" orginal-data="config.data"></div>
         </div>
         <div class="widget-close" ng-click="closeWidget()">×</div>
     </div>

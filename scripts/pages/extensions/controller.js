@@ -47,7 +47,6 @@ define([
                 $scope.extentServerLei = JSON.parse($scope.extentServers.data);
 
                 var demoss = $scope.extentServerLei.orgName;
-                $scope.leis = [];
                 if($scope.extentServers.code == 0){
                         $scope.serverClick1 = function(){
                             if($scope.serverRadios == 1){
@@ -57,6 +56,7 @@ define([
                             }
                         }
                         //   label add....
+                        $scope.leis = [];
                         $scope.addLabels = function(){
                             $scope.leis.push({})
                         }
@@ -75,142 +75,246 @@ define([
                             $scope.ports.splice($index,1)
                         }
 
-                }
-
-
-
-
-
-
-
-            $scope.formData={}
-            var demo = [];
-
-            $scope.param = {}
-            $scope.mocks ={}
-            $scope.serversubmit = function(){
-                // 服务类型  ok
-                var type = "";
-                if($scope.serverRadios == 0){
-                    var type="ClusterIP";
-                }
-                else if($scope.serverRadios == 1){
-                    var type="NodePort";
-                }
-                $scope.param.service = {};
-                $scope.param.service.spec = {};
-                $scope.param.service.spec.type = {};
-                $scope.param.service.spec.type = type;
-
-
-
-
-                //   ---  xx
-             //   var serverCenter = $scope.extentServerLei.dataCenters;
-
-
-            demo.push($scope.formData.Case);
-
-                    $scope.objs=[];
-                    
-                    demo.forEach(function(v){
-                        for(var i in v){
-                            if(v[i] != false){
-                                $scope.objs.push(i)
+               }
+                // 拼接json
+                $scope.param = {
+                    "serviceName": "",
+                    "orgName": "",
+                    "dcIdList": [],
+                    "service": {
+                        "kind": "Service",
+                        "apiVersion": "v1",
+                        "metadata": {
+                            "name": "",
+                            "labels": {
+                                "name": "",
+                                "namespace":"",
+                                "author" : ""
                             }
+                        },
+                        "spec": {
+                            "type": "",
+                            "selector": {},
+                            "ports": [
+                                {
+                                    "name": "",
+                                    "protocol": "",
+                                    "port": "",
+                                    "targetPort": "",
+                                    "nodePort": ""
+                                }
+                            ]
+                        }
+                    }
+                }
+
+                $scope.formData={}
+                var demo = [];
+                $scope.mocks ={}
+                $scope.dataTrans = {
+                    dataCenters : []
+                };
+                $scope.serversubmit = function(){
+                    // 服务类型  ok
+                    var type = "";
+                    if($scope.serverRadios == 0){
+                        var type="ClusterIP";
+                    }
+                    else if($scope.serverRadios == 1){
+                        var type="NodePort";
+                    }
+                    $scope.param.service.spec.type = type;
+                    $scope.param.service.metadata.name = $scope.param.serviceName;
+                    demo.push($scope.formData.Case);
+                        $scope.objs=[];
+                        demo.forEach(function(v){
+                            for(var i in v){
+                                if(v[i] != false){
+                                    $scope.objs.push(i)
+                                }
+                            }
+                        })
+
+                    // 数据中心 ok
+                    $scope.dataTrans.dataCenters.forEach(function(elem,index){
+                        if(elem){
+                            $scope.param.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                        }
+                    })
+                    $scope.param.service.metadata.labels.name = $scope.param.serviceName;
+                    $scope.param.service.metadata.labels.author = $scope.sessionName;
+                    $scope.param.service.metadata.labels.namespace = demoss;
+                    $scope.param.orgName = demoss;
+
+                    // 选择器  ok
+                    $scope.param.service.spec.selector[$scope.mocks.mylistKey] = $scope.mocks.mylistValue
+
+                    // label
+                    $scope.leis.forEach(function(v){
+                        for(var i in v){
+                            $scope.param.service.metadata.labels[v.leiKey]=v[i]
                         }
                     })
 
-                $scope.param.dcIdList = [];
-               // $scope.param.dcIdList = $scope.objs;
-                // serverCenter.forEach(function(w){
-                //     $scope.param.dcIdList.push(w.id); 
-                // })
+                    // 端口组  ok  
 
+                    $scope.ports.forEach(function(num){
+                        num.port=Number(num.port);
+                        num.targetPort=Number(num.targetPort);
 
+                        if(num.nodePort != null){
+                            num.nodePort=Number(num.nodePort);
+                        }
+                    })
 
-            var user = ""
-            $scope.param.dcIdList.forEach(function(elem,index){
-                user[elem.key] = elem.value;
-            })
-            console.log(user)
+                    $scope.param.service.spec.ports = $scope.ports;
+                    $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new', $scope.param).success(function(){
+                        alert("ok")
+                    }).error(function(data) {
+                        alert("lose");
+                    });
 
-
-
-        
-
-
-
-
-
-
-
-
-                // 选择器  ok
-                $scope.param.service.spec.selector = {};
-                $scope.param.service.spec.selector[$scope.mocks.mylistKey] = $scope.mocks.mylistValue
-
-                // label
-                $scope.param.service.metadata={}
-                $scope.param.service.metadata.labels={}
-                $scope.leis.forEach(function(v){
-                    for(var i in v){
-                        $scope.param.service.metadata.labels[i]=v[i]
-                    }
-                })
-
-                // 端口组  ok
-                $scope.param.service.spec.ports = [];
-                $scope.param.service.spec.ports = $scope.ports;
-
-            console.log(angular.toJson($scope.param)+"---myJson");
-            }
-
-
-
-
-
-/*
-                $http({
-                    url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new',
-                    method : 'POST'
-
-                })
-                .success(function(data){
-
-                })
-                .error(function(){
-                    alert(456)
-                })
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
+                }
             })
             .error(function(){
                 alert(extentServers.message);
             })
 
-            
-        }];      //    ----- ****************************
+
+            //  创建访问点  GET
 
 
+            $http({
+                url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/init',
+                method : 'GET'
+            })
+            .success(function(data){
+                $scope.endpointsData = JSON.parse(data.data);
+             //   console.log($scope.endpointsData.orgName)
+                 
+                if(data.code == 0){
+
+                    // add label
+                    $scope.endleis = [];
+                    $scope.addendpointjlabel = function(){
+                        $scope.endleis.push({})
+                    }
+                    // del label
+                    $scope.delendpointjlabel = function($index){
+                        $scope.endleis.splice($index,1);
+                    }
+                    // add Ex
+                    $scope.mockEnd = [];
+                    $scope.addendpointEx = function(){
+                        $scope.mockEnd.push({});
+                    }
+                    // del Ex
+                    $scope.delendpointEx = function($index){
+                        $scope.mockEnd.splice($index,1);
+                    }
+                }
+
+                $scope.endpointsJson = {
+                    "endpointsName": "",
+                    "orgName": "minimini",
+                    "dcIdList": [],
+                    "endpoints": {
+                        "kind": "",
+                        "apiVersion": "",
+                        "metadata": {    
+                            "name": "",
+                            "namespace": "",
+                            "labels": {
+                                "name": "",
+                                "author": ""
+                            }
+                        },
+                        "subsets": [ // $scope.endpointsJson.endpoints.subsets
+                           {
+                                "addresses": [],
+                                "ports": []
+                            }
+                        ]
+                    }
+                }
+        /*
+                $scope.endpointsJson = {};
+                endpointsJson.endpointsName = "";
+                endpointsJson.orgName = 'minimini';
+        */
+                $scope.endDataTrans = {
+                    endDataCenters : []
+                };
+                // 提交
+                $scope.endpointBtn = function(){
+                    // 数据中心 ok
+                    $scope.endDataTrans.endDataCenters.forEach(function(elem,index){
+                        if(elem){
+                            $scope.endpointsJson.dcIdList.push($scope.endpointsData.dataCenters[index].id)
+                        }
+                    })
+                    $scope.endpointsJson.orgName = $scope.endpointsData.orgName;
+                    $scope.endpointsJson.endpoints.metadata.namespace = $scope.endpointsData.orgName;
+
+                    // 标签组 ok
+                    $scope.endpointsJson.endpoints.metadata.labels.name = $scope.endpointsJson.endpointsName;
+                    $scope.endpointsJson.endpoints.metadata.labels.author = $scope.sessionName;
+                    $scope.endleis.forEach(function(v){
+                        for(var i in v){
+                            $scope.endpointsJson.endpoints.metadata.labels[v.endlabelKey]=v[i]
+                        }
+                    })
+
+                    // 选择器
+                    $scope.mockEnd.forEach(function(m){
+                        console.log(angular.toJson(m))
+                    })
+
+
+                    $scope.endpointsJson.endpoints.subsets.forEach(function(e){
+                        console.log(angular.toJson(e.addresses))
+                    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    console.log(JSON.stringify($scope.endpointsJson)+"  ---myjson");
+                }
+            })
+            .error(function(){
+                console.log("lose");
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }]; 
 
         var controllers = [
             {module: 'extensionsManage', name: 'extensionsController', ctrl: ctrl}
         ];
-
         return controllers;
     }
 );

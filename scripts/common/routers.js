@@ -32,6 +32,7 @@ define([
 					.state('main.extensionsService', extensionsRouter.service)
 					.state('main.extensionsEndpoint', extensionsRouter.endpoint)
 					.state('main.imageManage', imageManageRouter.imageManage)
+					// .state('main.imageManageBase', imageManageRouter.base)
 					.state('main.imageManageSearch', imageManageRouter.search)
 					.state('main.imageManageDelete', imageManageRouter.delete)
 			}]);

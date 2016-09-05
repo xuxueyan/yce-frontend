@@ -28,7 +28,7 @@
                                     <tr role="row">
                                         <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ID">ID</th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用名称</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">添加</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用实例</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">标签组合</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">运行状态</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">创建时间</th>
@@ -38,22 +38,22 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.podList.items" >
+                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments" >
                                         <td>{{$index+1}}</td>
                                         <td class="sorting_1">
-                                            <p ng-click="showAppDetail(item)">{{item.metadata.name}}</p>
+                                            <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
                                         </td>
                                         <td>
-                                            <p>添加</p>
+                                            <p ng-click="showAppPodDetail(pod)" ng-repeat="pod in item.podList">{{pod.metadata.name}}</p>
                                         </td>
                                         <td>
-                                            <p>{{item.metadata.labels}}</p>
+                                            <p ng-repeat="pod in item.podList">{{pod.metadata.labels}}</p>
                                         </td>
                                         <td>
-                                            <p>{{item.status.phase}}</p>
+                                            <p ng-repeat="pod in item.podList">{{pod.status.phase}}</p>
                                         </td>
                                         <td>
-                                            <p>{{item.metadata.creationTimestamp}}</p>
+                                            <p ng-repeat="pod in item.podList">{{pod.metadata.creationTimestamp}}</p>
                                         </td>
                                         <td>{{app.dcName}}</td>
                                         <td>
@@ -99,4 +99,5 @@
     </div>
 </section>
 
-<ui-widget ng-if="widget.showAppDetail" config="appDetailConf"></ui-widget>
+<ui-widget ng-if="widget.showPodAppDetail" config="appPodDetailConf"></ui-widget>
+<ui-widget ng-if="widget.showDeployAppDetail" config="appDeployDetailConf"></ui-widget>
