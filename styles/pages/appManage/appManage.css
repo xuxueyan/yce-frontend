@@ -4,19 +4,5 @@
 .appManageTable th{ font-size:16px !important; font-weight:bold !important;}
 .appManageTable td{ vertical-align:middle !important; box-sizing:border-}
 .appManageTable td:nth-child(2) p { cursor:pointer;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.appManageTable td > p { padding:5px 0; border-top:1px solid #eeeeee;}
+.appManageTable td > p:first-child{ border:none;}

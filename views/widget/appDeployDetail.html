@@ -12,27 +12,27 @@
                 <div class="row">
                     <dl class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>应用名称 : </dt>
-                        <dd><span>{{orginalData.metadata.name}}</span></dd>
+                        <dd><span>{{originalData.metadata.name}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>组织名称 : </dt>
-                        <dd><span>{{orginalData.metadata.namespace}}</span></dd>
+                        <dd><span>{{originalData.metadata.namespace}}</span></dd>
                     </dl>
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>镜像名称: </dt>
-                        <dd><span>{{orginalData.spec.template.spec.containers[0].image}}</span></dd>
+                        <dd><span>{{originalData.spec.template.spec.containers[0].image}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>启动时间 : </dt>
-                        <dd><span>{{orginalData.metadata.creationTimestamp}}</span></dd>
+                        <dd><span>{{originalData.metadata.creationTimestamp}}</span></dd>
                     </dl>
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>升级策略: </dt>
-                        <dd><span>{{orginalData.spec.strategy.type}}</span></dd>
+                        <dd><span>{{originalData.spec.strategy.type}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr role="row" ng-repeat="(key,value) in orginalData.metadata.labels">
+                                <tr role="row" ng-repeat="(key,value) in originalData.metadata.labels">
                                     <td>{{key}}&nbsp;&nbsp;:</td>
                                     <td>{{value}}</td>
                                 </tr>
@@ -60,7 +60,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr role="row" ng-repeat="(key,value) in orginalData.spec.selector.matchLabels">
+                            <tr role="row" ng-repeat="(key,value) in originalData.spec.selector.matchLabels">
                                 <td>{{key}}&nbsp;&nbsp;:</td>
                                 <td>{{value}}</td>
                             </tr>

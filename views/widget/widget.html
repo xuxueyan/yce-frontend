@@ -2,9 +2,10 @@
     <div class="widget">
         <div class="widget-header">{{config.widgetTitle}}</div>
         <div class="widget-content">
-            <div ui-app-pod-detail ng-if="config.isAppPodDetail" orginal-data="config.data"></div>
-            <div ui-app-deploy-detail ng-if="config.isAppDeployDetail" orginal-data="config.data"></div>
+            <div ui-app-pod-detail ng-if="config.isAppPodDetail" original-data="config.data"></div>
+            <div ui-app-deploy-detail ng-if="config.isAppDeployDetail" original-data="config.data"></div>
+            <div ui-app-rollingup ng-if="config.isRollingup" original-data="config.data"></div>
         </div>
-        <div class="widget-close" ng-click="closeWidget()">×</div>
+        <div class="widget-close" ng-click="closeWidget(config.widgetId)">×</div>
     </div>
 </div>

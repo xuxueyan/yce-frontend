@@ -8553,25 +8553,25 @@ table.dataTable.display tbody tr:first-child td {
 }
 
 .appManage-headle tr th:nth-child(1){
-    width: 7%;
+    width: 5%;
 }
 .appManage-headle tr th:nth-child(2){
-    width: 15%;
+    width: 8%;
 }
 .appManage-headle tr th:nth-child(3){
-    width: 10%;
+    width: 15%;
 }
 .appManage-headle tr th:nth-child(4){
-    width: 28%;
+    width: 8%;
 }
 .appManage-headle tr th:nth-child(5){
-    width: 10%;
+    width: 12%;
 }
 .appManage-headle tr th:nth-child(6){
     width: 10%;
 }
 .appManage-headle tr th:nth-child(7){
-    width: 10%;
+    width: 30%;
 }
 .appManage-headle tr th:nth-child(8){
     width: 10%;

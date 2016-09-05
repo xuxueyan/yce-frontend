@@ -7,26 +7,27 @@ define([
         'use strict';
 
         var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', function($scope, $rootScope, appManageService, $localStorage){
+            $scope.canSubmit = true;
+            $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId};
 
-            $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId}
-
-            appManageService.getAppList($scope.param,function(data){
-                if (data.code == 0) {
-                   $scope.appList = JSON.parse(data.data);
-                }
-            });
+            $scope.loadAppList = function(){
+                appManageService.getAppList($scope.param,function(data){
+                    if (data.code == 0) {
+                       $scope.appList = JSON.parse(data.data);
+                    }
+                });
+            };
+            $scope.loadAppList();
 
             // 发布详情
             $scope.showAppDeployDetail = function(item){
-                    $scope.appDeployDetailConf = {
-                        widgetId : 'widgetAppDeployDetail',
-                        widgetTitle : '发布详情',
-                        isAppDeployDetail : true,
-                        data : item
-                    };
-                    $rootScope.widget = {
-                        showDeployAppDetail : true
-                    };
+                $scope.appDeployDetailConf = {
+                    widgetId : 'widgetAppDeployDetail',
+                    widgetTitle : '发布详情',
+                    isAppDeployDetail : true,
+                    data : item
+                };
+                $rootScope.widget.widgetAppDeployDetail = true;
             };
 
 
@@ -38,10 +39,34 @@ define([
                     isAppPodDetail : true,
                     data : item
                 };
-                $rootScope.widget = {
-                    showPodAppDetail : true
-                };
+                $rootScope.widget.widgetAppPodDetail = true;
             };
+
+            // 滚动升级
+            $scope.rollingup = function(item){
+                $scope.appRollingupConf = {
+                    widgetId : 'widgetRollingup',
+                    widgetTitle : '升级',
+                    isRollingup: true,
+                    data : item
+                };
+
+                $rootScope.widget.widgetRollingup = true;
+            };
+            $scope.$on('submitRollingup',function(event,param){
+                param = angular.merge(param, $scope.param);
+                if($scope.canSubmit){
+                    $scope.canSubmit = false;
+                    appManageService.submitRollingup(param,function(data){
+                        console.log(data);
+                        $rootScope.widget.widgetRollingup = false;
+                        $scope.loadAppList();
+                        $scope.canSubmit = true;
+                    },function(){
+                        $scope.canSubmit = true;
+                    });
+                }
+            });
         }];
 
 

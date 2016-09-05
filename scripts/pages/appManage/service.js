@@ -5,11 +5,17 @@ define([
 
 	var getApis = function($http){
 		var apis = {};
-
-		apis.getAppList = function(param, success, error, $localStorage){
+		/*获取应用列表*/
+		apis.getAppList = function(param, success, error){
 		    var orgId = param.orgId
 		    var userId = param.userId
 			return utils.http($http, 'get', '/api/v1/organizations/' + orgId + '/users/' + userId + '/deployments', param, success, error);
+		};
+		/*提交滚动升级*/
+		apis.submitRollingup = function(param, success, error){
+		    var orgId = param.orgId;
+		    var appName = param.appName;
+			return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/rolling', param, success, error);
 		};
 		return apis;
 	};	

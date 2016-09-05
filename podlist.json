@@ -1,0 +1,1829 @@
+[
+  {
+    "dcId": 1,
+    "dcName": "办公网",
+    "deployments": [
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "busybox",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/busybox",
+            "uid": "99f8c8d0-6884-11e6-b957-44a84240716a",
+            "resourceVersion": "16570722",
+            "generation": 2,
+            "creationTimestamp": "2016-08-22T16:22:20Z",
+            "labels": {
+              "author": "admin",
+              "name": "busybox"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "1"
+            }
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "author": "admin",
+                "name": "busybox"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "busybox",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 2,
+            "replicas": 1,
+            "updatedReplicas": 1,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579596"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "busybox-1193985629-ujipg",
+                "generateName": "busybox-1193985629-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/busybox-1193985629-ujipg",
+                "uid": "99fcd3da-6884-11e6-b957-44a84240716a",
+                "resourceVersion": "31494273",
+                "creationTimestamp": "2016-08-22T16:22:20Z",
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox",
+                  "pod-template-hash": "1193985629"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"busybox-1193985629\",\"uid\":\"99f99479-6884-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"16570711\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "busybox",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.11",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-08-22T16:22:21Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [busybox]"
+                  }
+                ],
+                "hostIP": "172.21.1.11",
+                "podIP": "10.0.46.8",
+                "startTime": "2016-08-22T16:22:21Z",
+                "containerStatuses": [
+                  {
+                    "name": "busybox",
+                    "state": {
+                      "waiting": {
+                        "reason": "RunContainerError",
+                        "message": "runContainer: API error (500): Minimum memory limit allowed is 4MB\n"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:latest",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "busybox-nwe",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/busybox-nwe",
+            "uid": "28d62992-6886-11e6-b957-44a84240716a",
+            "resourceVersion": "16571427",
+            "generation": 2,
+            "creationTimestamp": "2016-08-22T16:33:30Z",
+            "labels": {
+              "author": "admin",
+              "name": "busybox-nwe"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "1"
+            }
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "author": "admin",
+                "name": "busybox-nwe"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox-nwe"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "busybox-nwe",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 2,
+            "replicas": 1,
+            "updatedReplicas": 1,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579596"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "busybox-nwe-3336948043-t37f8",
+                "generateName": "busybox-nwe-3336948043-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/busybox-nwe-3336948043-t37f8",
+                "uid": "28da3af2-6886-11e6-b957-44a84240716a",
+                "resourceVersion": "31403472",
+                "creationTimestamp": "2016-08-22T16:33:30Z",
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox-nwe",
+                  "pod-template-hash": "3336948043"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"busybox-nwe-3336948043\",\"uid\":\"28d72b60-6886-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"16571416\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "busybox-nwe",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.11",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-08-22T16:33:30Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [busybox-nwe]"
+                  }
+                ],
+                "hostIP": "172.21.1.11",
+                "podIP": "10.0.46.9",
+                "startTime": "2016-08-22T16:33:30Z",
+                "containerStatuses": [
+                  {
+                    "name": "busybox-nwe",
+                    "state": {
+                      "waiting": {
+                        "reason": "RunContainerError",
+                        "message": "runContainer: API error (500): Minimum memory limit allowed is 4MB\n"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:latest",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "busybox-xxx",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/busybox-xxx",
+            "uid": "af5d2bda-6ade-11e6-b957-44a84240716a",
+            "resourceVersion": "16946033",
+            "generation": 2,
+            "creationTimestamp": "2016-08-25T16:12:13Z",
+            "labels": {
+              "author": "admin",
+              "name": "busybox-xxx"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "1"
+            }
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "author": "admin",
+                "name": "busybox-xxx"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox-xxx"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "busybox-xxx",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 2,
+            "replicas": 1,
+            "updatedReplicas": 1,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579607"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "busybox-xxx-537905543-gx849",
+                "generateName": "busybox-xxx-537905543-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/busybox-xxx-537905543-gx849",
+                "uid": "af7d1481-6ade-11e6-b957-44a84240716a",
+                "resourceVersion": "31462377",
+                "creationTimestamp": "2016-08-25T16:12:14Z",
+                "labels": {
+                  "author": "admin",
+                  "name": "busybox-xxx",
+                  "pod-template-hash": "537905543"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"busybox-xxx-537905543\",\"uid\":\"af7bda25-6ade-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"16946022\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "busybox-xxx",
+                    "image": "busybox:latest",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.11",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-08-25T16:12:14Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [busybox-xxx]"
+                  }
+                ],
+                "hostIP": "172.21.1.11",
+                "podIP": "10.0.46.11",
+                "startTime": "2016-08-25T16:12:14Z",
+                "containerStatuses": [
+                  {
+                    "name": "busybox-xxx",
+                    "state": {
+                      "waiting": {
+                        "reason": "RunContainerError",
+                        "message": "runContainer: API error (500): Minimum memory limit allowed is 4MB\n"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:latest",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "memcached",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/memcached",
+            "uid": "50c6264a-68de-11e6-b957-44a84240716a",
+            "resourceVersion": "16619338",
+            "generation": 2,
+            "creationTimestamp": "2016-08-23T03:04:32Z",
+            "labels": {
+              "author": "dawei.li",
+              "name": "memcached"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "1"
+            }
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "author": "dawei.li",
+                "name": "memcached"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "author": "dawei.li",
+                  "name": "memcached"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "memcached",
+                    "image": "memcached:1.4.24",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 2,
+            "replicas": 1,
+            "updatedReplicas": 1,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579612"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "memcached-1944570348-gflgv",
+                "generateName": "memcached-1944570348-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/memcached-1944570348-gflgv",
+                "uid": "50cae312-68de-11e6-b957-44a84240716a",
+                "resourceVersion": "16619347",
+                "creationTimestamp": "2016-08-23T03:04:32Z",
+                "labels": {
+                  "author": "dawei.li",
+                  "name": "memcached",
+                  "pod-template-hash": "1944570348"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"memcached-1944570348\",\"uid\":\"50c6ece1-68de-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"16619327\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "memcached",
+                    "image": "memcached:1.4.24",
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.11",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-08-23T03:04:32Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [memcached]"
+                  }
+                ],
+                "hostIP": "172.21.1.11",
+                "podIP": "10.0.46.10",
+                "startTime": "2016-08-23T03:04:32Z",
+                "containerStatuses": [
+                  {
+                    "name": "memcached",
+                    "state": {
+                      "waiting": {
+                        "reason": "RunContainerError",
+                        "message": "runContainer: API error (500): Minimum memory limit allowed is 4MB\n"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "memcached:1.4.24",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "names",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/names",
+            "uid": "e5a0a7d9-7311-11e6-b957-44a84240716a",
+            "resourceVersion": "30266523",
+            "generation": 2,
+            "creationTimestamp": "2016-09-05T02:38:58Z",
+            "labels": {
+              "author": "admin",
+              "keys": "values",
+              "name": "names"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "1"
+            }
+          },
+          "spec": {
+            "replicas": 3,
+            "selector": {
+              "matchLabels": {
+                "author": "admin",
+                "keys": "values",
+                "name": "names"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "author": "admin",
+                  "keys": "values",
+                  "name": "names"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "names",
+                    "image": "busybox:v2.0",
+                    "env": [
+                      {
+                        "name": "name1",
+                        "value": "value1"
+                      },
+                      {
+                        "name": "name2",
+                        "value": "value2"
+                      }
+                    ],
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 2,
+            "replicas": 3,
+            "updatedReplicas": 3,
+            "unavailableReplicas": 3
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579615"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "names-2787049353-0pq0z",
+                "generateName": "names-2787049353-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/names-2787049353-0pq0z",
+                "uid": "e6012564-7311-11e6-b957-44a84240716a",
+                "resourceVersion": "31572326",
+                "creationTimestamp": "2016-09-05T02:38:59Z",
+                "labels": {
+                  "author": "admin",
+                  "keys": "values",
+                  "name": "names",
+                  "pod-template-hash": "2787049353"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"names-2787049353\",\"uid\":\"e6006c61-7311-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"30266459\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "names",
+                    "image": "busybox:v2.0",
+                    "env": [
+                      {
+                        "name": "name1",
+                        "value": "value1"
+                      },
+                      {
+                        "name": "name2",
+                        "value": "value2"
+                      }
+                    ],
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.22",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T02:38:59Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [names]"
+                  }
+                ],
+                "hostIP": "172.21.1.22",
+                "podIP": "10.0.17.6",
+                "startTime": "2016-09-05T02:38:59Z",
+                "containerStatuses": [
+                  {
+                    "name": "names",
+                    "state": {
+                      "waiting": {
+                        "reason": "ImagePullBackOff",
+                        "message": "Back-off pulling image \"busybox:v2.0\""
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:v2.0",
+                    "imageID": ""
+                  }
+                ]
+              }
+            },
+            {
+              "metadata": {
+                "name": "names-2787049353-0yyxx",
+                "generateName": "names-2787049353-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/names-2787049353-0yyxx",
+                "uid": "e6012060-7311-11e6-b957-44a84240716a",
+                "resourceVersion": "31573433",
+                "creationTimestamp": "2016-09-05T02:38:59Z",
+                "labels": {
+                  "author": "admin",
+                  "keys": "values",
+                  "name": "names",
+                  "pod-template-hash": "2787049353"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"names-2787049353\",\"uid\":\"e6006c61-7311-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"30266459\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "names",
+                    "image": "busybox:v2.0",
+                    "env": [
+                      {
+                        "name": "name1",
+                        "value": "value1"
+                      },
+                      {
+                        "name": "name2",
+                        "value": "value2"
+                      }
+                    ],
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.25",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T02:38:59Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [names]"
+                  }
+                ],
+                "hostIP": "172.21.1.25",
+                "podIP": "10.0.4.5",
+                "startTime": "2016-09-05T02:38:59Z",
+                "containerStatuses": [
+                  {
+                    "name": "names",
+                    "state": {
+                      "waiting": {
+                        "reason": "ImagePullBackOff",
+                        "message": "Back-off pulling image \"busybox:v2.0\""
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:v2.0",
+                    "imageID": ""
+                  }
+                ]
+              }
+            },
+            {
+              "metadata": {
+                "name": "names-2787049353-cyajd",
+                "generateName": "names-2787049353-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/names-2787049353-cyajd",
+                "uid": "e601228d-7311-11e6-b957-44a84240716a",
+                "resourceVersion": "31568914",
+                "creationTimestamp": "2016-09-05T02:38:59Z",
+                "labels": {
+                  "author": "admin",
+                  "keys": "values",
+                  "name": "names",
+                  "pod-template-hash": "2787049353"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"names-2787049353\",\"uid\":\"e6006c61-7311-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"30266459\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "names",
+                    "image": "busybox:v2.0",
+                    "env": [
+                      {
+                        "name": "name1",
+                        "value": "value1"
+                      },
+                      {
+                        "name": "name2",
+                        "value": "value2"
+                      }
+                    ],
+                    "resources": {
+                      "limits": {
+                        "cpu": "2",
+                        "memory": "4"
+                      },
+                      "requests": {
+                        "cpu": "2",
+                        "memory": "4"
+                      }
+                    },
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.11",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T02:38:59Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [names]"
+                  }
+                ],
+                "hostIP": "172.21.1.11",
+                "podIP": "10.0.46.6",
+                "startTime": "2016-09-05T02:38:59Z",
+                "containerStatuses": [
+                  {
+                    "name": "names",
+                    "state": {
+                      "waiting": {
+                        "reason": "ImagePullBackOff",
+                        "message": "Back-off pulling image \"busybox:v2.0\""
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "busybox:v2.0",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "nginx-new-2",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/nginx-new-2",
+            "uid": "5104452c-7107-11e6-b957-44a84240716a",
+            "resourceVersion": "31579567",
+            "generation": 15,
+            "creationTimestamp": "2016-09-02T12:18:11Z",
+            "labels": {
+              "maintainer": "maxwell",
+              "name": "nginx-new-2"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "98"
+            }
+          },
+          "spec": {
+            "replicas": 3,
+            "selector": {
+              "matchLabels": {
+                "name": "spec-template-metadata-labels"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "name": "spec-template-metadata-labels"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "nginx-new-2",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 15,
+            "replicas": 4,
+            "updatedReplicas": 3,
+            "availableReplicas": 2,
+            "unavailableReplicas": 2
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579622"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "nginx-new-2-3064228395-rucxb",
+                "generateName": "nginx-new-2-3064228395-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-new-2-3064228395-rucxb",
+                "uid": "4c219163-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31578473",
+                "creationTimestamp": "2016-09-05T10:41:26Z",
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "3064228395"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-new-2-3064228395\",\"uid\":\"6ee7bcc3-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31578407\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-new-2",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.21",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:27Z"
+                  }
+                ],
+                "hostIP": "172.21.1.21",
+                "podIP": "10.0.62.4",
+                "startTime": "2016-09-05T10:41:26Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-new-2",
+                    "state": {
+                      "running": {
+                        "startedAt": "2016-09-05T10:41:27Z"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": true,
+                    "restartCount": 0,
+                    "image": "nginx:1.7.9",
+                    "imageID": "docker://sha256:84581e99d807a703c9c03bd1a31cd9621815155ac72a7365fd02311264512656",
+                    "containerID": "docker://7eef31bc50627c253251587e14ab0e409fcc2dea1cdaec247b0315c3758de42d"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "nginx-new-3",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/nginx-new-3",
+            "uid": "a4089c67-7180-11e6-b957-44a84240716a",
+            "resourceVersion": "31579504",
+            "generation": 42,
+            "creationTimestamp": "2016-09-03T02:46:40Z",
+            "labels": {
+              "maintainer": "maxwell",
+              "name": "nginx-new-3"
+            },
+            "annotations": {
+              "deployment.kubernetes.io/revision": "99"
+            }
+          },
+          "spec": {
+            "replicas": 3,
+            "selector": {
+              "matchLabels": {
+                "name": "spec-template-metadata-labels"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "name": "spec-template-metadata-labels"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "nginx-new-3",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 1,
+                "maxSurge": 1
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 42,
+            "replicas": 4,
+            "updatedReplicas": 2,
+            "availableReplicas": 2,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579622"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "nginx-new-3-3138415148-43pk5",
+                "generateName": "nginx-new-3-3138415148-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-new-3-3138415148-43pk5",
+                "uid": "5ba95be8-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31579595",
+                "creationTimestamp": "2016-09-05T10:41:52Z",
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "3138415148"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-new-3-3138415148\",\"uid\":\"a40b0f9e-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31579587\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-new-3",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.21",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:52Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [nginx-new-3]"
+                  }
+                ],
+                "hostIP": "172.21.1.21",
+                "startTime": "2016-09-05T10:41:52Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-new-3",
+                    "state": {
+                      "waiting": {
+                        "reason": "ContainerCreating",
+                        "message": "Image: nginx:1.7.9 is ready, container is creating"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "nginx:1.7.9",
+                    "imageID": ""
+                  }
+                ]
+              }
+            },
+            {
+              "metadata": {
+                "name": "nginx-new-3-3138415148-824y0",
+                "generateName": "nginx-new-3-3138415148-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-new-3-3138415148-824y0",
+                "uid": "592118d4-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31579474",
+                "creationTimestamp": "2016-09-05T10:41:48Z",
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "3138415148"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-new-3-3138415148\",\"uid\":\"a40b0f9e-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31579400\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-new-3",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.23",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Running",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "True",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:50Z"
+                  }
+                ],
+                "hostIP": "172.21.1.23",
+                "podIP": "10.0.99.3",
+                "startTime": "2016-09-05T10:41:48Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-new-3",
+                    "state": {
+                      "running": {
+                        "startedAt": "2016-09-05T10:41:49Z"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": true,
+                    "restartCount": 0,
+                    "image": "nginx:1.7.9",
+                    "imageID": "docker://sha256:84581e99d807a703c9c03bd1a31cd9621815155ac72a7365fd02311264512656",
+                    "containerID": "docker://f0ebb641697b28089908c0e72f84956328deaab03aa74a0db21697345e0e4a39"
+                  }
+                ]
+              }
+            },
+            {
+              "metadata": {
+                "name": "nginx-new-3-3138415148-il8vd",
+                "generateName": "nginx-new-3-3138415148-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-new-3-3138415148-il8vd",
+                "uid": "5b5b32d8-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31579566",
+                "creationTimestamp": "2016-09-05T10:41:52Z",
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "3138415148"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-new-3-3138415148\",\"uid\":\"a40b0f9e-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31579556\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-new-3",
+                    "image": "nginx:1.7.9",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.26",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:52Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [nginx-new-3]"
+                  }
+                ],
+                "hostIP": "172.21.1.26",
+                "startTime": "2016-09-05T10:41:52Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-new-3",
+                    "state": {
+                      "waiting": {
+                        "reason": "ContainerCreating",
+                        "message": "Image: nginx:1.7.9 is ready, container is creating"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "nginx:1.7.9",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "userName": "admin",
+        "deploy": {
+          "metadata": {
+            "name": "nginx-test",
+            "namespace": "ops",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/ops/deployments/nginx-test",
+            "uid": "2178a339-64ee-11e6-b957-44a84240716a",
+            "resourceVersion": "31579562",
+            "generation": 201,
+            "creationTimestamp": "2016-08-18T02:47:40Z",
+            "labels": {
+              "maintainer": "maxwell",
+              "name": "nginx-test"
+            },
+            "annotations": {
+              "Comments": "test rolling update",
+              "Image": "nginx:1.7.9",
+              "UserId": "2",
+              "deployment.kubernetes.io/revision": "96",
+              "image": "nginx:9.1.2",
+              "kubernetes.io/change-cause": "test-rollback-9.1.2",
+              "userId": "1"
+            }
+          },
+          "spec": {
+            "replicas": 3,
+            "selector": {
+              "matchLabels": {
+                "name": "spec-template-metadata-labels"
+              }
+            },
+            "template": {
+              "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                  "name": "spec-template-metadata-labels"
+                }
+              },
+              "spec": {
+                "volumes": null,
+                "containers": [
+                  {
+                    "name": "nginx-test",
+                    "image": "nginx:9.1.3",
+                    "resources": {},
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "",
+                "securityContext": {}
+              }
+            },
+            "strategy": {
+              "type": "RollingUpdate",
+              "rollingUpdate": {
+                "maxUnavailable": 3,
+                "maxSurge": 0
+              }
+            }
+          },
+          "status": {
+            "observedGeneration": 201,
+            "replicas": 2,
+            "availableReplicas": 2,
+            "unavailableReplicas": 1
+          }
+        },
+        "podList": {
+          "metadata": {
+            "selfLink": "/api/v1/namespaces/ops/pods",
+            "resourceVersion": "31579635"
+          },
+          "items": [
+            {
+              "metadata": {
+                "name": "nginx-test-964192830-b1n3q",
+                "generateName": "nginx-test-964192830-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-test-964192830-b1n3q",
+                "uid": "5b165be2-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31579578",
+                "creationTimestamp": "2016-09-05T10:41:51Z",
+                "deletionTimestamp": "2016-09-05T10:42:22Z",
+                "deletionGracePeriodSeconds": 30,
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "964192830"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-test-964192830\",\"uid\":\"72b8d0ad-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31579536\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-test",
+                    "image": "nginx:9.1.3",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.21",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:51Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [nginx-test]"
+                  }
+                ],
+                "hostIP": "172.21.1.21",
+                "startTime": "2016-09-05T10:41:51Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-test",
+                    "state": {
+                      "waiting": {
+                        "reason": "ContainerCreating",
+                        "message": "Image: nginx:9.1.3 is ready, container is creating"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "nginx:9.1.3",
+                    "imageID": ""
+                  }
+                ]
+              }
+            },
+            {
+              "metadata": {
+                "name": "nginx-test-964192830-bgoqg",
+                "generateName": "nginx-test-964192830-",
+                "namespace": "ops",
+                "selfLink": "/api/v1/namespaces/ops/pods/nginx-test-964192830-bgoqg",
+                "uid": "590e9d3d-7355-11e6-b957-44a84240716a",
+                "resourceVersion": "31579414",
+                "creationTimestamp": "2016-09-05T10:41:48Z",
+                "deletionTimestamp": "2016-09-05T10:42:19Z",
+                "deletionGracePeriodSeconds": 30,
+                "labels": {
+                  "name": "spec-template-metadata-labels",
+                  "pod-template-hash": "964192830"
+                },
+                "annotations": {
+                  "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"ops\",\"name\":\"nginx-test-964192830\",\"uid\":\"72b8d0ad-7180-11e6-b957-44a84240716a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"31579386\"}}\n"
+                }
+              },
+              "spec": {
+                "volumes": [
+                  {
+                    "name": "default-token-jr2e0",
+                    "secret": {
+                      "secretName": "default-token-jr2e0"
+                    }
+                  }
+                ],
+                "containers": [
+                  {
+                    "name": "nginx-test",
+                    "image": "nginx:9.1.3",
+                    "resources": {},
+                    "volumeMounts": [
+                      {
+                        "name": "default-token-jr2e0",
+                        "readOnly": true,
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                      }
+                    ],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "IfNotPresent"
+                  }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "nodeName": "172.21.1.24",
+                "securityContext": {}
+              },
+              "status": {
+                "phase": "Pending",
+                "conditions": [
+                  {
+                    "type": "Ready",
+                    "status": "False",
+                    "lastProbeTime": null,
+                    "lastTransitionTime": "2016-09-05T10:41:48Z",
+                    "reason": "ContainersNotReady",
+                    "message": "containers with unready status: [nginx-test]"
+                  }
+                ],
+                "hostIP": "172.21.1.24",
+                "startTime": "2016-09-05T10:41:48Z",
+                "containerStatuses": [
+                  {
+                    "name": "nginx-test",
+                    "state": {
+                      "waiting": {
+                        "reason": "ContainerCreating",
+                        "message": "Image: nginx:9.1.3 is ready, container is creating"
+                      }
+                    },
+                    "lastState": {},
+                    "ready": false,
+                    "restartCount": 0,
+                    "image": "nginx:9.1.3",
+                    "imageID": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

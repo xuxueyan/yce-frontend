@@ -17,47 +17,47 @@
                 <div class="row">
                     <dl class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>应用名称 : </dt>
-                        <dd><span>{{orginalData.metadata.name}}</span></dd>
+                        <dd><span>{{originalData.metadata.name}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>组织名称 : </dt>
-                        <dd><span>{{orginalData.metadata.namespace}}</span></dd>
+                        <dd><span>{{originalData.metadata.namespace}}</span></dd>
                     </dl>
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>镜像名称: </dt>
-                        <dd><span>{{orginalData.spec.containers[0].image}}</span></dd>
+                        <dd><span>{{originalData.spec.containers[0].image}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>启动时间 : </dt>
-                        <dd><span>{{orginalData.metadata.creationTimestamp}}</span></dd>
+                        <dd><span>{{originalData.metadata.creationTimestamp}}</span></dd>
                     </dl>
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>计算节点 : </dt>
-                        <dd><span>{{orginalData.spec.nodeName}}</span></dd>
+                        <dd><span>{{originalData.spec.nodeName}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>当前状态 : </dt>
-                        <dd><span>{{orginalData.status.phase}}</span></dd>
+                        <dd><span>{{originalData.status.phase}}</span></dd>
                     </dl>
                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>容器地址: </dt>
-                        <dd><span>{{orginalData.status.podIP}}</span></dd>
+                        <dd><span>{{originalData.status.podIP}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>开放端口: </dt>
-                        <dd><span>{{orginalData.spec.containers[0].ports[0].containerPort}}</span></dd>
+                        <dd><span>{{originalData.spec.containers[0].ports[0].containerPort}}</span></dd>
                     </dl>
                     <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <dt>重启次数 : </dt>
-                        <dd><span>{{orginalData.status.containerStatuses[0].restartCount}}</span></dd>
+                        <dd><span>{{originalData.status.containerStatuses[0].restartCount}}</span></dd>
                     </dl>
                 </div>
                 <div class="row">
@@ -69,7 +69,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr role="row" ng-repeat="(key,value) in orginalData.metadata.labels">
+                                <tr role="row" ng-repeat="(key,value) in originalData.metadata.labels">
                                     <td>{{key}}&nbsp;&nbsp;:</td>
                                     <td>{{value}}</td>
                                 </tr>
