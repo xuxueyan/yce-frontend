@@ -20,56 +20,72 @@ define([
         })
         .success(function(data){
             if(data.code == 0){
-            $scope.newExtensions = JSON.parse(data.data);
-            var NewExtensions = JSON.parse(data.data);
-            NewExtensions.forEach(function(v){
-                for(var itemLength in v.serviceList.items){ }
-                $scope.itemLength = itemLength;
-            });
-            $scope.delItem = function(dcIds,item){
+                $scope.newExtensions = JSON.parse(data.data);
+                var NewExtensions = JSON.parse(data.data);
+                NewExtensions.forEach(function(v){
+                    for(var itemLength in v.serviceList.items){ }
+                    $scope.itemLength = itemLength;
+                });
 
-              //  console.log(angular.toJson(dcIds))
-             //   console.log(angular.toJson(item))
-               // console.log(angular.toJson(item.metadata.labels.type))
-                var lebelType = item.metadata.labels.type;
-            //    console.log(angular.toJson(item.metadata.labels.type))
-                if(lebelType == "service"){
-                    console.log(1234);
- $http.delete('/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/users/'+userId+'/services/'+lebelType).success(function(){
-                        alert("ok")
-                    }).error(function(data) {
-                        alert("lose");
-                    });
-
-
-
-
-
-                }else{
-                    console.log(7890)
+                /*  点击服务的删除 */
+                $scope.alertBox1 = false;   //  alert的文本框
+                $scope.delItem = function(dcIds,item){
+                    $scope.alertBox1 = !false;
+                    /*  确定删除按钮  内为删除函数  */
+                    $scope.extnesionsDel = function(){
+                        $scope.alertBox1 = false;
+                        var serverNP = item.spec.ports[0].nodePort;
+                        var lebelType = item.metadata.labels.type;
+                        var serversName = String(item.metadata.name);
+                        var nodePorts = String(serverNP);
+                        var np = {
+                            nodePort : ""
+                        } 
+                        np.nodePort = nodePorts;
+                        if(lebelType == "service"){
+                            $http({
+                                url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/users/'+userId+'/services/'+serversName,
+                                method : 'DELETE',
+                                headers : np
+                            }).success(function(){})
+                            .error(function(data) {
+                                alert("lose");
+                            });
+                        }
+                    }
+                    /*  取消删除按钮  */
+                    $scope.extnesionsBack = function(){
+                        console.log("quxiao")
+                        $scope.alertBox1 = false;
+                    }
                 }
 
+                /*  点击访问点的删除 */
+                $scope.cutItem = function(dcIds,item){
+                    $scope.alertBox1 = !false;
+                    /*  确定删除按钮  内为删除函数  */
+                    $scope.extnesionsDel = function(){
+                        $scope.alertBox1 = false;
+                        var lebelType = item.metadata.labels.type;
+                        var serversName = String(item.metadata.name);
+                        if(lebelType == "endpoint"){
+                            $http({
+                                url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
+                                method : 'DELETE'
+                            })
+                            .success(function(){})
+                            .error(function(data) {
+                                alert("lose");
+                            });
+                        }  
+                    }
+                    /*  取消删除按钮  */
+                    $scope.extnesionsBack = function(){
+                        console.log("quxiao")
+                        $scope.alertBox1 = false;
+                    }
+                }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-        //    console.log(angular.toJson(data));
         })
         .error(function(){
             if(data.code != 0){
@@ -86,7 +102,6 @@ define([
             $scope.extentServers = data;
             var extentServers = data;
             $scope.extentServerLei = JSON.parse($scope.extentServers.data);
-
             var demoss = $scope.extentServerLei.orgName;
             if($scope.extentServers.code == 0){
                     $scope.serverClick1 = function(){
@@ -152,7 +167,7 @@ define([
 
             $scope.formData={}
             var demo = [];
-            $scope.mocks ={}
+            $scope.mocks ={};
             $scope.dataTrans = {
                 dataCenters : []
             };
@@ -199,7 +214,6 @@ define([
                 })
 
                 // 端口组  ok  
-
                 $scope.ports.forEach(function(num){
                     num.port=Number(num.port);
                     num.targetPort=Number(num.targetPort);
@@ -209,13 +223,13 @@ define([
                     }
                 })
 
+                /*  提交 post  */
                 $scope.param.service.spec.ports = $scope.ports;
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new', $scope.param).success(function(){
                     alert("ok")
                 }).error(function(data) {
                     alert("lose");
                 });
-
             }
         })
         .error(function(){
@@ -225,17 +239,13 @@ define([
 
         //  创建访问点  GET
 
-
         $http({
             url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/init',
             method : 'GET'
         })
         .success(function(data){
             $scope.endpointsData = JSON.parse(data.data);
-         //   console.log($scope.endpointsData.orgName)
-             
             if(data.code == 0){
-
                 // add label
                 $scope.endleis = [];
                 $scope.addendpointjlabel = function(){
@@ -268,7 +278,8 @@ define([
                         "namespace": "",
                         "labels": {
                             "name": "",
-                            "author": ""
+                            "author": "",
+                            "type" : "endpoint"
                         }
                     },
                     "subsets": []
@@ -303,7 +314,6 @@ define([
                 })
 
                 // 选择器
-
                 for(var i = 0; i < $scope.mockEnd.length; i ++) {
                     adds.push({
                         addresses : [ 
@@ -319,15 +329,7 @@ define([
                     });
                 }
                 $scope.endpointsJson.endpoints.subsets = adds;
-
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
-
-
-
-      
-           //     adds.push({addresses : [ $scope.mock[i].addresses],ports : [{name : $scope.mock[i].ports.name,protocol : $scope.mock[i].ports.protocol,port : Number($scope.mock[i].ports.port)}]});
-    console.log($scope.mockEnd)
-
 
                 //  提交 post
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/new', $scope.endpointsJson).success(function(){
@@ -335,42 +337,11 @@ define([
                 }).error(function(data) {
                     alert("lose");
                 });
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                console.log(JSON.stringify($scope.endpointsJson)+"  ---myjson");
             }
         })
         .error(function(){
             console.log("lose");
         })
-
-
-
-
-
-
-
-
-
-
-
-
 
     }]; 
 
