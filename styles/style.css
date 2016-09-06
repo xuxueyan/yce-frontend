@@ -8807,28 +8807,26 @@ table.dataTable.display tbody tr:first-child td {
     display: none;
 }
 .alert-box1{
-    width: 400px;
-    height: 253px;
+    width: 390px;
+    height: 220px;
     background: #FfFfFf;
     position: fixed;
-    top: 195px;
+    top: 30%;
     left: 33%;
-  /*  border: 1px solid #3F51B5;*/
     border-radius: 4px;
     box-shadow: 0px 0px 24px #CCC;
 }
 .alert-box1 p{
     text-align: center;
-    /* margin-top: 29px; */
-    line-height: 155px;
+    line-height: 130px;
     font-size: 16px;
 }
 .alert-box1 span{
-    margin-left: 27%;
+    margin-left: 25%;
 }
 .alert-box1 span button{
     padding: 6px 27px;
-    margin-left: 6px;
+    margin-left: 10px;
     font-size: 13px;
     background: #3F51B5;
     border:none;
