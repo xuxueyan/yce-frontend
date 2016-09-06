@@ -45,6 +45,7 @@ define([
             $scope.jump = function(){
                 $state.go('main.dashboard');
                 $rootScope.widget = {};
+                $rootScope.sessionId = $localStorage.sessionId;
                 $scope.data = {
                     username : $localStorage.userName,
                     showSubnav: [],

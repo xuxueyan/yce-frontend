@@ -22,7 +22,7 @@
                     <label class="form-label">回滚镜像：</label>
                     <span class="desc"></span>
                     <div class="controls">
-                        <input type="text" class="form-control" id="field-image" ng-model="param.strategy.image" ng-init="param.strategy.image=''" ng-focus=" changeName = !shows ">
+                        <span class="form-control" ng-click="$emit('showImageSelector', 'rollback')">{{param.image}}</span>
                     </div>
                 </div>
 

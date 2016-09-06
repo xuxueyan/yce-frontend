@@ -23,6 +23,34 @@ define([
                         }]
 			        };
     			})
+    			.directive('uiImageSelector', function(){
+        			return {
+            			restrict: 'A',
+                        templateUrl : './views/widget/imageSelector.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope', 'appManageService', function($scope, $rootScope, appManageService){
+                            $scope.imageList = [];
+                            appManageService.getImageList({sessionId : $rootScope.sessionId},function(data){
+                                $scope.imageList = [];
+                                if(data.code == 0){
+                                    var list = JSON.parse(data.data);
+                                    list.forEach(function(item,index){
+                                        item.tags.forEach(function(tag,i){
+                                            $scope.imageList.push(item.name + ':' + tag);
+                                        });
+                                    });
+                                }
+                            },function(){
+                                alert('请求失败');
+                            });
+                            $scope.clickImageSelector = function(image){
+                                $scope.$emit('imageSelector',image);
+                            };
+                        }]
+			        };
+    			})
     			.directive('uiAppPodDetail', function(){
         			return {
             			restrict: 'A',
@@ -57,13 +85,16 @@ define([
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
                             console.log($scope.originalData);
                             $scope.param = {
-                                dcIdList: [$scope.originalData.dcId]
-                                /*
+                                dcIdList: [$scope.originalData.dcId],
                                 strategy: {
-                                    maxUnavailable: 3
-                                },
-                                */
+                                    image: ''
+                                }
                             };
+
+                            /*监听来自appManage(父)页面的broadcast事件*/
+                            $scope.$on('rollingupImage',function(event, image){
+                                $scope.param.strategy.image = image;
+                            });
                         }]
                     };
                 })
@@ -75,7 +106,13 @@ define([
                             originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-
+                            $scope.param = {
+                                image : ''
+                            };
+                            /*监听来自appManage(父)页面的broadcast事件*/
+                            $scope.$on('rollbackImage',function(event, image){
+                                $scope.param.image = image;
+                            });
                         }]
                     };
                 })

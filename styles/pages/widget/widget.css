@@ -82,3 +82,29 @@
 #widgetScale .labels-table th{ text-align:left; border:none !important;}
 #widgetScale .labels-table td{ padding:5px 10px !important; border:none;}
 #widgetScale .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+
+/*选择镜像*/
+#widgetImageSelector .widget{ max-height:500px; max-width:800px;}
+#widgetImageSelector .filter-input{ height:45px; display:block; margin:0 50px;}
+#widgetImageSelector .filter-input input{ height:100%; width:100%; display:block; border-bottom:3px solid #3F51B5; padding:0 10px; box-sizing:border-box;}
+#widgetImageSelector .image-list{ position:absolute; min-height:100px; top:140px; bottom:40px; overflow-y:auto; left:80px; right:80px; border:1px solid #e1e1e1; padding:0;}
+#widgetImageSelector .image-list li{ list-style:none; margin:0; padding:0; height:40px; line-height:40px; border-bottom:1px solid #e1e1e1; cursor:pointer;}
+#widgetImageSelector .image-list li:hover{ background:#e1e1e1;}
+#widgetImageSelector .image-list i{ width:40px; border-right:1px solid #e1e1e1; display:inline-block; text-align:center; margin-right:20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
