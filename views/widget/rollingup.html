@@ -56,4 +56,25 @@
 
     </div>
 
+    <!-- Image -->
+    <div class="replica_wrap" ng-show="changeName">
+
+        <div class="replica_box1">
+            <span class="replica_close" ng-click="changeName = shows">×</span>
+
+            <span class="replica_inp">
+                                    <input class="input__field input__field--yoko" type="text" style="outline: none;" id="input-17" ng-model="test" />
+                                    <label class="input__label input__label--yoko" for="input-17">
+                                        <span class="input__label-content input__label-content--yoko"></span>
+                                    </label>
+                                </span>
+            <div class="replica_content" ng-click="changeName = shows">
+                <p class="images_list" ng-repeat=" x in imageList | filter:test" ng-click="getImages(x)">
+                    <span ng-bind="$index+1"></span>
+                    <span>{{ x }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
 </div>

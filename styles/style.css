@@ -8571,9 +8571,12 @@ table.dataTable.display tbody tr:first-child td {
     width: 10%;
 }
 .appManage-headle tr th:nth-child(7){
-    width: 30%;
+    width: 10%;
 }
 .appManage-headle tr th:nth-child(8){
+    width: 30%;
+}
+.appManage-headle tr th:nth-child(9){
     width: 10%;
 }
 .btn-show{

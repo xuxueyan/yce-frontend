@@ -32,6 +32,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">运行状态</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">创建时间</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">数据中心</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">发布人员</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">操作</th>
                                     </tr>
                                 </thead>
@@ -53,19 +54,13 @@
                                         </td>
                                         <td>{{app.dcName}}</td>
                                         <td>
+                                            <p >{{item.userName}}</p>
+                                        </td>
+                                        <td>
                                             <span class="apply-leave" ng-mouseleave="showBox[$index]=false">
-                                                <!--
-                                                <p ng-click="showBox[$index]=true" ng-show="!showBox[$index]">更多</p>
-                                                <span class="btn-show" ng-show="showBox[$index]">
-                                                    <a>滚动升级</a>
-                                                    <a>回滚</a>
-                                                    <a>撤销</a>
-                                                </span>
-                                                -->
                                                 <button class="btn btn-warning" type="button" ng-click="rollingup(item)">升级</button>
                                                 <button class="btn btn-success" type="button">回滚</button>
-                                                <button class="btn btn-primary" type="button">手动扩容</button>
-                                                <button class="btn btn-info" type="button">自动扩容</button>
+                                                <button class="btn btn-info" type="button">扩容</button>
                                                 <button class="btn btn-danger" type="button">删除应用</button>
                                             </span>
                                         </td>
