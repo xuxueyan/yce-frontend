@@ -28,42 +28,40 @@
                                     <tr role="row">
                                         <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ID">ID</th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用名称</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">添加</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">标签组合</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用实例</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">运行状态</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">创建时间</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">数据中心</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">发布人员</th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">操作</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.podList.items" >
+                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments" >
                                         <td>{{$index+1}}</td>
                                         <td class="sorting_1">
-                                            <p ng-click="showAppDetail(item)">{{item.metadata.name}}</p>
+                                            <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
                                         </td>
                                         <td>
-                                            <p>添加</p>
+                                            <p ng-click="showAppPodDetail(pod)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
                                         </td>
                                         <td>
-                                            <p>{{item.metadata.labels}}</p>
+                                            <p ng-repeat="pod in item.podList.items">{{pod.status.phase}}</p>
                                         </td>
                                         <td>
-                                            <p>{{item.status.phase}}</p>
-                                        </td>
-                                        <td>
-                                            <p>{{item.metadata.creationTimestamp}}</p>
+                                            <p ng-repeat="pod in item.podList.items">{{pod.metadata.creationTimestamp}}</p>
                                         </td>
                                         <td>{{app.dcName}}</td>
                                         <td>
+                                            <p >{{item.userName}}</p>
+                                        </td>
+                                        <td>
                                             <span class="apply-leave" ng-mouseleave="showBox[$index]=false">
-                                                <p ng-click="showBox[$index]=true" ng-show="!showBox[$index]">更多</p>
-                                                <span class="btn-show" ng-show="showBox[$index]">
-                                                    <a>滚动升级</a>
-                                                    <a>回滚</a>
-                                                    <a>撤销</a>
-                                                </span>
+                                                <button class="btn btn-warning" type="button" ng-click="rollingup(item)">升级</button>
+                                                <button class="btn btn-success" type="button">回滚</button>
+                                                <button class="btn btn-info" type="button">扩容</button>
+                                                <button class="btn btn-danger" type="button">删除应用</button>
                                             </span>
                                         </td>
                                     </tr>
@@ -99,4 +97,6 @@
     </div>
 </section>
 
-<ui-widget ng-if="widget.showAppDetail" config="appDetailConf"></ui-widget>
+<ui-widget ng-if="widget.widgetAppPodDetail" config="appPodDetailConf"></ui-widget>
+<ui-widget ng-if="widget.widgetAppDeployDetail" config="appDeployDetailConf"></ui-widget>
+<ui-widget ng-if="widget.widgetRollingup" config="appRollingupConf"></ui-widget>

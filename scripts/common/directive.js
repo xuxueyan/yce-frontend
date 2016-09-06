@@ -14,28 +14,51 @@ define([
                         },
                         replace : true,
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                            console.log($scope.config);
-                            $scope.closeWidget = function(){
-                                $rootScope.widget = {};
+                            $scope.closeWidget = function(widgetId){
+                                $rootScope.widget[widgetId] = false;
                             };
-                            $scope.$on('closeWidget',function(){
-                                $scope.closeWidget();
+                            $scope.$on('closeWidget',function(event, widgetId){
+                                $scope.closeWidget(widgetId);
                             });
                         }]
 			        };
     			})
-    			.directive('uiAppDetail', function(){
+    			.directive('uiAppPodDetail', function(){
         			return {
             			restrict: 'A',
-                        templateUrl : './views/widget/appDetail.html',
+                        templateUrl : './views/widget/appPodDetail.html',
                         scope : {
-                            orginalData : '='
+                            originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                            console.log($scope.orginalData);
+                            console.log($scope.originalData);
                         }]
 			        };
-    			});
+    			})
+    			.directive('uiAppDeployDetail', function(){
+        			return {
+            			restrict: 'A',
+                        templateUrl : './views/widget/appDeployDetail.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                            console.log($scope.originalData);
+                        }]
+			        };
+    			})
+    			.directive('uiAppRollingup', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/rollingup.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                });
         };
 		return {
 			init: init

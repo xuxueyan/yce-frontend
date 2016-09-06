@@ -1,9 +1,8 @@
-
 <section class="wrapper main-wrapper row" style="">
     <div class='col-xs-12'>
         <div class="page-title">
             <div class="pull-left">
-                <h1 class="title">镜像管理</h1>                            
+                <h1 class="title">镜像管理</h1>
             </div>
         </div>
     </div>
@@ -19,7 +18,7 @@
                                     <input type="text" value="" ng-model="data.search" placeholder="输入应用名称..." class="form-control search-page-input">
                                     <span class="input-group-addon">
                                         <span class="arrow"></span>
-                                        <i class="fa fa-search"></i>
+                                    <i class="fa fa-search"></i>
                                     </span>
                                 </div>
                             </div>
@@ -32,9 +31,8 @@
                                         <th>操作</th>
                                     </tr>
                                 </thead>
-
                                 <tbody ng-repeat="app in newImage | filter:data.search">
-                                    <tr ng-class="{odd:$odd,even:$even}" >
+                                    <tr ng-class="{odd:$odd,even:$even}">
                                         <td>{{$index+1}}</td>
                                         <td>
                                             <p>{{app.name}}</p>
@@ -80,5 +78,4 @@
         </section>
     </div>
 </section>
-
 <ui-widget ng-if="widget.showAppDetail" config="appDetailConf"></ui-widget>

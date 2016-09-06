@@ -4,23 +4,53 @@
 .widget-content{ padding:20px 30px;}
 .widget-close{ height:30px; width:30px; border-radius:15px; line-height:30px; top:15px; right:20px; font-family:sans-serif; cursor:pointer; color:#767676; border:1px solid #767676; position:absolute; font-size:18px; text-align:center;}
 .widget-close:hover{ background:#767676; color:#fff;}
+.btnBar{ text-align:center;}
+.btnBar button{ margin:0 20px;}
 
-/*应用详情*/
-#widgetAppDetail .widget{ max-height:500px; max-width:800px;}
-#widgetAppDetail .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
-#widgetAppDetail .app-detail{ padding:10px 20px;}
-#widgetAppDetail .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetAppDetail .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetAppDetail .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetAppDetail .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetAppDetail .labels-table{ margin-top:20px;}
-#widgetAppDetail .labels-table table{ border:none;}
-#widgetAppDetail .labels-table th{ text-align:left; border:none !important;}
-#widgetAppDetail .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetAppDetail .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+/*应用实例详情*/
+#widgetAppPodDetail .widget{ max-height:500px; max-width:800px;}
+#widgetAppPodDetail .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
+#widgetAppPodDetail .app-detail{ padding:10px 20px;}
+#widgetAppPodDetail .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
+#widgetAppPodDetail .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
+#widgetAppPodDetail .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
+#widgetAppPodDetail .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
+#widgetAppPodDetail .labels-table{ margin-top:20px;}
+#widgetAppPodDetail .labels-table table{ border:none;}
+#widgetAppPodDetail .labels-table th{ text-align:left; border:none !important;}
+#widgetAppPodDetail .labels-table td{ padding:5px 10px !important; border:none;}
+#widgetAppPodDetail .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+
+
+/*发布详情*/
+#widgetAppDeployDetail .widget{ max-height:500px; max-width:800px;}
+#widgetAppDeployDetail .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
+#widgetAppDeployDetail .app-detail{ padding:10px 20px;}
+#widgetAppDeployDetail .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
+#widgetAppDeployDetail .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
+#widgetAppDeployDetail .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
+#widgetAppDeployDetail .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
+#widgetAppDeployDetail .labels-table{ margin-top:20px;}
+#widgetAppDeployDetail .labels-table table{ border:none;}
+#widgetAppDeployDetail .labels-table th{ text-align:left; border:none !important;}
+#widgetAppDeployDetail .labels-table td{ padding:5px 10px !important; border:none;}
+#widgetAppDeployDetail .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
 
+/*滚动升级*/
+#widgetRollingup .widget{ max-height:600px; max-width:800px;}
+#widgetRollingup .tab-content{ height:385px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
+#widgetRollingup .app-detail{ padding:10px 20px;}
+#widgetRollingup .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
+#widgetRollingup .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
+#widgetRollingup .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
+#widgetRollingup .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
+#widgetRollingup .labels-table{ margin-top:20px;}
+#widgetRollingup .labels-table table{ border:none;}
+#widgetRollingup .labels-table th{ text-align:left; border:none !important;}
+#widgetRollingup .labels-table td{ padding:5px 10px !important; border:none;}
+#widgetRollingup .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
 

@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:data.tabSwitch==0}" ng-init="data.tabSwitch=0" ng-click="data.tabSwitch=0">
+                <a href="javascript:void(0);" aria-expanded="true">
+                    <i class="fa fa-home"></i> 详细信息
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
+                <div class="row">
+                    <dl class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>应用名称 : </dt>
+                        <dd><span>{{originalData.metadata.name}}</span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>组织名称 : </dt>
+                        <dd><span>{{originalData.metadata.namespace}}</span></dd>
+                    </dl>
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>镜像名称: </dt>
+                        <dd><span>{{originalData.spec.template.spec.containers[0].image}}</span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>启动时间 : </dt>
+                        <dd><span>{{originalData.metadata.creationTimestamp}}</span></dd>
+                    </dl>
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>升级策略: </dt>
+                        <dd><span>{{originalData.spec.strategy.type}}</span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <div class="dataTables_wrapper form-inline labels-table">
+                        <table class="table table-striped dt-responsive display dataTable dtr-inline">
+                            <thead>
+                                <tr role="row">
+                                    <th colspan="2">标签组</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" ng-repeat="(key,value) in originalData.metadata.labels">
+                                    <td>{{key}}&nbsp;&nbsp;:</td>
+                                    <td>{{value}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="dataTables_wrapper form-inline labels-table">
+                        <table class="table table-striped dt-responsive display dataTable dtr-inline">
+                            <thead>
+                            <tr role="row">
+                                <th colspan="2">选择器</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr role="row" ng-repeat="(key,value) in originalData.spec.selector.matchLabels">
+                                <td>{{key}}&nbsp;&nbsp;:</td>
+                                <td>{{value}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
