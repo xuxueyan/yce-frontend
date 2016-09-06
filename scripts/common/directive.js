@@ -58,6 +58,30 @@ define([
 
                         }]
                     };
+                })
+                .directive('uiAppRollback', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/rollback.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+                .directive('uiAppScale', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/scale.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
                 });
         };
 		return {

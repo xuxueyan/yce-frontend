@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:data.tabSwitch==0}" ng-init="data.tabSwitch=0" ng-click="data.tabSwitch=0">
+                <a href="javascript:void(0);" aria-expanded="true">
+                    <i class="fa fa-home"></i> 手动扩容
+                </a>
+            </li>
+            <li ng-class="{active:data.tabSwitch==1}" ng-click="data.tabSwitch=1" ng-click="data.tabSwitch=0">
+                <a href="javascript:void(0);" aria-expanded="true">
+                    <i class="fa fa-user"></i> 自动扩容
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
+                <div class="form-group">
+                    <label class="form-label">应用名称：</label>
+                    <span class="desc"></span>
+                    <div class="controls">
+                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">镜像名称：</label>
+                    <span class="desc"></span>
+                    <div class="controls">
+                        <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field-replicas" class="form-label">实例个数：</label>
+                    <span class="desc">选择您要扩容的应用实例的数量</span>
+
+                    <div class="controls">
+                        <input type="number" ng-model="param.deployment.spec.replicas" id="field-replicas" class="form-control ng-pristine ng-untouched ng-valid-min ng-invalid ng-invalid-required ng-valid-pattern" pattern="[0-9]" min="0" required="" value="color">
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="profile-1" class="tab-pane fade" ng-class="{'active in':data.tabSwitch==1}">
+           我是日志信息
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 btnBar">
+        <button class="btn btn-primary" type="button" ng-click="$emit('submitRollingup',param)">提交</button>
+        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget','widgetRollingup')">取消</button>
+    </div>
+</div>

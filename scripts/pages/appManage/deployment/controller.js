@@ -136,8 +136,6 @@ define([
                         $scope.param.deployment.metadata.labels.version = $1;
                     });
                 }
-
-
             })
             .error(function() {
                 console.log("getImages error")
