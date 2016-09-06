@@ -1,9 +1,77 @@
-.content-body .col-xs-12 .row>div{
-	padding: 15px 15px;
+/*镜像管理样式调整*/
+
+
+/*2016-09-02 by licheng*/
+
+.content-body .col-xs-12 .row>div {
+    padding: 15px 15px;
 }
-.content-body .col-xs-12 .row .team-img img{
-	position: absolute;
-	height: 147px;
-	top: 0;
-	left: 0;
+
+.content-body .col-xs-12 .row .team-img img {
+    position: absolute;
+    height: 147px;
+    top: 0;
+    left: 0;
+}
+
+
+/*基础镜像样式修改*/
+
+
+/*2016-09-02 by licheng*/
+
+.tool-1 {
+    margin-bottom: 10px;
+}
+
+.tool-1 .tool-2 {
+    height: auto;
+}
+
+.java-1 {}
+
+.java-2 {
+    background: url(./data/albums/javabig.png) no-repeat;
+    background-size: 80% 100%;
+    background-position: 50%;
+    height: 250px;
+    min-height: 250px;
+}
+
+.clangular-1 {
+    background-color: #ce2127;
+}
+
+.clangular-2 {
+    background: url(data/albums/Clangular.png) no-repeat;
+    background-position: 50%;
+    height: 250px;
+}
+
+.nginx-1 {
+    background-color: #369750;
+}
+
+.nginx-2 {
+    background: url(data/albums/Nginx.png) no-repeat;
+    background-position: 50%;
+    height: 250px;
+    background-size: 80%;
+}
+
+.mysql-2 {
+    background: url(data/albums/mysql.png) no-repeat;
+    background-position: 50%;
+    height: 250px;
+    background-size: 100%;
+}
+
+.cpp-1 {
+    background-color: #295d88;
+}
+
+.cpp-2 {
+    background: url(data/albums/cpp.png) no-repeat;
+    background-position: 50%;
+    height: 250px;
 }
