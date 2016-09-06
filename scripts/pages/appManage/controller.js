@@ -43,7 +43,9 @@ define([
             };
 
             // 滚动升级
-            $scope.rollingup = function(item){
+            $scope.rollingup = function(item, dcId, dcName){
+                item.dcId = dcId;
+                item.dcName = dcName;
                 $scope.appRollingupConf = {
                     widgetId : 'widgetRollingup',
                     widgetTitle : '升级',

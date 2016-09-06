@@ -23,17 +23,17 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-label">升级镜像：</label>
+                <label class="form-label">数据中心：</label>
                 <span class="desc"></span>
                 <div class="controls">
-                    <input type="text" class="form-control" id="field-image" ng-model="param.strategy.image" ng-init="param.strategy.image=''" ng-focus=" changeName = !shows ">
+                    <input type="text" class="form-control" id="field-image" value="{{originalData.dcName}}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-label">最大不可用实例数：</label>
+                <label class="form-label">升级镜像：</label>
                 <span class="desc"></span>
                 <div class="controls">
-                    <input type="text" class="form-control" ng-model="param.strategy.maxUnavailable" ng-init="param.strategy.maxUnavailable=''">
+                    <input type="text" class="form-control" id="field-image" ng-model="param.strategy.image" ng-init="param.strategy.image=''">
                 </div>
             </div>
             <div class="form-group">

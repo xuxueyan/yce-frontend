@@ -19,6 +19,7 @@ define([
                         $localStorage.sessionId =  $scope.loginData.sessionId;
                         $localStorage.userId = $scope.loginData.userId;
                         $localStorage.orgId = $scope.loginData.orgId;
+                        $localStorage.orgName = $scope.loginData.orgName;
                         $scope.jump();
                     }else{
                         alert("用户名密码错误");

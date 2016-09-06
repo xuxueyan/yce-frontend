@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">升级镜像：</label>
+                    <label class="form-label">回滚镜像：</label>
                     <span class="desc"></span>
                     <div class="controls">
                         <input type="text" class="form-control" id="field-image" ng-model="param.strategy.image" ng-init="param.strategy.image=''" ng-focus=" changeName = !shows ">
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">升级原因：</label>
+                    <label class="form-label">回滚原因：</label>
                     <span class="desc"></span>
                     <div class="controls">
                         <input type="text" class="form-control" ng-model="param.comments" ng-init="param.comments=''">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-xs-12 btnBar">
-        <button class="btn btn-primary" type="button" ng-click="$emit('submitRollingup',param)">提交</button>
-        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget','widgetRollingup')">取消</button>
+        <button class="btn btn-primary" type="button" ng-click="$emit('submitRollback',param)">提交</button>
+        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget','widgetRollback')">取消</button>
     </div>
 </div>

@@ -55,7 +55,15 @@ define([
                             originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-
+                            console.log($scope.originalData);
+                            $scope.param = {
+                                dcIdList: [$scope.originalData.dcId]
+                                /*
+                                strategy: {
+                                    maxUnavailable: 3
+                                },
+                                */
+                            };
                         }]
                     };
                 })
