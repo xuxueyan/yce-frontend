@@ -71,8 +71,10 @@ define([
                 }
             });
 
+
+
             // 回滚
-            $scope.rollback = function(item){
+            $scope.rollback = function(item, dcId){
                 $scope.appRollbackConf = {
                     widgetId : 'widgetRollback',
                     widgetTitle : '回滚',
@@ -81,6 +83,19 @@ define([
                 };
 
                 $rootScope.widget.widgetRollback = true;
+
+                // 查看回滚历史
+                appManageService.getRollbackHistory({
+                    sessionId: $localStorage.sessionId,
+                    orgId: $localStorage.orgId,
+                    dcId: dcId,
+                    appName: item.deploy.metadata.name
+                }, function(data){
+                    console.log("xxxxxxxxxxxxxxxx");
+                    if(data.code == 0){
+                        console.log(JSON.parse(data.data));
+                    }
+                });
             };
 
             $scope.$on('submitRollback',function(event,param){
@@ -98,7 +113,7 @@ define([
                 }
             });
 
-            // 回滚
+            // 扩容
             $scope.scale = function(item){
                 $scope.appScaleConf = {
                     widgetId : 'widgetScale',

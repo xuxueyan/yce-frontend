@@ -1,44 +1,148 @@
 <div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs">
-            <li ng-class="{active:data.tabSwitch==0}" ng-init="data.tabSwitch=0" ng-click="data.tabSwitch=0">
-                <a href="javascript:void(0);" aria-expanded="true">
-                    <i class="fa fa-home"></i> 立即回滚
-                </a>
-            </li>
-        </ul>
+    <div class="col-lg-12">
+        <section class="box ">
+            <b class="pull-center-b"></b>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- start -->
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>数据中心: {{ item.dcName }}</p>
+                                            <p>操作类型: {{ item.records.actionName }}</p>
+                                            <p>发布人: {{ item.userName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <span>点击回滚</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted ">
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>数据中心: {{ item.dcName }}</p>
+                                            <p>操作类型: {{ item.records.actionName }}</p>
+                                            <p>发布人: {{ item.userName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <span>点击回滚</span>
+                                    </div>
+                                </div>
 
-        <div class="tab-content">
-            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
-                <div class="form-group">
-                    <label class="form-label">应用名称：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name">
-                    </div>
-                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>数据中心: {{ item.dcName }}</p>
+                                            <p>操作类型: {{ item.records.actionName }}</p>
+                                            <p>发布人: {{ item.userName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <span>点击回滚</span>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label class="form-label">回滚镜像：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <span class="form-control" ng-click="$emit('showImageSelector', 'rollback')">{{param.image}}</span>
-                    </div>
-                </div>
+                            </li>
+                            <li class="timeline-inverted ">
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>数据中心: {{ item.dcName }}</p>
+                                            <p>操作类型: {{ item.records.actionName }}</p>
+                                            <p>发布人: {{ item.userName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <span>点击回滚</span>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label class="form-label">回滚原因：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.comments" ng-init="param.comments=''">
+                            </li>
+                            <li>
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>数据中心: {{ item.dcName }}</p>
+                                            <p>操作类型: {{ item.records.actionName }}</p>
+                                            <p>发布人: {{ item.userName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <span>点击回滚</span>
+                                    </div>
+                                </div>
+
+                            </li>
+
+
+
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 btnBar">
-        <button class="btn btn-primary" type="button" ng-click="$emit('submitRollback',param)">提交</button>
-        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget','widgetRollback')">取消</button>
+        </section>
     </div>
 </div>
