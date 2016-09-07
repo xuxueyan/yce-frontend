@@ -5,140 +5,33 @@
             <div class="content-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        <!-- start -->
                         <ul class="timeline">
-                            <li>
+                            <li ng-repeat="item in param.history" ng-class-odd="'timeline-inverted'">
                                 <div class="timeline-badge animated flipInY">
                                     <i class="glyphicon glyphicon-check"></i>
                                 </div>
                                 <div class="timeline-panel animated flipInY">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <h4 class="timeline-title">应用: {{ item.name }}</h4>
                                         <p>
                                             <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
+                                                <i class="glyphicon glyphicon-time"></i>修订版本{{ item.revision }}
                                             </small>
                                         </p>
                                     </div>
                                     <div class="history-box-1">
                                         <div class="timeline-body">
-                                            <p>数据中心: {{ item.dcName }}</p>
-                                            <p>操作类型: {{ item.records.actionName }}</p>
-                                            <p>发布人: {{ item.userName}}</p>
+                                            <p>命名空间: {{ item.namespace }}</p>
+                                            <p>镜像名称: {{ item.image }}</p>
+                                            <p>当前实例: {{ item.replicas.current }}</p>
+                                            <p>期望实例: {{ item.replicas.desire }}</p>
                                         </div>
                                     </div>
                                     <div class="history-box-2">
-                                        <span>点击回滚</span>
+                                        <button class="btn btn-danger" type="button">回滚到此版本</button>
                                     </div>
                                 </div>
                             </li>
-                            <li class="timeline-inverted ">
-                                <div class="timeline-badge animated flipInY">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
-                                        <p>
-                                            <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
-                                            </small>
-                                        </p>
-                                    </div>
-                                    <div class="history-box-1">
-                                        <div class="timeline-body">
-                                            <p>数据中心: {{ item.dcName }}</p>
-                                            <p>操作类型: {{ item.records.actionName }}</p>
-                                            <p>发布人: {{ item.userName}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-box-2">
-                                        <span>点击回滚</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <div class="timeline-badge animated flipInY">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
-                                        <p>
-                                            <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
-                                            </small>
-                                        </p>
-                                    </div>
-                                    <div class="history-box-1">
-                                        <div class="timeline-body">
-                                            <p>数据中心: {{ item.dcName }}</p>
-                                            <p>操作类型: {{ item.records.actionName }}</p>
-                                            <p>发布人: {{ item.userName}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-box-2">
-                                        <span>点击回滚</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li class="timeline-inverted ">
-                                <div class="timeline-badge animated flipInY">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
-                                        <p>
-                                            <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
-                                            </small>
-                                        </p>
-                                    </div>
-                                    <div class="history-box-1">
-                                        <div class="timeline-body">
-                                            <p>数据中心: {{ item.dcName }}</p>
-                                            <p>操作类型: {{ item.records.actionName }}</p>
-                                            <p>发布人: {{ item.userName}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-box-2">
-                                        <span>点击回滚</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <div class="timeline-badge animated flipInY">
-                                    <i class="glyphicon glyphicon-check"></i>
-                                </div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
-                                        <p>
-                                            <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }}
-                                            </small>
-                                        </p>
-                                    </div>
-                                    <div class="history-box-1">
-                                        <div class="timeline-body">
-                                            <p>数据中心: {{ item.dcName }}</p>
-                                            <p>操作类型: {{ item.records.actionName }}</p>
-                                            <p>发布人: {{ item.userName}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-box-2">
-                                        <span>点击回滚</span>
-                                    </div>
-                                </div>
-
-                            </li>
-
-
-
                         </ul>
                     </div>
                 </div>

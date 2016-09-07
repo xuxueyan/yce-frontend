@@ -91,9 +91,13 @@ define([
                     dcId: dcId,
                     appName: item.deploy.metadata.name
                 }, function(data){
-                    console.log("xxxxxxxxxxxxxxxx");
                     if(data.code == 0){
-                        console.log(JSON.parse(data.data));
+                        $scope.history = JSON.parse(data.data);
+                        $scope.appRollbackConf.history = JSON.parse(data.data);
+                        console.log(JSON.stringify($scope.history));
+                        console.log($scope.appRollbackConf);
+
+                        $scope.$broadcast('rollback', $scope.history);
                     }
                 });
             };

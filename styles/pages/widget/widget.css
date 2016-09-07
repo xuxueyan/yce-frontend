@@ -53,9 +53,8 @@
 #widgetRollingup .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
-
 /*回滚*/
-#widgetRollback .widget{ max-height:550px; max-width:800px;}
+#widgetRollback .widget{ max-height:650px; max-width:900px;}
 #widgetRollback .tab-content{ height:300px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
 #widgetRollback .app-detail{ padding:10px 20px;}
 #widgetRollback .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
