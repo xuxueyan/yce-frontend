@@ -74,7 +74,7 @@ define([
 
 
             // 回滚
-            $scope.rollback = function(item, dcId){
+            $scope.rollback = function(item, dcId, appName){
                 $scope.appRollbackConf = {
                     widgetId : 'widgetRollback',
                     widgetTitle : '回滚',
@@ -94,20 +94,22 @@ define([
                     if(data.code == 0){
                         $scope.history = JSON.parse(data.data);
                         $scope.appRollbackConf.history = JSON.parse(data.data);
-                        console.log(JSON.stringify($scope.history));
-                        console.log($scope.appRollbackConf);
-
-                        $scope.$broadcast('rollback', $scope.history);
+                        $scope.dcId = dcId;
+                        $scope.appName = appName;
+                        $scope.$broadcast('rollbackHistory', $scope.history);
+                        $scope.$broadcast('rollbackDcId', $scope.dcId);
+                        $scope.$broadcast('rollbackAppName', $scope.appName);
                     }
                 });
             };
 
-            $scope.$on('submitRollback',function(event,param){
+            $scope.$on('submitRollback',function(event, param, dcId, appName){
                 param = angular.merge(param, $scope.param);
+                param.dcId = dcId;
+                param.appName = appName;
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitRollback(param,function(data){
-                        console.log(data);
                         $rootScope.widget.widgetRollback = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;

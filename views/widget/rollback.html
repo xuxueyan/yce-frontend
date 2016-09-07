@@ -28,7 +28,7 @@
                                         </div>
                                     </div>
                                     <div class="history-box-2">
-                                        <button class="btn btn-danger" type="button">回滚到此版本</button>
+                                        <button class="btn btn-danger" type="button" ng-click="$emit('submitRollback', item, param.dcId, param.appName)">回滚到此版本</button>
                                     </div>
                                 </div>
                             </li>
