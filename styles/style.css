@@ -8832,5 +8832,30 @@ table.dataTable.display tbody tr:first-child td {
     border:none;
     color: #fff;
 }
+.history-wrap{
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+    position: fixed;
+    top: 200px;
+    left: 32%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

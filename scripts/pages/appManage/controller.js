@@ -67,7 +67,71 @@ define([
                     });
                 }
             });
-        }];
+
+            var map = {
+                1 :"查询",
+                2 :"上线",
+                3 :"回滚",
+                4 :"滚动升级",
+                5 :"扩容",
+                6 :"取消上线,下线",
+                7 :"暂停上线",
+                8 :"恢复上线"
+            }
+
+            /*  historyPage  */
+            appManageService.historyPage($scope.param,function(data){
+                if (data.code == 0) {
+                    $scope.historyList = JSON.parse(data.data);
+                    $scope.historyList[0].records.actionName = map[angular.toJson($scope.historyList[0].records.actionType)];
+
+
+
+
+                    /*  点击显示详细信息  */
+                    $scope.historyLi = function(item){
+
+//                    console.log(angular.toJson(item))
+//ok    console.log(JSON.parse(item.records.json).spec.replicas)
+//ok    console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].image);
+//ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu);
+//ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory);
+//ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].imagePullPolicy);
+
+        $scope.Newreplicas = JSON.parse(item.records.json).spec.replicas;
+        $scope.Newimage = JSON.parse(item.records.json).spec.template.spec.containers[0].image;
+        $scope.Newcpu = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu;
+        $scope.Newmemory = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory;
+        $scope.NewimagePullPolicy = JSON.parse(item.records.json).spec.template.spec.containers[0].imagePullPolicy;
+
+
+
+
+
+
+                    }
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }]; //    ****** end
 
 
         var controllers = [

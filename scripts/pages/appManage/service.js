@@ -17,6 +17,22 @@ define([
 		    var appName = param.appName;
 			return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/rolling', param, success, error);
 		};
+		/*  查看历史 GET /api/v1/organizations/{orgId}/operationlog */
+		apis.historyPage = function(param, success, error){
+		    var orgId = param.orgId;
+			return utils.http($http, 'get', '/api/v1/organizations/' + orgId + '/operationlog/', param, success, error);
+		};
+
+
+
+
+
+
+
+
+
+
+
 		return apis;
 	};	
 
