@@ -1,44 +1,37 @@
 <div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs">
-            <li ng-class="{active:data.tabSwitch==0}" ng-init="data.tabSwitch=0" ng-click="data.tabSwitch=0">
-                <a href="javascript:void(0);" aria-expanded="true">
-                    <i class="fa fa-home"></i> 立即回滚
-                </a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
-                <div class="form-group">
-                    <label class="form-label">应用名称：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">回滚镜像：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <span class="form-control" ng-click="$emit('showImageSelector', 'rollback')">{{param.image}}</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">回滚原因：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.comments" ng-init="param.comments=''">
+    <div class="col-lg-12">
+        <section class="box ">
+            <b class="pull-center-b"></b>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="timeline">
+                            <li ng-repeat="item in param.history" ng-class-odd="'timeline-inverted'">
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
+                                </div>
+                                <div class="timeline-panel animated flipInY">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">{{item.namespace}}/{{ item.name }}</h4>
+                                        <p class="rollback-revision">
+                                            <i class="glyphicon glyphicon-time"></i>修订版本&nbsp;&nbsp;{{ item.revision }}
+                                        </p>
+                                    </div>
+                                    <div class="history-box-1">
+                                        <div class="timeline-body">
+                                            <p>镜像名称:&nbsp;&nbsp; {{ item.image }}</p>
+                                            <p>应用实例数:&nbsp;&nbsp; {{ item.replicas.current }} 可用 | {{ item.replicas.desire }} 期望</p>
+                                        </div>
+                                    </div>
+                                    <div class="history-box-2">
+                                        <button class="btn btn-danger" type="button" ng-click="$emit('submitRollback', item, param.dcId, param.appName)">回滚到此版本</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 btnBar">
-        <button class="btn btn-primary" type="button" ng-click="$emit('submitRollback',param)">提交</button>
-        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget','widgetRollback')">取消</button>
+        </section>
     </div>
 </div>

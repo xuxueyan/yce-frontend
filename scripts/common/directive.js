@@ -113,6 +113,18 @@ define([
                             $scope.$on('rollbackImage',function(event, image){
                                 $scope.param.image = image;
                             });
+
+                            $scope.$on('rollbackHistory', function(event, history){
+                                $scope.param.history = history;
+                            });
+
+                            $scope.$on('rollbackDcId', function(event, dcId){
+                                $scope.param.dcId = dcId;
+                            });
+
+                            $scope.$on('rollbackAppName', function(event, appName){
+                                $scope.param.appName = appName;
+                            });
                         }]
                     };
                 })
