@@ -47,9 +47,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">选择器：</label>
-                                <div class="controls">
-                                    <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="mocks.mylistKey"> ：
-                                    <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="mocks.mylistValue">
+                                <div class="servermyL">
+                                    <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="mocks.mylistKey"><b class="fa fa-minus inputB"></b><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="mocks.mylistValue">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,21 +57,16 @@
                                 <i class="fa fa-plus-square server-adds" ng-click="addPort()"></i>
                                 <div class="controls" ng-repeat="portlists in ports">
                                     <p class="server-p-1">
-                                        <span>名称</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.name"> 
-                                        <span>协议</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.protocol">
+                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.name"> 
+                                        <span>协议</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.protocol">
                                         <b class="server-jia fa fa-minus-square" ng-click="delPort($index)"></b>
                                     </p>
                                     <p class="server-p-1">
-                                        <span>port</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port">
-                                        <span>Target Port</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort"> 
+                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port">
+                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort"> 
                                     </p>
                                     <p class="server-p-1">
-                                        <span>NodePort</span>
-                                        <input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort">
+                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort">
                                     </p>
                                 </div>
                             </div>
@@ -81,30 +75,22 @@
                                 <span class="desc"></span>
                                 <i class="fa fa-plus-square server-add" ng-click="addLabels()"></i>
                                 <p class="server-p-3">
-                                    <span>key</span>
-                                    <input type="text" placeholder="name" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
-                                    <span>value</span>
-                                    <input type="text" placeholder="{{ param.serviceName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                    <span>key</span><input type="text" placeholder="name" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled><b class="fa fa-minus inputB"></b>
+                                    <span>value</span><input type="text" placeholder="{{ param.serviceName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
                                 </p>
                                 <p class="server-p-3">
-                                    <span>key</span>
-                                    <input type="text" placeholder="author" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
-                                    <span>value</span>
-                                    <input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                    <span>key</span><input type="text" placeholder="author" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled><b class="fa fa-minus inputB"></b>
+                                    <span>value</span><input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
                                 </p>
                                 <p class="server-p-3">
-                                    <span>key</span>
-                                    <input type="text" placeholder="type" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled>：
-                                    <span>value</span>
-                                    <input type="text" placeholder="service" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
+                                    <span>key</span><input type="text" placeholder="type" class="form-control server-btn" id="field-1678" ng-model="portsname" disabled><b class="fa fa-minus inputB"></b>
+                                    <span>value</span><input type="text" placeholder="service" class="form-control server-btn" id="field-1678" ng-model="portsarrange" disabled>
                                 </p>
 
                                 <div class="controls" ng-repeat="lei in leis">
                                     <p class="server-p-3">
-                                        <span>key</span>
-                                        <input type="text" class="form-control server-btn" ng-model=" lei.leiKey ">：
-                                        <span>value</span>
-                                        <input type="text" class="form-control server-btn" ng-model=" lei.leiValue ">
+                                        <span>key</span><input type="text" class="form-control server-btn" ng-model=" lei.leiKey "><b class="fa fa-minus inputB"></b>
+                                        <span>value</span><input type="text" class="form-control server-btn" ng-model=" lei.leiValue ">
                                         <b class="server-jia fa fa-minus-square" ng-click="delLabels($index)"></b>
                                     </p>
                                 </div>
