@@ -142,7 +142,7 @@ define([
                     $scope.canSubmit = false;
                     appManageService.submitScale(param,function(data){
                         console.log(data);
-                        $rootScope.widget.widgetRollingup = false;
+                        $rootScope.widget.widgetScale = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
                     },function(){
