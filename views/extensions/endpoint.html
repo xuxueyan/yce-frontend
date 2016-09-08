@@ -39,20 +39,20 @@
                             <span class="desc"></span>
                             <i class="fa fa-plus-square server-add" ng-click="addendpointjlabel()"></i>
                             <p class="server-p-3">
-                                <span>key</span><input type="text" placeholder="name" class="form-control server-btn" id="field-1678" disabled>：
+                                <span>key</span><input type="text" placeholder="name" class="form-control server-btn" id="field-1678" disabled><b class="fa fa-minus inputB"></b>
                                 <span>value</span><input type="text" placeholder="{{ endpointsJson.endpointsName }}" class="form-control server-btn" id="field-1678" disabled>
                             </p>
                             <p class="server-p-3">
-                                <span>key</span><input type="text" placeholder="author" class="form-control server-btn" id="field-1678" disabled>：
+                                <span>key</span><input type="text" placeholder="author" class="form-control server-btn" id="field-1678" disabled><b class="fa fa-minus inputB"></b>
                                 <span>value</span><input type="text" placeholder="{{ sessionName }}" class="form-control server-btn" id="field-1678" disabled>
                             </p>
                             <p class="server-p-3">
-                                <span>key</span><input type="text" placeholder="type" class="form-control server-btn" id="field-1678" disabled>：
+                                <span>key</span><input type="text" placeholder="type" class="form-control server-btn" id="field-1678" disabled><b class="fa fa-minus inputB"></b>
                                 <span>value</span><input type="text" placeholder="endpoint" class="form-control server-btn" id="field-1678" disabled>
                             </p>
                             <div class="controls" ng-repeat="endlei in endleis">
                                 <p class="server-p-3">
-                                    <span>key</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" >：
+                                    <span>key</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" ><b class="fa fa-minus inputB"></b>
                                     <span>value</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelValue">
                                     <b class="server-jia fa fa-minus-square" ng-click="delendpointjlabel($index)"></b>
                                 </p>
@@ -63,12 +63,12 @@
 
                             <div class="controls" ng-repeat=" epI in mockEnd">
                                 <p class="server-p-4">
-                                    <span>名称</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.ports.name">：
+                                    <span>名称</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.ports.name"><b class="fa fa-minus inputB"></b>
                                     <span>协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.protocol">
                                     <i class="fa fa-minus-square endP-del" ng-click="delendpointEx($index)"></i>
                                 </p>
                                 <p class="server-p-4">
-                                    <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip">：
+                                    <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip"><b class="fa fa-minus inputB"></b>
                                     <span>端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port">
 
                                 </p>

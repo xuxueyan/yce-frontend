@@ -8786,12 +8786,12 @@ table.dataTable.display tbody tr:first-child td {
     border-left: none;
 }
 .server-add{
-    margin-left: 545px;
+    margin-left: 553px;
     font-size: 20px;
     color: #bbb;
 }
 .server-adds{
-    margin-left: 561px;
+    margin-left: 553px;
     font-size: 20px;
     color: #bbb;
 }
@@ -8802,7 +8802,7 @@ table.dataTable.display tbody tr:first-child td {
 }
 .endP-add{
     font-size: 20px;
-    margin-left: 523px;
+    margin-left: 563px;
     color: #bbb;
 }
 .ngs_hide input{
@@ -8893,12 +8893,12 @@ table.dataTable.display tbody tr:first-child td {
     width: 100%;
 }
 .server-adds1 {
-    margin-left: 492px;
+    margin-left: 493px;
     font-size: 20px;
     color: #bbbbbb;
 }
 #deloy-m-span1{
-display: inline-block;
+    display: inline-block;
     width: 50px;
     height: 30px;
     border: 1px solid #ccc;
@@ -8910,7 +8910,7 @@ display: inline-block;
     border-right: none;
 }
 .inputB{
-    margin: 0 12px;
+    margin: 0 20px;
     font-size: 17px;
 }
 .servermyL{
