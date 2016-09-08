@@ -75,3 +75,61 @@
     background-position: 50%;
     height: 250px;
 }
+
+
+/*滑块*/
+
+.controls-1 li {
+    list-style-type: none;
+}
+
+.bar-1 {
+    height: 10px;
+}
+
+.bar-1 .grid {
+    border-left: 2px solid #fff;
+    display: inline-block;
+    margin-left: -1px;
+    margin-right: -1px;
+    vertical-align:middle;
+}
+
+.bar-0 .bar-1 {
+    background: -webkit-linear-gradient(left, #cccccc, #03A9F4);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left, #cccccc, #03A9F4);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left, #cccccc, #03A9F4);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #fff, #03A9F4);
+    /* 标准的语法 */
+    border-radius: .75em;
+    position: relative;
+    margin: 0;
+}
+
+.bar-0 ul,
+.bar-0 li {
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+.bar-0 .ui-slider.slider-primary .ui-widget-header {
+    border: 1px solid #FFF;
+    background: #FFF;
+    color: #FFF;
+}
+
+.bar-1 ul {
+    position: absolute;
+    top: -1px;
+    left: 10px;
+    line-height: 10px;
+}
+
+.bar-1 .grid:first-child() {
+    border: none;
+}
