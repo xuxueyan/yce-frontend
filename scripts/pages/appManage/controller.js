@@ -165,7 +165,11 @@ define([
             });
 
             // 扩容
-            $scope.scale = function(item){
+            $scope.scale = function(item, dcId, appName){
+                $scope.param.dcId = dcId;
+                $scope.param.appName = appName;
+                $scope.param.sessionId = $localStorage.sessionId;
+
                 $scope.appScaleConf = {
                     widgetId : 'widgetScale',
                     widgetTitle : '扩容',
@@ -175,6 +179,22 @@ define([
 
                 $rootScope.widget.widgetScale = true;
             };
+            $scope.$on('submitScale',function(event,param){
+                param = angular.merge(param, $scope.param);
+                console.log(param);
+
+                if($scope.canSubmit){
+                    $scope.canSubmit = false;
+                    appManageService.submitScale(param,function(data){
+                        console.log(data);
+                        $rootScope.widget.widgetScale = false;
+                        $scope.loadAppList();
+                        $scope.canSubmit = true;
+                    },function(){
+                        $scope.canSubmit = true;
+                    });
+                }
+            });
 
             /*选择镜像*/
             $scope.$on('showImageSelector',function(event, data){
@@ -202,22 +222,6 @@ define([
 
 
             });
-
-            $scope.$on('submitScale',function(event,param){
-                param = angular.merge(param, $scope.param);
-                if($scope.canSubmit){
-                    $scope.canSubmit = false;
-                    appManageService.submitRollingup(param,function(data){
-                        console.log(data);
-                        $rootScope.widget.widgetRollingup = false;
-                        $scope.loadAppList();
-                        $scope.canSubmit = true;
-                    },function(){
-                        $scope.canSubmit = true;
-                    });
-                }
-            });
-
         }];
 
 

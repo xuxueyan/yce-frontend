@@ -56,6 +56,21 @@ define([
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/rollback', request, success, error);
 		};
 
+		/* 提交扩容 */
+		apis.submitScale = function(param, success, error){
+            var orgId = param.orgId;
+		    var appName = param.appName;
+            var request = {
+                newSize: param.newSize,
+                dcIdList: [param.dcId],
+                userId: param.userId,
+                comments: "scale to " + param.newSize + " instances",
+                sessionId: param.sessionId
+            }
+            console.log(request);
+		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/scale', request, success, error);
+		};
+
 		return apis;
 	};	
 
