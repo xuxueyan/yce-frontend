@@ -63,13 +63,26 @@ define([
             var request = {
                 newSize: param.newSize,
                 dcIdList: [param.dcId],
-                userId: param.userId,
+                userId: Number(param.userId),
                 comments: "scale to " + param.newSize + " instances",
                 sessionId: param.sessionId
-            }
-            console.log(request);
+            };
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/scale', request, success, error);
 		};
+
+		/* 提交删除 */
+		apis.submitDelete = function(param, success, error){
+		    var orgId = param.orgId;
+            var appName = param.appName;
+            var request = {
+                userId: param.userId,
+                dcIdList: [param.dcId],
+                sessionId: param.sessionId,
+                comments: "delete app: " + param.appName
+            };
+            console.log(request);
+		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/delete', request, success, error);
+		}
 
 		return apis;
 	};	

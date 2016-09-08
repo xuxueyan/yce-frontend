@@ -139,6 +139,18 @@ define([
 
                         }]
                     };
+                })
+                .directive('uiAppDelete', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/delete.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
                 });
         };
 		return {
