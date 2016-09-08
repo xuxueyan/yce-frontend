@@ -30,7 +30,6 @@ define([
                 $rootScope.widget.widgetAppDeployDetail = true;
             };
 
-
             // 应用实例详情
             $scope.showAppPodDetail = function(item){
                 $scope.appPodDetailConf = {
@@ -71,7 +70,53 @@ define([
                 }
             });
 
+            var leiMap = {
+                1 :"查询",
+                2 :"上线",
+                3 :"回滚",
+                4 :"滚动升级",
+                5 :"扩容",
+                6 :"取消上线,下线",
+                7 :"暂停上线",
+                8 :"恢复上线",
+                9 :"删除"
+            }
 
+            /*  historyPage  */
+            appManageService.historyPage($scope.param,function(data){
+              //  console.log(angular.toJson(data))
+                if (data.code == 0) {
+                    $scope.historyList = JSON.parse(data.data).operationLog;
+
+                    //  操作类型
+                    $scope.historyList.forEach(function(i){
+                        i.records.actionName = leiMap[angular.toJson(i.records.actionType)];
+                    })
+
+                    /*  点击显示详细信息  */
+                    $scope.historyShowbox = false;
+                    $scope.historyLi = function(item){
+                        $scope.historyShowbox = !false;
+                        //   console.log(angular.toJson(item))
+                        //   console.log(angular.toJson(item))
+                        //ok console.log(JSON.parse(item.records.json).spec.replicas)
+                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].image);
+                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu);
+                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory);
+                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0]);
+       
+                        $scope.Newreplicas = JSON.parse(item.records.json).spec.replicas;
+                        $scope.Newimage = JSON.parse(item.records.json).spec.template.spec.containers[0].image;
+                        $scope.Newcpu = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu;
+                        $scope.Newmemory = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory;
+                        $scope.NewimagePullPolicy = JSON.parse(item.records.json).spec.template.spec.containers[0].imagePullPolicy;
+
+                    }
+                    $scope.historyShow = function(){
+                        $scope.historyShowbox = false;
+                    }
+                }
+            });
 
             // 回滚
             $scope.rollback = function(item, dcId, appName){
@@ -178,6 +223,7 @@ define([
 
             });
         }];
+
 
 
         var controllers = [

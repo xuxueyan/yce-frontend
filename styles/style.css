@@ -801,7 +801,7 @@ a:hover, a:focus {
 }
 
 .page-sidebar.pagescroll {
-    position: absolute;
+    position: fixed;
 }
 
 .fixedscroll #main-menu-wrapper{
@@ -8626,21 +8626,16 @@ table.dataTable.display tbody tr:first-child td {
     border-bottom: 1px solid #ccc;
 }
 .Images-more-p2 a{
-    padding: 6px 13px;
-    background: #3F51B5;
+    padding: 8px 20px;
     color: #fff;
     font-weight: none;
     font-size: 10px;
-    border-radius: 4px;
-
 }
 .Images-more-p2:last-child{
     border-bottom: none;
 }
 .Images-more-p2 a:hover{
     text-decoration: none;
-    background: #ccc;
-    color: rgba(118, 118, 118, 1.0);
 }
 .extensions-table{
     width: 100%;
@@ -8687,15 +8682,17 @@ table.dataTable.display tbody tr:first-child td {
 }
 .server-btn{
     display: inline-block;
-    width: 240px;
+    width: 198px;
     height: 30px;
 }
 .server-jia{
-    margin-left: 20px;
+    margin-left: 17px;
     font-size: 20px;
+    color: #bbbbbb;
 }
 .server-p-1{
     line-height: 38px;
+    margin-left: 37px;
 }
 .server-p-1 input:nth-child(2){
     margin-right: 10px;
@@ -8747,6 +8744,7 @@ table.dataTable.display tbody tr:first-child td {
 }
 .server-p-3,.server-p-4{
     margin-bottom: 8px;
+    margin-left: 37px;
 }
 
 .server-p-3 p:nth-child(2),.server-p-4 p:nth-child(2){
@@ -8788,20 +8786,24 @@ table.dataTable.display tbody tr:first-child td {
     border-left: none;
 }
 .server-add{
-    margin-left: 74%;
+    margin-left: 545px;
     font-size: 20px;
+    color: #bbb;
 }
 .server-adds{
-    margin-left: 78.3%;
+    margin-left: 561px;
     font-size: 20px;
+    color: #bbb;
 }
 .endP-del{
     font-size: 20px;
     margin-left: 30px;
+    color: #bbb;
 }
 .endP-add{
     font-size: 20px;
-    margin-left: 73%;
+    margin-left: 523px;
+    color: #bbb;
 }
 .ngs_hide input{
     display: none;
@@ -8809,12 +8811,12 @@ table.dataTable.display tbody tr:first-child td {
 .alert-box1{
     width: 390px;
     height: 220px;
-    background: #FfFfFf;
-    position: fixed;
+    position: absolute;
     top: 30%;
     left: 33%;
     border-radius: 4px;
     box-shadow: 0px 0px 24px #CCC;
+    background: #fff;
 }
 .alert-box1 p{
     text-align: center;
@@ -8832,6 +8834,104 @@ table.dataTable.display tbody tr:first-child td {
     border:none;
     color: #fff;
 }
+.history-wrap{
+    width: 500px;
+    height: 250px;
+    border-radius: 4px;
+    position: fixed;
+    top: 200px;
+    left: 32%;
+    z-index: 100000;
+    background: #fff;
+    box-shadow: 0px 0px 24px #CCC;
+}
+.timeLines{
+    width: 100%;
+    border: 1px solid red;
+    margin-top: 30px;
+    list-style: none;
+}
+.timeLines li{
+    width: 18%;
+    list-style: none;
+    border: 1px solid pink;
+    float: left;
+    margin-left: 10px;
+}
+.timeLines li span{
+    width: 30px;
+    height: 30px;
+    background: purple;
+    display: inline-block;
+    text-align: center;
+}
+.history-box1{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.history-box1 p{
+    line-height: 28px;
+}
+.history-box1 p span{
+    font-size: 20px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 20px;
+    float: right;
+    margin-right: 11px;
+    margin-top: -19px;
+}
+.history-box1 p span:hover{
+    background: #767676;
+    color: #fff;
+}
+.deploy-m-box1{
+    width: 100%;
+}
+.server-adds1 {
+    margin-left: 492px;
+    font-size: 20px;
+    color: #bbbbbb;
+}
+#deloy-m-span1{
+display: inline-block;
+    width: 50px;
+    height: 30px;
+    border: 1px solid #ccc;
+    line-height: 28px;
+    text-align: center;
+    font-size: 10px;
+    background: #f1f1f1;
+    color: #555;
+    border-right: none;
+}
+.inputB{
+    margin: 0 12px;
+    font-size: 17px;
+}
+.servermyL{
+    margin-left: 37px;
+}
+.ex-up-a1{
+    background: #3F51B5;
+}
+.ex-del-a1{
+    background: #f34336;
+}
+.ex-up-a1:hover{
+    background: #2539a4;
+}
+.ex-del-a1:hover{
+    background: #d42013;
+}
+
+
+
+
 
 /*----------------------------------------
     Rollback timeline Menu
