@@ -44,11 +44,12 @@
         </section>
     </div>   
 </section>
-<div class="history-wrap">
+<div class="history-wrap" ng-show="historyShowbox">
     <div class="history-box1">
+        <p><span ng-click="historyShow()">×</span></p>
         <p> 副本： {{ Newreplicas }}</p>
         <p> 镜像： {{ Newimage }}</p>
-        <p> 镜像管理： {{ NewimagePullPolicy }}</p>
+        <p> 镜像获取策略： {{ NewimagePullPolicy }}</p>
         <p> cpu： {{ Newcpu }}</p>
         <p> memory： {{ Newmemory }}</p>
 
