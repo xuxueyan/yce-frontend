@@ -8845,4 +8845,7 @@ table.dataTable.display tbody tr:first-child td {
     margin-top: 2%;
 }
 
+.rollback-revision{
+    color: #3c57ef;
+}
 
