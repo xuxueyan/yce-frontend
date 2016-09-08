@@ -158,8 +158,8 @@ define([
                     return item.id == $scope.dataTrans.quotas;
                 })[0];
                 $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
-                    cpu : limits.cpu,
-                    memory : limits.mem
+                    cpu : limits.cpu + '000m',
+                    memory : limits.mem + '000M'
                 };
 
                 $scope.param.deployment.spec.template.metadata = {
