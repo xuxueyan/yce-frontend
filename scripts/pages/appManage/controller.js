@@ -61,7 +61,6 @@ define([
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitRollingup(param,function(data){
-                        console.log(data);
                         $rootScope.widget.widgetRollingup = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
@@ -123,7 +122,6 @@ define([
             $scope.scale = function(item, dcId, appName){
                 $scope.param.dcId = dcId;
                 $scope.param.appName = appName;
-                $scope.param.sessionId = $localStorage.sessionId;
 
                 $scope.appScaleConf = {
                     widgetId : 'widgetScale',
@@ -136,13 +134,43 @@ define([
             };
             $scope.$on('submitScale',function(event,param){
                 param = angular.merge(param, $scope.param);
-                console.log(param);
 
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitScale(param,function(data){
                         console.log(data);
                         $rootScope.widget.widgetScale = false;
+                        $scope.loadAppList();
+                        $scope.canSubmit = true;
+                    },function(){
+                        $scope.canSubmit = true;
+                    });
+                }
+            });
+
+            // 删除应用
+            $scope.delete = function(item, dcId, appName){
+                $scope.param.dcId = dcId;
+                $scope.param.appName = appName;
+
+                $scope.appDeleteConf = {
+                    widgetId : 'widgetDelete',
+                    widgetTitle : '删除应用',
+                    isDelete: true,
+                    data : item
+                };
+
+                $rootScope.widget.widgetDelete = true;
+            };
+            $scope.$on('submitDelete',function(event){
+                console.log($scope.param);
+                // param = angular.merge(param, $scope.param);
+                // param = $scope.param;
+
+                if($scope.canSubmit){
+                    $scope.canSubmit = false;
+                    appManageService.submitDelete($scope.param,function(data){
+                        $rootScope.widget.widgetDelete = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
                     },function(){
@@ -174,8 +202,6 @@ define([
                         break;
                 }
                 $rootScope.widget.widgetImageSelector = false;
-
-
             });
         }];
 

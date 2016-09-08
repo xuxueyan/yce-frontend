@@ -61,7 +61,7 @@
                                                 <button class="btn btn-warning" type="button" ng-click="rollingup(item, app.dcId, app.dcName)">升级</button>
                                                 <button class="btn btn-success" type="button" ng-click="rollback(item, app.dcId, item.deploy.metadata.name)">回滚</button>
                                                 <button class="btn btn-info" type="button" ng-click="scale(item, app.dcId, item.deploy.metadata.name)">扩容</button>
-                                                <button class="btn btn-danger" type="button">删除应用</button>
+                                                <button class="btn btn-danger" type="button" ng-click="delete(item, app.dcId, item.deploy.metadata.name)">删除应用</button>
                                             </span>
                                         </td>
                                     </tr>
@@ -102,4 +102,5 @@
 <ui-widget ng-if="widget.widgetRollingup" config="appRollingupConf"></ui-widget>
 <ui-widget ng-if="widget.widgetRollback" config="appRollbackConf"></ui-widget>
 <ui-widget ng-if="widget.widgetScale" config="appScaleConf"></ui-widget>
+<ui-widget ng-if="widget.widgetDelete" config="appDeleteConf"></ui-widget>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
