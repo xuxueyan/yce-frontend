@@ -118,11 +118,14 @@
 }
 
 .bar-0 .ui-slider.slider-primary .ui-widget-header {
-    border: 1px solid #FFF;
+    /*border: 1px solid #FFF;
     background: #FFF;
-    color: #FFF;
+    color: #FFF;*/
+    opacity: 0;
 }
-
+.bar-0 .ui-slider-horizontal .ui-slider-handle .ui-label{
+    margin-left: 6px;
+}
 .bar-1 ul {
     position: absolute;
     top: -1px;
