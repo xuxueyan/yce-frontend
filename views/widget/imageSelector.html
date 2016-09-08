@@ -1,0 +1,8 @@
+<div>
+    <div class="filter-input">
+        <input type="text" ng-model="filterImage">
+    </div>
+    <ul class="image-list">
+        <li ng-repeat="image in imageList | filter:filterImage" ng-click="clickImageSelector(image)"><i>{{$index+1}}</i>{{image}}</li>
+    </ul>
+</div>

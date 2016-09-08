@@ -6,7 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope','$http','deploymentService','$localStorage', function($scope,$http, deploymentService, $localStorage){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', function($scope,$http, deploymentService, $localStorage, $rootScope){
             $scope.param = {
                 orgId: $localStorage.orgId,
                 userId: $localStorage.userId,
@@ -75,6 +75,21 @@ define([
                 $scope.param.deployment.spec.template.spec.containers[0].env.splice($index,1);
             };
 
+            /*选择镜像*/
+            $scope.showImageSelector = function(){
+                $scope.imageSelectorConf = {
+                    widgetId : 'widgetImageSelector',
+                    widgetTitle : '选择镜像',
+                    isImageSelector: true
+                };
+                $rootScope.widget.widgetImageSelector = true;
+            };
+            /*监听imageSelector(子)页面的emit*/
+            $scope.$on('imageSelector',function(event, data){
+                $scope.param.deployment.spec.template.spec.containers[0].image = data;
+                $rootScope.widget.widgetImageSelector = false;
+            });
+
             /*提交表单*/
             $scope.submit = function(){
                 $scope.param.deployment.metadata.labels = {
@@ -109,39 +124,6 @@ define([
                     alert('提交失败');
                 });
             };
-
-            // Image
-            $http({
-                method: 'GET',
-                url: '/api/v1/registry/images'
-            })
-            .success(function(data) {
-                var dataObject = JSON.parse(data.data);
-
-                // make new images:tags
-                var imageArr = new Array();
-                var k = 0
-                for (var i in dataObject) {
-                    var list = dataObject[i].tags;
-                    for (var j in list) {
-                        imageArr[k] = dataObject[i].name + ":" + list[j];
-                        k=k+1
-                    }
-                }
-
-                $scope.imageList=imageArr;
-                $scope.getImages = function(x) {
-                    $scope.param.deployment.spec.template.spec.containers[0].image=x;
-                    x.replace(/:(\S+)$/,function($0,$1){
-                        $scope.param.deployment.metadata.labels.version = $1;
-                    });
-                }
-
-
-            })
-            .error(function() {
-                console.log("getImages error")
-            })
         }];
 
 

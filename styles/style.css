@@ -8553,19 +8553,19 @@ table.dataTable.display tbody tr:first-child td {
 }
 
 .appManage-headle tr th:nth-child(1){
-    width: 7%;
+    width: 5%;
 }
 .appManage-headle tr th:nth-child(2){
-    width: 15%;
+    width: 8%;
 }
 .appManage-headle tr th:nth-child(3){
-    width: 10%;
+    width: 15%;
 }
 .appManage-headle tr th:nth-child(4){
-    width: 28%;
+    width: 8%;
 }
 .appManage-headle tr th:nth-child(5){
-    width: 10%;
+    width: 12%;
 }
 .appManage-headle tr th:nth-child(6){
     width: 10%;
@@ -8574,6 +8574,9 @@ table.dataTable.display tbody tr:first-child td {
     width: 10%;
 }
 .appManage-headle tr th:nth-child(8){
+    width: 30%;
+}
+.appManage-headle tr th:nth-child(9){
     width: 10%;
 }
 .btn-show{
@@ -8742,11 +8745,11 @@ table.dataTable.display tbody tr:first-child td {
     background: #e1e1e1;
     color: #555;
 }
-.server-p-3{
+.server-p-3,.server-p-4{
     margin-bottom: 8px;
 }
 
-.server-p-3 p:nth-child(2){
+.server-p-3 p:nth-child(2),.server-p-4 p:nth-child(2){
     margin-right: 10px;
 }
 .server-p-3 span{
@@ -8758,7 +8761,22 @@ table.dataTable.display tbody tr:first-child td {
     color: #555;
     border-right: none;
 }
-.server-p-3 p{
+.server-p-4 span{
+    display: inline-block;
+    width: 54px;
+    height: 30px;
+    line-height: 30px;
+    border-top: none;
+    font-size: 10px;
+    background: #e1e1e1;
+    color: #555;
+    text-align: center;
+    border-right: none;
+    -moz-box-shadow: inset 0 3px 8px rgba(0,0,0,.4);
+    -webkit-box-shadow: inset 0 3px 8px rgba(0,0,0,.4);
+    box-shadow: inset 0 0px 1px rgba(0,0,0,.24)
+}
+.server-p-3 p,.server-p-4 p{
     display: inline-block;
     width: 240px;
     height: 30px;
@@ -8766,20 +8784,68 @@ table.dataTable.display tbody tr:first-child td {
     border-color: #ccc;
     border:1px solid red;
 }
+.server-p-4 input{
+    border-left: none;
+}
 .server-add{
     margin-left: 74%;
     font-size: 20px;
 }
 .server-adds{
-    margin-left: 78%;
+    margin-left: 78.3%;
     font-size: 20px;
 }
-
-.endP-add{
+.endP-del{
     font-size: 20px;
     margin-left: 30px;
 }
+.endP-add{
+    font-size: 20px;
+    margin-left: 73%;
+}
+.ngs_hide input{
+    display: none;
+}
+.alert-box1{
+    width: 390px;
+    height: 220px;
+    background: #FfFfFf;
+    position: fixed;
+    top: 30%;
+    left: 33%;
+    border-radius: 4px;
+    box-shadow: 0px 0px 24px #CCC;
+}
+.alert-box1 p{
+    text-align: center;
+    line-height: 130px;
+    font-size: 16px;
+}
+.alert-box1 span{
+    margin-left: 25%;
+}
+.alert-box1 span button{
+    padding: 6px 27px;
+    margin-left: 10px;
+    font-size: 13px;
+    background: #3F51B5;
+    border:none;
+    color: #fff;
+}
 
+/*----------------------------------------
+    Rollback timeline Menu
+------------------------------------------*/
+.history-box-1{
+    width: 80%;
+    float: left;
+}
+.history-box-2{
+    float: left;
+    margin-top: 2%;
+}
 
-
+.rollback-revision{
+    color: #3c57ef;
+}
 

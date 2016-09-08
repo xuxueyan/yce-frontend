@@ -19,6 +19,7 @@ define([
                         $localStorage.sessionId =  $scope.loginData.sessionId;
                         $localStorage.userId = $scope.loginData.userId;
                         $localStorage.orgId = $scope.loginData.orgId;
+                        $localStorage.orgName = $scope.loginData.orgName;
                         $scope.jump();
                     }else{
                         alert("用户名密码错误");
@@ -32,11 +33,11 @@ define([
                     'username':  $localStorage.userName,
                     'sessionId': $localStorage.sessionId
                 }, function(data) {
-                    if (data.code == 0) {
-                        $localStorage.$reset();
+                    // if (data.code == 0) {
+                    $localStorage.$reset();
                         // alert("退出成功~");
-                        $state.go('login');
-                    }
+                    $state.go('login');
+                    // }
 
                 });
             }
@@ -44,6 +45,7 @@ define([
             $scope.jump = function(){
                 $state.go('main.dashboard');
                 $rootScope.widget = {};
+                $rootScope.sessionId = $localStorage.sessionId;
                 $scope.data = {
                     username : $localStorage.userName,
                     showSubnav: [],
