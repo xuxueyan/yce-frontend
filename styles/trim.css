@@ -1,24 +1,5 @@
-/*镜像管理样式调整*/
-
-
-/*2016-09-02 by licheng*/
-
-.content-body .col-xs-12 .row>div {
-    padding: 15px 15px;
-}
-
-.content-body .col-xs-12 .row .team-img img {
-    position: absolute;
-    height: 147px;
-    top: 0;
-    left: 0;
-}
-
-
 /*基础镜像样式修改*/
-
-
-/*2016-09-02 by licheng*/
+/*2016-09-09 by licheng*/
 
 .tool-1 {
     margin-bottom: 10px;
@@ -27,7 +8,9 @@
 .tool-1 .tool-2 {
     height: auto;
 }
-
+.tool-2 .table{
+    margin-bottom: 0;
+}
 .java-1 {}
 
 .java-2 {
@@ -118,9 +101,6 @@
 }
 
 .bar-0 .ui-slider.slider-primary .ui-widget-header {
-    /*border: 1px solid #FFF;
-    background: #FFF;
-    color: #FFF;*/
     opacity: 0;
 }
 .bar-0 .ui-slider-horizontal .ui-slider-handle .ui-label{
