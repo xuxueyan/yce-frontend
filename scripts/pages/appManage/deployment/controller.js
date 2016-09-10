@@ -6,7 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', function($scope,$http, deploymentService, $localStorage, $rootScope){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', '$state', function($scope,$http, deploymentService, $localStorage, $rootScope, $state){
             $scope.param = {
                 orgId: $localStorage.orgId,
                 userId: $localStorage.userId,
@@ -120,6 +120,7 @@ define([
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
+                    $state.go('main.appManage')
                 },function(){
                     alert('提交失败');
                 });
