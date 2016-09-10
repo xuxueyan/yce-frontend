@@ -58,9 +58,27 @@ define([
                         scope : {
                             originalData : '='
                         },
-                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                        controller : ['$scope', '$rootScope', 'appManageService', function($scope, $rootScope, appManageService){
+
                             console.log($scope.originalData);
+                            /*查看日志*/
+                            $scope.data = {};
+                            $scope.param = $scope.originalData.param;
+                            $scope.tabSwitchAndLogs = function(podName) {
+                                $scope.data.tabSwitch = 1;
+                                $scope.param.podName = podName;
+                                console.log(podName);
+                                appManageService.getLogs($scope.param, function(data){
+                                    console.log(data);
+                                    $scope.logsData = data.data.split('\n');
+                                    console.log($scope.logsData);
+                                    $scope.canSubmit = true;
+                                }, function(){
+                                    $scope.canSubmit = true;
+                                });
+                            }
                         }]
+
 			        };
     			})
     			.directive('uiAppDeployDetail', function(){
@@ -71,7 +89,6 @@ define([
                             originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                            console.log($scope.originalData);
                         }]
 			        };
     			})
@@ -83,7 +100,6 @@ define([
                             originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                            console.log($scope.originalData);
                             $scope.param = {
                                 dcIdList: [$scope.originalData.dcId],
                                 strategy: {

@@ -48,7 +48,7 @@
                                             <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
                                         </td>
                                         <td>
-                                            <p ng-click="showAppPodDetail(pod)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
+                                            <p ng-click="showAppPodDetail(pod, app.dcId)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
                                         </td>
                                         <td>
                                             <p ng-repeat="pod in item.podList.items">{{pod.status.phase}}</p>
