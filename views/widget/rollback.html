@@ -12,19 +12,15 @@
                                 </div>
                                 <div class="timeline-panel animated flipInY">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title">应用: {{ item.name }}</h4>
-                                        <p>
-                                            <small class="text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>修订版本{{ item.revision }}
-                                            </small>
+                                        <h4 class="timeline-title">{{item.namespace}}/{{ item.name }}</h4>
+                                        <p class="rollback-revision">
+                                            <i class="glyphicon glyphicon-time"></i>修订版本&nbsp;&nbsp;{{ item.revision }}
                                         </p>
                                     </div>
                                     <div class="history-box-1">
                                         <div class="timeline-body">
-                                            <p>命名空间: {{ item.namespace }}</p>
-                                            <p>镜像名称: {{ item.image }}</p>
-                                            <p>当前实例: {{ item.replicas.current }}</p>
-                                            <p>期望实例: {{ item.replicas.desire }}</p>
+                                            <p>镜像名称:&nbsp;&nbsp; {{ item.image }}</p>
+                                            <p>应用实例数:&nbsp;&nbsp; {{ item.replicas.current }} 可用 | {{ item.replicas.desire }} 期望</p>
                                         </div>
                                     </div>
                                     <div class="history-box-2">
