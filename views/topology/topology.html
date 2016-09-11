@@ -1,0 +1,86 @@
+<section class="wrapper main-wrapper row" style="">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">集群拓扑图</h1>
+            </div>
+            <div class="pull-right hidden-xs appManage-refresh">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12">
+        <section class="box ">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <kubernetes-topology-graph items="data.items" relations="data.relations" kinds="kinds">
+                        </kubernetes-topology-graph>
+                        <div class="controls">
+                            <!--
+                            <button ng-click="poke()">Poke</button>
+                            -->
+                            <button class="btn btn-success" type="button" ng-click="poke()">重排</button>
+
+                            <kubernetes-topology-icon kind="Pod">
+                                <svg class="kube-topology">
+                                    <use xlink:href="#vertex-Pod" x="15" y="15"></use>
+                                </svg>
+                            </kubernetes-topology-icon>
+                            <label>Pods</label>
+
+                            <kubernetes-topology-icon kind="Service">
+                                <svg class="kube-topology">
+                                    <use xlink:href="#vertex-Service" x="15" y="15"></use>
+                                </svg>
+                            </kubernetes-topology-icon>
+                            <label>Services</label>
+
+                            <kubernetes-topology-icon kind="Node">
+                                <svg class="kube-topology">
+                                    <use xlink:href="#vertex-Node" x="15" y="15"></use>
+                                </svg>
+                            </kubernetes-topology-icon>
+                            <label>Nodes</label>
+
+                            <kubernetes-topology-icon kind="ReplicaSet">
+                                <svg class="kube-topology">
+                                    <use xlink:href="#vertex-ReplicaSet" x="15" y="15"></use>
+                                </svg>
+                            </kubernetes-topology-icon>
+                            <label>ReplicaSets</label>
+
+                            <!--
+                            <button type="button" class="btn btn-primary" ng-show="id" id="selected"></button>
+                            -->
+                            <label id="selected" class="btn btn-primary"></label>
+                        </div>
+
+                        <svg class="kube-topology" hidden>
+                            <defs>
+                                <g class="Node" id="vertex-Node">
+                                    <circle r="15"></circle>
+                                    <text y="9">&#xe621;</text>
+                                </g>
+                                <g class="Pod" id="vertex-Pod">
+                                    <circle r="15"></circle>
+                                    <text y="6" x="0.5">&#xf1b3;</text>
+                                </g>
+                                <g class="Service" id="vertex-Service">
+                                    <circle r="15"></circle>
+                                    <text y="10" x="1">&#xe61e;</text>
+                                </g>
+                                <g class="ReplicaSet" id="vertex-ReplicaSet">
+                                    <circle r="15"></circle>
+                                    <text y="7.5">&#xf1b8;</text>
+                                </g>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

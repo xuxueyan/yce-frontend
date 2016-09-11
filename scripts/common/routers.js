@@ -6,8 +6,9 @@ define([
 	'../pages/costManage/router',
 	'../pages/extensions/router',
 	'../pages/imageManage/router',
+	'../pages/topology/router',
 	'../pages/appManage/deployment/router'
-		], function(mainRouter, dashboardRouter, appManageRouter, rbdManageRouter, costManageRouter, extensionsRouter, imageManageRouter,deploymentRouter){
+		], function(mainRouter, dashboardRouter, appManageRouter, rbdManageRouter, costManageRouter, extensionsRouter, imageManageRouter, topologyRouter, deploymentRouter){
 
 		'use strict';
 
@@ -35,6 +36,7 @@ define([
 					// .state('main.imageManageBase', imageManageRouter.base)
 					.state('main.imageManageSearch', imageManageRouter.search)
 					.state('main.imageManageDelete', imageManageRouter.delete)
+					.state('main.topology', topologyRouter.topology)
 			}]);
 		};
 
