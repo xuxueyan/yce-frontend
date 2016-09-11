@@ -11,15 +11,19 @@ define([
         var ctrl = ['$scope', 'topologyService', '$localStorage', function($scope, topologyService, $localStorage){
             $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId};
 
-            var index = 0;
-            $scope.datasets = [];
-            topologyService.getDatasets($scope.param,function(data){
-                if (data.code == 0){
-                    $scope.datasets.push(JSON.parse(data.data));
-                    $scope.data = $scope.datasets[index];
+            $scope.graph = function(){
+                $scope.index = 0;
+                $scope.datasets = [];
+                topologyService.getDatasets($scope.param,function(data){
+                    if (data.code == 0){
+                        $scope.datasets.push(JSON.parse(data.data));
+                        $scope.data = $scope.datasets[$scope.index];
 
-                }
-            });
+                    }
+                });
+            };
+
+            $scope.graph();
 
             $scope.kinds = {
                 Pod: '#vertex-Pod',
@@ -30,16 +34,17 @@ define([
 
 
             $scope.poke = function() {
-                index += 1;
-                $scope.data = $scope.datasets[index % $scope.datasets.length];
+                $scope.index += 1;
+                $scope.data = $scope.datasets[$scope.index % $scope.datasets.length];
             };
 
             $scope.$on("select", function(ev, item) {
-                var text = "";
                 if (item){
-                    text = "Selected: " + item.metadata.name;
+                    $scope.selectText = "Selected: " + item.metadata.name;
+                    angular.element(document.getElementById("selected")).text($scope.selectText).addClass('btn btn-primary');
+                }else{
+                    angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
                 }
-                angular.element(document.getElementById("selected")).text(text);
             });
         }];
 
