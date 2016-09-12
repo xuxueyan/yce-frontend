@@ -171,10 +171,97 @@
                                     </span>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">端口组：</label>
+                                <span class="desc"></span>
+                                <i class="fa fa-plus-square server-adds1" ng-click="addportL()"></i>
+
+<!--
+
+
+                                <div class="controls deploy-m-box1" ng-repeat="portL in portLists">
+                                    <p class="server-p-1">
+                                        <span id="deloy-m-span1">名称</span>
+                                        <input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name"> 
+
+                                        <span id="deloy-m-span1">端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort">
+                                        <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
+                                    </p>
+                                    <p class="server-p-1">
+                                        <span id="deloy-m-span1">协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.protocol">
+                                    </p>
+                                </div>
+-->
+                                <div ng-repeat="portL in portLists">
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name"> 
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort">
+                                            </div>
+                                        </div>
+                                        <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
+                                    </div>
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">协议</span>
+
+
+<!--
+                                                <input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.protocol">
+
+-->
+<select ng-model="portL.protocol" class="form-control" ng-options="act for act in activities"></select>
+
+
+
+                                            </div>
+                                        </div>
+                                    <div class="delimiter iter-list">* 协议必填</div>
+                                    </div>
+                                </div> 
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
                                     <button type="button" class="btn btn-primary" ng-click="submit()">提交</button>
-                                    <!--<button type="button" class="btn">Cancel</button>-->
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
                             </div>
@@ -189,9 +276,8 @@
                 <div class="content-body">
                     <div class="row">
                         <div class="col-xs-12 col-sm-9 col-md-8">
-
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
-                                <div class="form-group">
+                                <div class="form-group dep-looks-1">
                                     <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[0]">
                                     <label class="form-label">健康检查</label>
                                     <span class="desc">确定应用的健康程度</span>
@@ -219,83 +305,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                           <!--      <div class="form-group">
-                                    <label class="form-label" for="field-1678">端口组：</label>
-                                    <span class="desc"></span>
-                                    <i class="fa fa-plus-square server-adds" ></i>
-                                    <div class="controls">
-                                        <p class="server-p-1">
-                                            <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" > 
-                                            <span>协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portlists.protocol">
-                                            <b class="server-jia fa fa-minus-square" ></b>
-                                        </p>
-                                        <p class="server-p-1">
-                                            <span>端口</span><input type="text" class="form-control server-btn" id="field-1678">
-                                        </p>
-                                    </div>
-                                </div>
-
-spec.template.spec.containers[].ports
- -->
-                        <div class="form-group">
-                            <label class="form-label" for="field-1678">端口组：</label>
-                            <span class="desc"></span>
-                            <i class="fa fa-plus-square server-adds1" ng-click="addportL()"></i>
-                            <div class="controls deploy-m-box1" ng-repeat="portL in portLists">
-                                <p class="server-p-1">
-                                    <span id="deloy-m-span1">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name"> 
-                                    <span id="deloy-m-span1">协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.protocol">
-                                    <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
-                                </p>
-                                <p class="server-p-1">
-                                    <span id="deloy-m-span1">端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort">
-                                </p>
-                            </div>
-                        </div>
-
-
-
-                                <!--
-
-
-                                "ports": [
-                                    {
-                                    "name": "",
-                                    "containerPort": {},
-                                    "protocol": "",
-                                    }
-                                ]
-
-
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[1]">
-                                    <label class="form-label">可读性检查</label>
-                                    <span class="desc">确定应用的可读性</span>
-                                    <div class="row">
-                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
-                                            <label class="form-label">HTTP</label>
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">URL</span>
-                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.httpGet.path">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">Port</span>
-                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.httpGet.port">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">每隔</span>
-                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.periodSeconds">
-                                            <span class="input-group-addon">秒</span>
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">生效时间</span>
-                                            <input type="text" class="form-control" ng-disabled="!dataTrans.advancedChecked[1]" ng-model="param.deployment.spec.template.spec.containers[0].readinessProbe.initialDelaySeconds">
-                                            <span class="input-group-addon">秒</span>
-                                        </div>
-                                    </div>
-                                </div>-->
                                 <div class="form-group">
                                     <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[2]">
                                     <label class="form-label">启动准备</label>

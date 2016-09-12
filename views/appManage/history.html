@@ -17,11 +17,12 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="timeline">
-                            <li ng-repeat="item in historyList"  ng-class-odd="'timeline-inverted'" ng-click="historyLi(item)">
+                            <li ng-repeat="item in historyList"  ng-class-odd="'timeline-inverted'">
                                 <div class="timeline-badge animated flipInY">
-                                    <i class="glyphicon glyphicon-check"></i>
+                                <!--    <i class="glyphicon glyphicon-check"></i>-->
+                                    <i class="fa fa-smile-o"></i>
                                 </div>
-                                <div class="timeline-panel animated flipInY">
+                                <div class="timeline-panel animated flipInY" ng-click="historyLi(item)">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
                                         <p>

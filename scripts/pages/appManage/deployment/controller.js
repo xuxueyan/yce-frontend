@@ -99,8 +99,10 @@ define([
                 $scope.param.deployment.spec.template.spec.containers[0].image = data;
                 $rootScope.widget.widgetImageSelector = false;
             });
-
-            $scope.portLists = [];
+/*
+            $scope.portLists = [
+                {protocol: "TCP"}
+            ];
             $scope.addportL = function(){
                 console.log(123)
                 $scope.portLists.push({});
@@ -108,6 +110,13 @@ define([
             $scope.delportL = function($index){
                 $scope.portLists.splice($index,1)
             }
+            $scope.activities =[
+                "TCP",
+                "TCP TWO"
+            ];
+
+*/
+
 
 
 
@@ -116,10 +125,8 @@ define([
             /*提交表单*/
             $scope.submit = function(){
 
-            var ddd = "";
             $scope.portLists.forEach(function(m){
                 m.containerPort = Number(m.containerPort);
-                ddd = Number(m.containerPort);
             })
 
 
@@ -127,19 +134,12 @@ define([
 
 
 
+
+
+
+
+
             $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
-
-
-                     console.log(ddd)
-                     console.log(angular.toJson($scope.portLists))
-            //         console.log(angular.toJson($scope.portLists[0].protocol))
-//                  [{"name":"test-frontend-1","containerPort":"TCP","protocol":"80"}]
-
-
-
-
-
-
 
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
