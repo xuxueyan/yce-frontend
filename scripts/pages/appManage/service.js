@@ -84,6 +84,27 @@ define([
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/delete', request, success, error);
 		}
 
+		/* 查看pod日志 */
+		apis.getLogs = function(param, success, error){
+		    var orgId = param.orgId;
+		    var podName = param.podName;
+		    var request = {
+                userId: param.userId,
+                dcIdList: [param.dcId],
+                sessionId: param.sessionId,
+                logOption: {
+                    container: "",
+                    follow: false,
+                    previous: false,
+                    timeStamps: true,
+                    tailLines: 100,
+                }
+		    }
+
+		    console.log(request)
+		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/pods/' + podName + '/logs', request, success, error);
+		}
+
 		return apis;
 	};	
 

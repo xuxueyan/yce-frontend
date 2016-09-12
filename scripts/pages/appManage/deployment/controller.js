@@ -6,8 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
-
-        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', function($scope,$http, deploymentService, $localStorage, $rootScope){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', '$state', function($scope,$http, deploymentService, $localStorage, $rootScope, $state){
 
             $scope.param = {
                 orgId: $localStorage.orgId,
@@ -158,8 +157,8 @@ define([
                     return item.id == $scope.dataTrans.quotas;
                 })[0];
                 $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
-                    cpu : limits.cpu,
-                    memory : limits.mem
+                    cpu : limits.cpu + '000m',
+                    memory : limits.mem + '000M'
                 };
 
                 $scope.param.deployment.spec.template.metadata = {
@@ -169,7 +168,7 @@ define([
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
-                    console.log(angular.toJson($scope.param))
+                    $state.go('main.appManage')
                 },function(){
                     alert('提交失败');
                 });

@@ -31,13 +31,16 @@ define([
             };
 
             // 应用实例详情
-            $scope.showAppPodDetail = function(item){
+            $scope.showAppPodDetail = function(item, dcId){
+                $scope.param.dcId = dcId;
+                item.param = $scope.param;
                 $scope.appPodDetailConf = {
                     widgetId : 'widgetAppPodDetail',
                     widgetTitle : '应用实例详情',
                     isAppPodDetail : true,
                     data : item
                 };
+
                 $rootScope.widget.widgetAppPodDetail = true;
             };
 
@@ -248,6 +251,8 @@ define([
                 }
                 $rootScope.widget.widgetImageSelector = false;
             });
+
+
         }];
 
 

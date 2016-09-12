@@ -6,8 +6,8 @@
                     <i class="fa fa-home"></i> 详细信息
                 </a>
             </li>
-            <li ng-class="{active:data.tabSwitch==1}" ng-click="data.tabSwitch=1">
-                <a data-toggle="tab" href="#profile-1" aria-expanded="false">
+            <li ng-class="{active:data.tabSwitch==1}" ng-click="tabSwitchAndLogs(originalData.metadata.name)">
+                <a data-toggle="tab" href="javascript:void(0);" aria-expanded="false">
                     <i class="fa fa-user"></i> 日志
                 </a>
             </li>
@@ -78,8 +78,8 @@
                     </div>
                 </div>
             </div>
-            <div id="profile-1" class="tab-pane fade" ng-class="{'active in':data.tabSwitch==1}">
-                我是日志信息
+            <div id="profile-1" class="tab-pane fade" ng-class="{'active in':data.tabSwitch==1}" >
+                <p ng-repeat="log in logsData">{{log}}</p>
             </div>
         </div>
     </div>

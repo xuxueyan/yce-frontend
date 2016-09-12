@@ -72,7 +72,7 @@
 
 
 /*扩容*/
-#widgetScale .widget{ max-height:600px; max-width:800px;}
+#widgetScale .widget{ max-height:650px; max-width:800px;}
 #widgetScale .tab-content{ height:300px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
 #widgetScale .app-detail{ padding:10px 20px;}
 #widgetScale .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
