@@ -24,6 +24,11 @@ define([
 		    var appName = param.appName;
 			return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/rolling', param, success, error);
 		};
+		/*  查看历史 GET /api/v1/organizations/{orgId}/operationlog */
+		apis.historyPage = function(param, success, error){
+		    var orgId = param.orgId;
+			return utils.http($http, 'get', '/api/v1/organizations/' + orgId + '/operationlog', param, success, error);
+		};
 
 		/* 获得回滚历史列表 */
 		apis.getRollbackHistory = function(param, success, error) {
@@ -58,13 +63,47 @@ define([
             var request = {
                 newSize: param.newSize,
                 dcIdList: [param.dcId],
-                userId: param.userId,
+                userId: Number(param.userId),
                 comments: "scale to " + param.newSize + " instances",
                 sessionId: param.sessionId
-            }
-            console.log(request);
+            };
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/scale', request, success, error);
 		};
+
+		/* 提交删除 */
+		apis.submitDelete = function(param, success, error){
+		    var orgId = param.orgId;
+            var appName = param.appName;
+            var request = {
+                userId: param.userId,
+                dcIdList: [param.dcId],
+                sessionId: param.sessionId,
+                comments: "delete app: " + param.appName
+            };
+            console.log(request);
+		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/delete', request, success, error);
+		}
+
+		/* 查看pod日志 */
+		apis.getLogs = function(param, success, error){
+		    var orgId = param.orgId;
+		    var podName = param.podName;
+		    var request = {
+                userId: param.userId,
+                dcIdList: [param.dcId],
+                sessionId: param.sessionId,
+                logOption: {
+                    container: "",
+                    follow: false,
+                    previous: false,
+                    timeStamps: true,
+                    tailLines: 100,
+                }
+		    }
+
+		    console.log(request)
+		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/pods/' + podName + '/logs', request, success, error);
+		}
 
 		return apis;
 	};	

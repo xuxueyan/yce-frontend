@@ -12,6 +12,8 @@ requirejs.config({
         ngStorage: 'lib/angular-storage/ngStorage.min',
         base64: 'lib/base64/base64',
         utils: 'common/utils',
+        d3: 'lib/d3/d3.min',
+        kubernetesUI: 'lib/topology-graph/topology-graph',
         mockAngular: 'mock/mock.angular',
         mock: 'mock/mock',
         mockData: 'mock/mockData'
@@ -34,6 +36,9 @@ requirejs.config({
         },
         'mockData':{
             deps: ['mock']
+        },
+        'kubernetesUI':{
+            deps: ['Angular']
         }
     }
 });

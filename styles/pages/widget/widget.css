@@ -72,7 +72,7 @@
 
 
 /*扩容*/
-#widgetScale .widget{ max-height:600px; max-width:800px;}
+#widgetScale .widget{ max-height:650px; max-width:800px;}
 #widgetScale .tab-content{ height:300px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
 #widgetScale .app-detail{ padding:10px 20px;}
 #widgetScale .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
@@ -95,7 +95,18 @@
 #widgetImageSelector .image-list i{ width:40px; border-right:1px solid #e1e1e1; display:inline-block; text-align:center; margin-right:20px;}
 
 
-
+/*删除应用*/
+#widgetDelete .widget{ max-height:200px; max-width:400px;}
+#widgetDelete .app-detail{ padding:10px 20px;}
+#widgetDelete .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
+#widgetDelete .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
+#widgetDelete .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
+#widgetDelete .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
+#widgetDelete .labels-table{ margin-top:20px;}
+#widgetDelete .labels-table table{ border:none;}
+#widgetDelete .labels-table th{ text-align:left; border:none !important;}
+#widgetDelete .labels-table td{ padding:5px 10px !important; border:none;}
+#widgetDelete .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
 

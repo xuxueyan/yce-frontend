@@ -6,6 +6,23 @@
                 <div class="pull-left">
                     <h1 class="title">历史发布</h1>
                 </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>上线</a>
+                        </li>
+                        <li>
+                            <a>升级</a>
+                        </li>
+                        <li>
+                            <a>回滚</a>
+                        </li>
+                        <li>
+                            <a>删除</a>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,82 +34,41 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="timeline">
-                            <li>
-                                <div class="timeline-badge animated flipInY"><i class="glyphicon glyphicon-check"></i></div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">Nginx 1.7.9</h4>
-                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Ops</small></p>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>添加了对直接IP访问的限制</p>
-                                    </div>
+                            <li ng-repeat="item in historyList"  ng-class-odd="'timeline-inverted'" ng-click="historyLi(item)">
+                                <div class="timeline-badge animated flipInY">
+                                    <i class="glyphicon glyphicon-check"></i>
                                 </div>
-                            </li>
-                            <li class="timeline-inverted ">
-                                <div class="timeline-badge warning animated flipInY"><i class="glyphicon glyphicon-credit-card"></i></div>
                                 <div class="timeline-panel animated flipInY">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title">Nginx 1.7.1</h4>
-                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> July, 23rd 2016 by Ops</small></p>            
+                                        <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
+                                        <p>
+                                            <small class="text-muted">
+                                                <i class="glyphicon glyphicon-time"></i>发布时间 {{ item.records.actionAt }} 
+                                            </small>
+                                        </p>
                                     </div>
                                     <div class="timeline-body">
-                                        <p>添加了对反向代理的支持</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-badge danger animated flipInY"><i class="glyphicon glyphicon-credit-card"></i></div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">Nginx 1.6.5</h4>
-                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> July, 13rd 2016 by Ops</small></p>            
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>修改了默认静态文件路径</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-badge info animated flipInY"><i class="glyphicon glyphicon-floppy-disk"></i></div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">Nginx 1.6.1</h4>
-                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> July, 3rd 2016 by Ops</small></p>            
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>Nginx是轻量的HTTP服务器和代理.</p>
-                                        <div class="btn-group">
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge success animated flipInY"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-                                <div class="timeline-panel animated flipInY">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">Nginx 1.5.2</h4>
-                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Jun, 23rd 2016 by Ops</small></p>            
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>添加了Nginx镜像.</p>
+                                        <p>数据中心: {{ item.dcName }}</p>
+                                        <p>操作类型: {{ item.records.actionName }}</p>
+                                        <p>发布人: {{ item.userName}}</p>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-
-            <!-- end -->
-
                     </div>
                 </div>
             </div>
         </section>
     </div>   
 </section>
+<div class="history-wrap" ng-show="historyShowbox">
+    <div class="history-box1">
+        <p><span ng-click="historyShow()">×</span></p>
+        <p> 副本： {{ Newreplicas }}</p>
+        <p> 镜像： {{ Newimage }}</p>
+        <p> 镜像获取策略： {{ NewimagePullPolicy }}</p>
+        <p> cpu： {{ Newcpu }}</p>
+        <p> memory： {{ Newmemory }}</p>
+
+    </div>
+</div>

@@ -10,8 +10,6 @@ define([
 
         }];
 
-
-
         var controllers = [
             {module: 'costManage', name: 'costManageController', ctrl: ctrl}
         ];
