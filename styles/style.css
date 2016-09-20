@@ -3251,7 +3251,7 @@ ul.states li {
     color: #fff;
     width: 70px;
     height: 70px;
-    line-height: 65px;
+    line-height: 59px;
     font-size: 30px;
     text-align: center;
     position: absolute;
@@ -8695,7 +8695,7 @@ table.dataTable.display tbody tr:first-child td {
     height: 30px;
 }
 .server-jia{
-    margin-left: 17px;
+    margin-left: 4px;
     font-size: 20px;
     color: #bbbbbb;
 }
@@ -8902,7 +8902,7 @@ table.dataTable.display tbody tr:first-child td {
     width: 100%;
 }
 .server-adds1 {
-    margin-left: 493px;
+    margin-left: 608px;
     font-size: 20px;
     color: #bbbbbb;
 }
@@ -8957,4 +8957,34 @@ table.dataTable.display tbody tr:first-child td {
 .rollback-revision{
     color: #3c57ef;
 }
+
+
+
+.dep-looks-1{
+    width: 400px;
+}
+.iter-list{
+    font-size: 10px;
+    color: #888;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
