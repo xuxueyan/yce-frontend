@@ -1,11 +1,9 @@
 <section class="wrapper main-wrapper row deployment">
     <div class="col-xs-12">
         <div class="page-title">
-
             <div class="pull-left">
                 <h1 class="title">应用发布</h1>
             </div>
-
         </div>
     </div>
     <div class="clearfix"></div>
@@ -26,7 +24,6 @@
                                     <input type="text" value="Color" required class="form-control" id="field-name" ng-model="param.deployment.metadata.name">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">组织名：</label>
                                 <span class="desc">组织名是您所属的组织</span>
@@ -35,7 +32,6 @@
                                     <p class="form-control">{{param.deployment.metadata.namespace}}</p>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">数据中心：</label>
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
@@ -46,7 +42,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">镜像：</label>
                                 <span class="desc">镜像是您创建应用的根据</span>
@@ -55,7 +50,6 @@
                                     <span class="form-control" ng-click="showImageSelector()">{{param.deployment.spec.template.spec.containers[0].image}}</span>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label" for="field-replicas">副本数：</label>
                                 <span class="desc">副本数是您创建应用的实例个数</span>
@@ -64,7 +58,6 @@
                                     <input type="number" value="color" required min="0" pattern="[0-9]" class="form-control" required id="field-replicas" ng-model="param.deployment.spec.replicas">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">规格：</label>
                                 <span class="desc">规格是您为应用所申请的资源规格</span>
@@ -79,7 +72,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div class="form-group labels-group">
                                 <div class="controls row">
                                     <label class="form-label">标签组：</label>
@@ -152,7 +144,6 @@
                                     </span>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">环境变量：</label>
@@ -180,7 +171,6 @@
                                     </span>
                                 </div>
                             </div>
-
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
                                     <button type="button" class="btn btn-primary" ng-click="submit()">提交</button>
@@ -188,7 +178,6 @@
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -229,7 +218,56 @@
                                             <span class="input-group-addon">秒</span>
                                         </div>
                                     </div>
-                                </div><!--
+                                </div>
+
+                           <!--      <div class="form-group">
+                                    <label class="form-label" for="field-1678">端口组：</label>
+                                    <span class="desc"></span>
+                                    <i class="fa fa-plus-square server-adds" ></i>
+                                    <div class="controls">
+                                        <p class="server-p-1">
+                                            <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" > 
+                                            <span>协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portlists.protocol">
+                                            <b class="server-jia fa fa-minus-square" ></b>
+                                        </p>
+                                        <p class="server-p-1">
+                                            <span>端口</span><input type="text" class="form-control server-btn" id="field-1678">
+                                        </p>
+                                    </div>
+                                </div>
+
+spec.template.spec.containers[].ports
+ -->
+                        <div class="form-group">
+                            <label class="form-label" for="field-1678">端口组：</label>
+                            <span class="desc"></span>
+                            <i class="fa fa-plus-square server-adds1" ng-click="addportL()"></i>
+                            <div class="controls deploy-m-box1" ng-repeat="portL in portLists">
+                                <p class="server-p-1">
+                                    <span id="deloy-m-span1">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name"> 
+                                    <span id="deloy-m-span1">协议</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.protocol">
+                                    <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
+                                </p>
+                                <p class="server-p-1">
+                                    <span id="deloy-m-span1">端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort">
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                                <!--
+
+
+                                "ports": [
+                                    {
+                                    "name": "",
+                                    "containerPort": {},
+                                    "protocol": "",
+                                    }
+                                ]
+
+
                                 <div class="form-group">
                                     <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[1]">
                                     <label class="form-label">可读性检查</label>
@@ -301,7 +339,6 @@
                                     <button type="button" class="btn btn-primary" ng-click="nextStep(1)">上一步</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

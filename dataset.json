@@ -1,0 +1,660 @@
+{
+  "Items": {
+    "123b7667-70d2-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "abc",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/abc",
+        "uid": "123b7667-70d2-11e6-b957-44a84240716a",
+        "resourceVersion": "17982778",
+        "creationTimestamp": "2016-09-02T05:57:03Z",
+        "labels": {
+          "author": "admin",
+          "name": "abc",
+          "namespace": "ops"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "test",
+            "protocol": "TCP",
+            "port": 10001,
+            "targetPort": 10001,
+            "nodePort": 0
+          }
+        ],
+        "selector": null,
+        "clusterIP": "192.168.3.170",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "12a8bec3-70bf-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "namessss",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/namessss",
+        "uid": "12a8bec3-70bf-11e6-b957-44a84240716a",
+        "resourceVersion": "17967031",
+        "creationTimestamp": "2016-09-02T03:41:03Z",
+        "labels": {
+          "author": "admin",
+          "leiKey": "ka",
+          "leiValue": "va",
+          "name": "namessss",
+          "namespace": "ops"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "name",
+            "protocol": "TCP",
+            "port": 10000,
+            "targetPort": 10000,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "kkk": "vvv",
+          "name": ""
+        },
+        "clusterIP": "192.168.3.164",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "168f41e6-682f-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "multiport-service",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/multiport-service",
+        "uid": "168f41e6-682f-11e6-b957-44a84240716a",
+        "resourceVersion": "16541626",
+        "creationTimestamp": "2016-08-22T06:10:13Z"
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9378,
+            "nodePort": 0
+          },
+          {
+            "name": "https",
+            "protocol": "TCP",
+            "port": 443,
+            "targetPort": 9379,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "app": "MyApp"
+        },
+        "clusterIP": "192.168.3.194",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "16ad29ed-682e-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "service-withselectors",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/service-withselectors",
+        "uid": "16ad29ed-682e-11e6-b957-44a84240716a",
+        "resourceVersion": "16541275",
+        "creationTimestamp": "2016-08-22T06:03:03Z"
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9376,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "app": "MyApp"
+        },
+        "clusterIP": "192.168.3.74",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "236be44f-6830-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "external-service",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/external-service",
+        "uid": "236be44f-6830-11e6-b957-44a84240716a",
+        "resourceVersion": "16541998",
+        "creationTimestamp": "2016-08-22T06:17:44Z"
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "http",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9375,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "app": "MyApp"
+        },
+        "clusterIP": "192.168.3.205",
+        "externalIPs": [
+          "80.11.12.10"
+        ],
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "321284d4-75af-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "test-svc",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/test-svc",
+        "uid": "321284d4-75af-11e6-b957-44a84240716a",
+        "resourceVersion": "34977376",
+        "creationTimestamp": "2016-09-08T10:30:00Z",
+        "labels": {
+          "author": "admin",
+          "name": "test-svc",
+          "namespace": "ops",
+          "type": "service"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "test",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "app": "test"
+        },
+        "clusterIP": "192.168.3.63",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "515d6e62-70d2-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "abcd",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/abcd",
+        "uid": "515d6e62-70d2-11e6-b957-44a84240716a",
+        "resourceVersion": "17982990",
+        "creationTimestamp": "2016-09-02T05:58:49Z",
+        "labels": {
+          "ab": "ab",
+          "author": "admin",
+          "name": "abcd",
+          "namespace": "ops"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "s",
+            "protocol": "TCP",
+            "port": 10002,
+            "targetPort": 10002,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "name": "myApp"
+        },
+        "clusterIP": "192.168.3.65",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "6f8a68a5-70d2-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "bcde",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/bcde",
+        "uid": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+        "resourceVersion": "17983080",
+        "creationTimestamp": "2016-09-02T05:59:39Z",
+        "labels": {
+          "author": "admin",
+          "name": "bcde",
+          "namespace": "ops"
+        }
+      },
+      "spec": {
+        "type": "NodePort",
+        "ports": [
+          {
+            "name": "test",
+            "protocol": "TCP",
+            "port": 20000,
+            "targetPort": 20000,
+            "nodePort": 30101
+          }
+        ],
+        "selector": null,
+        "clusterIP": "192.168.3.113",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "8540cb8b-682e-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "service-withoutselectors",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/service-withoutselectors",
+        "uid": "8540cb8b-682e-11e6-b957-44a84240716a",
+        "resourceVersion": "16541430",
+        "creationTimestamp": "2016-08-22T06:06:09Z"
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9377,
+            "nodePort": 0
+          }
+        ],
+        "selector": null,
+        "clusterIP": "192.168.3.40",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "a46216b5-75c5-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "nginx-441109786",
+        "namespace": "ops",
+        "selfLink": "/apis/extensions/v1beta1/namespaces/ops/replicasets/nginx-441109786",
+        "uid": "a46216b5-75c5-11e6-b957-44a84240716a",
+        "resourceVersion": "34997113",
+        "generation": 1,
+        "creationTimestamp": "2016-09-08T13:10:40Z",
+        "labels": {
+          "author": "admin",
+          "name": "nginx",
+          "pod-template-hash": "441109786"
+        },
+        "annotations": {
+          "deployment.kubernetes.io/revision": "1"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "matchLabels": {
+            "author": "admin",
+            "name": "nginx",
+            "pod-template-hash": "441109786"
+          }
+        },
+        "template": {
+          "metadata": {
+            "creationTimestamp": null,
+            "labels": {
+              "author": "admin",
+              "name": "nginx",
+              "pod-template-hash": "441109786"
+            }
+          },
+          "spec": {
+            "volumes": null,
+            "containers": [
+              {
+                "name": "nginx",
+                "image": "registry.docker:5000/nginx:1.7.9",
+                "resources": {
+                  "limits": {
+                    "cpu": "2",
+                    "memory": "4G"
+                  }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "imagePullPolicy": "IfNotPresent"
+              }
+            ],
+            "restartPolicy": "Always",
+            "terminationGracePeriodSeconds": 30,
+            "dnsPolicy": "ClusterFirst",
+            "serviceAccountName": "",
+            "securityContext": {}
+          }
+        }
+      },
+      "status": {
+        "replicas": 1,
+        "fullyLabeledReplicas": 1,
+        "observedGeneration": 1
+      },
+      "kind": "ReplicaSet",
+      "apiVersion": "v1beta2"
+    },
+    "e348d6e1-70d0-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "usernames",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/usernames",
+        "uid": "e348d6e1-70d0-11e6-b957-44a84240716a",
+        "resourceVersion": "17981758",
+        "creationTimestamp": "2016-09-02T05:48:35Z",
+        "labels": {
+          "author": "admin",
+          "labelkkk2": "babelvvv2",
+          "labelks": "labelvs",
+          "name": "usernames",
+          "namespace": "ops"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "name": "mynames",
+            "protocol": "TCP",
+            "port": 10000,
+            "targetPort": 10000,
+            "nodePort": 0
+          }
+        ],
+        "selector": {
+          "mykeys": "myvalues"
+        },
+        "clusterIP": "192.168.3.38",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    },
+    "ef0d6835-682f-11e6-b957-44a84240716a": {
+      "metadata": {
+        "name": "lb-service",
+        "namespace": "ops",
+        "selfLink": "/api/v1/namespaces/ops/services/lb-service",
+        "uid": "ef0d6835-682f-11e6-b957-44a84240716a",
+        "resourceVersion": "16541925",
+        "creationTimestamp": "2016-08-22T06:16:16Z"
+      },
+      "spec": {
+        "type": "LoadBalancer",
+        "ports": [
+          {
+            "name": "",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 9380,
+            "nodePort": 30061
+          }
+        ],
+        "selector": {
+          "app": "MyApp"
+        },
+        "clusterIP": "192.168.3.42",
+        "loadBalancerIP": "78.11.24.19",
+        "sessionAffinity": "None"
+      },
+      "status": {
+        "loadBalancer": {}
+      },
+      "kind": "Service",
+      "apiVersion": "v1beta1"
+    }
+  },
+  "relations": [
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d3a0e003-6015-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "067015ab-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "441fdf5c-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "067c8093-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "abc1e6bc-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "abc1d4ba-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "abc1d633-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d34cd6e5-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d34ccaaf-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d34cc563-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d0752eec-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "0600d3fd-5faf-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "8e50133e-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "8e5023cf-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d09033d7-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "123b7667-70d2-11e6-b957-44a84240716a",
+      "target": "d0a81067-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d3a0e003-6015-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "067015ab-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "441fdf5c-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "067c8093-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "abc1e6bc-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "abc1d4ba-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "abc1d633-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d34cd6e5-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d34ccaaf-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d34cc563-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d0752eec-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "0600d3fd-5faf-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "8e50133e-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "8e5023cf-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d09033d7-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "6f8a68a5-70d2-11e6-b957-44a84240716a",
+      "target": "d0a81067-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d3a0e003-6015-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "067015ab-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "441fdf5c-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "067c8093-419e-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "abc1e6bc-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "abc1d4ba-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "abc1d633-6f75-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d34cd6e5-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d34ccaaf-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d34cc563-6e60-11e6-b957-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d0752eec-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "0600d3fd-5faf-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "8e50133e-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "8e5023cf-5d31-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d09033d7-4d51-11e6-b9d6-44a84240716a"
+    },
+    {
+      "source": "8540cb8b-682e-11e6-b957-44a84240716a",
+      "target": "d0a81067-4d51-11e6-b9d6-44a84240716a"
+    }
+  ]
+}

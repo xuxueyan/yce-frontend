@@ -4,6 +4,7 @@ define([
 	'Angular',
 	'uiRouter',
 	'ngStorage',
+	'kubernetesUI',
 	'mock',
 	'mockAngular',
 	'mockData',
@@ -14,7 +15,7 @@ define([
 	'./common/services',
 	'./common/routers',
 	'./common/controllers'
-], function($, _, angular, uiRouter, ngStorage, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers){
+], function($, _, angular, uiRouter, ngStorage, kubernetesUI, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers){
 	'use strict';
 
 	//通用模块
@@ -25,10 +26,11 @@ define([
 	angular.module('costManage', ['common']);
 	angular.module('extensionsManage', ['common']);
 	angular.module('imageManage', ['common']);
+	angular.module('topology', ['common']);
 
 
 	//主应用
-	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage']);
+	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'kubernetesUI', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage', 'topology']);
 	//路由引导
 	Mock.mockjax(app);
 

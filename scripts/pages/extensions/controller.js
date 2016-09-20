@@ -314,7 +314,7 @@ define([
                 })
 
                 // 选择器
-                for(var i = 0; i < $scope.mockEnd.length; i ++) {
+                for(var i = 0; i < $scope.mockEnd.length; i++) {
                     adds.push({
                         addresses : [ 
                             $scope.mockEnd[i].addresses

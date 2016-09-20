@@ -6,7 +6,8 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', function($scope,$http, deploymentService, $localStorage, $rootScope){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', '$state', function($scope,$http, deploymentService, $localStorage, $rootScope, $state){
+
             $scope.param = {
                 orgId: $localStorage.orgId,
                 userId: $localStorage.userId,
@@ -26,7 +27,16 @@ define([
                                     image : '',
                                     resources : {
                                         limits : {}
-                                    }
+                                    },
+                                    ports: [
+                                      {
+                                        name: '',
+                                        hostPort: {},
+                                        containerPort: {},
+                                        protocol: '',
+                                        hostIP: ''
+                                      }
+                                    ]
                                 }]
                             }
                         }
@@ -74,7 +84,6 @@ define([
             $scope.deleteEnv = function($index){
                 $scope.param.deployment.spec.template.spec.containers[0].env.splice($index,1);
             };
-
             /*选择镜像*/
             $scope.showImageSelector = function(){
                 $scope.imageSelectorConf = {
@@ -90,8 +99,47 @@ define([
                 $rootScope.widget.widgetImageSelector = false;
             });
 
+            $scope.portLists = [];
+            $scope.addportL = function(){
+                console.log(123)
+                $scope.portLists.push({});
+            } 
+            $scope.delportL = function($index){
+                $scope.portLists.splice($index,1)
+            }
+
+
+
+
+
             /*提交表单*/
             $scope.submit = function(){
+
+            var ddd = "";
+            $scope.portLists.forEach(function(m){
+                m.containerPort = Number(m.containerPort);
+                ddd = Number(m.containerPort);
+            })
+
+
+
+
+
+
+            $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
+
+
+                     console.log(ddd)
+                     console.log(angular.toJson($scope.portLists))
+            //         console.log(angular.toJson($scope.portLists[0].protocol))
+//                  [{"name":"test-frontend-1","containerPort":"TCP","protocol":"80"}]
+
+
+
+
+
+
+
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
                     "author" : $localStorage.userName
@@ -109,8 +157,8 @@ define([
                     return item.id == $scope.dataTrans.quotas;
                 })[0];
                 $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
-                    cpu : limits.cpu,
-                    memory : limits.mem
+                    cpu : limits.cpu + '000m',
+                    memory : limits.mem + '000M'
                 };
 
                 $scope.param.deployment.spec.template.metadata = {
@@ -120,14 +168,45 @@ define([
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
+                    $state.go('main.appManage')
                 },function(){
                     alert('提交失败');
                 });
             };
+
+            // Image
+            $http({
+                method: 'GET',
+                url: '/api/v1/registry/images'
+            })
+            .success(function(data) {
+                var dataObject = JSON.parse(data.data);
+
+                // make new images:tags
+                var imageArr = new Array();
+                var k = 0
+                for (var i in dataObject) {
+                    var list = dataObject[i].tags;
+                    for (var j in list) {
+                        imageArr[k] = dataObject[i].name + ":" + list[j];
+                        k=k+1
+                    }
+                }
+
+                $scope.imageList=imageArr;
+                $scope.getImages = function(x) {
+                    $scope.param.deployment.spec.template.spec.containers[0].image=x;
+                    x.replace(/:(\S+)$/,function($0,$1){
+                        $scope.param.deployment.metadata.labels.version = $1;
+                    });
+                }
+
+
+            })
+            .error(function() {
+                console.log("getImages error")
+            })
         }];
-
-
-
         var controllers = [
             {module: 'appManage', name: 'deploymentController', ctrl: ctrl}
         ];
@@ -135,3 +214,4 @@ define([
         return controllers;
     }
 );
+
