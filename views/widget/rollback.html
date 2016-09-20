@@ -23,7 +23,7 @@
                                             <p>应用实例数:&nbsp;&nbsp; {{ item.replicas.current }} 可用 | {{ item.replicas.desire }} 期望</p>
                                         </div>
                                     </div>
-                                    <div class="history-box-2">
+                                    <div class="history-box-2" ng-if="$index != 0">
                                         <button class="btn btn-danger" type="button" ng-click="$emit('submitRollback', item, param.dcId, param.appName)">回滚到此版本</button>
                                     </div>
                                 </div>

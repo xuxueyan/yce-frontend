@@ -171,7 +171,28 @@ define([
             $scope.dataTrans = {
                 dataCenters : []
             };
+
+            // 选择器
+            $scope.Checkeds = [];
+            $scope.addCheckeds = function(){
+                $scope.Checkeds.push({});
+            }
+            $scope.delCheckeds = function($index){
+                $scope.Checkeds.splice($index,1);
+            }
+
+            // 协议
+            $scope.portlists = [
+                {protocol: "TCP"}
+            ];
+            $scope.activities =[
+                "TCP",
+                "UDP"
+            ];
+
             $scope.serversubmit = function(){
+                // 协议
+                $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
                 // 服务类型  ok
                 var type = "";
                 if($scope.serverRadios == 0){
@@ -203,9 +224,12 @@ define([
                 $scope.param.service.metadata.labels.namespace = demoss;
                 $scope.param.orgName = demoss;
 
-                // 选择器  ok
-                $scope.param.service.spec.selector[$scope.mocks.mylistKey] = $scope.mocks.mylistValue
-
+                // 选择器  
+                $scope.Checkeds.forEach(function(v){
+                    for(var i in v){
+                        $scope.param.service.spec.selector[v.mylistKey]=v[i]
+                    }
+                })
                 // label
                 $scope.leis.forEach(function(v){
                     for(var i in v){
@@ -223,8 +247,12 @@ define([
                     }
                 })
 
+
+
+
                 /*  提交 post  */
                 $scope.param.service.spec.ports = $scope.ports;
+                console.log(angular.toJson($scope.param)+"@@@@ !")
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new', $scope.param).success(function(){
                     alert("ok")
                 }).error(function(data) {
@@ -292,6 +320,15 @@ define([
             adds.addresses = [];
             adds.ports = [];
 
+            // 访问点的协议
+
+            $scope.epiPro =[
+                "TCP",
+                "UDP"
+            ];
+
+
+
             // 提交
             $scope.endpointBtn = function(){
 
@@ -328,9 +365,11 @@ define([
                         ]
                     });
                 }
+
                 $scope.endpointsJson.endpoints.subsets = adds;
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
 
+                console.log(angular.toJson($scope.endpointsJson));
                 //  提交 post
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/new', $scope.endpointsJson).success(function(){
                     alert("ok")

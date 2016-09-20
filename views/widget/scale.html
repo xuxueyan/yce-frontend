@@ -19,7 +19,7 @@
                     <label class="form-label">应用名称：</label>
                     <span class="desc"></span>
                     <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name">
+                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" disabled>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                     <label class="form-label">镜像名称：</label>
                     <span class="desc"></span>
                     <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image">
+                        <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" disabled>
                     </div>
                 </div>
 
