@@ -17,9 +17,9 @@ define([], function(){
 			templateUrl: 'views/imageManage/delete.html',
 			controller: 'imageManageController'
 		},
-		basics: {
-			url: '/basics',
-			templateUrl: 'views/imageManage/basics.html',
+		base: {
+			url: '/base',
+			templateUrl: 'views/imageManage/base.html',
 			controller: 'imageManageController'
 		}
 	};

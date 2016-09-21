@@ -556,7 +556,7 @@ a:hover, a:focus {
 }
 .page-topbar li .dropdown-menu li .name, .page-topbar li .dropdown-menu li .desc {
     display: block;
-    position: relative;
+    position: absolute;
 }
 .page-topbar li .dropdown-menu li .user-img img {
     width: 25px;
@@ -8695,7 +8695,7 @@ table.dataTable.display tbody tr:first-child td {
     height: 30px;
 }
 .server-jia{
-    margin-left: 3px;
+    margin-left: 18px;
     font-size: 20px;
     color: #bbbbbb;
 }

@@ -18,9 +18,8 @@
                     <div class="col-xs-12 col-sm-9 col-md-8">
                         <div class="form-group">
                             <label class="form-label" for="field-15121">访问点名称</label>
-                            <span class="desc"></span>
                             <div class="controls">
-                                <input type="text" value="" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="//" required>
+                                <input type="text" value="" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" required>
                                 <!-- ^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$ -->
                             </div>
                         </div>
@@ -53,14 +52,15 @@
                             </p>
                             <div class="controls" ng-repeat="endlei in endleis">
                                 <p class="server-p-3">
-                                    <span>key</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" ng-pattern="/^[a-zA-Z0-9_-]*$/"><b class="fa fa-minus inputB"></b>
-                                    <span>value</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelValue" ng-pattern="/^[a-zA-Z0-9_-]*$/">
+                                    <span>key</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" ng-pattern="/^[a-zA-Z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
+                                    <span>value</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelValue" ng-pattern="/^[a-zA-Z0-9_-]*$/" required>
                                     <b class="server-jia fa fa-minus-square" ng-click="delendpointjlabel($index)"></b>
                                 </p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="field-1678">地址端口组</label><i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
+                            <label class="form-label" for="field-1678">地址端口组</label>
+                            <span class="desc show-spans-1 warn" ng-show="expression">* 端口为1-65535</span><i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
                             <div class="controls" ng-repeat=" epI in mockEnd">
                                 <p class="server-p-4">
                                     <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.name" ng-pattern="/^[a-zA-Z0-9_-]*$/"><b class="fa fa-minus inputB"></b>
@@ -70,7 +70,7 @@
                                 </p>
                                 <p class="server-p-4">
                                     <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" required><b class="fa fa-minus inputB"></b>
-                                    <span>端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-pattern="/^(?:[0-9]{1,4}|65535)$/" required>
+                                    <span>端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-blur="blurS()" required>
 
                                 </p>
                             </div>
