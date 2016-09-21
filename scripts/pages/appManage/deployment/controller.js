@@ -24,7 +24,7 @@ define([
                             spec : {
                                 containers : [{
                                     env : [],
-                                    image : '',
+                                    image : '', 
                                     resources : {
                                         limits : {}
                                     },
@@ -93,17 +93,18 @@ define([
                 };
                 $rootScope.widget.widgetImageSelector = true;
             };
+            $scope.version = "";
             /*监听imageSelector(子)页面的emit*/
             $scope.$on('imageSelector',function(event, data){
                 $scope.param.deployment.spec.template.spec.containers[0].image = data;
                 $rootScope.widget.widgetImageSelector = false;
+                $scope.version = data.split(":")[2];
             });
-/*
+
             $scope.portLists = [
                 {protocol: "TCP"}
             ];
             $scope.addportL = function(){
-                console.log(123)
                 $scope.portLists.push({});
             } 
             $scope.delportL = function($index){
@@ -111,38 +112,30 @@ define([
             }
             $scope.activities =[
                 "TCP",
-                "TCP TWO"
+                "UDP"
             ];
-
-*/
-
-
-
-
-
 
             /*提交表单*/
             $scope.submit = function(){
 
-            $scope.portLists.forEach(function(m){
-                m.containerPort = Number(m.containerPort);
-            })
-
-
-
-
-
-
-
-
-
-
-
-            $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
+                $scope.portLists.forEach(function(m){
+                    m.containerPort = Number(m.containerPort);
+                })
+                
+                $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
 
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
-                    "author" : $localStorage.userName
+                    "author" : $localStorage.userName,
+                    "version" : $scope.version
+
+
+
+
+
+
+
+
                 };
                 $scope.param.appName = $scope.param.deployment.metadata.name;
                 $scope.dataTrans.dataCenters.forEach(function(elem, index){
@@ -166,6 +159,11 @@ define([
                 };
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
+
+                console.log(angular.toJson($scope.param)+"@@@====")
+             //   console.log(angular.toJson($scope.param.deployment.spec.template.spec.containers[0].image)+"@@@====")
+
+
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
                     $state.go('main.appManage')

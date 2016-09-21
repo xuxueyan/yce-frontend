@@ -50,7 +50,7 @@
                                         <td>
                                             <p ng-click="showAppPodDetail(pod, app.dcId)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
                                         </td>
-                                        <td>
+                                        <td class="appdemoS">
                                             <p ng-repeat="pod in item.podList.items">{{pod.status.phase}}</p>
                                         </td>
                                         <td>
@@ -62,7 +62,7 @@
                                         </td>
                                         <td>
                                             <span class="apply-leave" ng-mouseleave="showBox[$index]=false">
-                                                <button class="btn btn-warning" type="button" ng-click="rollingup(item, app.dcId, app.dcName)">升级</button>
+                                                <button class="btn btn-warning" type="button" ng-click="rollingup(item, app.dcId, app.dcName, item.deploy.metadata.annotations.image)">升级</button>
                                                 <button class="btn btn-success" type="button" ng-click="rollback(item, app.dcId, item.deploy.metadata.name)">回滚</button>
                                                 <button class="btn btn-info" type="button" ng-click="scale(item, app.dcId, item.deploy.metadata.name)">扩容</button>
                                                 <button class="btn btn-danger" type="button" ng-click="delete(item, app.dcId, item.deploy.metadata.name)">删除应用</button>

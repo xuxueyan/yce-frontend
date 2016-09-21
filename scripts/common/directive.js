@@ -46,6 +46,7 @@ define([
                                 alert('请求失败');
                             });
                             $scope.clickImageSelector = function(image){
+                                $scope.$emit('imageButton', image);
                                 $scope.$emit('imageSelector',image);
                             };
                         }]
@@ -60,18 +61,15 @@ define([
                         },
                         controller : ['$scope', '$rootScope', 'appManageService', function($scope, $rootScope, appManageService){
 
-                            console.log($scope.originalData);
+                       //     console.log(angular.toJson($scope.originalData));
                             /*查看日志*/
                             $scope.data = {};
                             $scope.param = $scope.originalData.param;
                             $scope.tabSwitchAndLogs = function(podName) {
                                 $scope.data.tabSwitch = 1;
                                 $scope.param.podName = podName;
-                                console.log(podName);
                                 appManageService.getLogs($scope.param, function(data){
-                                    console.log(data);
                                     $scope.logsData = data.data.split('\n');
-                                    console.log($scope.logsData);
                                     $scope.canSubmit = true;
                                 }, function(){
                                     $scope.canSubmit = true;
@@ -107,6 +105,10 @@ define([
                                 }
                             };
 
+                            $scope.rollShow = false; 
+                            $scope.$on('showTips', function(event, tips){
+                                $scope.rollShow = tips;
+                            });
                             /*监听来自appManage(父)页面的broadcast事件*/
                             $scope.$on('rollingupImage',function(event, image){
                                 $scope.param.strategy.image = image;

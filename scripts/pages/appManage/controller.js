@@ -12,8 +12,9 @@ define([
 
             $scope.loadAppList = function(){
                 appManageService.getAppList($scope.param,function(data){
-                    if (data.code == 0) {
+                    if(data.code == 0){
                        $scope.appList = JSON.parse(data.data);
+                    //   console.log(angular.toJson($scope.appList)+"@@@@ you")
                     }
                 });
             };
@@ -45,7 +46,8 @@ define([
             };
 
             // 滚动升级
-            $scope.rollingup = function(item, dcId, dcName){
+            $scope.endStr = "";
+            $scope.rollingup = function(item, dcId, dcName, image){
                 item.dcId = dcId;
                 item.dcName = dcName;
                 $scope.appRollingupConf = {
@@ -54,9 +56,30 @@ define([
                     isRollingup: true,
                     data : item
                 };
-
+                //  取用户的镜像 前面
                 $rootScope.widget.widgetRollingup = true;
+                $scope.endStr = image.split(":")[0] + ":" + image.split(":")[1];
             };
+
+
+            $scope.rollShow = true;
+
+            $scope.$on('imageButton', function(event, data) {
+                console.log(data.split(":")[0] + ":" + data.split(":")[1]);
+                console.log($scope.endStr);
+
+                if((data.split(":")[0] + ":" + data.split(":")[1]) != $scope.endStr) {
+                 //   $scope.roolShow = true;
+                    $scope.$broadcast('showTips', true);
+                    $scope.canSubmit = false;
+                } else {
+                 //   $scope.roolShow = false;
+                 $scope.$broadcast('showTips', false);
+                    $scope.canSubmit = true;
+                }
+            })
+
+            $scope.endImgs = "";
 
             $scope.$on('submitRollingup',function(event,param){
                 param = angular.merge(param, $scope.param);
@@ -66,6 +89,15 @@ define([
                         $rootScope.widget.widgetRollingup = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
+
+                        // 取升级里的升级镜像
+                        var imgS = param.strategy.image.slice(0,21);
+                        var arrImgs = param.strategy.image.slice(21);
+                        var lastImgs = arrImgs.split(":")[0]
+                        $scope.endImgs = imgS+lastImgs;
+
+                        console.log(angular.toJson($scope.endImgs)+"@@@-----");
+
                     },function(){
                         $scope.canSubmit = true;
                     });
@@ -99,14 +131,6 @@ define([
                     $scope.historyShowbox = false;
                     $scope.historyLi = function(item){
                         $scope.historyShowbox = !false;
-                        //   console.log(angular.toJson(item))
-                        //   console.log(angular.toJson(item))
-                        //ok console.log(JSON.parse(item.records.json).spec.replicas)
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].image);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0]);
-       
                         $scope.Newreplicas = JSON.parse(item.records.json).spec.replicas;
                         $scope.Newimage = JSON.parse(item.records.json).spec.template.spec.containers[0].image;
                         $scope.Newcpu = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu;
@@ -164,6 +188,13 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
+                
+                if($scope.endImgs == $scope.endStr){
+                    console.log("yes")
+                }else{
+                    console.log("nononono!")
+                }
+
             });
 
             // 扩容
