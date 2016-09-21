@@ -20,7 +20,7 @@
                                 <label class="form-label" for="field-1678">服务名称：</label>
                                 <span class="desc"></span>
                                 <div class="controls">
-                                    <input type="text" value="" class="form-control" id="field-1678" ng-model="param.serviceName" ng-pattern="/^[a-zA-Z0-9_-]+.[a-zA-Z0-9_-]+.[a-zA-Z0-9_-]+$/" required />
+                                    <input type="text" value="" class="form-control" id="field-1678" ng-model="param.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,17 +64,16 @@
                                 <i class="fa fa-plus-square server-adds" ng-click="addPort()"></i>
                                 <div class="controls" ng-repeat="portlists in ports">
                                     <p class="server-p-1">
-                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-pattern="/^[a-zA-Z0-9_-]*$/" ng-model="portlists.name"> 
-                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort" ng-pattern="/^[0-9]*$/"> 
+                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.name" ng-pattern="/^[a-zA-Z0-9_-]*$/" required> 
+                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort" ng-pattern="/^[0-9]*$/" required> 
                                         <b class="server-jia fa fa-minus-square" ng-click="delPort($index)"></b>
                                     </p>
                                     <p class="server-p-1">
-                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port" ng-pattern="/^[0-9]*$/">
-                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort" ng-pattern="/^[0-9]*$/">
+                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port" ng-pattern="/^[0-9]*$/" required>
+                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort" ng-pattern="/^[0-9]*$/" required>
                                     </p>
                                     <p class="server-p-1">
-                                        <span>协议</span>  
-                                        <select ng-model="portlists.protocol" class="form-inputs" ng-options="act for act in activities"></select>
+                                        <span>协议</span><select ng-model="portlists.protocol" class="form-inputs" ng-options="act for act in activities"></select>
                                     </p>
                                 </div>
                             </div>

@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="field-replicas">副本数：</label>
-                                <span class="desc">副本数是您创建应用的实例个数</span>
+                                <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
 
                                 <div class="controls">
                                     <input type="number" value="color" min="0" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
@@ -90,7 +90,7 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Value</span>
-                                            <input type="text" class="form-control" ng-model="env.value" required>
+                                            <input type="text" class="form-control" ng-model="env.value"  ng-pattern="/^\S+$/" required>
                                         </div>
                                     </div>
                                     <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
@@ -107,13 +107,13 @@
                                     <div class="controls row">
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <span class="input-group-addon">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name" required> 
+                                                <span class="input-group-addon">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name" ng-pattern="/^\S+[A-Z]$/" required> 
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <span class="input-group-addon">端口</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort" required>
+                                                <span class="input-group-addon">端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
                                             </div>
                                         </div>
                                         <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
@@ -204,14 +204,14 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Key</span>
-                                                <input type="text" class="form-control" ng-model="label.key" >
+                                                <input type="text" class="form-control" ng-model="label.key" required>
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Value</span>
-                                                <input type="text" class="form-control" ng-model="label.value" >
+                                                <input type="text" class="form-control" ng-model="label.value" required>
                                             </div>
                                         </div>
                                         <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">

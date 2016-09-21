@@ -292,6 +292,15 @@ define([
                 $scope.delendpointEx = function($index){
                     $scope.mockEnd.splice($index,1);
                 }
+                
+                $scope.blurS = function(){
+                    var mockP = angular.toJson($scope.mockEnd[0].ports.port);
+                    if(mockP > 65535){
+                        $scope.expression = true;
+                    }else{
+                        $scope.expression = false;
+                    }
+                }
             }
 
             $scope.endpointsJson = {
