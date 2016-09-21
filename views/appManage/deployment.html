@@ -20,7 +20,7 @@
                                 <label class="form-label" for="field-name">应用名：</label>
                                 <span class="desc">应用名是您将要创建的应用的名称，组织内唯一</span>
                                 <div class="controls">
-                                    <input type="text" value="Color" class="form-control" id="field-name" ng-model="param.deployment.metadata.name" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/">
+                                    <input type="text" value="Color" class="form-control" id="field-name" ng-model="param.deployment.metadata.name" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -83,14 +83,14 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Name</span>
-                                            <input type="text" class="form-control" ng-model="env.name" required>
+                                            <input type="text" class="form-control" ng-model="env.name" ng-pattern="/^\S+[A-Z0-9-_]$/" required>
                                         </div>
                                     </div>
                                     <div class="delimiter"><i class="fa fa-minus"></i></div>
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Value</span>
-                                            <input type="text" class="form-control" ng-model="env.value"  required>
+                                            <input type="text" class="form-control" ng-model="env.value" required>
                                         </div>
                                     </div>
                                     <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
@@ -98,6 +98,7 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">端口组：</label>
                                 <span class="desc"></span>
