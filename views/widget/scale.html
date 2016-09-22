@@ -33,14 +33,14 @@
 
                 <div class="form-group">
                     <label for="field-replicas" class="form-label">实例个数：</label>
-                    <span class="desc">选择您要扩容的应用实例的数量</span>
-                <!--
+                    <span class="descs1">选择您要扩容的应用实例的数量</span>
+                
                     <div class="controls">
                         <input type="number" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control ng-pristine ng-untouched ng-valid-min ng-invalid ng-invalid-required ng-valid-pattern" pattern="[0-9]" min="0" max="10" required="" value="color">
                     </div> 
-                -->
+                
                 <!-- 滑块 -->
-                        <div class="bar-0">
+                   <!--     <div class="bar-0">
                             <div class="bar-1">
                                 <ul>
                                     <li class="more" value="0"></li>
@@ -60,42 +60,42 @@
                                 <div class="value-min">1</div>
                                 <div class="value-max">10</div>
                             </div>
-                        <input type="text" class="newMocks" value="7" />
-                        <script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
-                        <script type="text/javascript">
-                            $(function() {
-                                var bar = $(".bar-0")
-                                var bar_w = bar.width() //获取滑块宽度
-                                var bar_h = $(".bar-1").height() //获取滑块高度
-                                var grid_w = bar_w / 9 //设置样式
-                                var grid_1 = Math.floor(grid_w)
-                                console.log(grid_1)
-                                $(".grid").css({
-                                    "width": grid_w,
-                                    "height": bar_h
-                                })
-                                $(".bar-1 .grid").each(function() {
-                                    var grid_h = $(this)
-                                    var grid_v = grid_h.val()
-                                    var push_l = parseInt($(".push-1").css("left")) //获取按钮位置
-
-                                    grid_h.click(function() {
-                                    $(".push-1").css({
-                                        "left": grid_1 * grid_v  + push_l
-                                        })
+                            <input type="text" class="newMocks" value="7" />
+                            <script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+                            <script type="text/javascript">
+                                $(function() {
+                                    var bar = $(".bar-0")
+                                    var bar_w = bar.width() //获取滑块宽度
+                                    var bar_h = $(".bar-1").height() //获取滑块高度
+                                    var grid_w = bar_w / 9 //设置样式
+                                    var grid_1 = Math.floor(grid_w)
+                                    console.log(grid_1)
+                                    $(".grid").css({
+                                        "width": grid_w,
+                                        "height": bar_h
                                     })
-                                    $(".more").click(function(){
+                                    $(".bar-1 .grid").each(function() {
+                                        var grid_h = $(this)
+                                        var grid_v = grid_h.val()
+                                        var push_l = parseInt($(".push-1").css("left")) //获取按钮位置
+
+                                        grid_h.click(function() {
                                         $(".push-1").css({
-                                            "left": push_l
+                                            "left": grid_1 * grid_v  + push_l
+                                            })
+                                        })
+                                        $(".more").click(function(){
+                                            $(".push-1").css({
+                                                "left": push_l
+                                            })
                                         })
                                     })
+
+                                    console.log($(".newMocks").val()+"@@@@@@@@@")
+
                                 })
-
-                                console.log($(".newMocks").val()+"@@@@@@@@@")
-
-                            })
-                        </script>
-                        </div>
+                            </script>
+                        </div>-->
                     </div>
                 </div>
 
