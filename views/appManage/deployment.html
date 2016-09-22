@@ -99,32 +99,37 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="field-1678">端口组：</label>
-                                <span class="desc"></span>
-                                <i class="fa fa-plus-square server-adds1" ng-click="addportL()"></i>
+                                <div class="controls row">
+                                    <label class="form-label">开放端口：</label>
+                                    <span class="desc"></span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addPort()"></i>
+                                    </span>
+                                </div>
                                 <div ng-repeat="portL in portLists">
                                     <div class="controls row">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-3">
                                             <div class="input-group">
-                                                <span class="input-group-addon">名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="portL.name" ng-pattern="/^\S+[A-Z]$/" required> 
+                                                <span class="input-group-addon">名称</span>
+                                                <input type="text" class="form-control server-btn" ng-model="portL.name" ng-pattern="/^\S+[A-Z]$/" required>
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-3">
                                             <div class="input-group">
-                                                <span class="input-group-addon">端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="portL.containerPort" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
+                                                <span class="input-group-addon">端口</span>
+                                                <input type="number" class="form-control server-btn" ng-model="portL.containerPort" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
                                             </div>
                                         </div>
-                                        <b class="server-jia fa fa-minus-square" ng-click="delportL($index)"></b>
-                                    </div>
-                                    <div class="controls row">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <select ng-model="portL.protocol" class="form-control" ng-options="act for act in activities"></select>
+                                                <select ng-model="portL.protocol" class="form-control">
+                                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item}}</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="delimiter iter-list">* 协议必填</div>
+                                        <b class="server-jia fa fa-minus-square" ng-click="delPort($index)"></b>
                                     </div>
                                 </div> 
                             </div>

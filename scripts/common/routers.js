@@ -7,8 +7,9 @@ define([
 	'../pages/extensions/router',
 	'../pages/imageManage/router',
 	'../pages/topology/router',
-	'../pages/appManage/deployment/router'
-		], function(mainRouter, dashboardRouter, appManageRouter, rbdManageRouter, costManageRouter, extensionsRouter, imageManageRouter, topologyRouter, deploymentRouter){
+	'../pages/appManage/deployment/router',
+	'../pages/appManage/history/router'
+		], function(mainRouter, dashboardRouter, appManageRouter, rbdManageRouter, costManageRouter, extensionsRouter, imageManageRouter, topologyRouter, deploymentRouter, historyRouter){
 
 		'use strict';
 
@@ -19,14 +20,10 @@ define([
 				$stateProvider
 					.state('login', mainRouter.login)
 					.state('main', mainRouter.main)
-              //      .state('cancel', mainRouter.cancel)
 					.state('main.dashboard', dashboardRouter.dashboard)
 					.state('main.appManage', appManageRouter.appManage)
 					.state('main.appManageDeployment', deploymentRouter.deployment)
-					.state('main.appManageRollback', appManageRouter.rollback)
-					.state('main.appManageRollup', appManageRouter.rollup)
-					.state('main.appManageCancel', appManageRouter.cancel)
-					.state('main.appManageHistory', appManageRouter.history)
+					.state('main.appManageHistory', historyRouter.history)
 					.state('main.rbdManage', rbdManageRouter.rbdManage)
 					.state('main.costManage', costManageRouter.costManage)
 					.state('main.extensions', extensionsRouter.extensions)

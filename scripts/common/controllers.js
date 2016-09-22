@@ -7,8 +7,9 @@ define([
 	'../pages/extensions/controller',
 	'../pages/imageManage/controller',
 	'../pages/topology/controller',
-	'../pages/appManage/deployment/controller'
-	], function(mainController, dashboardController, appManageController, rbdManageController, costManageController, extensionsController, imageManageController, topologyController, deploymentController){
+	'../pages/appManage/deployment/controller',
+	'../pages/appManage/history/controller'
+	], function(mainController, dashboardController, appManageController, rbdManageController, costManageController, extensionsController, imageManageController, topologyController, deploymentController, historyController){
 
 		'use strict';
 		//获取全部controller

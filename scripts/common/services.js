@@ -7,8 +7,9 @@ define([
 	'../pages/extensions/service',
 	'../pages/imageManage/service',
 	'../pages/topology/service',
-	'../pages/appManage/deployment/service'
-], function(mainService, dashboardService, appManageService, rbdManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService){
+	'../pages/appManage/deployment/service',
+	'../pages/appManage/history/service'
+], function(mainService, dashboardService, appManageService, rbdManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService, historyService){
 
 	'use strict';
 	//获取全部service

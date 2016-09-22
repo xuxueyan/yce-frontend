@@ -43,7 +43,7 @@ define([
             }
 
             $scope.jump = function(){
-                $state.go('main.dashboard');
+                $state.go('main.appManage');
                 $rootScope.widget = {};
                 $rootScope.sessionId = $localStorage.sessionId;
                 $scope.data = {

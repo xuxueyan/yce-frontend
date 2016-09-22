@@ -23,7 +23,13 @@ define([
                         template : {
                             spec : {
                                 containers : [{
-                                    env : [],
+                                    env : [{
+                                        name : 'DB_USER',
+                                        value : ''
+                                    },{
+                                        name : 'DB_PASS',
+                                        value : ''
+                                    }],
                                     image : '', 
                                     resources : {
                                         limits : {}
@@ -104,10 +110,10 @@ define([
             $scope.portLists = [
                 {protocol: "TCP"}
             ];
-            $scope.addportL = function(){
+            $scope.addPort = function(){
                 $scope.portLists.push({});
             } 
-            $scope.delportL = function($index){
+            $scope.delPort = function($index){
                 $scope.portLists.splice($index,1)
             }
             $scope.activities =[
