@@ -52,10 +52,101 @@
                             <div class="form-group">
                                 <label class="form-label" for="field-replicas">副本数：</label>
                                 <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
-
+<!--
                                 <div class="controls">
                                     <input type="number" value="color" min="0" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
                                 </div>
+-->
+
+
+
+
+                                <div class="bar-0">
+                            <div class="bar-1">
+                                <ul>
+                                    <li class="more" value="0"></li>
+                                    <li class="grid" value="1"></li>
+                                    <li class="grid" value="2"></li>
+                                    <li class="grid" value="3"></li>
+                                    <li class="grid" value="4"></li>
+                                    <li class="grid" value="5"></li>
+                                    <li class="grid" value="6"></li>
+                                    <li class="grid" value="7"></li>
+                                    <li class="grid" value="8"></li>
+                                    <li class="grid" value="9"></li>
+                                </ul>
+                                <div class="push-1" id="push-1"></div>
+                            </div>
+                            <div class="value-1">
+                                <div class="value-min">1</div>
+                                <div class="value-max">10</div>
+                            </div>
+                        <input type="text" class="newMocks" value="7" />
+                        <script type="text/javascript" src="./js/jquery-1.11.2.min.js"></script>
+                        <script type="text/javascript">
+                            $(function() {
+                                var bar = $(".bar-0")
+                                var bar_w = bar.width() //获取滑块宽度
+                                var bar_h = $(".bar-1").height() //获取滑块高度
+                                var grid_w = bar_w / 9 //设置样式
+                                var grid_1 = Math.floor(grid_w)
+                                console.log(grid_1)
+                                $(".grid").css({
+                                    "width": grid_w,
+                                    "height": bar_h
+                                })
+                                $(".bar-1 .grid").each(function() {
+                                    var grid_h = $(this)
+                                    var grid_v = grid_h.val()
+                                    var push_l = parseInt($(".push-1").css("left")) //获取按钮位置
+
+                                    grid_h.click(function() {
+                                    $(".push-1").css({
+                                        "left": grid_1 * grid_v  + push_l
+                                        })
+                                    })
+                                    $(".more").click(function(){
+                                        $(".push-1").css({
+                                            "left": push_l
+                                        })
+                                    })
+                                })
+
+                                console.log($(".newMocks").val()+"@@@@@@@@@")
+
+                            })
+                        </script>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                             <div class="form-group">
                                 <label class="form-label">规格：</label>

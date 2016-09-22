@@ -128,14 +128,6 @@ define([
                     "name" : $scope.param.deployment.metadata.name,
                     "author" : $localStorage.userName,
                     "version" : $scope.version
-
-
-
-
-
-
-
-
                 };
                 $scope.param.appName = $scope.param.deployment.metadata.name;
                 $scope.dataTrans.dataCenters.forEach(function(elem, index){

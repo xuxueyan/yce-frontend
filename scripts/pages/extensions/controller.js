@@ -13,85 +13,90 @@ define([
         $scope.sessionName = $localStorage.userName;
 
         //  服务管理页面
-        $http({
-            url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/extensions',
-            method : 'GET',
-            headers : {sessionId}
-        })
-        .success(function(data){
-            if(data.code == 0){
-                $scope.newExtensions = JSON.parse(data.data);
-                var NewExtensions = JSON.parse(data.data);
-                NewExtensions.forEach(function(v){
-                    for(var itemLength in v.serviceList.items){ }
-                    $scope.itemLength = itemLength;
-                });
+        $scope.extensionsPage = function(){
+            $http({
+                url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/extensions',
+                method : 'GET',
+                headers : {sessionId}
+            })
+            .success(function(data){
+                if(data.code == 0){
+                    $scope.newExtensions = JSON.parse(data.data);
+                    var NewExtensions = JSON.parse(data.data);
+                    NewExtensions.forEach(function(v){
+                        for(var itemLength in v.serviceList.items){ }
+                        $scope.itemLength = itemLength;
+                    });
 
-                /*  点击服务的删除 */
-                $scope.alertBox1 = false;   //  alert的文本框
-                $scope.delItem = function(dcIds,item){
-                    $scope.alertBox1 = !false;
-                    /*  确定删除按钮  内为删除函数  */
-                    $scope.extnesionsDel = function(){
-                        $scope.alertBox1 = false;
-                        var serverNP = item.spec.ports[0].nodePort;
-                        var lebelType = item.metadata.labels.type;
-                        var serversName = String(item.metadata.name);
-                        var nodePorts = String(serverNP);
-                        var np = {
-                            nodePort : ""
-                        } 
-                        np.nodePort = nodePorts;
-                        if(lebelType == "service"){
-                            $http({
-                                url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/users/'+userId+'/services/'+serversName,
-                                method : 'DELETE',
-                                headers : np
-                            }).success(function(){})
-                            .error(function(data) {
-                                alert("lose");
-                            });
+                    /*  点击服务的删除 */
+                    $scope.alertBox1 = false;   //  alert的文本框
+                    $scope.delItem = function(dcIds,item){
+                        $scope.alertBox1 = !false;
+                        /*  确定删除按钮  内为删除函数  */
+                        $scope.extnesionsDel = function(){
+                            $scope.alertBox1 = false;
+                            var serverNP = item.spec.ports[0].nodePort;
+                            var lebelType = item.metadata.labels.type;
+                            var serversName = String(item.metadata.name);
+                            var nodePorts = String(serverNP);
+                            var np = {
+                                nodePort : ""
+                            } 
+                            np.nodePort = nodePorts;
+                            if(lebelType == "service"){
+                                $http({
+                                    url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/users/'+userId+'/services/'+serversName,
+                                    method : 'DELETE',
+                                    headers : np
+                                }).success(function(){})
+                                .error(function(data) {
+                                    alert("lose");
+                                });
+                            }
+                        }
+                        /*  取消删除按钮  */
+                        $scope.extnesionsBack = function(){
+                            console.log("quxiao")
+                            $scope.alertBox1 = false;
                         }
                     }
-                    /*  取消删除按钮  */
-                    $scope.extnesionsBack = function(){
-                        console.log("quxiao")
-                        $scope.alertBox1 = false;
-                    }
-                }
 
-                /*  点击访问点的删除 */
-                $scope.cutItem = function(dcIds,item){
-                    $scope.alertBox1 = !false;
-                    /*  确定删除按钮  内为删除函数  */
-                    $scope.extnesionsDel = function(){
-                        $scope.alertBox1 = false;
-                        var lebelType = item.metadata.labels.type;
-                        var serversName = String(item.metadata.name);
-                        if(lebelType == "endpoint"){
-                            $http({
-                                url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
-                                method : 'DELETE'
-                            })
-                            .success(function(){})
-                            .error(function(data) {
-                                alert("lose");
-                            });
-                        }  
-                    }
-                    /*  取消删除按钮  */
-                    $scope.extnesionsBack = function(){
-                        console.log("quxiao")
-                        $scope.alertBox1 = false;
+                    /*  点击访问点的删除 */
+                    $scope.cutItem = function(dcIds,item){
+                        $scope.alertBox1 = !false;
+                        /*  确定删除按钮  内为删除函数  */
+                        $scope.extnesionsDel = function(){
+                            $scope.alertBox1 = false;
+                            var lebelType = item.metadata.labels.type;
+                            var serversName = String(item.metadata.name);
+                            if(lebelType == "endpoint"){
+                                $http({
+                                    url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
+                                    method : 'DELETE'
+                                })
+                                .success(function(){})
+                                .error(function(data) {
+                                    alert("lose");
+                                });
+                            }  
+                        }
+                        /*  取消删除按钮  */
+                        $scope.extnesionsBack = function(){
+                            console.log("quxiao")
+                            $scope.alertBox1 = false;
+                        }
                     }
                 }
-            }
-        })
-        .error(function(){
-            if(data.code != 0){
-                alert(data.message);
-            }
-        })
+            })
+            .error(function(){
+                if(data.code != 0){
+                    alert(data.message);
+                }
+            })
+        }
+
+        $scope.extensionsPage();
+
 
         //  创建服务   GET
         $http({

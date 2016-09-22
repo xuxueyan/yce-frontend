@@ -14,7 +14,6 @@ define([
                 appManageService.getAppList($scope.param,function(data){
                     if(data.code == 0){
                        $scope.appList = JSON.parse(data.data);
-                    //   console.log(angular.toJson($scope.appList)+"@@@@ you")
                     }
                 });
             };
@@ -214,10 +213,13 @@ define([
             $scope.$on('submitScale',function(event,param){
                 param = angular.merge(param, $scope.param);
 
+                /************/
+                // 获取滑动块的数值
+                param.newSize = $(".newMocks").val();
+
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitScale(param,function(data){
-                        console.log(data);
                         $rootScope.widget.widgetScale = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
@@ -225,6 +227,8 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
+
+                console.log(angular.toJson(param))
             });
 
             // 删除应用
