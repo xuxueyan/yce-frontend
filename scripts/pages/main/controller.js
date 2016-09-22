@@ -52,7 +52,9 @@ define([
                     toggleNav : false
                 };
                 mainService.getNavlist({"sessionId": $localStorage.sessionId}, function (data) {
-                    $scope.navList = data.list;
+                    // $scope.navList = data.list;
+                    var nav = JSON.parse(data.data);
+                    $scope.navList = nav.list;
                 });
 
                 $scope.showSubnav = function (index) {

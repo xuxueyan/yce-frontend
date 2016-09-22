@@ -14,7 +14,6 @@ define([
                 appManageService.getAppList($scope.param,function(data){
                     if(data.code == 0){
                        $scope.appList = JSON.parse(data.data);
-                    //   console.log(angular.toJson($scope.appList)+"@@@@ you")
                     }
                 });
             };
