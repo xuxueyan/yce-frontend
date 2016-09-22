@@ -87,7 +87,7 @@ define([
                                 dcId: ""
                             }
                             $scope.np2.dcId = Number(dcIds)
-                            if(lebelType == "endpoint"){
+                            if(lebelType == "endpoints"){
                               /*  $http({
                                     url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
                                     method : 'DELETE'
@@ -404,7 +404,7 @@ define([
                         "labels": {
                             "name": "",
                             "author": "",
-                            "type" : "endpoint"
+                            "type" : "endpoints"
                         }
                     },
                     "subsets": []
