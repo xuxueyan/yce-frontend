@@ -60,17 +60,17 @@
 
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">端口组：</label>
-                                <span class="desc"></span>
+                                <span class="desc show-spans-1">{{ myText1 }}</span>
                                 <i class="fa fa-plus-square server-adds" ng-click="addPort()"></i>
                                 <div class="controls" ng-repeat="portlists in ports">
                                     <p class="server-p-1">
-                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.name" ng-pattern="/^[a-zA-Z0-9_-]*$/" required> 
-                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort" ng-pattern="/^[0-9]*$/" required> 
+                                        <span>名称</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.name" ng-pattern="/^[a-z0-9_-]*$/" required> 
+                                        <span>Target Port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.targetPort" ng-pattern="/^(?:[0-9]{1,5})$/" ng-blur="serNoderportsT()" required> 
                                         <b class="server-jia fa fa-minus-square" ng-click="delPort($index)"></b>
                                     </p>
                                     <p class="server-p-1">
-                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port" ng-pattern="/^[0-9]*$/" required>
-                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort" ng-pattern="/^[0-9]*$/" required>
+                                        <span>port</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-model="portlists.port" ng-pattern="/^(?:[0-9]{1,5})$/" ng-blur="serNoderportsP()" required>
+                                        <span>NodePort</span><input type="text" value="" class="form-control server-btn" id="field-1678" ng-disabled="serverDisabled" ng-model="portlists.nodePort" ng-pattern="/^(?:[0-9]{1,5})$/" ng-blur="serNoderportsN()" required>
                                     </p>
                                     <p class="server-p-1">
                                         <span>协议</span><select ng-model="portlists.protocol" class="form-inputs" ng-options="act for act in activities"></select>
