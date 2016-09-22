@@ -60,17 +60,16 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="field-1678">地址端口组</label>
-                            <span class="desc show-spans-1 warn" ng-show="expression">* 端口为1-65535</span><i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
+                            <span class="desc show-spans-1 warn">{{ endtext }}</span><i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
                             <div class="controls" ng-repeat=" epI in mockEnd">
                                 <p class="server-p-4">
-                                    <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.name" ng-pattern="/^[a-zA-Z0-9_-]*$/"><b class="fa fa-minus inputB"></b>
-                                    <span>协议</span>
-                                    <select ng-model="epI.ports.protocol" class="form-inputs" ng-options="act for act in epiPro"></select>
+                                    <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.name" ng-pattern="/^[a-z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
+                                    <span>协议</span><select ng-model="epI.ports.protocol" class="form-inputs" ng-options="act for act in epiPro"></select>
                                     <i class="fa fa-minus-square endP-del" ng-click="delendpointEx($index)"></i>
                                 </p>
                                 <p class="server-p-4">
-                                    <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" required><b class="fa fa-minus inputB"></b>
-                                    <span>端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-blur="blurS()" required>
+                                    <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" ng-blur="endpointId()" required><b class="fa fa-minus inputB"></b>
+                                    <span>端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-blur="endpointPort()" required>
 
                                 </p>
                             </div>
