@@ -6,7 +6,7 @@ define([
     ], function(Base64){
     'use strict';
 
-    var ctrl = ['$scope','$http','$localStorage', function($scope,$http,$localStorage){
+    var ctrl = ['$scope','$http','$localStorage','$state', function($scope,$http,$localStorage,$state){
         var userId = $localStorage.userId;
         var orgId = $localStorage.orgId;
         var sessionId = $localStorage.sessionId;
@@ -70,7 +70,6 @@ define([
                         }
                         /*  取消删除按钮  */
                         $scope.extnesionsBack = function(){
-                            console.log("quxiao")
                             $scope.alertBox1 = false;
                         }
                     }
@@ -106,7 +105,6 @@ define([
                         }
                         /*  取消删除按钮  */
                         $scope.extnesionsBack = function(){
-                        //    console.log("quxiao")
                             $scope.alertBox1 = false;
                         }
                     }
@@ -277,9 +275,9 @@ define([
                 })
                 /*  提交 post  */
                 $scope.param.service.spec.ports = $scope.ports;
-                console.log(angular.toJson($scope.param)+"@@@@ !")
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new', $scope.param).success(function(){
-                    alert("ok")
+                    alert("ok");
+                    $state.go('main.extensions');
                 }).error(function(data) {
                     alert("lose");
                 });
@@ -289,10 +287,8 @@ define([
                 $scope.ports.forEach(function(im){
                     // NodePort
                     if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        console.log("ok");
                         $scope.myText1 = "";
                     }else{
-                        console.log(10101)
                         $scope.myText1 = " NodePort大于30000 小于32767";
                     }
                 })
@@ -301,10 +297,8 @@ define([
             $scope.serNoderportsN = function(){
                 $scope.ports.forEach(function(im){
                     if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        console.log("ok");
                         $scope.myText1 = "";
                     }else{
-                        console.log(10101)
                         $scope.myText1 = " NodePort大于30000 小于32767";
                     }
                 })
@@ -313,10 +307,8 @@ define([
             $scope.serNoderportsP = function(){
                 $scope.ports.forEach(function(im){
                     if(0 < Number(im.port) &&  Number(im.port)< 65536){
-                        console.log("ok");
                         $scope.myText1 = "";
                     }else{
-                        console.log(10101)
                         $scope.myText1 = " port大于0 小于65536";
                     }
                 })
@@ -325,10 +317,8 @@ define([
             $scope.serNoderportsT = function(){
                 $scope.ports.forEach(function(im){
                     if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
-                        console.log("ok");
                         $scope.myText1 = "";
                     }else{
-                        console.log(10101)
                         $scope.myText1 = " Target Port大于0 小于65536";
                     }
                 })
@@ -368,7 +358,6 @@ define([
                 }
                 // 创建访问点 - 地址端口组 - 端口失焦判断
                 $scope.endpointPort = function(){
-                    console.log(angular.toJson($scope.mockEnd));
                     var mockP = angular.toJson($scope.mockEnd[0].ports.port);
                     if(mockP > 65535 || mockP < 1){
                         $scope.endtext = " 端口范围为：1-65535";
@@ -463,17 +452,17 @@ define([
                 $scope.endpointsJson.endpoints.subsets = adds;
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
 
-                console.log(angular.toJson($scope.endpointsJson));
                 //  提交 post
                 $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/new', $scope.endpointsJson).success(function(){
                     alert("ok")
+                    $state.go('main.extensions');
                 }).error(function(data) {
                     alert("lose");
                 });
             }
         })
         .error(function(){
-            console.log("lose");
+            alert("lose");
         })
 
     }]; 

@@ -8985,7 +8985,11 @@ table.dataTable.display tbody tr:first-child td {
 .show-spans-1{
     color: red !important;
 }
-
+.descs1{
+    font-size: 13px;
+    color: #999999;
+    margin-left: 15px;
+}
 
 
 

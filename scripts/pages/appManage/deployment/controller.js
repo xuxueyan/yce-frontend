@@ -152,10 +152,6 @@ define([
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
-                console.log(angular.toJson($scope.param)+"@@@====")
-             //   console.log(angular.toJson($scope.param.deployment.spec.template.spec.containers[0].image)+"@@@====")
-
-
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
                     $state.go('main.appManage')
