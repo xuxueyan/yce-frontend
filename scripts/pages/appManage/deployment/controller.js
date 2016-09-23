@@ -23,8 +23,14 @@ define([
                         template : {
                             spec : {
                                 containers : [{
-                                    env : [],
-                                    image : '',
+                                    env : [{
+                                        name : 'DB_USER',
+                                        value : ''
+                                    },{
+                                        name : 'DB_PASS',
+                                        value : ''
+                                    }],
+                                    image : '', 
                                     resources : {
                                         limits : {}
                                     },
@@ -93,56 +99,41 @@ define([
                 };
                 $rootScope.widget.widgetImageSelector = true;
             };
+            $scope.version = "";
             /*监听imageSelector(子)页面的emit*/
             $scope.$on('imageSelector',function(event, data){
                 $scope.param.deployment.spec.template.spec.containers[0].image = data;
                 $rootScope.widget.widgetImageSelector = false;
+                $scope.version = data.split(":")[2];
             });
 
-            $scope.portLists = [];
-            $scope.addportL = function(){
-                console.log(123)
+            $scope.portLists = [
+                {protocol: "TCP"}
+            ];
+            $scope.addPort = function(){
                 $scope.portLists.push({});
             } 
-            $scope.delportL = function($index){
+            $scope.delPort = function($index){
                 $scope.portLists.splice($index,1)
             }
-
-
-
-
+            $scope.activities =[
+                "TCP",
+                "UDP"
+            ];
 
             /*提交表单*/
             $scope.submit = function(){
 
-            var ddd = "";
-            $scope.portLists.forEach(function(m){
-                m.containerPort = Number(m.containerPort);
-                ddd = Number(m.containerPort);
-            })
-
-
-
-
-
-
-            $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
-
-
-                     console.log(ddd)
-                     console.log(angular.toJson($scope.portLists))
-            //         console.log(angular.toJson($scope.portLists[0].protocol))
-//                  [{"name":"test-frontend-1","containerPort":"TCP","protocol":"80"}]
-
-
-
-
-
-
+                $scope.portLists.forEach(function(m){
+                    m.containerPort = Number(m.containerPort);
+                })
+                
+                $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
 
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
-                    "author" : $localStorage.userName
+                    "author" : $localStorage.userName,
+                    "version" : $scope.version
                 };
                 $scope.param.appName = $scope.param.deployment.metadata.name;
                 $scope.dataTrans.dataCenters.forEach(function(elem, index){
@@ -166,6 +157,7 @@ define([
                 };
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
+
                 deploymentService.deploymentSubmit($scope.param,function(data){
                     alert('提交成功');
                     $state.go('main.appManage')

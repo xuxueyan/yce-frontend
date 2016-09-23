@@ -12,7 +12,7 @@ define([
 
             $scope.loadAppList = function(){
                 appManageService.getAppList($scope.param,function(data){
-                    if (data.code == 0) {
+                    if(data.code == 0){
                        $scope.appList = JSON.parse(data.data);
                     }
                 });
@@ -45,7 +45,8 @@ define([
             };
 
             // 滚动升级
-            $scope.rollingup = function(item, dcId, dcName){
+            $scope.endStr = "";
+            $scope.rollingup = function(item, dcId, dcName, image){
                 item.dcId = dcId;
                 item.dcName = dcName;
                 $scope.appRollingupConf = {
@@ -54,9 +55,30 @@ define([
                     isRollingup: true,
                     data : item
                 };
-
+                //  取用户的镜像 前面
                 $rootScope.widget.widgetRollingup = true;
+                $scope.endStr = image.split(":")[0] + ":" + image.split(":")[1];
             };
+
+
+            $scope.rollShow = true;
+
+            $scope.$on('imageButton', function(event, data) {
+                console.log(data.split(":")[0] + ":" + data.split(":")[1]);
+                console.log($scope.endStr);
+
+                if((data.split(":")[0] + ":" + data.split(":")[1]) != $scope.endStr) {
+                 //   $scope.roolShow = true;
+                    $scope.$broadcast('showTips', true);
+                    $scope.canSubmit = false;
+                } else {
+                 //   $scope.roolShow = false;
+                 $scope.$broadcast('showTips', false);
+                    $scope.canSubmit = true;
+                }
+            })
+
+            $scope.endImgs = "";
 
             $scope.$on('submitRollingup',function(event,param){
                 param = angular.merge(param, $scope.param);
@@ -66,6 +88,15 @@ define([
                         $rootScope.widget.widgetRollingup = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
+
+                        // 取升级里的升级镜像
+                        var imgS = param.strategy.image.slice(0,21);
+                        var arrImgs = param.strategy.image.slice(21);
+                        var lastImgs = arrImgs.split(":")[0]
+                        $scope.endImgs = imgS+lastImgs;
+
+                        console.log(angular.toJson($scope.endImgs)+"@@@-----");
+
                     },function(){
                         $scope.canSubmit = true;
                     });
@@ -84,41 +115,6 @@ define([
                 9 :"删除"
             }
 
-            /*  historyPage  */
-            appManageService.historyPage($scope.param,function(data){
-              //  console.log(angular.toJson(data))
-                if (data.code == 0) {
-                    $scope.historyList = JSON.parse(data.data).operationLog;
-
-                    //  操作类型
-                    $scope.historyList.forEach(function(i){
-                        i.records.actionName = leiMap[angular.toJson(i.records.actionType)];
-                    })
-
-                    /*  点击显示详细信息  */
-                    $scope.historyShowbox = false;
-                    $scope.historyLi = function(item){
-                        $scope.historyShowbox = !false;
-                        //   console.log(angular.toJson(item))
-                        //   console.log(angular.toJson(item))
-                        //ok console.log(JSON.parse(item.records.json).spec.replicas)
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].image);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory);
-                        //ok console.log(JSON.parse(item.records.json).spec.template.spec.containers[0]);
-       
-                        $scope.Newreplicas = JSON.parse(item.records.json).spec.replicas;
-                        $scope.Newimage = JSON.parse(item.records.json).spec.template.spec.containers[0].image;
-                        $scope.Newcpu = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu;
-                        $scope.Newmemory = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.memory;
-                        $scope.NewimagePullPolicy = JSON.parse(item.records.json).spec.template.spec.containers[0].imagePullPolicy;
-
-                    }
-                    $scope.historyShow = function(){
-                        $scope.historyShowbox = false;
-                    }
-                }
-            });
 
             // 回滚
             $scope.rollback = function(item, dcId, appName){
@@ -164,6 +160,13 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
+                
+                if($scope.endImgs == $scope.endStr){
+                    console.log("yes")
+                }else{
+                    console.log("nononono!")
+                }
+
             });
 
             // 扩容
@@ -183,10 +186,13 @@ define([
             $scope.$on('submitScale',function(event,param){
                 param = angular.merge(param, $scope.param);
 
+                /************/
+                // 获取滑动块的数值
+                param.newSize = $(".newMocks").val();
+
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitScale(param,function(data){
-                        console.log(data);
                         $rootScope.widget.widgetScale = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
@@ -194,6 +200,8 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
+
+                console.log(angular.toJson(param))
             });
 
             // 删除应用
