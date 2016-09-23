@@ -49,16 +49,6 @@ define([
                             $scope.np.dcId = Number(dcIds);
                             $scope.np.nodePort = nodePorts;
                             if(lebelType == "service"){
-                               /* $http({
-                                    url : '/api/v1/organizations/'+orgId+'/services/'+serversName,
-                                    method : 'POST',
-                                    headers : np
-                                }).success(function(){})
-                                .error(function(data) {
-                                    alert("lose");
-                                });
-                                */
-
                                 $http.post('/api/v1/organizations/'+orgId+'/services/'+serversName, $scope.np).success(function(){
                                     alert("ok")
 
@@ -87,14 +77,6 @@ define([
                             }
                             $scope.np2.dcId = Number(dcIds)
                             if(lebelType == "endpoints"){
-                              /*  $http({
-                                    url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
-                                    method : 'DELETE'
-                                })
-                                .success(function(){})
-                                .error(function(data) {
-                                    alert("lose");
-                                });*/
                                 $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(){
                                     alert("ok")
                                     $scope.extensionsPage();
@@ -216,6 +198,59 @@ define([
                 "TCP",
                 "UDP"
             ];
+
+            // 创建服务 - 端口组 - 失焦判断
+            $scope.serNoderportsN = function(){
+                $scope.ports.forEach(function(im){
+                    // NodePort
+                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " NodePort大于30000 小于32767";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - nodeport失焦判断
+            $scope.serNoderportsN = function(){
+                $scope.ports.forEach(function(im){
+                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " NodePort大于30000 小于32767";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - port失焦判断
+            $scope.serNoderportsP = function(){
+                $scope.ports.forEach(function(im){
+                    if(0 < Number(im.port) &&  Number(im.port)< 65536){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " port大于0 小于65536";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - targetPort失焦判断
+            $scope.serNoderportsT = function(){
+                $scope.ports.forEach(function(im){
+                    if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " Target Port大于0 小于65536";
+                    }
+                })
+            }
+            // 创建服务 - 服务名称失焦判断
+            $scope.serviceNames = function(){
+                var serviceNameStr = $scope.param.serviceName;
+
+                if(serviceNameStr == undefined){
+                    $scope.myServiceName = "您的应用名不正确"
+                }else{
+                    $scope.myServiceName = "应用名是您将要创建的应用的名称，组织内唯一"
+                }
+            }
+
             $scope.serversubmit = function(){
                 // 协议
                 $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
@@ -282,47 +317,7 @@ define([
                     alert("lose");
                 });
             }
-            // 创建服务 - 端口组 - 失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    // NodePort
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - nodeport失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - port失焦判断
-            $scope.serNoderportsP = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.port) &&  Number(im.port)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " port大于0 小于65536";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - targetPort失焦判断
-            $scope.serNoderportsT = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " Target Port大于0 小于65536";
-                    }
-                })
-            }
+            
                     
         })
         .error(function(){
@@ -412,6 +407,17 @@ define([
                 "TCP",
                 "UDP"
             ];
+
+            // 创建服务 - 服务名称失焦判断
+            $scope.endpointNames = function(){
+                var endpointNameStr = $scope.param.serviceName;
+
+                if(endpointNameStr == ""){
+                    $scope.myendpointName = "您的应用名不正确"
+                }else{
+                    $scope.myendpointName = ""
+                }
+            }
             // 提交
             $scope.endpointBtn = function(){
 

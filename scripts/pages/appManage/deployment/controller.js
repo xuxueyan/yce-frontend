@@ -107,28 +107,53 @@ define([
                 $scope.version = data.split(":")[2];
             });
 
-            $scope.portLists = [
+            $scope.param.deployment.spec.template.spec.containers[0].ports = [
                 {protocol: "TCP"}
             ];
             $scope.addPort = function(){
-                $scope.portLists.push({});
+                $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
             } 
             $scope.delPort = function($index){
-                $scope.portLists.splice($index,1)
+                $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index,1)
             }
             $scope.activities =[
                 "TCP",
                 "UDP"
             ];
 
+            // 发布 - 开放端口 - 端口 失焦
+            $scope.deploymentPortBler = function(){
+                $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(ports){
+                    if(ports.containerPort < 1 || ports.containerPort > 65535){
+                        $scope.deploymentPorts = "端口值为 1-65535";
+                    }else{
+                        $scope.deploymentPorts = "";
+                    }
+                })
+            }
+            // 发布 - 应用名称
+
+            $scope.deploymentName = function(){
+                var deploymentNameStr = $scope.param.deployment.metadata.name;
+                var deploymentNameReg = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/;
+
+                if(!deploymentNameReg.test(deploymentNameStr)){
+                    $scope.deploymentNames = "您的应用名不正确"
+                }else{
+                    $scope.deploymentNames = "应用名是您将要创建的应用的名称，组织内唯一"
+                }
+            }
+
+            //    param.deployment.metadata.name
+
             /*提交表单*/
             $scope.submit = function(){
 
-                $scope.portLists.forEach(function(m){
+                $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m){
                     m.containerPort = Number(m.containerPort);
                 })
                 
-                $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
+            //    $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
 
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
