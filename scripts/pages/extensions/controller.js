@@ -6,20 +6,19 @@ define([
     ], function(Base64){
     'use strict';
 
-    var ctrl = ['$scope','$http','$localStorage','$state', function($scope,$http,$localStorage,$state){
-        var userId = $localStorage.userId;
-        var orgId = $localStorage.orgId;
-        var sessionId = $localStorage.sessionId;
+    var ctrl = ['$scope','$http','$localStorage','$state','extensionsService', function($scope,$http,$localStorage,$state,extensionsService){
         $scope.sessionName = $localStorage.userName;
 
-        //  服务管理页面
+
+        $scope.myParam = {
+            orgId: $localStorage.orgId,
+            userId: $localStorage.userId,
+            sessionId: $localStorage.sessionId,
+        };
+
+
         $scope.extensionsPage = function(){
-            $http({
-                url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/extensions',
-                method : 'GET',
-                headers : {sessionId}
-            })
-            .success(function(data){
+            extensionsService.serviceManages($scope.myParam,function(data){
                 if(data.code == 0){
                     $scope.newExtensions = JSON.parse(data.data);
                     var NewExtensions = JSON.parse(data.data);
@@ -37,35 +36,54 @@ define([
                             $scope.alertBox1 = false;
                             var serverNP = item.spec.ports[0].nodePort;
                             var lebelType = item.metadata.labels.type;
-                            var serversName = String(item.metadata.name);
                             var nodePorts = Number(serverNP);
-                            $scope.np = {
-                                userId: "",
-                                dcId: "",
-                                nodePort: "" 
+                            $scope.LebeltypeParameter = {
+                                userId : "",
+                                dcId : "",
+                                nodePort : "",
+                                orgId : "",
+                                sessionId : "",
+                                serversName : ""
                             }
+                            $scope.LebeltypeParameter.serversName = String(item.metadata.name);
+                            $scope.LebeltypeParameter.sessionId = $localStorage.sessionId;
+                            $scope.LebeltypeParameter.orgId = $localStorage.orgId;
+                            $scope.LebeltypeParameter.userId = Number($localStorage.userId);
+                            $scope.LebeltypeParameter.dcId = Number(dcIds);
+                            $scope.LebeltypeParameter.nodePort = nodePorts;
 
-                            $scope.np.userId = Number(userId);
-                            $scope.np.dcId = Number(dcIds);
-                            $scope.np.nodePort = nodePorts;
                             if(lebelType == "service"){
-                               /* $http({
-                                    url : '/api/v1/organizations/'+orgId+'/services/'+serversName,
-                                    method : 'POST',
-                                    headers : np
-                                }).success(function(){})
-                                .error(function(data) {
-                                    alert("lose");
-                                });
-                                */
+                                // $http.post('/api/v1/organizations/'+orgId+'/services/'+serversName, $scope.LebeltypeParameter).success(function(){
+                                //     alert("ok")
 
-                                $http.post('/api/v1/organizations/'+orgId+'/services/'+serversName, $scope.np).success(function(){
+                                //     $scope.extensionsPage();
+                                // }).error(function(data) {
+                                //     alert("lose");
+                                // });
+
+
+
+
+                                extensionsService.lebelTypes($scope.LebeltypeParameter,function(){
                                     alert("ok")
-
                                     $scope.extensionsPage();
-                                }).error(function(data) {
+                                },function(){
                                     alert("lose");
-                                });
+                                })
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
                             }
                         }
                         /*  取消删除按钮  */
@@ -87,14 +105,6 @@ define([
                             }
                             $scope.np2.dcId = Number(dcIds)
                             if(lebelType == "endpoints"){
-                              /*  $http({
-                                    url : '/api/v1/organizations/'+orgId+'/datacenters/'+dcIds+'/endpoints/'+serversName,
-                                    method : 'DELETE'
-                                })
-                                .success(function(){})
-                                .error(function(data) {
-                                    alert("lose");
-                                });*/
                                 $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(){
                                     alert("ok")
                                     $scope.extensionsPage();
@@ -109,23 +119,18 @@ define([
                         }
                     }
                 }
-            })
-            .error(function(){
+            },function(){
                 if(data.code != 0){
                     alert(data.message);
                 }
             })
         }
-
         $scope.extensionsPage();
 
-       
-        //  创建服务   GET
-        $http({
-            url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/services/init',
-            method : 'GET'
-        })
-        .success(function(data){
+
+
+        // 创建服务
+        extensionsService.CreatService($scope.myParam,function(data){
             $scope.extentServers = data;
             var extentServers = data;
             $scope.extentServerLei = JSON.parse($scope.extentServers.data);
@@ -216,6 +221,59 @@ define([
                 "TCP",
                 "UDP"
             ];
+
+            // 创建服务 - 端口组 - 失焦判断
+            $scope.serNoderportsN = function(){
+                $scope.ports.forEach(function(im){
+                    // NodePort
+                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " NodePort大于30000 小于32767";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - nodeport失焦判断
+            $scope.serNoderportsN = function(){
+                $scope.ports.forEach(function(im){
+                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " NodePort大于30000 小于32767";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - port失焦判断
+            $scope.serNoderportsP = function(){
+                $scope.ports.forEach(function(im){
+                    if(0 < Number(im.port) &&  Number(im.port)< 65536){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " port大于0 小于65536";
+                    }
+                })
+            }
+            // 创建服务 - 端口组 - targetPort失焦判断
+            $scope.serNoderportsT = function(){
+                $scope.ports.forEach(function(im){
+                    if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
+                        $scope.myText1 = "";
+                    }else{
+                        $scope.myText1 = " Target Port大于0 小于65536";
+                    }
+                })
+            }
+            // 创建服务 - 服务名称失焦判断
+            $scope.serviceNames = function(){
+                var serviceNameStr = $scope.param.serviceName;
+
+                if(serviceNameStr == undefined){
+                    $scope.myServiceName = "您的应用名不正确"
+                }else{
+                    $scope.myServiceName = ""
+                }
+            }
+
             $scope.serversubmit = function(){
                 // 协议
                 $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
@@ -275,68 +333,29 @@ define([
                 })
                 /*  提交 post  */
                 $scope.param.service.spec.ports = $scope.ports;
-                $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/services/new', $scope.param).success(function(){
+
+                $scope.param.userId = $localStorage.userId;
+                $scope.param.orgId = $localStorage.orgId;
+                $scope.param.sessionId = $localStorage.sessionId;
+
+                extensionsService.CreatServicePost($scope.param,function(){
                     alert("ok");
                     $state.go('main.extensions');
-                }).error(function(data) {
+                },function(){
                     alert("lose");
-                });
-            }
-            // 创建服务 - 端口组 - 失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    // NodePort
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
                 })
             }
-            // 创建服务 - 端口组 - nodeport失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - port失焦判断
-            $scope.serNoderportsP = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.port) &&  Number(im.port)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " port大于0 小于65536";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - targetPort失焦判断
-            $scope.serNoderportsT = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " Target Port大于0 小于65536";
-                    }
-                })
-            }
-                    
-        })
-        .error(function(){
-            alert(extentServers.message);
-        })
+            
+         },function(){
+            alert(extentServers.message)
+         })
 
-        //  创建访问点  GET
 
-        $http({
-            url : '/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/init',
-            method : 'GET'
-        })
-        .success(function(data){
+
+        //创建访问点
+        extensionsService.CreatAccessPoint($scope.myParam,function(data){
             $scope.endpointsData = JSON.parse(data.data);
+
             if(data.code == 0){
                 // add label
                 $scope.endleis = [];
@@ -412,6 +431,19 @@ define([
                 "TCP",
                 "UDP"
             ];
+
+            // 创建服务 - 服务名称失焦判断
+            $scope.endpointNames = function(){
+                var endpointNameStr = $scope.endpointsJson.endpointsName;
+                console.log(endpointNameStr)
+
+                if(endpointNameStr == ""){
+                    $scope.myendpointName = "您的应用名不正确"
+                }else{
+                    $scope.myendpointName = ""
+                }
+            }
+
             // 提交
             $scope.endpointBtn = function(){
 
@@ -450,20 +482,22 @@ define([
                 }
 
                 $scope.endpointsJson.endpoints.subsets = adds;
+
+                $scope.endpointsJson.userId = userId;
+                $scope.endpointsJson.orgId = orgId;
+                $scope.endpointsJson.sessionId = sessionId;
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
 
-                //  提交 post
-                $http.post('/api/v1/organizations/'+orgId+'/users/'+userId+'/endpoints/new', $scope.endpointsJson).success(function(){
+                extensionsService.CreatAccessPointPost($scope.endpointsJson,function(){
                     alert("ok")
                     $state.go('main.extensions');
-                }).error(function(data) {
+                },function(){
                     alert("lose");
-                });
+                })
+
             }
         })
-        .error(function(){
-            alert("lose");
-        })
+
 
     }]; 
 
