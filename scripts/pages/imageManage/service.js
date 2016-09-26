@@ -6,6 +6,11 @@ define([
 	var getApis = function($http){
 		var apis = {};
 
+
+		apis.myImageManage = function(parameter,success,error){
+			return utils.http($http, 'get', '/api/v1/registry/images',parameter,success,error);
+
+		};
 		return apis;
 	};	
 
@@ -17,3 +22,4 @@ define([
 
 	return services;
 });
+
