@@ -53,7 +53,7 @@
                                 <label class="form-label" for="field-replicas">副本数：</label>
                                 <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
                                 <div class="controls">
-                                    <input type="number" value="color" min="0" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
+                                    <input type="number" value="color" ng-init="param.deployment.spec.replicas=1" min="1" max="10" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
                                 </div>
                             </div>
                             <div class="form-group">

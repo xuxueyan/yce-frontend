@@ -246,7 +246,6 @@ define([
         }];
 
 
-
         var controllers = [
             {module: 'appManage', name: 'appManageController', ctrl: ctrl}
         ];
