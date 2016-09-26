@@ -55,16 +55,36 @@ define([
                     isRollingup: true,
                     data : item
                 };
+
+            //    console.log(angular.toJson(item))
+            //    console.log(image)
+
                 //  取用户的镜像 前面
                 $rootScope.widget.widgetRollingup = true;
-                $scope.endStr = image.split(":")[0] + ":" + image.split(":")[1];
+                var endStr = image.lastIndexOf(":");
+                $scope.numNewImage = image.substring(0,endStr);
+
+                console.log($scope.numNewImage+"@@@!!!")
+
+
+                // console.log(item)
+
+
+
+
+
+
+
             };
 
 
             $scope.rollShow = true;
 
             $scope.$on('imageButton', function(event, data) {
-                if((data.split(":")[0] + ":" + data.split(":")[1]) != $scope.endStr) {
+            //    获取应用管理 - 升级 - 升级镜像
+            //    console.log(data.substring(0,data.lastIndexOf(":"))     +"@@@@@")
+
+                if(data.substring(0,data.lastIndexOf(":")) != $scope.numNewImage) {
                     $scope.$broadcast('showTips', true);
                     $scope.canSubmit = false;
                 } else {
@@ -83,12 +103,6 @@ define([
                         $rootScope.widget.widgetRollingup = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
-
-                        // 取升级里的升级镜像
-                        var imgS = param.strategy.image.slice(0,21);
-                        var arrImgs = param.strategy.image.slice(21);
-                        var lastImgs = arrImgs.split(":")[0]
-                        $scope.endImgs = imgS+lastImgs;
 
                     },function(){
                         $scope.canSubmit = true;
