@@ -14,6 +14,18 @@ define([
                 sessionId: $localStorage.sessionId,
             };
 
+            var leiMap = {
+                1 :"查询",
+                2 :"上线",
+                3 :"回滚",
+                4 :"滚动升级",
+                5 :"扩容",
+                6 :"取消上线,下线",
+                7 :"暂停上线",
+                8 :"恢复上线",
+                9 :"删除"
+            }
+
             /*  historyPage  */
             historyService.getOperationLog($scope.param,function(data){
                 //  console.log(angular.toJson(data))
