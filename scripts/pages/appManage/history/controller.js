@@ -28,7 +28,7 @@ define([
                     /*  点击显示详细信息  */
                     $scope.historyShowbox = false;
                     $scope.historyLi = function(item){
-                        $scope.historyShowbox = !false;
+                        $scope.historyShowbox = true;
                         $scope.Newreplicas = JSON.parse(item.records.json).spec.replicas;
                         $scope.Newimage = JSON.parse(item.records.json).spec.template.spec.containers[0].image;
                         $scope.Newcpu = JSON.parse(item.records.json).spec.template.spec.containers[0].resources.limits.cpu;
