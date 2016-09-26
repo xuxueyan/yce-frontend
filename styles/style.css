@@ -8990,7 +8990,12 @@ table.dataTable.display tbody tr:first-child td {
     color: #999999;
     margin-left: 15px;
 }
-
+.labels-group-box{
+    margin-left: 21px;
+}
+.row-box-1{
+    margin-left: 2px;
+}
 
 
 

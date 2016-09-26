@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <table id="appList" class="display table table-hover table-condensed dataTable no-footer appList-table appManageTable"
-                                   role="grid" aria-describedby="example_info" ng-repeat="app in appList | filter:data.search">
+                                   role="grid" aria-describedby="example_info">
                                 <thead class="appManage-headle">
                                     <tr role="row">
                                         <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ID">ID</th>
@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody ng-repeat="app in appList | filter:data.search">
                                     <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments" >
                                         <td>{{$index+1}}</td>
                                         <td class="sorting_1">

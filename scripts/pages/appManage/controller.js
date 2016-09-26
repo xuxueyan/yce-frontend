@@ -64,15 +64,10 @@ define([
             $scope.rollShow = true;
 
             $scope.$on('imageButton', function(event, data) {
-                console.log(data.split(":")[0] + ":" + data.split(":")[1]);
-                console.log($scope.endStr);
-
                 if((data.split(":")[0] + ":" + data.split(":")[1]) != $scope.endStr) {
-                 //   $scope.roolShow = true;
                     $scope.$broadcast('showTips', true);
                     $scope.canSubmit = false;
                 } else {
-                 //   $scope.roolShow = false;
                  $scope.$broadcast('showTips', false);
                     $scope.canSubmit = true;
                 }
@@ -94,8 +89,6 @@ define([
                         var arrImgs = param.strategy.image.slice(21);
                         var lastImgs = arrImgs.split(":")[0]
                         $scope.endImgs = imgS+lastImgs;
-
-                        console.log(angular.toJson($scope.endImgs)+"@@@-----");
 
                     },function(){
                         $scope.canSubmit = true;
@@ -148,13 +141,6 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
-                
-                if($scope.endImgs == $scope.endStr){
-                    console.log("yes")
-                }else{
-                    console.log("nononono!")
-                }
-
             });
 
             // 扩容
@@ -188,8 +174,6 @@ define([
                         $scope.canSubmit = true;
                     });
                 }
-
-                console.log(angular.toJson(param))
             });
 
             // 删除应用
@@ -207,10 +191,6 @@ define([
                 $rootScope.widget.widgetDelete = true;
             };
             $scope.$on('submitDelete',function(event){
-                console.log($scope.param);
-                // param = angular.merge(param, $scope.param);
-                // param = $scope.param;
-
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
                     appManageService.submitDelete($scope.param,function(data){

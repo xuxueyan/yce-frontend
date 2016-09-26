@@ -9,6 +9,10 @@ define([
 			return utils.http($http, 'get', '/api/v1/organizations/' + param.orgId + '/users/' + param.userId + '/deployments/init', param, success, error);
 		};
 
+		apis.delploymentImage = function(param, success, error){
+			return utils.http($http, 'get', '/api/v1/registry/images', param, success, error)
+		}
+
 		apis.deploymentSubmit = function(param, success, error){
 			return utils.http($http, 'post', ' /api/v1/organizations/' + param.orgId + '/users/' + param.userId + '/deployments/new', param, success, error);
 		};
