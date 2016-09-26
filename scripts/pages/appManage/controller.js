@@ -110,18 +110,6 @@ define([
                 }
             });
 
-            var leiMap = {
-                1 :"查询",
-                2 :"上线",
-                3 :"回滚",
-                4 :"滚动升级",
-                5 :"扩容",
-                6 :"取消上线,下线",
-                7 :"暂停上线",
-                8 :"恢复上线",
-                9 :"删除"
-            }
-
 
             // 回滚
             $scope.rollback = function(item, dcId, appName){
@@ -188,7 +176,7 @@ define([
 
                 /************/
                 // 获取滑动块的数值
-                param.newSize = $(".newMocks").val();
+                // param.newSize = $(".newMocks").val();
 
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
