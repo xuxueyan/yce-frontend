@@ -144,8 +144,6 @@ define([
                 }
             }
 
-            //    param.deployment.metadata.name
-
             /*提交表单*/
             $scope.submit = function(){
 
@@ -153,7 +151,6 @@ define([
                     m.containerPort = Number(m.containerPort);
                 })
                 
-            //    $scope.param.deployment.spec.template.spec.containers[0].ports = $scope.portLists;
 
                 $scope.param.deployment.metadata.labels = {
                     "name" : $scope.param.deployment.metadata.name,
@@ -192,11 +189,7 @@ define([
             };
 
             // Image
-            $http({
-                method: 'GET',
-                url: '/api/v1/registry/images'
-            })
-            .success(function(data) {
+            deploymentService.delploymentImage('',function(data){
                 var dataObject = JSON.parse(data.data);
 
                 // make new images:tags
@@ -217,12 +210,10 @@ define([
                         $scope.param.deployment.metadata.labels.version = $1;
                     });
                 }
-
-
+            },function(){
+                alert("getImages error")
             })
-            .error(function() {
-                console.log("getImages error")
-            })
+
         }];
         var controllers = [
             {module: 'appManage', name: 'deploymentController', ctrl: ctrl}
