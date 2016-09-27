@@ -1394,6 +1394,14 @@ select, textarea, .form-control {
     margin-left: 15px;
     position: absolute;
 }
+.form-group .warn {
+    font-size: 13px;
+    color: red;
+    margin-left: 15px;
+    position: absolute;
+
+}
+
 .help-block {
     color: #999999;
     font-style: italic;
