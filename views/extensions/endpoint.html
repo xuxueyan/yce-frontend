@@ -18,22 +18,11 @@
                     <div class="col-xs-12 col-sm-9 col-md-8">
                         <div class="form-group">
                             <label class="form-label" for="field-15121">访问点名称</label>
-                            <span class="desc show-spans-1">{{ myendpointName }}</span>
+                            <span class="desc" ng-show="endpointPot" ng-init="endpointPot = true">应用名是您将要创建的应用的名称，组织内唯一</span>
+                            <span class="desc show-spans-1" ng-show="rollLogin.endpointName.$error.pattern">您的应用名不正确</span>
                             <div class="controls">
-                                <input type="text" value="" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-blur="endpointNames()" required>
+                                <input type="text" name="endpointName" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-blur="!rollLogin.endpointName.$error.pattern ?  endpointPot = false : endpointPot = true" required>
                             </div>
-
-                          <!--    <div class="controls">
-                                <input type="text" value="" class="form-control" id="field-1678"  ng-model="param.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-blur="serviceNames()" required />
-                            </div> -->
-
-
-
-
-
-
-
-
                         </div>
 
                         <div class="form-group">
@@ -46,9 +35,10 @@
                                 </label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="form-label" for="field-1678">标签组：</label>
-                            <span class="desc"></span>
+                            <span class="desc show-spans-1" ng-show="rollLogin.endpointLabelsKey.$error.pattern || rollLogin.endpointLabelsVal.$error.pattern">您输入的格式不正确</span>
                             <i class="fa fa-plus-square server-add" ng-click="addendpointjlabel()"></i>
                             <p class="server-p-3">
                                 <span>key</span><input type="text" placeholder="name" class="form-control server-btn" id="field-1678" disabled><b class="fa fa-minus inputB"></b>
@@ -64,25 +54,28 @@
                             </p>
                             <div class="controls" ng-repeat="endlei in endleis">
                                 <p class="server-p-3">
-                                    <span>key</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelKey" ng-pattern="/^[a-zA-Z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
-                                    <span>value</span><input type="text" class="form-control server-btn" ng-model="endlei.endlabelValue" ng-pattern="/^[a-zA-Z0-9_-]*$/" required>
+                                    <span>key</span><input type="text" name="endpointLabelsKey" class="form-control server-btn" ng-model="endlei.endlabelKey" ng-pattern="/^[a-zA-Z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
+                                    <span>value</span><input type="text" name="endpointLabelsVal" class="form-control server-btn" ng-model="endlei.endlabelValue" ng-pattern="/^[a-zA-Z0-9_-]*$/" required>
                                     <b class="server-jia fa fa-minus-square" ng-click="delendpointjlabel($index)"></b>
                                 </p>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="form-label" for="field-1678">地址端口组</label>
-                            <span class="desc show-spans-1 warn">{{ endtext }}</span><i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
+                            <span class="desc show-spans-1" ng-show="rollLogin.endpointPortName.$error.pattern">您输入的名称不对，仅允许字母数字下划线</span>
+                            <span class="desc show-spans-1" ng-show="!rollLogin.endpointPortName.$error.pattern && rollLogin.endpointPortIp.$error.pattern">IP地址不正确</span>
+                            <span class="desc show-spans-1" ng-show="(!rollLogin.endpointPortName.$error.pattern && !rollLogin.endpointPortIp.$error.pattern) && rollLogin.endpointPortport.$error.pattern">端口不正确</span>
+                            <i class="fa fa-plus-square endP-add" ng-click="addendpointEx()"></i>
                             <div class="controls" ng-repeat=" epI in mockEnd">
                                 <p class="server-p-4">
-                                    <span>名称</span><input type="text" class="form-control server-btn" id="field-1678" ng-model="epI.ports.name" ng-pattern="/^[a-z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
+                                    <span>名称</span><input type="text" name="endpointPortName" class="form-control server-btn" id="field-1678" ng-model="epI.ports.name" ng-pattern="/^[a-z0-9_-]*$/" required><b class="fa fa-minus inputB"></b>
                                     <span>协议</span><select ng-model="epI.ports.protocol" class="form-inputs" ng-options="act for act in epiPro"></select>
                                     <i class="fa fa-minus-square endP-del" ng-click="delendpointEx($index)"></i>
                                 </p>
                                 <p class="server-p-4">
-                                    <span>ip地址</span><input type="text" class="form-control server-btn" id="field-1678"  ng-model="epI.addresses.ip" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" ng-blur="endpointId()" required><b class="fa fa-minus inputB"></b>
-                                    <span>端口</span><input type="number" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-blur="endpointPort()" required>
-
+                                    <span>ip地址</span><input type="text" name="endpointPortIp" class="form-control server-btn" id="field-1678" ng-model="epI.addresses.ip" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/"  required><b class="fa fa-minus inputB"></b>
+                                    <span>端口</span><input type="number" name="endpointPortport" class="form-control server-btn" id="field-1678" ng-model="epI.ports.port" ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" required>
                                 </p>
                             </div>
                         </div>
