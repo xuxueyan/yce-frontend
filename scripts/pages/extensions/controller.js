@@ -53,37 +53,12 @@ define([
                             $scope.LebeltypeParameter.nodePort = nodePorts;
 
                             if(lebelType == "service"){
-                                // $http.post('/api/v1/organizations/'+orgId+'/services/'+serversName, $scope.LebeltypeParameter).success(function(){
-                                //     alert("ok")
-
-                                //     $scope.extensionsPage();
-                                // }).error(function(data) {
-                                //     alert("lose");
-                                // });
-
-
-
-
                                 extensionsService.lebelTypes($scope.LebeltypeParameter,function(){
                                     alert("ok")
                                     $scope.extensionsPage();
                                 },function(){
                                     alert("lose");
                                 })
-
-                            
-
-
-
-
-
-
-
-
-
-
-
-
                             }
                         }
                         /*  取消删除按钮  */
@@ -222,58 +197,6 @@ define([
                 "UDP"
             ];
 
-            // 创建服务 - 端口组 - 失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    // NodePort
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - nodeport失焦判断
-            $scope.serNoderportsN = function(){
-                $scope.ports.forEach(function(im){
-                    if(29999 < Number(im.nodePort) &&  Number(im.nodePort)< 32768){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " NodePort大于30000 小于32767";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - port失焦判断
-            $scope.serNoderportsP = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.port) &&  Number(im.port)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " port大于0 小于65536";
-                    }
-                })
-            }
-            // 创建服务 - 端口组 - targetPort失焦判断
-            $scope.serNoderportsT = function(){
-                $scope.ports.forEach(function(im){
-                    if(0 < Number(im.targetPort) &&  Number(im.targetPort)< 65536){
-                        $scope.myText1 = "";
-                    }else{
-                        $scope.myText1 = " Target Port大于0 小于65536";
-                    }
-                })
-            }
-            // 创建服务 - 服务名称失焦判断
-            $scope.serviceNames = function(){
-                var serviceNameStr = $scope.param.serviceName;
-
-                if(serviceNameStr == undefined){
-                    $scope.myServiceName = "您的应用名不正确"
-                }else{
-                    $scope.myServiceName = ""
-                }
-            }
-
             $scope.serversubmit = function(){
                 // 协议
                 $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
@@ -375,28 +298,6 @@ define([
                 $scope.delendpointEx = function($index){
                     $scope.mockEnd.splice($index,1);
                 }
-                // 创建访问点 - 地址端口组 - 端口失焦判断
-                $scope.endpointPort = function(){
-                    var mockP = angular.toJson($scope.mockEnd[0].ports.port);
-                    if(mockP > 65535 || mockP < 1){
-                        $scope.endtext = " 端口范围为：1-65535";
-                    }else{
-                        $scope.endtext = "";
-                    }
-                }
-                $scope.endpointId = function(){
-                    var mockI = angular.toJson($scope.mockEnd[0]);
-                    var mockA = angular.toJson($scope.mockEnd[0].addresses);
-                    if(mockI == "{}"){
-                        $scope.endtext = " IP地址不正确";
-                    }else if(!mockA){
-                        $scope.endtext = " IP地址不正确";
-                    }else if(mockA == "{}"){
-                        $scope.endtext = " IP地址不正确";
-                    }else{
-                        $scope.endtext = "";
-                    }
-                }
             }
 
             $scope.endpointsJson = {
@@ -426,23 +327,10 @@ define([
             adds.ports = [];
 
             // 访问点的协议
-
             $scope.epiPro =[
                 "TCP",
                 "UDP"
             ];
-
-            // 创建服务 - 服务名称失焦判断
-            $scope.endpointNames = function(){
-                var endpointNameStr = $scope.endpointsJson.endpointsName;
-                console.log(endpointNameStr)
-
-                if(endpointNameStr == ""){
-                    $scope.myendpointName = "您的应用名不正确"
-                }else{
-                    $scope.myendpointName = ""
-                }
-            }
 
             // 提交
             $scope.endpointBtn = function(){
