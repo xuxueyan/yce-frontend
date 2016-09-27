@@ -14,31 +14,41 @@
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
-                <div class="form-group">
-                    <label class="form-label">应用名称：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" disabled>
+
+
+            <form name="dilatation">
+
+                <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
+                    <div class="form-group">
+                        <label class="form-label">应用名称：</label>
+                        <span class="desc"></span>
+                        <div class="controls">
+                            <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">镜像名称：</label>
+                        <span class="desc"></span>
+                        <div class="controls">
+                            <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="field-replicas" class="form-label">实例个数：</label>
+                        <span class="desc" ng-show="newSize" ng-init="newSize = true">选择您要扩容的应用实例的数量</span>
+                        <span class="warn" ng-show="dilatation.size.$error.pattern"> 实例个数为1-10</span>
+                        <div class="controls">
+                            <input type="number" name="size" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control"
+                                ng-focus="newSize = false" ng-blur="dilatation.size.$error.pattern ? newSize = false : newSize = true;" ng-pattern="/^([1-9]|10)$/">
+                        </div>
+
+
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">镜像名称：</label>
-                    <span class="desc"></span>
-                    <div class="controls">
-                        <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" disabled>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="field-replicas" class="form-label">实例个数：</label>
-                    <span class="descs1">选择您要扩容的应用实例的数量</span>
-                
-                    <div class="controls">
-                        <input type="number" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control ng-pristine ng-untouched ng-valid-min ng-invalid ng-invalid-required ng-valid-pattern" pattern="[0-9]" min="1" max="10" required="" value="color">
-                    </div> 
-                </div>
+            </form>
 
 
 
