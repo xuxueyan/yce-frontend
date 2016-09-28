@@ -175,8 +175,6 @@ define([
                 param = angular.merge(param, $scope.param);
 
                 /************/
-                // 获取滑动块的数值
-                // param.newSize = $(".newMocks").val();
 
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
