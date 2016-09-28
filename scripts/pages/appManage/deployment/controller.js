@@ -49,6 +49,7 @@ define([
                     }
                 }
             };
+
             $scope.dataTrans = {
                 dataCenters : [],
                 labels : [],
