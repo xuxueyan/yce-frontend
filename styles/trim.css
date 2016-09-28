@@ -1,5 +1,7 @@
-/*基础镜像样式修改*/
-/*2016-09-09 by licheng*/
+/*修正Firefox上的小BUG*/
+
+
+/*2016-09-27 by licheng*/
 
 .tool-1 {
     margin-bottom: 10px;
@@ -8,9 +10,15 @@
 .tool-1 .tool-2 {
     height: auto;
 }
-.tool-2 .table{
+
+.tool-1 .custom-dropzone {
+    width: 100%;
+}
+
+.tool-2 .table {
     margin-bottom: 0;
 }
+
 .java-1 {}
 
 .java-2 {
@@ -42,6 +50,13 @@
     background-size: 80%;
 }
 
+.python-1 {
+    background: url(../data/albums/python.png) no-repeat;
+    background-position: 50%;
+    height: 250px;
+    background-size: 100%;
+}
+
 .mysql-2 {
     background: url(../data/albums/mysql.png) no-repeat;
     background-position: 50%;
@@ -58,111 +73,16 @@
     background-position: 50%;
     height: 250px;
 }
+
+
 /*警告样式*/
-.warn{
+
+.warn {
     position: absolute;
-}
-/*滑块样式*/
-.bar-0 ul,
-.bar-0 li {
-    font-size: 0;
-    padding: 0;
-}
-.bar-0 div:before {
-    content: "";
-    display: table;
-    line-height: 0;
-}
-    
-.bar-0 div:after {
-    display: table;
-    content: "";
-    width: 0;
-    clear: both;
-}
-    
-.bar-0 {
-    width: 500px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
-    
-.bar-1 {
-    background: -webkit-linear-gradient(left, #cccccc, #51adfd);
-        /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(left, #cccccc, #51adfd);
-        /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(left, #cccccc, #51adfd);
-        /* Firefox 3.6 - 15 */
-    background: linear-gradient(to right, #cccccc, #51adfd);
-        /* 标准的语法 */
-    display: block;
-    height: 10px;
-    width: 100%;
-    -moz-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.3);
-    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.3);
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    position: relative;
-}
-.more{
-    position: absolute;
-    width: 10px;
-    height: 10px;
-}
-.bar-0 ul{
-    padding-left: 5px;
-}
-.push-1 {
-    background: white;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: -6px;
-    left: -10px;
-    background-size: 100%;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(0, 0, 0, 0.1)));
-    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
-    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.1));
-    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    -webkit-transition-duration: .2s;
-    transition-duration: .2s;
-    -webkit-transition-property: all;
-    transition-property: all;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-    
-.bar-1 .grid {
-    border-left: 2px solid #fff;
-    display: inline-block;
-    margin-left: -1px;
-    margin-right: -1px;
-}
-    
-.bar-1 li:first-child {
-    border: none;
 }
 
-.bar-0 .ui-slider.slider-primary .ui-widget-header {
-    opacity: 0;
-}
-    
-.value-1>div {
-    float: left;
-}
-    
-.value-1 .value-max {
-    float: right;
+/*菜单栏优化 2016-09-27 by licheng*/
+
+.page-sidebar .profile-info {
+    margin-bottom: 10px;
 }
