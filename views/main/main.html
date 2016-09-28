@@ -6,7 +6,7 @@
         <div class='pull-left'>
             <ul class="info-menu left-links list-inline list-unstyled">
                 <li class="sidebar-toggle-wrap">
-                    <a href="javascript:void(0);" ng-click="data.toggleNav=!data.toggleNav" class="sidebar_toggle">
+                    <a href="javascript:void(0);" ng-click="toggleNav=!toggleNav" class="sidebar_toggle">
                         <i class="fa fa-bars"></i>
                     </a>
                 </li>
@@ -65,7 +65,7 @@
 
     <!-- SIDEBAR - START -->
 
-    <div class="page-sidebar pagescroll" ng-class="{collapseit:data.toggleNav}">
+    <div class="page-sidebar pagescroll" ng-class="{collapseit:toggleNav}">
 
         <!-- MAIN MENU - START -->
         <div class="page-sidebar-wrapper" id="main-menu-wrapper">
@@ -129,7 +129,7 @@
     </div>
     <!--  SIDEBAR - END -->
     <!-- START CONTENT -->
-    <section ui-view id="main-content" ng-class="{sidebar_shift:data.toggleNav}"></section>
+    <section ui-view id="main-content" ng-class="{sidebar_shift:toggleNav}"></section>
     <!-- END CONTENT -->
     <div class="page-chatapi hideit">
 

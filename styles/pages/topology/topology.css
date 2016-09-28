@@ -1,18 +1,10 @@
 .topology-box{
-    position:fixed;
-    top: 160px;
-    left: 290px;
-    bottom: 20px;
-    right: 45px;
+    background-color: #fff ;
 }
 kubernetes-topology-graph {
     display: block;
-    user-select: none;
-    border: 40px solid #fff;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-bottom-width:90px;
+    padding: 40px;
+    height: 550px;
 }
 
 .kube-topology g {
@@ -103,12 +95,7 @@ kubernetes-topology-icon:hover use {
 
 .topology-controls {
     background-color: lightgray;
-    bottom: 20px;
-    left: 40px;
-    padding: 0 10px;
-    position: absolute;
-    right: 40px;
-    height:55px;
+    padding-left: 10px;
 }
 
 #selected {

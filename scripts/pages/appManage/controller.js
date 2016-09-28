@@ -18,7 +18,6 @@ define([
                 });
             };
             $scope.loadAppList();
-
             // 发布详情
             $scope.showAppDeployDetail = function(item){
                 $scope.appDeployDetailConf = {
@@ -56,24 +55,10 @@ define([
                     data : item
                 };
 
-            //    console.log(angular.toJson(item))
-            //    console.log(image)
-
                 //  取用户的镜像 前面
                 $rootScope.widget.widgetRollingup = true;
                 var endStr = image.lastIndexOf(":");
                 $scope.numNewImage = image.substring(0,endStr);
-
-                console.log($scope.numNewImage+"@@@!!!")
-
-
-                // console.log(item)
-
-
-
-
-
-
 
             };
 
