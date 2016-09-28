@@ -6,7 +6,7 @@ define([
     ], function(Base64){
         'use strict';
 
-        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', '$state', function($scope,$http, deploymentService, $localStorage, $rootScope, $state){
+        var ctrl = ['$scope','$http','deploymentService','$localStorage', '$rootScope', '$state','$timeout' ,function($scope,$http, deploymentService, $localStorage, $rootScope, $state, $timeout){
 
             $scope.param = {
                 orgId: $localStorage.orgId,
@@ -159,11 +159,29 @@ define([
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
-                deploymentService.deploymentSubmit($scope.param,function(data){
-                    alert('提交成功');
-                    $state.go('main.appManage')
+                deploymentService.deploymentSubmit($scope.param,function(rep){
+
+                    $scope.showstatusMes = true;
+                    if(rep.code == 0)
+                    {
+                        $scope.message = rep.message;
+                        $scope.status = true;
+
+                        $timeout(function(){
+                            $state.go('main.appManage');
+                        },1000);
+                    }
+                    else
+                    {
+                        $scope.message = rep.message;
+                        $scope.status = false;
+                    }
+
+
                 },function(){
-                    alert('提交失败');
+                    $scope.showstatusMes = true;
+                    $scope.message = '提交失败!';
+                    $scope.status = false;
                 });
             };
 

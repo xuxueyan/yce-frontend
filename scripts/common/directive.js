@@ -1,6 +1,6 @@
 define([	
-	'jQueryUI',
-	], function(jQueryUI){
+	'jQuery',
+	], function(jQuery){
 		'use strict';
 
         var init = function(){
@@ -169,6 +169,40 @@ define([
 
                         }]
                     };
+                })
+
+                /*
+                *   @desc:
+                *       状态指令(适用于Ajax回调函数使用)
+                *       message -> 显示信息 status -> 成功失败状态码
+                *
+                *   @author: mark
+                */
+
+                .directive('statusMes', function(){
+                    return {
+                        restrict: 'EC',
+                        replace: true,
+                        templateUrl : './views/widget/status.html',
+                        scope: {
+                            message: '=',
+                            status: '='
+                        },
+                        controller: ['$scope','$element','$timeout',function($scope,$element,$timeout){
+                            if($scope.status)
+                                $element.addClass('suc');
+                            else
+                                $element.addClass('err');
+
+                            $timeout(function(){
+                                $element.addClass('fadeOut');
+                            },100);
+                            $timeout(function(){
+                                $element.hide();
+                            },800);
+
+                        }]
+                    }
                 });
         };
 		return {
