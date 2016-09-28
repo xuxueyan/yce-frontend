@@ -56,9 +56,6 @@ define([
                     data : item
                 };
 
-            //    console.log(angular.toJson(item))
-            //    console.log(image)
-
                 //  取用户的镜像 前面
                 $rootScope.widget.widgetRollingup = true;
                 var endStr = image.lastIndexOf(":");
@@ -66,24 +63,12 @@ define([
 
                 console.log($scope.numNewImage+"@@@!!!")
 
-
-                // console.log(item)
-
-
-
-
-
-
-
             };
 
 
             $scope.rollShow = true;
 
             $scope.$on('imageButton', function(event, data) {
-            //    获取应用管理 - 升级 - 升级镜像
-            //    console.log(data.substring(0,data.lastIndexOf(":"))     +"@@@@@")
-
                 if(data.substring(0,data.lastIndexOf(":")) != $scope.numNewImage) {
                     $scope.$broadcast('showTips', true);
                     $scope.canSubmit = false;
