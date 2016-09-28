@@ -25,7 +25,6 @@ define([
                 });
             };
 
-            console.log('1'+$scope.data.toggleNav);
 
             $scope.graph();
 
@@ -52,7 +51,6 @@ define([
             });
 
 
-            console.log('2'+$scope.data.toggleNav);
 
         }];
 
