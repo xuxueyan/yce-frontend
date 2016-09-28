@@ -133,7 +133,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <b class="server-jia fa fa-minus-square" ng-click="delPort($index)"></b>
+                                        <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-minus-square" ng-click="delPort($index)"></i>
+                                        </span>
                                     </div>
                                 </div> 
                             </div>
@@ -314,3 +316,5 @@
     </div>
 </section>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
+
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>

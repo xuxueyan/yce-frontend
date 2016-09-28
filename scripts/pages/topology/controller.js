@@ -3,13 +3,15 @@
  */
 define([
         'base64',
-        'kubernetesUI'
-    ], function(Base64, kubernetesUI){
+        'kubernetesUI',
+        'jQuery'
+    ], function(Base64, kubernetesUI,$){
         'use strict';
 
 
         var ctrl = ['$scope', 'topologyService', '$localStorage', function($scope, topologyService, $localStorage){
             $scope.param = {"orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId};
+
 
             $scope.graph = function(){
                 $scope.index = 0;
@@ -22,6 +24,7 @@ define([
                     }
                 });
             };
+
 
             $scope.graph();
 
@@ -46,11 +49,15 @@ define([
                     angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
                 }
             });
+
+
+
         }];
 
 
 
-        var controllers = [
+
+    var controllers = [
             {module: 'topology', name: 'topologyController', ctrl: ctrl}
         ];
 
