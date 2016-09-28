@@ -12,12 +12,8 @@
                 </a>
             </li>
         </ul>
-
         <div class="tab-content">
-
-
             <form name="dilatation">
-
                 <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
                     <div class="form-group">
                         <label class="form-label">应用名称：</label>
@@ -26,7 +22,6 @@
                             <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" disabled>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">镜像名称：</label>
                         <span class="desc"></span>
@@ -34,24 +29,41 @@
                             <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" disabled>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="field-replicas" class="form-label">实例个数：</label>
-                        <span class="desc" ng-show="newSize" ng-init="newSize = true">选择您要扩容的应用实例的数量</span>
-                        <span class="warn" ng-show="dilatation.size.$error.pattern"> 实例个数为1-10</span>
-                        <div class="controls">
-                            <input type="number" name="size" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control"
-                                ng-focus="newSize = false" ng-blur="dilatation.size.$error.pattern ? newSize = false : newSize = true;" ng-pattern="/^([1-9]|10)$/">
-                        </div>
-
-
+                        <!--  <span class="desc" ng-show="newSize" ng-init="newSize = true">选择您要扩容的应用实例的数量</span> -->
+                        <!--     <span class="warn" ng-show="dilatation.size.$error.pattern"> 实例个数为1-10</span> -->
+                        <!-- <div class="controls">
+                            <input type="number" name="size" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control" ng-focus="newSize = false" ng-blur="dilatation.size.$error.pattern ? newSize = false : newSize = true;" ng-pattern="/^([1-9]|10)$/">
+                        </div> -->
+                        <!-- 扩展值 -->
+                        <input type="text" id="field-replicas" style="border:0; color:#f6931f; font-weight:bold; background-color: #fff;margin-top: -1px;" disabled="disabled">
                     </div>
+                    <!-- 滑块 -->
+                    <div id="slider-range-max"></div>
+                    <script>
+                    // slider控件
+                    $(function() {
+                        $("#slider-range-max").slider({
+                            range: "max",
+                            min: 1, //设置最小值
+                            max: 10, //设置最大值
+                            value: 1, //设置初始值
+                            slide: function(event, ui) {
+                                $("#field-replicas").val(ui.value);
+                            }
+                        });
+                        $("#field-replicas").val($("#slider-range-max").slider("value"));
+                    });
+                    $(function(){
+                        var bar_w = $(".controls input").width()
+                        $("#slider-range-max").css({
+                            "width":bar_w+20
+                        })
+                    })
+                    </script>
                 </div>
-
             </form>
-
-
-
             <div id="profile-1" class="tab-pane fade" ng-class="{'active in':data.tabSwitch==1}">
                 自动扩容
             </div>

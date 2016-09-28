@@ -1,33 +1,36 @@
 <!doctype html>
 <html>
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-	<title>容器云管理平台</title>
-	<link rel="shortcut icon" href="images/favicon.png">
-
-	<link href="styles/lib/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
-	<link href="styles/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-	<link href="fonts/patternfly/css/patternfly.css" rel="stylesheet" type="text/css"/>
-	<link href="styles/common/animate.min.css" rel="stylesheet" type="text/css"/>
-
-	<link href="styles/lib/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" type="text/css"/>
-	<link href="styles/lib/jvectormap/jquery-jvectormap-2.0.1.css" rel="stylesheet" type="text/css" media="screen"/>
-
-	<link href="styles/style.css" rel="stylesheet" type="text/css"/>
-	<link href="styles/trim.css" rel="stylesheet" type="text/css"/>
-	<link href="styles/import.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <title>容器云管理平台</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link href="styles/lib/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="styles/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/patternfly/css/patternfly.css" rel="stylesheet" type="text/css" />
+    <link href="styles/common/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/lib/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/lib/jvectormap/jquery-jvectormap-2.0.1.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="styles/trim.css" rel="stylesheet" type="text/css" />
+    <link href="styles/import.css" rel="stylesheet" type="text/css" />
 </head>
-<body ng-controller="mainController" scroll="no">
-	<div ui-view class="main"></div>
-	<script src="scripts/lib/require/require.js" data-main="scripts/main"></script>
 
-	<!--
+<body ng-controller="mainController" scroll="no">
+    <div ui-view class="main"></div>
+    <!-- 滑块依赖插件 2016-09-27 by licheng  -->
+    <link rel="stylesheet" href="js/ui/jquery-ui.min.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/ui/jquery-ui.min.js"></script>
+	<!-- 以上为后添加 -->
+    <script src="scripts/lib/require/require.js" data-main="scripts/main"></script>
+    <!--
 	<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -44,4 +47,5 @@
 	<script src="js/scripts.js" type="text/javascript"></script>
 	-->
 </body>
+
 </html>
