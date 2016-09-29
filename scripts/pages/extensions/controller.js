@@ -6,7 +6,7 @@ define([
     ], function(Base64){
     'use strict';
 
-    var ctrl = ['$scope','$http','$localStorage','$timeout','$state','extensionsService', function($scope,$http,$localStorage,$timeout,$state,extensionsService){
+    var ctrl = ['$scope','$http','$localStorage','$timeout','$state','extensionsService','$rootScope', function($scope,$http,$localStorage,$timeout,$state,extensionsService,$rootScope){
         $scope.sessionName = $localStorage.userName;
 
         $scope.myParam = {
@@ -51,14 +51,7 @@ define([
                             $scope.LebeltypeParameter.nodePort = nodePorts;
 
                             if(lebelType == "service"){
-                                // extensionsService.lebelTypes($scope.LebeltypeParameter,function(){
-                                //     alert("ok")
-                                //     $scope.extensionsPage();
-                                // },function(){
-                                //     alert("lose");
-                                // })
                                 extensionsService.lebelTypes($scope.LebeltypeParameter,function(rep){
-
                                     $scope.showstatusMes = true;
                                     if(rep.code == 0){
                                         $scope.status = true;
@@ -443,6 +436,28 @@ define([
 
             }
         })
+
+        //  ******  扩展功能 详情
+        $scope.extensionsnameBtn = function(item){
+
+            $scope.extensionsConfig = {
+                widgetId : 'extensionDatails',
+                widgetTitle : '服务详情',
+                extensionsDatails : true,
+                data : item
+            }
+            $rootScope.widget.extensionDatails = true;
+
+        }
+
+
+
+
+
+
+
+
+
 
     }]; 
 

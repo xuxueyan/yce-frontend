@@ -109,6 +109,19 @@
 #widgetDelete .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
+/*服务管理 详情*/
+.extensionDatailsClass .widget{ max-height:500px; max-width:800px;}
+.extensionDatailsClass .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
+.extensionDatailsClass .app-detail{ padding:10px 20px;}
+.extensionDatailsClass .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
+.extensionDatailsClass .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
+.extensionDatailsClass .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
+.extensionDatailsClass .app-detail dd span{ border-bottom:2px solid .d4d4d4;}
+.extensionDatailsClass .labels-table{ margin-top:20px;}
+.extensionDatailsClass .labels-table table{ border:none;}
+.extensionDatailsClass .labels-table th{ text-align:left; border:none !important;}
+.extensionDatailsClass .labels-table td{ padding:5px 10px !important; border:none;}
+.extensionDatailsClass .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
 
 
 

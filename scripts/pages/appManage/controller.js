@@ -160,10 +160,11 @@ define([
 
                 if($scope.canSubmit){
                     $scope.canSubmit = false;
-                    appManageService.submitScale(param,function(data){
+                    appManageService.submitScale(param,function(rep){
                         $rootScope.widget.widgetScale = false;
                         $scope.loadAppList();
                         $scope.canSubmit = true;
+                        console.log(rep)
                     },function(){
                         $scope.canSubmit = true;
                     });
@@ -221,7 +222,6 @@ define([
                 }
                 $rootScope.widget.widgetImageSelector = false;
             });
-
 
         }];
 

@@ -13,19 +13,19 @@ define([
                             config : '='
                         },
                         replace: true,
-                        link: function(scope,element){
-                            scope.closeWidget = function(){
-                                element.remove();
-                            }
-                        }
-                        //controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                        //    $scope.closeWidget = function(widgetId){
-                        //        $rootScope.widget[widgetId] = false;
-                        //    };
-                        //    $scope.$on('closeWidget',function(event, widgetId){
-                        //        $scope.closeWidget(widgetId);
-                        //    });
-                        //}]
+                        // link: function(scope,element){
+                        //     scope.closeWidget = function(){
+                        //         element.remove();
+                        //     }
+                        // },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                           $scope.closeWidget = function(widgetId){
+                               $rootScope.widget[widgetId] = false;
+                           };
+                           $scope.$on('closeWidget',function(event, widgetId){
+                               $scope.closeWidget(widgetId);
+                           });
+                        }]
 			        };
     			})
     			.directive('uiImageSelector', function(){
@@ -205,16 +205,18 @@ define([
                 })
 
                 // 扩展功能 - 详细信息
-                // .directive('uiExtensionsDatails', function(){
-                //     return {
-                //         restrict : 'A',
-                //         replace : true,
-                //         templateUrl : './views/widget/extensionsdatails.html',
-                //         scope : {
-                //             datails : '='
-                //         }
-                //     }
-                // })
+                .directive('uiExtensionsDatails', function(){
+                    return {
+                        restrict : 'A',
+                        replace : true,
+                        templateUrl : './views/widget/extensionsdatails.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                        }]
+                    }
+                })
 
 
         };
