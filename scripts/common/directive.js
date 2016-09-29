@@ -7,20 +7,25 @@ define([
             angular.module('common')
     			.directive('uiWidget', function(){
         			return {
-            			restrict: 'E',
-                        templateUrl : './views/widget/widget.html',
-                        scope : {
+            			restrict: 'EC',
+                        templateUrl: './views/widget/widget.html',
+                        scope: {
                             config : '='
                         },
-                        replace : true,
-                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
-                            $scope.closeWidget = function(widgetId){
-                                $rootScope.widget[widgetId] = false;
-                            };
-                            $scope.$on('closeWidget',function(event, widgetId){
-                                $scope.closeWidget(widgetId);
-                            });
-                        }]
+                        replace: true,
+                        link: function(scope,element){
+                            scope.closeWidget = function(){
+                                element.remove();
+                            }
+                        }
+                        //controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                        //    $scope.closeWidget = function(widgetId){
+                        //        $rootScope.widget[widgetId] = false;
+                        //    };
+                        //    $scope.$on('closeWidget',function(event, widgetId){
+                        //        $scope.closeWidget(widgetId);
+                        //    });
+                        //}]
 			        };
     			})
     			.directive('uiImageSelector', function(){
@@ -188,20 +193,14 @@ define([
                             message: '=',
                             status: '='
                         },
-                        controller: ['$scope','$element','$timeout',function($scope,$element,$timeout){
-                            if($scope.status)
-                                $element.addClass('suc');
+
+                        link: function(scope,element){
+                            if(scope.status)
+                                element.addClass('suc');
                             else
-                                $element.addClass('err');
+                                element.addClass('err');
 
-                            $timeout(function(){
-                                $element.addClass('fadeOut');
-                            },100);
-                            $timeout(function(){
-                                $element.hide();
-                            },800);
-
-                        }]
+                        }
                     }
                 });
         };
