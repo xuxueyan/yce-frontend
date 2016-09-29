@@ -202,7 +202,21 @@ define([
 
                         }
                     }
-                });
+                })
+
+                // 扩展功能 - 详细信息
+                // .directive('uiExtensionsDatails', function(){
+                //     return {
+                //         restrict : 'A',
+                //         replace : true,
+                //         templateUrl : './views/widget/extensionsdatails.html',
+                //         scope : {
+                //             datails : '='
+                //         }
+                //     }
+                // })
+
+
         };
 		return {
 			init: init

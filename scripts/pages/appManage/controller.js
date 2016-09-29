@@ -66,9 +66,6 @@ define([
             $scope.rollShow = true;
 
             $scope.$on('imageButton', function(event, data) {
-            //    获取应用管理 - 升级 - 升级镜像
-            //    console.log(data.substring(0,data.lastIndexOf(":"))     +"@@@@@")
-
                 if(data.substring(0,data.lastIndexOf(":")) != $scope.numNewImage) {
                     $scope.$broadcast('showTips', true);
                     $scope.canSubmit = false;

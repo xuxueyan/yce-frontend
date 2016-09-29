@@ -6,16 +6,14 @@ define([
     ], function(Base64){
     'use strict';
 
-    var ctrl = ['$scope','$http','$localStorage','$state','extensionsService', function($scope,$http,$localStorage,$state,extensionsService){
+    var ctrl = ['$scope','$http','$localStorage','$timeout','$state','extensionsService', function($scope,$http,$localStorage,$timeout,$state,extensionsService){
         $scope.sessionName = $localStorage.userName;
-
 
         $scope.myParam = {
             orgId: $localStorage.orgId,
             userId: $localStorage.userId,
             sessionId: $localStorage.sessionId,
         };
-
 
         $scope.extensionsPage = function(){
             extensionsService.serviceManages($scope.myParam,function(data){
@@ -53,11 +51,30 @@ define([
                             $scope.LebeltypeParameter.nodePort = nodePorts;
 
                             if(lebelType == "service"){
-                                extensionsService.lebelTypes($scope.LebeltypeParameter,function(){
-                                    alert("ok")
-                                    $scope.extensionsPage();
+                                // extensionsService.lebelTypes($scope.LebeltypeParameter,function(){
+                                //     alert("ok")
+                                //     $scope.extensionsPage();
+                                // },function(){
+                                //     alert("lose");
+                                // })
+                                extensionsService.lebelTypes($scope.LebeltypeParameter,function(rep){
+
+                                    $scope.showstatusMes = true;
+                                    if(rep.code == 0){
+                                        $scope.status = true;
+                                        $scope.message = rep.message;
+                                        $timeout(function() {
+                                            $scope.extensionsPage();
+                                        }, 1000);
+                                    }
+                                    else{
+                                        $scope.message = rep.message;
+                                        $scope.status = false;
+                                    }
                                 },function(){
-                                    alert("lose");
+                                    $scope.message = '操作失败！';
+                                    $scope.status = false;
+                                    $scope.showstatusMes = true;
                                 })
                             }
                         }
@@ -80,11 +97,23 @@ define([
                             }
                             $scope.np2.dcId = Number(dcIds)
                             if(lebelType == "endpoints"){
-                                $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(){
-                                    alert("ok")
-                                    $scope.extensionsPage();
+                                $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(rep){
+                                    $scope.showstatusMes = true;
+                                    if(rep.code == 0){
+                                        $scope.status = true;
+                                        $scope.message = rep.message;
+                                        $timeout(function() {
+                                            $scope.extensionsPage();
+                                        }, 1000);
+                                    }
+                                    else{
+                                        $scope.message = rep.message;
+                                        $scope.status = false;
+                                    }
                                 }).error(function(data) {
-                                    alert("lose");
+                                    $scope.message = '操作失败！';
+                                    $scope.status = false;
+                                    $scope.showstatusMes = true;
                                 });
                             }
                         }
@@ -261,11 +290,26 @@ define([
                 $scope.param.orgId = $localStorage.orgId;
                 $scope.param.sessionId = $localStorage.sessionId;
 
-                extensionsService.CreatServicePost($scope.param,function(){
-                    alert("ok");
-                    $state.go('main.extensions');
+                extensionsService.CreatServicePost($scope.param,function(rep){
+
+                    $scope.showstatusMes = true;
+                    if(rep.code == 0){
+                        $scope.message = rep.message;
+                        $scope.status = true;
+                        $timeout(function() {
+                            $state.go('main.extensions')
+                        }, 1000);
+                    }
+                    else{
+                        $scope.message = rep.message;
+                        $scope.status = false;
+                    }
+
                 },function(){
-                    alert("lose");
+                    $scope.message = '提交失败';
+                    $scope.status = false;
+                    $scope.showstatusMes = true;
+
                 })
             }
             
@@ -371,21 +415,34 @@ define([
 
                 $scope.endpointsJson.endpoints.subsets = adds;
 
-                $scope.endpointsJson.userId = userId;
-                $scope.endpointsJson.orgId = orgId;
-                $scope.endpointsJson.sessionId = sessionId;
+                $scope.endpointsJson.userId = $localStorage.userId;
+                $scope.endpointsJson.orgId = $localStorage.orgId;
+                $scope.endpointsJson.sessionId = $localStorage.sessionId;
                 $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
 
-                extensionsService.CreatAccessPointPost($scope.endpointsJson,function(){
-                    alert("ok")
-                    $state.go('main.extensions');
+                extensionsService.CreatAccessPointPost($scope.endpointsJson,function(rep){
+
+                    $scope.showstatusMes = true;
+                    if(rep.code == 0){
+                        $scope.message = rep.message;
+                        $scope.status = true;
+                        $timeout(function(){
+                            $state.go('main.extensions');
+                        },1000);
+                    }
+                    else{
+                        $scope.message = rep.message;
+                        $scope.status = false;
+                    }
+
                 },function(){
-                    alert("lose");
+                    $scope.message = "提交失败！";
+                    $scope.status = false;
+                    $scope.showstatusMes = false;
                 })
 
             }
         })
-
 
     }]; 
 
