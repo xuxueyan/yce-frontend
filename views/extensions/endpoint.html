@@ -21,7 +21,7 @@
                             <span class="desc" ng-show="endpointPot" ng-init="endpointPot = true">应用名是您将要创建的应用的名称，组织内唯一</span>
                             <span class="desc show-spans-1" ng-show="rollLogin.endpointName.$error.pattern">您的应用名不正确</span>
                             <div class="controls">
-                                <input type="text" name="endpointName" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-blur="!rollLogin.endpointName.$error.pattern ?  endpointPot = false : endpointPot = true" required>
+                                <input type="text" name="endpointName" class="form-control" id="field-15121" ng-model="endpointsJson.endpointsName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="endpointPot = false" ng-blur="rollLogin.endpointName.$error.pattern ?  endpointPot = false : endpointPot = true" required>
                             </div>
                         </div>
 
@@ -93,3 +93,5 @@
     </section>
 </div>
 </section>
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
+

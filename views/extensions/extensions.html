@@ -41,7 +41,7 @@
                     <tbody ng-repeat="app in newExtensions ">
                         <tr class="tr-length" ng-repeat="item in app.serviceList.items | filter:data.search">
                             <td>{{$index+1}}</td>
-                            <td>{{ item.metadata.name }}</td>
+                            <td ng-click="extensionsnameBtn()">{{ item.metadata.name }}</td>
                             <td>{{ item.metadata.labels["author"] }}</td>
 
                             <td>{{ app.dcName }}</td>
@@ -82,10 +82,4 @@
         <button ng-click="extnesionsBack()">取消</button>
     </span>
 </div>
-
-
-
-
-
-
-
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
