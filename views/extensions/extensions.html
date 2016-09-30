@@ -41,7 +41,7 @@
                     <tbody ng-repeat="app in newExtensions ">
                         <tr class="tr-length" ng-repeat="item in app.serviceList.items | filter:data.search">
                             <td>{{$index+1}}</td>
-                            <td ng-click="extensionsnameBtn()">{{ item.metadata.name }}</td>
+                            <td ng-click="extensionsnameBtn(item)">{{ item.metadata.name }}</td>
                             <td>{{ item.metadata.labels["author"] }}</td>
 
                             <td>{{ app.dcName }}</td>
@@ -57,7 +57,7 @@
 
                         <tr ng-repeat="item in app.endpointsList.items">
                             <td>{{ itemLength-(-$index-2) }}</td>
-                            <td>{{ item.metadata.name }}</td>
+                            <td ng-click="extensionsnameBtn(item)">{{ item.metadata.name }}</td>
                             <td>{{ item.metadata.labels["author"] }}</td>
                             <td>{{ app.dcName }}</td>
                             <td>访问点</td>
@@ -69,6 +69,7 @@
                                 </p>
                             </td>
                         </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -83,3 +84,4 @@
     </span>
 </div>
 <status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
+<ui-widget class="extensionDatailsClass" ng-if="widget.extensionDatails" config="extensionsConfig"></ui-widget>
