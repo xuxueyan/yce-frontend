@@ -13,11 +13,6 @@ define([
                             config : '='
                         },
                         replace: true,
-                        // link: function(scope,element){
-                        //     scope.closeWidget = function(){
-                        //         element.remove();
-                        //     }
-                        // },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
                            $scope.closeWidget = function(widgetId){
                                $rootScope.widget[widgetId] = false;
