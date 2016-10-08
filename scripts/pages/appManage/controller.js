@@ -2,7 +2,8 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-        'base64'
+        'base64',
+        'rzSlider'
     ], function(Base64){
         'use strict';
 
