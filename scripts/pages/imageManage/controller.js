@@ -7,7 +7,7 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope','$http','imageManageService', function($scope,$http,imageManageService){
+        var ctrl = ['$scope','$http','imageManageService', '$rootScope' ,function($scope,$http,imageManageService,$rootScope){
             imageManageService.myImageManage('',function(data){
                 var newcode = data.code;
                 if(newcode == 0){
@@ -20,6 +20,18 @@ define([
                     console.log(data.message)
                 }
             })
+
+            //  ******  镜像管理 详情  (暂不显示所以注释)
+            // $scope.imgnameBtn = function(item){
+            //     console.log(angular.toJson(item));
+            //     $scope.imgConfig = {
+            //         widgetId : 'imgDatails',
+            //         widgetTitle : '镜像详情',
+            //         imgDatails : true,
+            //         data : item
+            //     }
+            //     $rootScope.widget.imgDatails = true;
+            // }
 
         }];
 

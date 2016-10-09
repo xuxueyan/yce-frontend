@@ -34,7 +34,7 @@
                                 <tbody ng-repeat="app in newImage | filter:data.search">
                                     <tr ng-class="{odd:$odd,even:$even}">
                                         <td>{{$index+1}}</td>
-                                        <td>
+                                        <td ng-click="imgnameBtn(app)">
                                             <p>{{app.name}}</p>
                                         </td>
                                         <td>
@@ -79,5 +79,8 @@
     </div>
 </section>
 <ui-widget ng-if="widget.showAppDetail" config="appDetailConf"></ui-widget>
-<ui-widget ng-if="widget.imagedetails" config="myImageDetails"></ui-widget>
+<ui-widget ng-if="widget.imagedetails" config="myImageDetails"></ui-widget>、
+
+<!-- 镜像管理详情 （暂不显示所以注释） -->
+<!-- <ui-widget class="extensionDatailsClass" ng-if="widget.imgDatails" config="imgConfig"></ui-widget> -->
 

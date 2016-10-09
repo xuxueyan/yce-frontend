@@ -213,6 +213,20 @@ define([
                     }
                 })
 
+                // 镜像管理 - 详细信息  （暂不显示所以注释）
+                // .directive('uiImgDatails', function(){
+                //     return {
+                //         restrict : 'A',
+                //         replace : true,
+                //         templateUrl : './views/widget/imgdatails.html',
+                //         scope : {
+                //             originalData : '='
+                //         },
+                //         controller : ['$scope', '$rootScope',function($scope, $rootScope){
+                //         }]
+                //     }
+                // })
+
 
         };
 		return {
