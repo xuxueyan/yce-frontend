@@ -47,7 +47,7 @@ define([
                             }
                         },
                         data:[
-                            {value:335, name:'内存已用'},
+                            {value:330, name:'内存已用'},
                             {value:679, name:'内存未用'},
                         ]
                     },
@@ -63,13 +63,79 @@ define([
                 ]
             };
 
-
-
-
-
-
-
             totalResEchart.setOption(totalOption);
+
+
+            var officeAppEchart = echarts.init(document.getElementById('officeApply'));
+
+            var officeOption = {
+                title: {
+                    text: '办公网应用',
+                    left: 'left',
+                    textStyle: {
+                        fontSize: 16
+                    }
+                },
+                series : [
+                    {
+                        type: 'graph',
+                        symbolSize: 20,
+                        layout: 'circular',
+                        roam: 'move',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        edgeSymbol: ['none', 'none'],
+                        data: [{
+                            name: '节点1'
+
+                        }, {
+                            name: '节点2'
+
+                        }, {
+                            name: '节点3'
+
+                        }, {
+                            name: '节点4'
+
+                        },{
+                            name: '节点5'
+
+                        }],
+                        links: [{
+                            source: '节点2',
+                            target: '节点5'
+
+                        }, {
+                            source: '节点1',
+                            target: '节点5'
+                        }, {
+                            source: '节点3',
+                            target: '节点5'
+                        }, {
+                            source: '节点4',
+                            target: '节点5'
+                        }],
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.9,
+                                width: 2,
+                                curveness: 0
+                            }
+                        }
+                    }
+                ]
+
+
+
+            };
+
+            officeAppEchart.setOption(officeOption);
+
+
         }];
 
 
