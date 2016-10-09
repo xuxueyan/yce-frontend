@@ -7,7 +7,7 @@ define([
     ], function(Base64,echarts){
         'use strict';
 
-        var ctrl = ['$scope', function($scope){
+        var ctrl = ['$scope', 'dashboardService', function($scope,dashboardService){
 
             //总览实例
             var totalResEchart = echarts.init(document.getElementById('totalResource'));
@@ -70,6 +70,16 @@ define([
 
 
             totalResEchart.setOption(totalOption);
+
+
+            //  --
+            dashboardService.CreatService('',function(data){
+                // 成功
+            },
+            function(){
+                // 失败
+            })
+
         }];
 
 
