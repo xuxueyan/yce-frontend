@@ -20,7 +20,6 @@
     // Browser globals (root is window)
     factory(root.angular);
   }
-
 }(this, function(angular) {
   'use strict';
   var module = angular.module('rzModule', [])

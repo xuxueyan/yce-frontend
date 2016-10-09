@@ -1,0 +1,9 @@
+/*
+*   公用css文件
+*/
+
+.clearfix {
+    content: '';
+    clear: both;
+    display: block;
+}
