@@ -13,7 +13,7 @@ define([
             var totalResEchart = echarts.init(document.getElementById('totalResource'));
 
             //配置项
-            var options = {
+            var totalOption = {
                 title: {
                     text: '数据中心总览',
                     left: 'center',
@@ -62,7 +62,14 @@ define([
                     }
                 ]
             };
-            totalResEchart.setOption(options);
+
+
+
+
+
+
+
+            totalResEchart.setOption(totalOption);
         }];
 
 
