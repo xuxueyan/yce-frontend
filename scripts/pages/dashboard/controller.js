@@ -9,34 +9,60 @@ define([
 
         var ctrl = ['$scope', function($scope){
 
-            //eCharts实例
-            var docEchart = echarts.init(document.getElementById('docker'));
+            //总览实例
+            var totalResEchart = echarts.init(document.getElementById('totalResource'));
 
             //配置项
             var options = {
-                //backgroundColor: '#fff',
                 title: {
-                    text: 'ECharts 示例'
+                    text: '数据中心总览',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 16
+                    }
                 },
-                tooltip: {},
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
                 legend: {
-                    data:['销量']
+                    orient: 'vertical',
+                    x: 'left',
+                    data:['CPU已用','CPU未用','内存已用','内存未用']
                 },
-                xAxis: {
-                    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-
+                series: [
+                    {
+                        name:'内存使用率',
+                        type:'pie',
+                        selectedMode: 'single',
+                        radius: [0, '30%'],
+                        label: {
+                            normal: {
+                                position: 'inner'
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:[
+                            {value:335, name:'内存已用'},
+                            {value:679, name:'内存未用'},
+                        ]
+                    },
+                    {
+                        name:'CPU使用率',
+                        type:'pie',
+                        radius: ['40%', '55%'],
+                        data:[
+                            {value:335, name:'CPU已用'},
+                            {value:310, name:'CPU未用'},
+                        ]
+                    }
+                ]
             };
-
-            docEchart.setOption(options);
-
-
+            totalResEchart.setOption(options);
         }];
 
 
