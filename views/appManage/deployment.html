@@ -21,14 +21,12 @@
                                 <span class="desc" ng-show="applyTips" ng-init="applyTips = true"> 应用名是您将要创建的应用的名称，组织内唯一</span>
                                 <span class="warn" ng-show="login.applyName.$error.pattern">您的应用名格式不正确</span>
                                 <div class="controls">
-                                    <input type="text" value="Color" name="applyName" class="form-control" id="field-name" ng-model="param.deployment.metadata.name"
-                                           ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false" ng-blur="login.applyName.$error.pattern ? applyTips = false : applyTips = true"  required>
+                                    <input type="text" value="Color" name="applyName" class="form-control" id="field-name" ng-model="param.deployment.metadata.name" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false" ng-blur="login.applyName.$error.pattern ? applyTips = false : applyTips = true" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">组织名：</label>
                                 <span class="desc">组织名是您所属的组织</span>
-
                                 <div class="controls">
                                     <input type="text" class="form-control" value="{{param.deployment.metadata.namespace}}" disabled>
                                 </div>
@@ -36,7 +34,6 @@
                             <div class="form-group">
                                 <label class="form-label">数据中心：</label>
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
-
                                 <div class="controls data-center">
                                     <label ng-repeat="item in initData.dataCenters" class="form-label" ng-class="{checked:dataTrans.dataCenters[$index]}">
                                         <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataTrans.dataCenters[$index]">{{item.name}}
@@ -46,7 +43,6 @@
                             <div class="form-group">
                                 <label class="form-label">镜像：</label>
                                 <span class="desc">镜像是您创建应用的根据</span>
-
                                 <div class="controls">
                                     <input type="text" class="form-control" ng-click="showImageSelector()" ng-model="param.deployment.spec.template.spec.containers[0].image" required>
                                 </div>
@@ -54,20 +50,22 @@
                             <div class="form-group">
                                 <label class="form-label" for="field-replicas">副本数：</label>
                                 <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
-                                <div class="controls">
+                                <!--                                 <div class="controls">
                                     <input type="number" value="color" ng-init="param.deployment.spec.replicas=1" min="1" max="10" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
-                                </div>
+                                </div> -->
+                                <!-- 滑块 2016/10/09 by licheng -->
+                                <input type="text" ng-model="param.deployment.spec.replicas" ng-init="param.deployment.spec.replicas=1" style="display: none">
+                                <rzslider rz-slider-model="param.deployment.spec.replicas" rz-slider-options="slider.options"></rzslider>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">规格：</label>
                                 <span class="desc">规格是您为应用所申请的资源规格</span>
-
                                 <div class="controls resource-spec">
                                     <label ng-repeat="item in initData.quotas" class="form-label" ng-class="{checked:(dataTrans.quotas==item.id)}">
                                         <span class="resource-spec-title">{{item.name}}</span>
                                         <p>
-                                            <input type="radio" name="limits" ng-checked="$first" value="{{item.id}}" ng-model="dataTrans.quotas">
-                                            &nbsp;CPU：{{item.cpu}}C<br>MEM：{{item.mem}}G
+                                            <input type="radio" name="limits" ng-checked="$first" value="{{item.id}}" ng-model="dataTrans.quotas"> &nbsp;CPU：{{item.cpu}}C
+                                            <br>MEM：{{item.mem}}G
                                         </p>
                                     </label>
                                 </div>
@@ -91,7 +89,7 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">Value</span>
-                                            <input type="text" class="form-control" ng-model="env.value"  ng-pattern="/^\S+$/" required>
+                                            <input type="text" class="form-control" ng-model="env.value" ng-pattern="/^\S+$/" required>
                                         </div>
                                     </div>
                                     <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
@@ -99,13 +97,11 @@
                                     </span>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">开放端口：</label>
                                     <span class="warn" ng-show="login.portName.$error.pattern">名称格式不正确</span>
                                     <span class="warn" ng-show="login.containerPort.$error.pattern && !login.portName.$error.pattern">端口值应为 1-65535</span>
-
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addPort()"></i>
                                     </span>
@@ -137,11 +133,11 @@
                                             <i class="fa fa-minus-square" ng-click="delPort($index)"></i>
                                         </span>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
-                                    <button class="btn btn-primary" ng-disabled="login.$invalid" >提交</button>
+                                    <button class="btn btn-primary" ng-disabled="login.$invalid">提交</button>
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
                             </div>
@@ -290,7 +286,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <input type="checkbox" class="skin-square-blue" ng-model="dataTrans.advancedChecked[5]">
                                     <label class="form-label">参数</label>
@@ -302,10 +297,9 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="text-left">
-                                 <button class="btn btn-primary" ng-disabled="login.$invalid"> 提交</button> 
-                                 <input type="button" class="btn btn-primary" ng-click="nextStep(1)" value="上一步">
+                                    <button class="btn btn-primary" ng-disabled="login.$invalid"> 提交</button>
+                                    <input type="button" class="btn btn-primary" ng-click="nextStep(1)" value="上一步">
                                 </div>
                             </div>
                         </div>
@@ -313,8 +307,7 @@
                 </div>
             </section>
         </form>
-    </div>   statusMes
+    </div> statusMes
 </section>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
-
 <status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>

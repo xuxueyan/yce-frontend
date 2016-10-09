@@ -154,7 +154,19 @@ define([
                             originalData : '='
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
-
+                            /*滑块 2016/10/09 by licheng*/
+                            $scope.slider = {
+                                value: 1,
+                                options: {
+                                    ceil: 10,
+                                    floor: 1,
+                                    showSelectionBar: true,
+                                    showTicks: true,
+                                    getTickColor: function(value) {
+                                        return '#d8e0f3';
+                                    }
+                                }
+                            };
                         }]
                     };
                 })

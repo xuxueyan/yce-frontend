@@ -4,7 +4,7 @@
 define([
         'base64',
         'rzSlider'
-    ], function(Base64){
+    ], function(Base64,rzSlider){
         'use strict';
 
         var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', function($scope, $rootScope, appManageService, $localStorage, $http){
