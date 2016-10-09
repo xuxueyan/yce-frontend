@@ -27,26 +27,28 @@ requirejs.config({
         'uiRouter': {
             deps: ['Angular']
         },
-        'ngStorage' : {
+        'ngStorage': {
             deps: ['Angular']
         },
 
         'jQueryUI': {
             deps: ['jQuery']
         },
-        'mockAngular':{
+        'mockAngular': {
             deps: ['mock']
         },
-        'mockData':{
+        'mockData': {
             deps: ['mock']
         },
-        'kubernetesUI':{
+        'kubernetesUI': {
+            deps: ['Angular']
+        },
+        'rzSlider': {
             deps: ['Angular']
         }
     }
 });
 
-require(['app'], function(app){
+require(['app'], function(app) {
 
 });
-
