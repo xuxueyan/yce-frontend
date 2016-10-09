@@ -227,6 +227,24 @@ define([
                 //     }
                 // })
 
+                /*
+                 *   @desc: 滑块组件
+                 *
+                 *   @author: mark
+                 */
+
+                .directive('slideComponent', function(){
+                    return {
+                        restrict: 'E',
+                        replace: true,
+                        
+
+                    }
+
+                })
+
+
+
 
         };
 		return {

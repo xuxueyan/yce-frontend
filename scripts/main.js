@@ -7,9 +7,11 @@ requirejs.config({
         jQuery: 'lib/jquery/jquery',
         Underscore: 'lib/underscore/underscore',
         jQueryUI: 'lib/jquery-ui/jquery-ui.min',
+        eCharts: 'lib/echarts/echarts',
         Angular: 'lib/angular/angular',
         uiRouter: 'lib/angular-ui-router/angular-ui-router.min',
         ngStorage: 'lib/angular-storage/ngStorage.min',
+        rzSlider: 'lib/rzslider/rzslider',
         base64: 'lib/base64/base64',
         utils: 'common/utils',
         d3: 'lib/d3/d3.min',
@@ -28,6 +30,7 @@ requirejs.config({
         'ngStorage' : {
             deps: ['Angular']
         },
+
         'jQueryUI': {
             deps: ['jQuery']
         },

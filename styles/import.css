@@ -1,6 +1,10 @@
+
 @import "pages/main/login.css";
 @import "pages/appManage/appManage.css";
 @import "pages/appManage/deployment.css";
 @import "pages/widget/widget.css";
 @import "pages/topology/topology.css";
 @import "pages/widget/status.css";
+@import "pages/dashboard/dashboard.css";
+
+@import "common/base.css";
