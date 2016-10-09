@@ -30,6 +30,20 @@ define([
                 $rootScope.widget.widgetAppDeployDetail = true;
             };
 
+
+
+
+             //----------- 时间
+            $scope.consoleTime = function(pod){
+                console.log(angular.toJson(pod))
+            }
+
+
+
+
+
+            
+
             // 应用实例详情
             $scope.showAppPodDetail = function(item, dcId){
                 $scope.param.dcId = dcId;

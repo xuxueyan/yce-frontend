@@ -5,6 +5,9 @@ define([
 
 	var getApis = function($http){
 		var apis = {};
+		// apis.CreatService = function(param, success, error){
+		// 	return utils.http($http, 'get', 'dizhi', param, success, error)
+		// }
 
 		return apis;
 	};	

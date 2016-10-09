@@ -7,3 +7,9 @@
     clear: both;
     display: block;
 }
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
