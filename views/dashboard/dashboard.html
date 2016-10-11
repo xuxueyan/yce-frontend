@@ -9,9 +9,11 @@
     </div>
 
     <div class="clearfix">
-        <div class="echartsBox fl" id="totalResource"></div>
+        <div class="echartsBox fl" id="resourceDom{{item.dcId}}" ng-repeat="item in resourceDom" resource-dom-finished></div>
+    </div>
 
-        <div class="echartsBox fl" id="officeResource"></div>
+    <div class="clearfix">
+        <div class="echartsBox fl" id="applyDom{{$index}}" ng-repeat="item in applyDom" apply-dom-finished></div>
     </div>
     <div class="echartsBox" id="officeApply"></div>
     <!--<div class="col-xs-12 col-sm-6 col-lg-4">-->
