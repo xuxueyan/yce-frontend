@@ -11,10 +11,6 @@ define([
 
         var ctrl = ['$scope','$timeout', 'dashboardService', '$localStorage', function($scope,$timeout,dashboardService,$localStorage){
             
-
-
-
-
             //  饼图
             dashboardService.getResData('', function (res){
 
@@ -291,7 +287,8 @@ define([
             //  柱状图
             dashboardService.getHandleData(param,function(res){
                 if(res.code == 0){
-                    console.log(angular.toJson(res.data.date))
+
+                    var dataHistogram = JSON.parse(res.data);
 
                     echarts.init(document.getElementById('handleDom')).setOption(
                         {
@@ -322,7 +319,7 @@ define([
                             xAxis : [
                                 {
                                     type : 'category',
-                                    data : res.data.date
+                                    data : dataHistogram.date
                                 }
                             ],
                             yAxis : [
@@ -334,27 +331,27 @@ define([
                                 {
                                     name:'发布',
                                     type:'bar',
-                                    data:res.data.statistics.online
+                                    data:dataHistogram.statistics.online
                                 },
                                 {
                                     name:'扩容',
                                     type:'bar',
-                                    data:res.data.statistics.scale
+                                    data:dataHistogram.statistics.scale
                                 },
                                 {
                                     name:'滚动升级',
                                     type:'bar',
-                                    data:res.data.statistics.rollingupgrade
+                                    data:dataHistogram.statistics.rollingupgrade
                                 },
                                 {
                                     name:'回滚',
                                     type:'bar',
-                                    data:res.data.statistics.rollback
+                                    data:dataHistogram.statistics.rollback
                                 },
                                 {
                                     name:'删除',
                                     type:'bar',
-                                    data:res.data.statistics.delete
+                                    data:dataHistogram.statistics.delete
                                 }
                             ]
                         }
