@@ -9,7 +9,8 @@ define([
     ], function(Base64,echarts,angular,$){
         'use strict';
 
-        var ctrl = ['$scope','$timeout', 'dashboardService', function($scope,$timeout,dashboardService){
+        var ctrl = ['$scope','$timeout', 'dashboardService', '$localStorage', function($scope,$timeout,dashboardService,$localStorage){
+            
 
 
 
@@ -96,8 +97,6 @@ define([
                         })
 
                     });
-
-                    console.log('dom节点总个数' + domNodes.length);
 
                     $scope.applyDom = domNodes;
 
@@ -285,8 +284,12 @@ define([
 
             });
 
+            var param = {
+                "sessionId" : $localStorage.sessionId,
+                "orgId" : $localStorage.orgId
+            };
             //  柱状图
-            dashboardService.getHandleData('',function(res){
+            dashboardService.getHandleData(param,function(res){
                 if(res.code == 0){
                     console.log(angular.toJson(res.data.date))
 
