@@ -240,20 +240,43 @@ define([
                 // })
 
                 /*
-                 *   @desc: 滑块组件
+                 *   @desc: ng-repeat finished render
                  *
                  *   @author: mark
                  */
 
-                .directive('slideComponent', function(){
+                .directive('resourceDomFinished', function($timeout){
                     return {
-                        restrict: 'E',
-                        replace: true,
-                        
+                        restrict: 'A',
+                        link: function (scope,element,attr){
+
+                            if(scope.$last === true)
+                            {
+                                $timeout(function () {
+                                    scope.$emit('$resourceRenderFinished');
+                                });
+                            }
+                        },
+                    }
+                })
+                .directive('applyDomFinished', function($timeout){
+                    return {
+                        restrict: 'A',
+                        link: function (scope,element,attr){
+
+                            if(scope.$last === true)
+                            {
+                                $timeout(function () {
+                                    scope.$emit('$applyRenderFinished');
+                                });
+                            }
+                        },
+
 
                     }
 
                 })
+
 
 
 

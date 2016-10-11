@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "msg": "操作成功",
+  "data": [
+    {
+      "dcId": 0,
+      "dcName": "总览",
+      "cpu": {
+        "total": 20,
+        "used": 6
+      },
+      "mem": {
+        "total": 64,
+        "used": 24
+      }
+    },
+    {
+      "dcId": 1,
+      "dcName": "办公网",
+      "cpu": {
+        "total": 10,
+        "used": 2
+      },
+      "mem": {
+        "total": 32,
+        "used": 8
+      }
+    },
+    {
+      "dcId": 2,
+      "dcName": "电信",
+      "cpu": {
+        "total": 10,
+        "used": 4
+      },
+      "mem": {
+        "total": 32,
+        "used": 16
+      }
+    }
+  ]
+}
