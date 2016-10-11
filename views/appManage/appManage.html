@@ -57,7 +57,7 @@
                                             </p>
                                         </td>
                                         <td>
-                                            <p ng-repeat="pod in item.podList.items" ng-click="consoleTime(pod.metadata.creationTimestamp)">{{pod.metadata.creationTimestamp}}</p>
+                                            <p ng-repeat="pod in item.podList.items">{{pod.metadata.creationTimestamp}}</p>
                                         </td>
                                         <td>{{app.dcName}}</td>
                                         <td>
