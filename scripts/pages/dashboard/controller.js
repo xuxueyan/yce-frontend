@@ -14,7 +14,7 @@ define([
 
 
 
-
+            //  饼图
             dashboardService.getResData('', function (res){
 
                 if(res.code == 0)
@@ -24,7 +24,7 @@ define([
 
                     $scope.$on('$resourceRenderFinished',function(){
 
-                        angular.forEach(res.data,function (data,index,array){
+                        angular.forEach(res.data,function (data,index,array){                            
 
                             echarts.init(document.getElementById('resourceDom' + data.dcId)).setOption(
                                 {
@@ -78,6 +78,7 @@ define([
                 }
             });
 
+            //  拓扑关系图
             dashboardService.getApplyData('',function(res){
                 if(res.code == 0)
                 {
@@ -87,7 +88,7 @@ define([
                     var domNodes = [];
 
                     angular.forEach(res.data,function(data,index,array){
-
+                      //  console.log(angular.toJson(data)+"-----  data")
                         angular.forEach(data.deployments,function(data){
 
                             domNodes.push(data);
@@ -105,7 +106,7 @@ define([
 
                         angular.forEach(domNodes,function(data,index){
 
-                            //console.log(JSON.stringify(data));
+                         //   console.log(JSON.stringify(data));
 
                             var sourceName = data.rsName;
                             var dataNodes = [];
@@ -284,7 +285,79 @@ define([
 
             });
 
-            
+            //  柱状图
+            dashboardService.getHandleData('',function(res){
+                if(res.code == 0){
+                    console.log(angular.toJson(res.data.date))
+
+                    echarts.init(document.getElementById('handleDom')).setOption(
+                        {
+                            title: {
+                                text: '操作',
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 16
+                                }
+                            },
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            legend: {
+                                x: 'left',
+                                orient: 'vertical',
+                                data:['发布','扩容','滚动升级','回滚','删除']
+                            },
+                            grid: {
+                                width: '730px',
+                                height: '300px',
+                                left: '17%',
+                                containLabel: true
+                            },
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    data : res.data.date
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'发布',
+                                    type:'bar',
+                                    data:res.data.statistics.online
+                                },
+                                {
+                                    name:'扩容',
+                                    type:'bar',
+                                    data:res.data.statistics.scale
+                                },
+                                {
+                                    name:'滚动升级',
+                                    type:'bar',
+                                    data:res.data.statistics.rollingupgrade
+                                },
+                                {
+                                    name:'回滚',
+                                    type:'bar',
+                                    data:res.data.statistics.rollback
+                                },
+                                {
+                                    name:'删除',
+                                    type:'bar',
+                                    data:res.data.statistics.delete
+                                }
+                            ]
+                        }
+                    )
+                }
+            })
 
         }];
 

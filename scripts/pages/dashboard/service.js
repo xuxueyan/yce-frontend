@@ -11,6 +11,9 @@ define([
 		apis.getApplyData = function(param, success, error){
 			return utils.http($http, 'get', 'apply.json', param, success, error)
 		};
+		apis.getHandleData = function(param, success, error){
+			return utils.http($http, 'get', 'handle.json', param, success, error)
+		}
 
 
 		return apis;
