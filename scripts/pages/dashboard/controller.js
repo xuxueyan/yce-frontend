@@ -147,7 +147,6 @@ define([
                         edgeSymbol: ['none', 'none'],
                         data: [{
                             name: '节点1'
-
                         }, {
                             name: '节点2'
 
