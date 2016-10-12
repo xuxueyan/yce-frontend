@@ -1,25 +1,86 @@
+
+
 <section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">创建服务</h1>                            
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left"></h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form ng-submit="setUsersubmit()" name="login" >
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">用户名：</label>
+                                <span class="desc" ng-show="serviceNameInit" ng-init="serviceNameInit = true" >用户名具有唯一性</span>
+                                <span class="desc show-spans-1" ng-show="login.serviceName.$error.pattern">您的用户名不正确</span>
+                                <div class="controls">
+                                    <input type="text" name="serviceName" class="form-control" id="field-1678" ng-model="param.serviceName" ng-pattern="/^[a-zA-Z]+\.[a-zA-Z]+([-][1-9])?$/" ng-focus="serviceNameInit = false" ng-blur="login.serviceName.$error.pattern ? serviceNameInit = false : serviceNameInit = true && setUsername()" required />
+                                </div>
+                            </div>
+                          <!--   <div class="form-group">
+                                <label class="form-label" for="field-1678">所需组织：</label>
+
+                                <select ng-model="" class="">
+                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item}}</option>
+                                </select>
+                            </div> -->
+
+
+
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button class="btn btn-primary" ng-disabled="login.$invalid">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section class="wrapper main-wrapper row">
     <div class='col-xs-12'>
         <div class="page-title">
             <div class="pull-left">
                 <h1 class="title">云盘管理</h1>                            
             </div>
-
-            <!--
-            <div class="pull-right hidden-xs">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html"><i class="fa fa-home"></i>主页</a>
-                    </li>
-                    <li>
-                        <a href="uni-staffs.html">云盘管理</a>
-                    </li>
-                    <li class="active">
-                        <strong>云盘列表</strong>
-                    </li>
-                </ol>
-            </div>
-            -->
 
         </div>
     </div>
@@ -312,4 +373,4 @@
             </div>
         </section>
     </div>
-</section>
+</section> -->
