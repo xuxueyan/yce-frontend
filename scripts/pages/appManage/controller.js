@@ -92,16 +92,17 @@ define([
             $scope.numNewImage = image.substring(0, endStr);
 
         };
-            // 应用实例详情
-            $scope.showAppPodDetail = function(item, dcId){
-                $scope.param.dcId = dcId;
-                item.param = $scope.param;
-                $scope.appPodDetailConf = {
-                    widgetId : 'widgetAppPodDetail',
-                    widgetTitle : '应用实例详情',
-                    isAppPodDetail : true,
-                    data : item
-                };
+        // 应用实例详情
+        $scope.showAppPodDetail = function(item, dcId) {
+            $scope.param.dcId = dcId;
+            item.param = $scope.param;
+            $scope.appPodDetailConf = {
+                widgetId: 'widgetAppPodDetail',
+                widgetTitle: '应用实例详情',
+                isAppPodDetail: true,
+                data: item
+            };
+        };
 
 
         $scope.rollShow = true;
@@ -270,6 +271,5 @@ define([
     var controllers = [
         { module: 'appManage', name: 'appManageController', ctrl: ctrl }
     ];
-
     return controllers;
 });
