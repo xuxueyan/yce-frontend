@@ -1,4 +1,4 @@
-<section class="wrapper main-wrapper row" style="">
+<section class="wrapper main-wrapper row appManage" style="">
     <div class='col-xs-12'>
         <div class="page-title">
             <div class="pull-left">
@@ -100,6 +100,10 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="reload">
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
     </div>
 </section>
 <ui-widget ng-if="widget.widgetAppPodDetail" config="appPodDetailConf"></ui-widget>
