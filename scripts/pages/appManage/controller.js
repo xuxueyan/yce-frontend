@@ -17,19 +17,34 @@ define([
                 if (data.code == 0) {
                     $scope.appList = JSON.parse(data.data);
                 }
-                JSON.parse(data.data).forEach(function(test) {
-                    test.deployments.forEach(function(deployment) {
+                // 进度条获取值
+                JSON.parse(data.data).forEach(function(app) {
+                    app.deployments.forEach(function(deployment) {
                         deployment.podList.items.forEach(function(item) {
                             var a = item.status.phase;
-                            // console.log(item.status.phase);
                             if (a == 'Running') {
                                 $scope.state = [{
-                                    value: "30",
-                                    type: "warning"
+                                    value: "100",
+                                    type: "success"
                                 }];
-                            } else if (a == 'Waiting') {
+                            } else if (a == 'Pending') {
                                 $scope.state = [{
-                                    value: "60",
+                                    value: "75",
+                                    type: "info"
+                                }];
+                            } else if (a == 'Failed') {
+                                $scope.state = [{
+                                    value: "100",
+                                    type: "danger"
+                                }];
+                            } else if (a == 'Succeeded') {
+                                $scope.state = [{
+                                    value: "",
+                                    type: ""
+                                }];
+                            } else if (a == 'Unknown') {
+                                $scope.state = [{
+                                    value: "30",
                                     type: "warning"
                                 }];
                             }
@@ -92,18 +107,6 @@ define([
             $scope.numNewImage = image.substring(0, endStr);
 
         };
-        // 应用实例详情
-        $scope.showAppPodDetail = function(item, dcId) {
-            $scope.param.dcId = dcId;
-            item.param = $scope.param;
-            $scope.appPodDetailConf = {
-                widgetId: 'widgetAppPodDetail',
-                widgetTitle: '应用实例详情',
-                isAppPodDetail: true,
-                data: item
-            };
-        };
-
 
         $scope.rollShow = true;
 
