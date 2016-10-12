@@ -6,7 +6,6 @@
             </div>
             <div class="pull-right hidden-xs appManage-refresh">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
             </div>
         </div>
     </div>
@@ -101,9 +100,12 @@
             </div>
         </section>
     </div>
-    <div class="reload">
-        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-        <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
+    <!-- 刷新按钮 -->
+    <div class="list-right">
+        <div class="reload">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
+        </div>
     </div>
 </section>
 <ui-widget ng-if="widget.widgetAppPodDetail" config="appPodDetailConf"></ui-widget>
