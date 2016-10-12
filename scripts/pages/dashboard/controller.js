@@ -9,28 +9,36 @@ define([
     ], function(Base64,echarts,angular,$){
         'use strict';
 
-        var ctrl = ['$scope','$timeout', 'dashboardService', function($scope,$timeout,dashboardService){
+        var ctrl = ['$scope','$timeout', 'dashboardService', '$localStorage', function($scope,$timeout,dashboardService,$localStorage){
 
 
-
-
-
-            dashboardService.getResData('', function (res){
+            var param = {
+                "sessionId" : $localStorage.sessionId,
+                "orgId" : $localStorage.orgId
+            };
+            
+            //  饼图
+            dashboardService.getResData(param, function (res){
 
                 if(res.code == 0)
                 {
 
-                    $scope.resourceDom = res.data;
+                    var dataPie = JSON.parse(res.data);
+
+                    $scope.resourceDom = dataPie;
 
                     $scope.$on('$resourceRenderFinished',function(){
 
-                        angular.forEach(res.data,function (data,index,array){
+
+                        angular.forEach(dataPie,function (data,index,array){
 
                             echarts.init(document.getElementById('resourceDom' + data.dcId)).setOption(
                                 {
+                                    backgroundColor: '#fff',
                                     title: {
                                         text: data.dcName,
                                         left: 'center',
+                                        top: 20,
                                         textStyle: {
                                             fontSize: 16
                                         }
@@ -41,7 +49,8 @@ define([
                                     },
                                     legend: {
                                         orient: 'vertical',
-                                        x: 'left',
+                                        left: 10,
+                                        top: 10,
                                         data:['CPU已用','CPU未用','内存已用','内存未用']
                                     },
                                     series: [
@@ -78,42 +87,27 @@ define([
                 }
             });
 
-            dashboardService.getApplyData('',function(res){
+            //  拓扑关系图
+            dashboardService.getApplyData(param,function(res){
                 if(res.code == 0)
                 {
+                    var dataGraph = JSON.parse(res.data);
 
-                    //$scope.applyDom = res.data;
-
-                    var domNodes = [];
-
-                    angular.forEach(res.data,function(data,index,array){
-
-                        angular.forEach(data.deployments,function(data){
-
-                            domNodes.push(data);
-
-                        })
-
-                    });
-
-                    console.log('dom节点总个数' + domNodes.length);
-
-                    $scope.applyDom = domNodes;
+                    $scope.applyDom = dataGraph;
 
                     $scope.$on('$applyRenderFinished',function(){
 
 
-                        angular.forEach(domNodes,function(data,index){
+                        angular.forEach(dataGraph,function(data,index){
 
-                            //console.log(JSON.stringify(data));
-
-                            var sourceName = data.rsName;
+                            var sourceName = data.deploymentName;
                             var dataNodes = [];
                             var linkArray = [];
                             var dataArray = [];
 
-
                             angular.forEach(data.podName,function(data){
+
+                                data = data.substring(data.length - 5);
 
                                 dataNodes.push(data);
 
@@ -127,20 +121,44 @@ define([
 
                             dataNodes.push(sourceName);
 
-                            angular.forEach(dataNodes,function(data){
-                                dataArray.push(
-                                    {
-                                        "name": data
-                                    }
-                                )
+
+                            angular.forEach(dataNodes,function(data,index,array){
+
+
+                                if( index == array.length -1)
+                                {
+                                    dataArray.push(
+                                        {
+                                            'name': data,
+                                            'itemStyle': {
+                                                normal: {
+                                                    color : '#3F51B5'
+                                                }
+                                            }
+                                        }
+                                    )
+
+                                }
+                                else
+                                {
+                                    dataArray.push(
+                                        {
+                                            "name": data
+                                        }
+                                    )
+                                }
+
                             });
 
 
 
                             echarts.init(document.getElementById('applyDom' + index)).setOption({
+
+                                backgroundColor: '#fff',
                                 title: {
                                     text: data.dcName,
-                                    left: 'left',
+                                    left: 10,
+                                    top: 20,
                                     textStyle: {
                                         fontSize: 16
                                     }
@@ -160,7 +178,6 @@ define([
                                                 position: 'top'
                                             }
                                         },
-                                        edgeSymbol: ['none', 'none'],
                                         data: dataArray,
                                         links: linkArray,
                                         lineStyle: {
@@ -180,103 +197,6 @@ define([
                         });
 
 
-                        //angular.forEach(res.data, function (data,index){
-                        //
-                        //    var itemTitle = data.dcName;
-                        //
-                        //
-                        //
-                        //    var applyArray = [];
-                        //    //
-                        //    var seriesArray = [];
-                        //
-                        //
-                        //    angular.forEach(data.deployments,function(data, index){
-                        //
-                        //        var nodes = [];
-                        //        var dataArray = [];
-                        //
-                        //        //关系集合
-                        //        var linkArray = [];
-                        //
-                        //
-                        //        var souceName = data.rsName;
-                        //
-                        //        //push podName
-                        //        angular.forEach(data.podName,function(data){
-                        //            nodes.push(data);
-                        //
-                        //            linkArray.push({
-                        //                source : data,
-                        //                target: souceName
-                        //
-                        //            })
-                        //
-                        //        });
-                        //
-                        //        //所有点的集合
-                        //        nodes.push(data.rsName);
-                        //
-                        //        // 转换 data
-                        //        angular.forEach(nodes,function(data){
-                        //            dataArray.push(
-                        //                {
-                        //                    "name": data
-                        //                }
-                        //            )
-                        //        });
-                        //
-                        //        seriesArray.push({
-                        //            type: 'graph',
-                        //            symbolSize: 20,
-                        //            layout: 'force',
-                        //            force: {
-                        //                repulsion: 1500
-                        //            },
-                        //            left: ((index+1) % 4) * 20 + "%",
-                        //            top: ((index+1) % 4) * 20 + '%',
-                        //            width: '20%',
-                        //            height: '20%',
-                        //            roam: 'move',
-                        //
-                        //            label: {
-                        //                normal: {
-                        //                    show: true,
-                        //                    position: 'top'
-                        //                }
-                        //            },
-                        //            edgeSymbol: ['none', 'none'],
-                        //            data: dataArray,
-                        //            links: linkArray,
-                        //            lineStyle: {
-                        //                normal: {
-                        //                    opacity: 0.9,
-                        //                    width: 2,
-                        //                    curveness: 0
-                        //                }
-                        //            }
-                        //
-                        //        });
-                        //
-                        //        console.log(JSON.stringify(seriesArray));
-                        //
-                        //    });
-                        //
-                        //    echarts.init(document.getElementById('applyDom' + data.dcId)).setOption({
-                        //        title: {
-                        //            text: data.dcName,
-                        //            left: 'left',
-                        //            textStyle: {
-                        //                fontSize: 16
-                        //            }
-                        //        },
-                        //        series: seriesArray
-                        //    })
-                        //
-                        //});
-
-
-
                     });
 
 
@@ -285,6 +205,80 @@ define([
             });
 
 
+            //  柱状图
+            dashboardService.getHandleData(param,function(res){
+                if(res.code == 0){
+
+                    var dataHistogram = JSON.parse(res.data);
+
+                    echarts.init(document.getElementById('handleDom')).setOption(
+                        {
+                            title: {
+                                text: '操作',
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 16
+                                }
+                            },
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            legend: {
+                                x: 'left',
+                                orient: 'vertical',
+                                data:['发布','扩容','滚动升级','回滚','删除']
+                            },
+                            grid: {
+                                width: '730px',
+                                height: '300px',
+                                left: '17%',
+                                containLabel: true
+                            },
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    data : dataHistogram.date
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'发布',
+                                    type:'bar',
+                                    data:dataHistogram.statistics.online
+                                },
+                                {
+                                    name:'扩容',
+                                    type:'bar',
+                                    data:dataHistogram.statistics.scale
+                                },
+                                {
+                                    name:'滚动升级',
+                                    type:'bar',
+                                    data:dataHistogram.statistics.rollingupgrade
+                                },
+                                {
+                                    name:'回滚',
+                                    type:'bar',
+                                    data:dataHistogram.statistics.rollback
+                                },
+                                {
+                                    name:'删除',
+                                    type:'bar',
+                                    data:dataHistogram.statistics.delete
+                                }
+                            ]
+                        }
+                    )
+                }
+            })
 
         }];
 

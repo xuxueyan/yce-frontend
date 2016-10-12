@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:data.tabSwitch==0}" ng-init="data.tabSwitch=0" ng-click="data.tabSwitch=0">
+                <a href="javascript:void(0);" aria-expanded="true">
+                    <i class="fa fa-home"></i> 详细信息
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade app-detail" ng-class="{'active in':data.tabSwitch==0}">
+                <div class="row">
+                    <dl class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>服务名称 : </dt>
+                        <dd><span></span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>组织名称 : </dt>
+                        <dd><span></span></dd>
+                    </dl>
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>类型: </dt>
+                        <dd><span></span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>启动时间 : </dt>
+                        <dd><span></span></dd>
+                    </dl>
+                    <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <dt>ClusterIP: </dt>
+                        <dd><span></span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <div class="dataTables_wrapper form-inline labels-table">
+                        <table class="table table-striped dt-responsive display dataTable dtr-inline">
+                            <thead>
+                                <tr role="row">
+                                    <th colspan="2">标签组</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" ng-repeat="(key,value) in originalData.metadata.labels">
+                                    <td>&nbsp;&nbsp;:</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="dataTables_wrapper form-inline labels-table">
+                        <table class="table table-striped dt-responsive display dataTable dtr-inline">
+                            <thead>
+                                <tr role="row">
+                                    <th colspan="2">端口组</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="item in originalData.spec.ports">
+                            <tr role="row" ng-repeat="(key,value) in item">
+                                <td>&nbsp;&nbsp;:</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
