@@ -110,11 +110,6 @@
     line-height: 10px;
     margin: 5px auto;
 }
-
-.appdemoS .ng-scope .progress-bar-info {
-    background-color: #4caf50;
-}
-
 .appdemoS .ng-scope .progress-bar {
     border-radius: 15px;
 }
