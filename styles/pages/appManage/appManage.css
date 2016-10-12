@@ -49,6 +49,14 @@
 
 /*刷新样式*/
 
+.appManage .list-right {
+    position: fixed;
+    top: 16%;
+    height: 100%;
+    width: 4%;
+    right: 0;
+}
+
 .appManage .reload {
     position: fixed;
     right: -38px;
@@ -66,7 +74,7 @@
     color: #fff;
 }
 
-.appManage .reload:hover {
+.appManage .list-right:hover .reload {
     right: 0;
 }
 
