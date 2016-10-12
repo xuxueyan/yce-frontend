@@ -1,10 +1,96 @@
-.appManageSearch{ margin:20px 15px 20px 0;}
-.appManageSearch input:focus{ width:500px !important;}
-.appManageTable{ text-align:center; margin-top:20px; min-height: 500px;}
-.appManageTable th{ font-size:16px !important; font-weight:bold !important;}
-.appManageTable td{ vertical-align:middle !important; box-sizing:border-}
-.appManageTable td:nth-child(2) p { cursor:pointer;}
-.appManageTable td > p { padding:5px 0; border-top:1px solid #eeeeee;}
-.appManageTable td > p:first-child{ border:none;}
+.appManageSearch {
+    margin: 20px 15px 20px 0;
+}
 
-.appManage-refresh { color: #3f51b5; line-height: 55px; padding-right: 50px; cursor: pointer;}
+.appManageSearch input:focus {
+    width: 500px !important;
+}
+
+.appManageTable {
+    text-align: center;
+    margin-top: 20px;
+    min-height: 500px;
+}
+
+.appManageTable th {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+.appManageTable td {
+    vertical-align: middle !important;
+    box-sizing: border-
+}
+
+.appManageTable td:nth-child(2) p {
+    cursor: pointer;
+}
+
+.appManageTable td > p {
+    padding: 20px 0;
+    border-top: 1px solid #eeeeee;
+}
+
+.appManageTable td > p:first-child {
+    border: none;
+}
+
+.appManage-refresh {
+    color: #3f51b5;
+    line-height: 55px;
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+.appManage table.dataTable tr td {
+    padding: 0 !important;
+}
+
+
+/*刷新样式*/
+
+.appManage .list-right {
+    position: fixed;
+    top: 16%;
+    height: 100%;
+    width: 4%;
+    right: 0;
+}
+
+.appManage .reload {
+    position: fixed;
+    right: -38px;
+    top: 50%;
+    background-color: #3f51b5;
+    padding: 10px 10px;
+    cursor: pointer;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-property: all;
+    transition-property: all;
+}
+
+.appManage .reload span {
+    color: #fff;
+}
+
+.appManage .list-right:hover .reload {
+    right: 0;
+}
+
+.appManage .reload:hover .glyphicon {
+    -webkit-transform: rotate(360deg);
+    animation: rotation 3s linear infinite;
+    -moz-animation: rotation 3s linear infinite;
+    -webkit-animation: rotation 3s linear infinite;
+    -o-animation: rotation 3s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}

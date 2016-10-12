@@ -1,12 +1,11 @@
-<section class="wrapper main-wrapper row" style="">
+<section class="wrapper main-wrapper row appManage" style="">
     <div class='col-xs-12'>
         <div class="page-title">
             <div class="pull-left">
-                <h1 class="title">应用管理</h1>                            
+                <h1 class="title">应用管理</h1>
             </div>
             <div class="pull-right hidden-xs appManage-refresh">
                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
             </div>
         </div>
     </div>
@@ -22,12 +21,11 @@
                                     <input type="text" value="" ng-model="data.search" placeholder="输入应用名称..." class="form-control search-page-input">
                                     <span class="input-group-addon">
                                         <span class="arrow"></span>
-                                        <i class="fa fa-search"></i>
+                                    <i class="fa fa-search"></i>
                                     </span>
                                 </div>
                             </div>
-                            <table id="appList" class="display table table-hover table-condensed dataTable no-footer appList-table appManageTable"
-                                   role="grid" aria-describedby="example_info">
+                            <table id="appList" class="display table table-hover table-condensed dataTable no-footer appList-table appManageTable" role="grid" aria-describedby="example_info">
                                 <thead class="appManage-headle">
                                     <tr role="row">
                                         <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ID">ID</th>
@@ -40,9 +38,8 @@
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">操作</th>
                                     </tr>
                                 </thead>
-
                                 <tbody ng-repeat="app in appList | filter:data.search">
-                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments" >
+                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments">
                                         <td>{{$index+1}}</td>
                                         <td class="sorting_1">
                                             <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
@@ -51,14 +48,19 @@
                                             <p ng-click="showAppPodDetail(pod, app.dcId)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
                                         </td>
                                         <td class="appdemoS">
-                                            <p ng-repeat="pod in item.podList.items">{{pod.status.phase}}</p>
+                                            <!-- <p ng-repeat="pod in item.podList.items">{{pod.status.phase}}</p> -->
+                                            <p ng-repeat="pod in item.podList.items">
+                                                <uib-progress>
+                                                    <uib-bar ng-repeat="state in state track by $index" value="state.value" type="{{state.type}}"></uib-bar>
+                                                </uib-progress>
+                                            </p>
                                         </td>
                                         <td>
                                             <p ng-repeat="pod in item.podList.items">{{pod.metadata.creationTimestamp}}</p>
                                         </td>
                                         <td>{{app.dcName}}</td>
                                         <td>
-                                            <p >{{item.userName}}</p>
+                                            <p>{{item.userName}}</p>
                                         </td>
                                         <td>
                                             <span class="apply-leave" ng-mouseleave="showBox[$index]=false">
@@ -82,7 +84,6 @@
                                             <li><a href="#">3</a></li>
                                             <li><a href="#">4</a></li>
                                             <li><a href="#">5</a></li>
-
                                             <li class="next">
                                                 <a href="#"><i class="fa fa-angle-double-right"></i></a>
                                             </li>
@@ -99,9 +100,14 @@
             </div>
         </section>
     </div>
+    <!-- 刷新按钮 -->
+    <div class="list-right">
+        <div class="reload">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-click="loadAppList()">刷新</span>
+        </div>
+    </div>
 </section>
-
-
 <ui-widget ng-if="widget.widgetAppPodDetail" config="appPodDetailConf"></ui-widget>
 <ui-widget ng-if="widget.widgetAppDeployDetail" config="appDeployDetailConf"></ui-widget>
 <ui-widget ng-if="widget.widgetRollingup" config="appRollingupConf"></ui-widget>
@@ -109,12 +115,3 @@
 <ui-widget ng-if="widget.widgetScale" config="appScaleConf"></ui-widget>
 <ui-widget ng-if="widget.widgetDelete" config="appDeleteConf"></ui-widget>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
-
-
-
-
-                               
-                                        
-                                        
-                                        
-                                       
