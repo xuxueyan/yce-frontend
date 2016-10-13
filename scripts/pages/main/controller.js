@@ -51,7 +51,7 @@ define([
                     showSubnav: [],
                     toggleNav : false
                 };
-                mainService.getNavlist({"sessionId": $localStorage.sessionId}, function (data) {
+                mainService.getNavlist({"sessionId": $localStorage.sessionId,"orgId": $localStorage.orgId,"userId": $localStorage.userId}, function (data) {
                     // $scope.navList = data.list;
                     var nav = JSON.parse(data.data);
                     $scope.navList = nav.list;

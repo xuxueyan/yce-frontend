@@ -213,9 +213,11 @@ define([
 
                     echarts.init(document.getElementById('handleDom')).setOption(
                         {
+                            backgroundColor: '#fff',
                             title: {
                                 text: '操作',
-                                left: 'center',
+                                x: 'center',
+                                top: 20,
                                 textStyle: {
                                     fontSize: 16
                                 }
@@ -227,8 +229,9 @@ define([
                                 }
                             },
                             legend: {
-                                x: 'left',
                                 orient: 'vertical',
+                                left: 10,
+                                top: 10,
                                 data:['发布','扩容','滚动升级','回滚','删除']
                             },
                             grid: {
