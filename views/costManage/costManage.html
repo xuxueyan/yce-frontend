@@ -20,6 +20,51 @@
         </div>
     </div>
     <div class="clearfix"></div>
+
+
+    <div class="col-lg-12">
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">基本配置</h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 col-md-8">
+
+                        <div class="form-group" ng-init="orgTips = true">
+                            <label class="form-label" for="field-name">组织名称：</label>
+                            <span class="desc" ng-show="orgTips">组织名是所要创建组织的名称</span>
+                            <span class="warn" ng-show="orgNameExit">组织名已存在,请重新输入!</span>
+
+                            <div class="controls">
+                                <input type="text" name="orgName" class="form-control" id="field-name"
+                                       ng-model="orgName" ng-focus="orgTips = orgNameExit = false"
+                                       ng-blur="nameExit();">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">数据中心：</label>
+                            <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                            <div class="controls data-center">
+                                <label ng-repeat="item in dcListDom" class="form-label" ng-class="{checked:dataCenters[$index]}">
+                                    <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataCenters[$index]">{{item.name}}
+                                </label>
+
+                            </div>
+
+                            <button class="btn btn-primary" ng-click="orgSubmit()">提交</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
     
     <div class="col-lg-12">
         <section class="box ">
