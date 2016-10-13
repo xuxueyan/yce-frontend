@@ -11,11 +11,10 @@ define([
             var param = {
                 "sessionId" : $localStorage.sessionId
             }
-
+            // 创建用户页面
             rbdManageService.setUpUser(param, function(res){
 
                 $scope.activities = JSON.parse(res.data)
-
                 $scope.putUp = {
                     "sessionId" : $localStorage.sessionId,
                     "userName": "",
@@ -25,31 +24,24 @@ define([
                     "op": $localStorage.userId
                 }
                 $scope.againPwJudge = function(){
-                    $scope.againPasswordShow = false;
                 }
-
-                // 点击提交
-                $scope.setUsersubmit = function(){
-                    if($scope.againPassword != $scope.putUp.password){
-                        $scope.againPasswordShow = true;
-                    }else{
-                        $scope.againPasswordShow = false;
-                    }
-
+                //  失焦时判断
+                $scope.myUsernameBlur = function(){
+                    $scope.showUsernams = false;
                     var requires ={
-                        "sessionId" : $localStorage.sessionId,
+                        "sessionId": $localStorage.sessionId,
                         "userName": $scope.putUp.userName,
                         "orgName": $scope.putUp.orgName,
                         "orgId": $localStorage.orgId
                     }
-                    // 用户名和组织不为空时  判断用户名
+                    // 用户名和组织不为空时  判断用户名是否重复
                     if($scope.putUp.userName != "" && $scope.putUp.orgName != ""){
 
+                        $scope.againPasswordShow = false;
                         // 请求
                         rbdManageService.UsernameJudge(requires,function(codes){
 
                             if(codes.code == "1415"){
-
                                 $scope.showUsernams = true;
                                 // 触焦username文本框 错误提示隐藏
                                 $scope.myUserNameFocus = function(){
@@ -60,7 +52,16 @@ define([
                         })
                     }
 
-                    //  提交
+                }
+
+                // 点击提交
+                $scope.setUsersubmit = function(){
+                    if($scope.againPassword != $scope.putUp.password){
+                        $scope.againPasswordShow = true;
+                    }else{
+                        $scope.againPasswordShow = false;
+                    }
+                    //  提交请求
                     rbdManageService.UserSubmit($scope.putUp,function(rep){
                         
                         $scope.showstatusMes = true;
@@ -81,9 +82,7 @@ define([
                         $scope.status = false;
                     })
                 }
-
             })
-
         }];
 
 

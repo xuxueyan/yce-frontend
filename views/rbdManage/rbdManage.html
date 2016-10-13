@@ -18,18 +18,28 @@
                 <div class="row">
                     <form ng-submit="setUsersubmit()" name="login" >
                         <div class="col-xs-12 col-sm-9 col-md-8">
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">所需组织：</label>
+
+                                <select ng-model="putUp.orgName" class="form-inputs">
+                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item}}</option>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">用户名：</label>
                                 <span class="desc show-spans-1" ng-show="login.userName.$error.pattern">您的用户名不正确</span>
                                 <span class="desc show-spans-1" ng-show="showUsernams">您的用户名重复，请您更换用户名</span>
                                 <div class="controls">
-                                    <input type="text" name="userName" class="form-control" id="field-1678" ng-model="putUp.userName" ng-pattern="/^[a-zA-Z]+\.[a-zA-Z]+([-][1-9]+)?$/" ng-focus="myUserNameFocus()" />
+                                    <input type="text" name="userName" class="form-control" id="field-1678" ng-model="putUp.userName" ng-pattern="/^[a-zA-Z]+\.[a-zA-Z]+([-][1-9]+)?$/" ng-focus="myUserNameFocus()" ng-blur="myUsernameBlur()" required/>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">密码：</label>
                                 <div class="controls">
-                                    <input type="password" name="password" class="form-control" id="field-1678" ng-model="putUp.password"   />
+                                    <input type="password" name="password" class="form-control" id="field-1678" ng-model="putUp.password" required/>
                                 </div>
                             </div>
 
@@ -40,15 +50,6 @@
                                     <input type="password" class="form-control" id="field-1678" ng-model="againPassword" ng-focus="againPwJudge()" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label" for="field-1678">所需组织：</label>
-
-                                <select ng-model="putUp.orgName" class="">
-                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item}}</option>
-                                </select>
-                            </div>
-
-
 
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
                                 <div class="text-left">
