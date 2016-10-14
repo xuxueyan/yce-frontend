@@ -35,7 +35,6 @@ define([
 					.state('main.imageManageSearch', imageManageRouter.search)
 					.state('main.imageManageDelete', imageManageRouter.delete)
 					.state('main.topology', topologyRouter.topology)
-					//.state('main.organizManage', organizManageRouter.organizManage)
 			}]);
 		};
 
