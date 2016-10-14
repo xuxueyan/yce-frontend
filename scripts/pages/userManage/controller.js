@@ -2,17 +2,19 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-        'base64'
-    ], function(Base64){
+        'base64',
+        'kubernetesUI',
+        'jQuery'
+    ], function(Base64, kubernetesUI,$){
         'use strict';
 
-        var ctrl = ['$scope', '$http', 'rbdManageService', '$localStorage', '$timeout', function($scope,$http,rbdManageService,$localStorage,$timeout){
 
+        var ctrl = ['$scope', 'userManageService', '$localStorage', '$timeout', function($scope, userManageService, $localStorage, $timeout){
             var param = {
                 "sessionId" : $localStorage.sessionId
             }
             // 创建用户页面
-            rbdManageService.setUpUser(param, function(res){
+            userManageService.setUpUser(param, function(res){
 
                 $scope.activities = JSON.parse(res.data)
                 $scope.putUp = {
@@ -39,7 +41,7 @@ define([
 
                         $scope.againPasswordShow = false;
                         // 请求
-                        rbdManageService.UsernameJudge(requires,function(codes){
+                        userManageService.UsernameJudge(requires,function(codes){
 
                             if(codes.code == "1415"){
                                 $scope.showUsernams = true;
@@ -56,40 +58,69 @@ define([
 
                 // 点击提交
                 $scope.setUsersubmit = function(){
-                    if($scope.againPassword != $scope.putUp.password){
-                        $scope.againPasswordShow = true;
-                    }else{
+                    // 如果密码相同
+                    if($scope.againPassword == $scope.putUp.password){
                         $scope.againPasswordShow = false;
-                    }
-                    //  提交请求
-                    rbdManageService.UserSubmit($scope.putUp,function(rep){
-                        
-                        $scope.showstatusMes = true;
-                        if(rep.code == 0){
-                            $scope.status = true;
-                            $scope.message = rep.message;
-                            $timeout(function() {
-                                $scope.showstatusMes = false;
-                            }, 1000);
-                        }
-                        else{
+                    
+                        //  提交请求
+                        userManageService.UserSubmit($scope.putUp,function(rep){
+                            
+                            $scope.showstatusMes = true;
+                            if(rep.code == 0){
+                                $scope.status = true;
+                                $scope.message = rep.message;
+                                $timeout(function() {
+                                    $scope.showstatusMes = false;
+                                }, 1000);
+                            }
+                            else{
+                                $scope.message = rep.message;
+                                $scope.status = false;
+                            }
+
+                        },function(){
                             $scope.message = rep.message;
                             $scope.status = false;
-                        }
-
-                    },function(){
-                        $scope.message = rep.message;
-                        $scope.status = false;
-                    })
+                        })
+                    }else{
+                        $scope.againPasswordShow = true;
+                        $scope.login.$invalid = true;
+                    }
                 }
             })
+
+            // 获取用户列表
+            userManageService.ObtainUserList(param, function(res){
+              //  console.log(angular.toJson(res.data));
+                var UserList = JSON.parse(res.data);
+                $scope.userOrgId = [];
+
+                // UserList.users.forEach(function(i){
+                //     console.log(angular.toJson(i.orgId))
+                //     $scope.userOrgId.push(i.orgId)
+                // })
+
+
+
+
+
+
+
+
+
+                // if(res.code == 0){
+                //     $scope.UserList = JSON.parse(res.data);
+                // }
+            })
+
+
         }];
 
 
-        var controllers = [
-            {module: 'rbdManage',
-            name: 'rbdManageController',
-            ctrl: ctrl}
+
+
+    var controllers = [
+            {module: 'userManage', name: 'userManageController', ctrl: ctrl}
         ];
 
         return controllers;

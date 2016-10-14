@@ -6,7 +6,6 @@ define([
 	var getApis = function($http){
 		var apis = {};
 
-
 		apis.setUpUser = function(param, success, error){
 			return utils.http($http, 'get', '/api/v1/user/init', param, success, error)
 		}
@@ -21,13 +20,18 @@ define([
 			return utils.http($http, 'post', '/api/v1/user/new', putUp, success, error)
 		}
 
+		// 获取用户列表
+		apis.ObtainUserList = function(param, success, error){
+			return utils.http($http, 'get', '/api/v1/user', param, success, error)
+		}
+		
 		
 		return apis;
 	};	
 
 	var services = {
-		module: 'rbdManage',
-		name: 'rbdManageService',
+		module: 'userManage',
+		name: 'userManageService',
 		getApis: getApis
 	};
 

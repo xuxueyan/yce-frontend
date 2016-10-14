@@ -2,14 +2,18 @@ define([
 	'../pages/main/controller',
 	'../pages/dashboard/controller',
 	'../pages/appManage/controller',
-	'../pages/rbdManage/controller',
 	'../pages/costManage/controller',
 	'../pages/extensions/controller',
 	'../pages/imageManage/controller',
 	'../pages/topology/controller',
 	'../pages/appManage/deployment/controller',
-	'../pages/appManage/history/controller'
-	], function(mainController, dashboardController, appManageController, rbdManageController, costManageController, extensionsController, imageManageController, topologyController, deploymentController, historyController){
+	'../pages/appManage/history/controller',
+	'../pages/orgManage/controller',
+	'../pages/userManage/controller',
+	'../pages/dcManage/controller',
+	'../pages/personalCenter/controller',
+	'../pages/walkthrogh/controller'
+	], function(mainController, dashboardController, appManageController,  costManageController, extensionsController, imageManageController, topologyController, deploymentController, historyController, orgManageController, userManageController, dcManageController, personalCenterController, walkthroghController){
 
 		'use strict';
 		//获取全部controller
@@ -19,7 +23,6 @@ define([
 		var controllers = _.reduce(args, function(memo, arg){
 			return memo.concat(arg);
 		}, []);
-
 
 		//创建controller
 		var init = function(){			
