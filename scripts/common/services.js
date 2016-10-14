@@ -2,14 +2,18 @@ define([
 	'../pages/main/service',
 	'../pages/dashboard/service',
 	'../pages/appManage/service',
-	'../pages/rbdManage/service',
 	'../pages/costManage/service',
 	'../pages/extensions/service',
 	'../pages/imageManage/service',
 	'../pages/topology/service',
 	'../pages/appManage/deployment/service',
-	'../pages/appManage/history/service'
-], function(mainService, dashboardService, appManageService, rbdManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService, historyService){
+	'../pages/appManage/history/service',
+	'../pages/orgManage/service',
+	'../pages/userManage/service',
+	'../pages/dcManage/service',
+	'../pages/personalCenter/service',
+	'../pages/walkthrogh/service'
+], function(mainService, dashboardService, appManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService, historyService, orgManageService, userManageService, dcManageService, personalCenterService, walkthroghService){
 
 	'use strict';
 	//获取全部service
