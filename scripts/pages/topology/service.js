@@ -6,7 +6,7 @@ define([
 	var getApis = function($http){
 		var apis = {};
 		apis.getDatasets = function(param, success, error){
-		    return utils.http($http, 'get', '/api/v1/organizations/' + param.orgId + '/topology', param, success, error);
+		    return utils.http($http, 'get', '/api/v1/organizations/' + param.orgId + '/users/' + param.userId + '/topology', param, success, error);
 		};
 
 		return apis;
