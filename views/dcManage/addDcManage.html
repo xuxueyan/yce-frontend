@@ -1,0 +1,70 @@
+<section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">创建数据中心</h1>                            
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left"></h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form ng-submit="DataCenterSubmit()" name="login" >
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">数据中心名称：</label>
+                                <span class="desc show-spans-1" ng-show="login.DCname.$error.pattern">您的用户名不正确</span>
+                                <div class="controls">
+                                    <input type="text" name="DCname" class="form-control" id="field-1678" ng-model="dataCenterName" ng-pattern="/^[a-zA-z0-9\u4E00-\u9FFF]+$/" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">Nodeport：</label>
+                                <div class="controls">
+                                    <input type="text"class="form-control server-btn" id="field-1678"  required/>
+                                    <b class="fa fa-minus inputB"></b>
+                                    <input type="text"class="form-control server-btn" id="field-1678"  required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">集群地址：</label>
+                                <span class="desc show-spans-1" ng-show="login.colonyIp.$error.pattern">IP地址不正确</span>
+                                <div class="controls">
+                                    <input type="text" name="colonyIp" class="form-control" id="field-1678" ng-model="colonyIp" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">集群端口：</label>
+
+                                <input type="text" class="form-control" id="field-1678" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="field-1678">Secret：</label>
+
+                                <input type="text" class="form-control" id="field-1678" />
+                            </div>
+
+
+
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button class="btn btn-primary" ng-disabled="login.$invalid">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<!-- <status-mes message="message" status="status" ng-if="showstatusMes"></status-mes> -->
+
+
+

@@ -1,0 +1,63 @@
+<section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">添加组织</h1>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <div class="col-lg-12">
+        <section class="box">
+            <header class="panel_header">
+                <h2 class="title pull-left">基本配置</h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 col-md-8">
+
+                        <form name="orgForm">
+                            <div class="form-group" ng-init="orgTips = true">
+                                <label class="form-label" for="field-name">组织名称：</label>
+                                <span class="desc" ng-show="orgTips">组织名是所要创建组织的名称</span>
+                                <span class="warn" ng-show="orgNameExit">组织名已存在,请重新输入!</span>
+                                <span class="warn" ng-show="orgForm.organization.$error.pattern">组织名格式不正确!</span>
+
+                                <div class="controls">
+                                    <input type="text" name="organization" class="form-control" id="field-name"
+                                           ng-model="orgName" ng-focus="orgTips = orgNameExit = false"
+                                           ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
+                                           ng-blur="orgForm.organization.$error.pattern ? return : nameExit();" required>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">数据中心：</label>
+                                <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                                <div class="controls data-center">
+                                    <label ng-repeat="item in dcListDom" class="form-label" ng-class="{checked:dataCenters[$index]}">
+                                        <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataCenters[$index]">{{item.name}}
+                                    </label>
+
+                                </div>
+
+                                <button class="btn btn-primary" ng-click="orgSubmit()" ng-disabled="orgForm.$invalid">提交</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+</section>
+
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>

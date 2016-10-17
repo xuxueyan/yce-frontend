@@ -29,10 +29,15 @@ define([
 	angular.module('extensionsManage', ['common']);
 	angular.module('imageManage', ['common']);
 	angular.module('topology', ['common']);
+	angular.module('orgManage', ['common']);
+	angular.module('userManage', ['common']);
+	angular.module('dcManage', ['common']);
+	angular.module('personalCenter', ['common']);
+	angular.module('walkthrogh', ['common']);
 
 
 	//主应用
-	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'kubernetesUI', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage', 'topology']);
+	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'kubernetesUI', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage', 'topology', 'orgManage', 'userManage','dcManage', 'personalCenter', 'walkthrogh']);
 	//路由引导
 	Mock.mockjax(app);
 
