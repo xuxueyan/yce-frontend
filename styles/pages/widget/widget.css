@@ -1,129 +1,590 @@
-.widget-bg{ position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3); z-index:10000;}
-.widget{ position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; background:#fff; border-radius:5px; overflow:auto;}
-.widget-header{ height:60px; line-height:60px; font-size:18px; text-indent:30px; width:100%; border-bottom: 2px solid #e1e1e1;}
-.widget-content{ padding:20px 30px;}
-.widget-close{ height:30px; width:30px; border-radius:15px; line-height:30px; top:15px; right:20px; font-family:sans-serif; cursor:pointer; color:#767676; border:1px solid #767676; position:absolute; font-size:18px; text-align:center;}
-.widget-close:hover{ background:#767676; color:#fff;}
-.btnBar{ text-align:center; }
-.btnBar button{ margin:0 20px; }
+.widget-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+}
+
+.widget {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+.widget-header {
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    text-indent: 30px;
+    width: 100%;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+.widget-content {
+    padding: 20px 30px;
+}
+
+.widget-close {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    line-height: 30px;
+    top: 15px;
+    right: 20px;
+    font-family: sans-serif;
+    cursor: pointer;
+    color: #767676;
+    border: 1px solid #767676;
+    position: absolute;
+    font-size: 18px;
+    text-align: center;
+}
+
+.widget-close:hover {
+    background: #767676;
+    color: #fff;
+}
+
+.btnBar {
+    text-align: center;
+}
+
+.btnBar button {
+    margin: 0 20px;
+}
 
 /*应用实例详情*/
-#widgetAppPodDetail .widget{ max-height:500px; max-width:800px;}
-#widgetAppPodDetail .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
-#widgetAppPodDetail .app-detail{ padding:10px 20px;}
-#widgetAppPodDetail .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetAppPodDetail .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetAppPodDetail .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetAppPodDetail .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetAppPodDetail .labels-table{ margin-top:20px;}
-#widgetAppPodDetail .labels-table table{ border:none;}
-#widgetAppPodDetail .labels-table th{ text-align:left; border:none !important;}
-#widgetAppPodDetail .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetAppPodDetail .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetAppPodDetail .widget {
+    max-height: 500px;
+    max-width: 800px;
+}
 
+#widgetAppPodDetail .tab-content {
+    height: 350px;
+    overflow-y: auto;
+    word-break: break-all;
+}
+
+#widgetAppPodDetail .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetAppPodDetail .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetAppPodDetail .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetAppPodDetail .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetAppPodDetail .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetAppPodDetail .labels-table {
+    margin-top: 20px;
+}
+
+#widgetAppPodDetail .labels-table table {
+    border: none;
+}
+
+#widgetAppPodDetail .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetAppPodDetail .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetAppPodDetail .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*发布详情*/
-#widgetAppDeployDetail .widget{ max-height:500px; max-width:800px;}
-#widgetAppDeployDetail .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
-#widgetAppDeployDetail .app-detail{ padding:10px 20px;}
-#widgetAppDeployDetail .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetAppDeployDetail .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetAppDeployDetail .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetAppDeployDetail .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetAppDeployDetail .labels-table{ margin-top:20px;}
-#widgetAppDeployDetail .labels-table table{ border:none;}
-#widgetAppDeployDetail .labels-table th{ text-align:left; border:none !important;}
-#widgetAppDeployDetail .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetAppDeployDetail .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetAppDeployDetail .widget {
+    max-height: 500px;
+    max-width: 800px;
+}
 
+#widgetAppDeployDetail .tab-content {
+    height: 350px;
+    overflow-y: auto;
+    word-break: break-all;
+}
 
+#widgetAppDeployDetail .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetAppDeployDetail .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetAppDeployDetail .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetAppDeployDetail .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetAppDeployDetail .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetAppDeployDetail .labels-table {
+    margin-top: 20px;
+}
+
+#widgetAppDeployDetail .labels-table table {
+    border: none;
+}
+
+#widgetAppDeployDetail .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetAppDeployDetail .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetAppDeployDetail .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*滚动升级*/
-#widgetRollingup .widget{ max-height:600px; max-width:750px;}
-#widgetRollingup .tab-content{ height:385px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
-#widgetRollingup .app-detail{ padding:10px 20px;}
-#widgetRollingup .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetRollingup .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetRollingup .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetRollingup .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetRollingup .labels-table{ margin-top:20px;}
-#widgetRollingup .labels-table table{ border:none;}
-#widgetRollingup .labels-table th{ text-align:left; border:none !important;}
-#widgetRollingup .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetRollingup .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetRollingup .widget {
+    max-height: 600px;
+    max-width: 750px;
+}
 
+#widgetRollingup .tab-content {
+    height: 385px;
+    overflow-y: auto;
+    word-break: break-all;
+    margin-bottom: 30px;
+}
+
+#widgetRollingup .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetRollingup .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetRollingup .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetRollingup .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetRollingup .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetRollingup .labels-table {
+    margin-top: 20px;
+}
+
+#widgetRollingup .labels-table table {
+    border: none;
+}
+
+#widgetRollingup .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetRollingup .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetRollingup .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*回滚*/
-#widgetRollback .widget{ max-height:650px; max-width:900px;}
-#widgetRollback .widget-content{ position:absolute; top:80px; bottom:30px; left:30px; right:30px; min-height:200px; overflow-y:auto; border:1px solid #e1e1e1;}
-#widgetRollback section{ box-shadow:none;}
-#widgetRollback .content-body{ border:none;}
-#widgetRollback .tab-content{ height:300px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
-#widgetRollback .app-detail{ padding:10px 20px;}
-#widgetRollback .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetRollback .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetRollback .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetRollback .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetRollback .labels-table{ margin-top:20px;}
-#widgetRollback .labels-table table{ border:none;}
-#widgetRollback .labels-table th{ text-align:left; border:none !important;}
-#widgetRollback .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetRollback .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetRollback .widget {
+    max-height: 650px;
+    max-width: 900px;
+}
 
+#widgetRollback .widget-content {
+    position: absolute;
+    top: 80px;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    min-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e1e1e1;
+}
+
+#widgetRollback section {
+    box-shadow: none;
+}
+
+#widgetRollback .content-body {
+    border: none;
+}
+
+#widgetRollback .tab-content {
+    height: 300px;
+    overflow-y: auto;
+    word-break: break-all;
+    margin-bottom: 30px;
+}
+
+#widgetRollback .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetRollback .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetRollback .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetRollback .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetRollback .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetRollback .labels-table {
+    margin-top: 20px;
+}
+
+#widgetRollback .labels-table table {
+    border: none;
+}
+
+#widgetRollback .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetRollback .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetRollback .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*扩容*/
-#widgetScale .widget{ max-height:650px; max-width:800px;}
-#widgetScale .tab-content{ height:300px; overflow-y:auto; word-break:break-all; margin-bottom:30px;}
-#widgetScale .app-detail{ padding:10px 20px;}
-#widgetScale .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetScale .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetScale .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetScale .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetScale .labels-table{ margin-top:20px;}
-#widgetScale .labels-table table{ border:none;}
-#widgetScale .labels-table th{ text-align:left; border:none !important;}
-#widgetScale .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetScale .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetScale .widget {
+    max-height: 650px;
+    max-width: 800px;
+}
+
+#widgetScale .tab-content {
+    height: 300px;
+    overflow-y: auto;
+    word-break: break-all;
+    margin-bottom: 30px;
+}
+
+#widgetScale .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetScale .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetScale .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetScale .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetScale .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetScale .labels-table {
+    margin-top: 20px;
+}
+
+#widgetScale .labels-table table {
+    border: none;
+}
+
+#widgetScale .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetScale .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetScale .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*选择镜像*/
-#widgetImageSelector .widget{ max-height:500px; max-width:800px;}
-#widgetImageSelector .filter-input{ height:45px; display:block; margin:0 50px;}
-#widgetImageSelector .filter-input input{ height:100%; width:100%; display:block; border-bottom:3px solid #3F51B5; padding:0 10px; box-sizing:border-box;}
-#widgetImageSelector .image-list{ position:absolute; min-height:100px; top:140px; bottom:40px; overflow-y:auto; left:80px; right:80px; border:1px solid #e1e1e1; padding:0;}
-#widgetImageSelector .image-list li{ list-style:none; margin:0; padding:0; height:40px; line-height:40px; border-bottom:1px solid #e1e1e1; cursor:pointer;}
-#widgetImageSelector .image-list li:hover{ background:#e1e1e1;}
-#widgetImageSelector .image-list i{ width:40px; border-right:1px solid #e1e1e1; display:inline-block; text-align:center; margin-right:20px;}
+#widgetImageSelector .widget {
+    max-height: 500px;
+    max-width: 800px;
+}
 
+#widgetImageSelector .filter-input {
+    height: 45px;
+    display: block;
+    margin: 0 50px;
+}
+
+#widgetImageSelector .filter-input input {
+    height: 100%;
+    width: 100%;
+    display: block;
+    border-bottom: 3px solid #3F51B5;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+#widgetImageSelector .image-list {
+    position: absolute;
+    min-height: 100px;
+    top: 140px;
+    bottom: 40px;
+    overflow-y: auto;
+    left: 80px;
+    right: 80px;
+    border: 1px solid #e1e1e1;
+    padding: 0;
+}
+
+#widgetImageSelector .image-list li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e1e1e1;
+    cursor: pointer;
+}
+
+#widgetImageSelector .image-list li:hover {
+    background: #e1e1e1;
+}
+
+#widgetImageSelector .image-list i {
+    width: 40px;
+    border-right: 1px solid #e1e1e1;
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+}
 
 /*删除应用*/
-#widgetDelete .widget{ max-height:200px; max-width:400px;}
-#widgetDelete .app-detail{ padding:10px 20px;}
-#widgetDelete .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetDelete .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetDelete .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetDelete .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetDelete .labels-table{ margin-top:20px;}
-#widgetDelete .labels-table table{ border:none;}
-#widgetDelete .labels-table th{ text-align:left; border:none !important;}
-#widgetDelete .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetDelete .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#widgetDelete .widget {
+    max-height: 200px;
+    max-width: 400px;
+}
 
+#widgetDelete .app-detail {
+    padding: 10px 20px;
+}
+
+#widgetDelete .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#widgetDelete .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+#widgetDelete .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+#widgetDelete .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+#widgetDelete .labels-table {
+    margin-top: 20px;
+}
+
+#widgetDelete .labels-table table {
+    border: none;
+}
+
+#widgetDelete .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+#widgetDelete .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+#widgetDelete .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
 
 /*服务管理 详情*/
-.extensionDatailsClass .widget{ max-height:500px; max-width:800px;}
-.extensionDatailsClass .tab-content{ height:350px; overflow-y:auto; word-break:break-all;}
-.extensionDatailsClass .app-detail{ padding:10px 20px;}
-.extensionDatailsClass .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-.extensionDatailsClass .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-.extensionDatailsClass .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-.extensionDatailsClass .app-detail dd span{ border-bottom:2px solid .d4d4d4;}
-.extensionDatailsClass .labels-table{ margin-top:20px;}
-.extensionDatailsClass .labels-table table{ border:none;}
-.extensionDatailsClass .labels-table th{ text-align:left; border:none !important;}
-.extensionDatailsClass .labels-table td{ padding:5px 10px !important; border:none;}
-.extensionDatailsClass .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+.extensionDatailsClass .widget {
+    max-height: 500px;
+    max-width: 800px;
+}
 
+.extensionDatailsClass .tab-content {
+    height: 350px;
+    overflow-y: auto;
+    word-break: break-all;
+}
 
+.extensionDatailsClass .app-detail {
+    padding: 10px 20px;
+}
+
+.extensionDatailsClass .app-detail dl {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.extensionDatailsClass .app-detail dt {
+    float: left;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+}
+
+.extensionDatailsClass .app-detail dd {
+    margin-left: 80px;
+    line-height: 25px;
+    font-weight: normal;
+}
+
+.extensionDatailsClass .app-detail dd span {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.extensionDatailsClass .labels-table {
+    margin-top: 20px;
+}
+
+.extensionDatailsClass .labels-table table {
+    border: none;
+}
+
+.extensionDatailsClass .labels-table th {
+    text-align: left;
+    border: none !important;
+}
+
+.extensionDatailsClass .labels-table td {
+    padding: 5px 10px !important;
+    border: none;
+}
+
+.extensionDatailsClass .labels-table td:first-child {
+    width: 1px;
+    white-space: nowrap;
+    text-align: right;
+}
+
+#orgRollingUp .widget {
+    max-height: 500px;
+    max-width: 700px;
+}
 
 
 
