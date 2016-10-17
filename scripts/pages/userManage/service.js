@@ -24,6 +24,18 @@ define([
 		apis.ObtainUserList = function(param, success, error){
 			return utils.http($http, 'get', '/api/v1/user', param, success, error)
 		}
+
+		// 数据更新
+		apis.userUpData = function(param, success, error){
+			return utils.http($http, 'post', '/api/v1/user/update',param, success, error)
+		}
+
+		// 数据删除
+		apis.delUserDate = function(paramDel, success, error){
+			return utils.http($http, 'post', '/api/v1/user/delete',paramDel, success, error)
+		}
+
+
 		
 		
 		return apis;

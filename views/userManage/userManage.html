@@ -2,7 +2,7 @@
     <div class='col-xs-12'>
         <div class="page-title">
             <div class="pull-left">
-                <h1 class="title">镜像管理</h1>
+                <h1 class="title">用户管理</h1>
             </div>
         </div>
     </div>
@@ -39,15 +39,15 @@
                                             <p class="Images-more-p"> {{item.name}} </p>
                                         </td>
                                         <td>
-                                            <p class="Images-more-p"> {{}} </p>
+                                            <p class="Images-more-p"> {{item.orgId}} </p>
                                         </td>
                                         <td>
                                             <p class="Images-more-p"> {{item.modifiedAt}} </p>
                                         </td>
                                         <td class="img-last-td">
                                             <p class="Images-more-p2">
-                                                <a href="javascript:void(0);" class="btn btn-warning">更新</a>
-                                                <a href="javascript:void(0);" class="btn btn-success">删除</a>
+                                                <a href="javascript:void(0);" class="btn btn-warning" ng-click="userUpdata(item)">更新</a>
+                                                <a href="javascript:void(0);" class="btn btn-success" ng-click="userDelete(item)">删除</a>
                                             </p>
                                         </td>
                                     </tr>
@@ -81,4 +81,6 @@
         </section>
     </div>
 </section>
-
+<ui-widget ng-if="widget.userUpdate" config="userUpdateConfig"></ui-widget>
+<ui-widget ng-if="widget.userDel" config="userDelConfig"></ui-widget>
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>

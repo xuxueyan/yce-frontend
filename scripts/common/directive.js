@@ -182,6 +182,31 @@ define([
                         }]
                     };
                 })
+                .directive('uiUserdataUpdate', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/userManageUpdate.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+                .directive('uiUserdataDelete', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/userManageDel.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+
 
                 /*
                 *   @desc:

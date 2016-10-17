@@ -96,17 +96,39 @@
 
 
 /*删除应用*/
-#widgetDelete .widget{ max-height:200px; max-width:400px;}
-#widgetDelete .app-detail{ padding:10px 20px;}
-#widgetDelete .app-detail dl{ font-size:14px; margin-top:20px; margin-bottom:0;}
-#widgetDelete .app-detail dt{ float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;}
-#widgetDelete .app-detail dd{ margin-left:80px; line-height:25px; font-weight:normal;}
-#widgetDelete .app-detail dd span{ border-bottom:2px solid #d4d4d4;}
-#widgetDelete .labels-table{ margin-top:20px;}
-#widgetDelete .labels-table table{ border:none;}
-#widgetDelete .labels-table th{ text-align:left; border:none !important;}
-#widgetDelete .labels-table td{ padding:5px 10px !important; border:none;}
-#widgetDelete .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+#userDel .widget,#widgetDelete .widget{ 
+	max-height:200px; max-width:400px;
+}
+#userDel .app-detail, #widgetDelete .app-detail{ 
+	padding:10px 20px;
+}
+#userDel .app-detail dl, #widgetDelete .app-detail dl{ 
+	font-size:14px; margin-top:20px; margin-bottom:0;
+}
+#userDel .app-detail dt, #widgetDelete .app-detail dt{ 
+	float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;
+}
+#userDel .app-detail dd, #widgetDelete .app-detail dd{ 
+	margin-left:80px; line-height:25px; font-weight:normal;
+}
+#userDel .app-detail dd span, #widgetDelete .app-detail dd span{ 
+	border-bottom:2px solid #d4d4d4;
+}
+#userDel .labels-table, #widgetDelete .labels-table{ 
+	margin-top:20px;
+}
+#userDel .labels-table table, #widgetDelete .labels-table table{ 
+	border:none;
+}
+#userDel .labels-table th, #widgetDelete .labels-table th{ 
+	text-align:left; border:none !important;
+}
+#userDel .labels-table td, #widgetDelete .labels-table td{ 
+	padding:5px 10px !important; border:none;}
+
+#userDel .labels-table td:first-child, #widgetDelete .labels-table td:first-child{ 
+	width:1px; white-space:nowrap; text-align:right;
+}
 
 
 /*服务管理 详情*/
@@ -122,6 +144,8 @@
 .extensionDatailsClass .labels-table th{ text-align:left; border:none !important;}
 .extensionDatailsClass .labels-table td{ padding:5px 10px !important; border:none;}
 .extensionDatailsClass .labels-table td:first-child{ width:1px; white-space:nowrap; text-align:right;}
+
+#userUpdate .widget{ max-height:600px; max-width:750px;}
 
 
 
