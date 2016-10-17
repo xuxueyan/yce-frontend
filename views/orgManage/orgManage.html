@@ -1,1 +1,72 @@
-orgNanage页面orgManage
+<section class="wrapper main-wrapper row appManage" style="">
+    <div class='col-xs-12'>
+        <div class="page-title clearfix">
+                <h1 class="title">应用管理</h1>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <section class="box ">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="row">
+                                <div class="col-xs-3 input-group primary pull-right appManageSearch">
+                                    <input type="text" value="" placeholder="输入应用名称..." class="form-control search-page-input">
+                                    <span class="input-group-addon">
+                                        <span class="arrow"></span>
+                                    <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <table class="display table table-hover table-condensed dataTable no-footer appList-table appManageTable">
+                                <thead class="appManage-headle">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>组织名称</th>
+                                        <th>CPU</th>
+                                        <th>MEM</th>
+                                        <th>账户余额</th>
+                                        <th>创建时间</th>
+                                        <th>数据中心</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in orgManageList">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.cpu_quota}}</td>
+                                        <td>{{item.mem_quota}}</td>
+                                        <td>{{item.balance}}</td>
+                                        <td>{{item.createdAt}}</td>
+                                        <td>{{item.dcDesc}}</td>
+                                        <td>
+                                            <button class="btn btn-warning" type="button" ng-click="rollingUp(item.balance, item.name)">更新</button>
+                                            <button class="btn btn-danger" type="button" ng-click="orgDelete(item.name)">删除</button>
+                                        </td>
+
+
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- 刷新按钮 -->
+    <div class="list-right">
+        <div class="reload">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-click="loadList()">刷新</span>
+        </div>
+    </div>
+</section>
+<ui-widget ng-if="widget.orgRollingUp" config="orgRollingupConf"></ui-widget>
+<ui-widget ng-if="widget.widgetDelete" config="orgDelConfig"></ui-widget>

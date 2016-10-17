@@ -21,16 +21,16 @@
                                 <span class="desc show-spans-1" ng-show="login.name.$error.pattern">您的数据中心名称不正确</span>
                                 <span class="desc show-spans-1" ng-show="dcNameShow">数据中心名称重复</span>
                                 <div class="controls">
-                                    <input type="text" name="name" class="form-control" id="field-1678" ng-model="DcManageNames" ng-pattern="/^[a-zA-z0-9\u4E00-\u9FFF]+$/" ng-blur="DcManageNameBlur()" ng-focus="DcManageNameFocus()" />
+                                    <input type="text" name="name" class="form-control" id="field-1678" ng-model="DcManageNames" ng-pattern="/^[a-zA-z0-9\u4E00-\u9FFF]+$/" ng-blur="DcManageNameBlur()" ng-focus="DcManageNameFocus()" required/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">Nodeport：</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control server-btn" id="field-1678" ng-model="nodeportnum1" />
+                                    <input type="text" class="form-control server-btn" id="field-1678" ng-model="nodeportnum1" required/>
                                     <b class="fa fa-minus inputB"></b>
-                                    <input type="text" class="form-control server-btn" id="field-1678" ng-model="nodeportnum2" />
+                                    <input type="text" class="form-control server-btn" id="field-1678" ng-model="nodeportnum2" required/>
                                 </div>
                             </div>
 
@@ -38,19 +38,19 @@
                                 <label class="form-label" for="field-1678">集群地址：</label>
                                 <span class="desc show-spans-1" ng-show="login.colonyIp.$error.pattern">IP地址不正确</span>
                                 <div class="controls">
-                                    <input type="text" name="colonyIp" class="form-control" id="field-1678" ng-model="carry.host" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" >
+                                    <input type="text" name="colonyIp" class="form-control" id="field-1678" ng-model="carry.host" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">集群端口：</label><span ng-show="login.addDcPort.$error.pattern">端口错误</span>
-                                <input type="number" class="form-control" id="field-1678" name="addDcPort" ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" ng-model="carry.port" />
+                                <input type="number" class="form-control" id="field-1678" name="addDcPort" ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" ng-model="carry.port" required/>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="field-1678">Secret：</label>
 
-                                <input type="text" class="form-control" id="field-1678" ng-model="carry.secret" /><span class="btn btn-primary">上传</sapn>
+                                <input type="text" class="form-myinput" id="field-1678" ng-model="carry.secret" /><span class="btn btn-primary">上传</sapn>
                             </div>
 
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
@@ -66,7 +66,3 @@
     </div>
 </section>
 <status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
-
-
-
-

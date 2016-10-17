@@ -9,7 +9,7 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope', 'dcManageService', '$localStorage', '$timeout', '$state', function($scope, dcManageService, $localStorage, $timeout, $state){
+        var ctrl = ['$scope', 'dcManageService', '$localStorage', '$timeout', '$state', '$rootScope', function($scope, dcManageService, $localStorage, $timeout, $state, $rootScope){
                 
                 // 验证用户名
                 $scope.DcManageNameBlur = function(){
@@ -36,10 +36,12 @@ define([
                     "name" : "",
                     "nodePort" : [],
                     "host" : "",
-                    "port" : "",
+                    "port" : 8080,
                     "orgId" : $localStorage.orgId,
                     "op" : Number($localStorage.userId)
                 }
+                $scope.nodeportnum1 = "30000";
+                $scope.nodeportnum2 = "32767";
                 // 提交  carry.secret
                 $scope.addDcManageSubmit = function(){
 
@@ -48,9 +50,8 @@ define([
                     $scope.carry.name = $scope.DcManageNames;
 
                     dcManageService.addDcPostList($scope.carry, function(rep){
-
                         $scope.showstatusMes = true;
-
+                        console.log(angular.toJson($scope.carry)+"}}}}}}}}")
                         // 显示成功绿条
                         if(rep.code == 0){
                             $scope.status = true;
@@ -68,8 +69,91 @@ define([
                         $scope.login.$invalid = true;
                     })
                 }
-                
-            
+
+                // 数据中心列表
+                $scope.wrapDcManage = function(){
+                    dcManageService.dcManageList({sessionId:$localStorage.sessionId},function(res){
+
+                        $scope.dcList = JSON.parse(res.data);
+                        if(res.code == 0){
+
+                            // 点击删除
+                            $scope.dcDelete = function(item){
+                                $scope.dcDelConfig = {
+                                    widgetTitle: "",
+                                    widgetId: "dcDeldate",
+                                    isDcManageDel: true,
+                                    data: item
+                                };
+                                $rootScope.widget.dcDeldate = true;
+                                $scope.$on('submitDelete', function(event, pwd) {
+                                    var res = {
+                                        "op": Number($localStorage.userId),
+                                        "name": item.name,
+                                        "orgId": $localStorage.orgId,
+                                        "sessionId" : $localStorage.sessionId
+                                    }
+                                    dcManageService.dcDelData(res, function(){
+                                        $rootScope.widget.dcDeldate = false;
+                                        $scope.wrapDcManage();
+                                    },function(){})
+                                });
+                            }
+
+                            // 点击更新
+                            $scope.dcUpdata = function(item){
+                                $scope.dcUpdataConfig = {
+                                    widgetTitle: "删除",
+                                    widgetId: "dcUpdate",
+                                    isDcManageUpdata: true,
+                                    data: item
+                                };
+                                $rootScope.widget.dcUpdate = true;
+
+
+
+
+                                
+                                // 点击确定更新
+                                $scope.$on('submitUpdate', function(event, pwd) {
+                                    var res = {
+                                        "op": Number($localStorage.userId),
+                                        "name": item.name,
+                                        "orgId": $localStorage.orgId,
+                                        "nodePort": [],
+                                        "host": item.host,
+                                        "port": item.port,
+                                        "sessionId" : $localStorage.sessionId
+                                    }
+                                    userManageService.userUpData(res, function(){
+                                        $rootScope.widget.userUpdate = false;
+                                        $scope.wrapUserManage();
+                                    },function(){})
+                                });
+
+
+
+
+
+
+
+
+
+
+                            }
+                        }
+
+                    })
+                }
+                $scope.wrapDcManage();
+
+
+
+
+
+
+
+
 
 
         }];

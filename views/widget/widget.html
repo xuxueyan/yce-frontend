@@ -10,12 +10,14 @@
             <div ui-app-delete ng-if="config.isDelete" original-data="config.data"></div>
             <div ui-image-selector ng-if="config.isImageSelector"></div>
             <div ui-extensions-datails ng-if="config.extensionsDatails" original-data="config.data"></div>
+            <div ui-org-rolling-up ng-if="config.orgRollingup" original-data="config.data"></div>
 
             <!-- 镜像管理详情 （暂不显示所以注释） -->
             <!-- <div ui-img-datails ng-if="config.imgDatails" original-data="config.data"></div> -->
             <div ui-userdata-update ng-if="config.isUserManageUpdate" original-data="config.data"></div>
             <div ui-userdata-delete ng-if="config.isUserManageDel" original-data="config.data"></div>
-
+            <div ui-dcdata-delete ng-if="config.isDcManageDel" original-data="config.data"></div>
+            <div ui-updata ng-if="config.isDcManageUpdata" original-data="config.data"></div>
 
         </div>
         <div class="widget-close" ng-click="closeWidget(config.widgetId)">×</div>

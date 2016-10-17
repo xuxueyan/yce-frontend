@@ -6,5 +6,6 @@
 @import "pages/topology/topology.css";
 @import "pages/widget/status.css";
 @import "pages/dashboard/dashboard.css";
+@import "pages/organization/createOrg.css";
 
 @import "common/base.css";

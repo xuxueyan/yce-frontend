@@ -182,6 +182,7 @@ define([
                         }]
                     };
                 })
+
                 .directive('uiUserdataUpdate', function(){
                     return {
                         restrict: 'A',
@@ -206,7 +207,71 @@ define([
                         }]
                     };
                 })
+                .directive('uiDcdataDelete', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/dcDelete.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
 
+                        }]
+                    };
+                })
+                .directive('uiUpdata', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/dcUpdata.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+
+
+                .directive('uiOrgRollingUp',function (){
+                    return {
+                        restrict: 'A',
+                        templateUrl: './views/widget/orgRollingUp.html',
+                        scope: {
+                            originalData : '='
+                        },
+                        controller : function ($scope, $rootScope, orgManageService){
+                            $scope.dataTrans = {
+                                quotas: ''
+                            };
+                            $scope.orgUpdate = function (){
+
+                                var param = {};
+
+                                param.orgId = $scope.originalData.orgId;
+                                param.userId =  Number($scope.originalData.userId);
+                                param.sessionId = $scope.originalData.sessionId;
+
+                                param.name = $scope.originalData.name;
+                                var quota = $scope.originalData.quotaPkg[$scope.dataTrans.quotas];
+                                param.cpuQuota = quota.cpu;
+                                param.memQuota = quota.mem;
+
+                                orgManageService.orgUpdate(param, function(res){
+                                    $rootScope.widget.orgRollingUp = false;
+
+                                    if(res.code == 0){
+                                        $scope.$emit('$updateDone', res.message);
+                                    }else{
+                                        $scope.$emit('$updateError', res.message);
+                                    }
+
+
+                                });
+                            };
+                        }
+                    };
+                })
 
                 /*
                 *   @desc:
@@ -226,7 +291,7 @@ define([
                             status: '='
                         },
 
-                        link: function(scope,element){
+                        link: function(scope, element, attr){
                             if(scope.status)
                                 element.addClass('suc');
                             else

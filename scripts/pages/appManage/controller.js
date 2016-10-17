@@ -188,7 +188,6 @@ define([
         $scope.scale = function(item, dcId, appName) {
             $scope.param.dcId = dcId;
             $scope.param.appName = appName;
-
             $scope.appScaleConf = {
                 widgetId: 'widgetScale',
                 widgetTitle: '扩容',

@@ -3,10 +3,10 @@
  */
 define([
         'base64'
-    ], function(Base64){
+    ], function (Base64) {
         'use strict';
 
-        var ctrl = ['$scope', function($scope){
+        var ctrl = ['$scope', 'costManageService', '$localStorage', function ($scope, costManageService, $localStorage) {
 
         }];
 
