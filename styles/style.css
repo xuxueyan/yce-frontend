@@ -9010,7 +9010,21 @@ table.dataTable.display tbody tr:first-child td {
 .hoverHand{
     cursor: pointer;
 }
-
+.user_span{
+    width: 100px;
+    display: inline-block;
+}
+.user_input{
+    display: inline-block;
+    width: 210px;
+}
+.user_group{
+    margin-bottom: 9px;
+}
+.warn_span{
+    font-size: 13px;
+    color: red;
+}
 
 
 

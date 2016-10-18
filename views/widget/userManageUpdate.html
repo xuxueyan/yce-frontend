@@ -1,13 +1,15 @@
 <div class="row">
 	<form name="userManage">
 		<div class="col-md-12">
-	    	<div class="form-group">
-	           <span class="warn" ng-show="(password != passwordCenter) && userManage.pwdCenter.$dirty ">密码输入不一致</span>
-	       </div>
-	       <div class="form-group">
-	           <span>新密码：</span><input type="text" ng-model="password" name="pwd" />
-	           <span>确认密码：</span><input type="text" ng-model="passwordCenter" name="pwdCenter"/>
-	       </div>
+			<div class="form-group user_group">
+				<span class="user_span"></span><span class="warn_span" ng-show="(password != passwordCenter) && userManage.pwdCenter.$dirty ">密码输入不一致</span>
+			</div>
+			<div class="form-group">
+				<span class="user_span">新密码：</span><input type="text" class="user_input" ng-model="password" name="pwd" />
+			</div>
+			<div class="form-group">
+				<span class="user_span">确认密码：</span><input type="text" class="user_input" ng-model="passwordCenter" name="pwdCenter"/>
+			</div>
 	    </div>
 	    <div class="col-xs-12 btnBar">
 	        <button class="btn btn-primary" type="button" ng-click="$emit('submitUpdatePW', {'password': password})">确定</button>

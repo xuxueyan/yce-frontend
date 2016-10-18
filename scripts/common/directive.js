@@ -228,7 +228,7 @@ define([
                         },
                         controller : ['$scope', '$rootScope',function($scope, $rootScope){
 
-                            $scope.nodePort = JSON.parse($scope.originalData.nodePort).nodePort;
+                            $scope.nodePort = $scope.originalData.nodePort.nodePort;
                             
                         }]
                     };
