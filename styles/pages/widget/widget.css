@@ -460,61 +460,38 @@
 }
 
 /*删除应用*/
-#widgetDelete .widget {
-    max-height: 200px;
-    max-width: 400px;
+#dcDeldate .widget, #userDel .widget, #widgetDelete .widget{ 
+	max-height:200px; max-width:400px;
 }
-
-#widgetDelete .app-detail {
-    padding: 10px 20px;
+#dcDeldate .app-detail, #userDel .app-detail, #widgetDelete .app-detail{ 
+	padding:10px 20px;
 }
-
-#widgetDelete .app-detail dl {
-    font-size: 14px;
-    margin-top: 20px;
-    margin-bottom: 0;
+#dcDeldate .app-detail dl, #userDel .app-detail dl, #widgetDelete .app-detail dl{ 
+	font-size:14px; margin-top:20px; margin-bottom:0;
 }
-
-#widgetDelete .app-detail dt {
-    float: left;
-    line-height: 25px;
-    font-weight: bold;
-    text-align: right;
-    width: 70px;
+#dcDeldate .app-detail dt, #userDel .app-detail dt, #widgetDelete .app-detail dt{ 
+	float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;
 }
-
-#widgetDelete .app-detail dd {
-    margin-left: 80px;
-    line-height: 25px;
-    font-weight: normal;
+#dcDeldate .app-detail dd, #userDel .app-detail dd, #widgetDelete .app-detail dd{ 
+	margin-left:80px; line-height:25px; font-weight:normal;
 }
-
-#widgetDelete .app-detail dd span {
-    border-bottom: 2px solid #d4d4d4;
+#dcDeldate .app-detail dd span, #userDel .app-detail dd span, #widgetDelete .app-detail dd span{ 
+	border-bottom:2px solid #d4d4d4;
 }
-
-#widgetDelete .labels-table {
-    margin-top: 20px;
+#dcDeldate .labels-table, #userDel .labels-table, #widgetDelete .labels-table{ 
+	margin-top:20px;
 }
-
-#widgetDelete .labels-table table {
-    border: none;
+#dcDeldate .labels-table table, #userDel .labels-table table, #widgetDelete .labels-table table{ 
+	border:none;
 }
-
-#widgetDelete .labels-table th {
-    text-align: left;
-    border: none !important;
+#dcDeldate .labels-table th, #userDel .labels-table th, #widgetDelete .labels-table th{ 
+	text-align:left; border:none !important;
 }
+#dcDeldate .labels-table td, #userDel .labels-table td, #widgetDelete .labels-table td{ 
+	padding:5px 10px !important; border:none;}
 
-#widgetDelete .labels-table td {
-    padding: 5px 10px !important;
-    border: none;
-}
-
-#widgetDelete .labels-table td:first-child {
-    width: 1px;
-    white-space: nowrap;
-    text-align: right;
+#dcDeldate .labels-table td:first-child, #userDel .labels-table td:first-child, #widgetDelete .labels-table td:first-child{ 
+	width:1px; white-space:nowrap; text-align:right;
 }
 
 /*服务管理 详情*/
@@ -575,16 +552,19 @@
     border: none;
 }
 
+#userUpdate .widget{ max-height:600px; max-width:750px;}
+
 .extensionDatailsClass .labels-table td:first-child {
     width: 1px;
     white-space: nowrap;
     text-align: right;
 }
 
-#orgRollingUp .widget {
+#dcUpdate .widget, #orgRollingUp .widget {
     max-height: 500px;
     max-width: 700px;
 }
+
 
 
 

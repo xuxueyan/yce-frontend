@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-md-12">
+    	<form name="login" >
+			<div class="form-group">
+			    <label class="form-label" for="field-1678">Nodeport：</label>
+			    <div class="controls">
+			        <input type="text" class="form-control server-btn" id="field-1678" ng-init="upNodeportnum1 = nodePort[0]" ng-model="upNodeportnum1" required/>
+			        <b class="fa fa-minus inputB"></b>
+			        <input type="text" class="form-control server-btn" id="field-1678" ng-init="upNodeportnum2 = nodePort[1]" ng-model="upNodeportnum2" required/>
+			    </div>
+			</div>
+
+            <div class="form-group">
+                <label class="form-label" for="field-1678">集群地址：</label>
+                <span class="desc show-spans-1" ng-show="login.colonyIp.$error.pattern">IP地址不正确</span>
+                <div class="controls">
+                    <input type="text" name="colonyIp" class="form-control" id="field-1678" ng-init="
+                    dcdateHost = originalData.host" ng-model="dcdateHost" ng-pattern="/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="field-1678">集群端口：</label><span ng-show="login.addDcPort.$error.pattern">端口错误</span>
+                <input type="number" class="form-control" id="field-1678" name="addDcPort" ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/" ng-init="dcdatePort = originalData.port" ng-model="dcdatePort" required/>
+            </div>
+		    
+
+		    <div class="col-xs-12 btnBar">
+		        <button class="btn btn-primary" type="button" ng-disabled="login.$invalid" ng-click="$emit('submitUpdate', {'nodePort': [upNodeportnum1,upNodeportnum2],'host':dcdateHost,'port':dcdatePort})">确定</button>
+		        <button class="btn btn-primary" type="button" ng-click="$emit('closeWidget', 'dcUpdate')">取消</button>
+		    </div>
+	    </form>
+	</div>
+</div>

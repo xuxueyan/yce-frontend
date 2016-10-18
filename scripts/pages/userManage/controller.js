@@ -9,10 +9,11 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope', 'userManageService', '$localStorage', '$timeout', function($scope, userManageService, $localStorage, $timeout){
+        var ctrl = ['$scope', 'userManageService', '$localStorage', '$timeout', '$rootScope', '$state', function($scope, userManageService, $localStorage, $timeout, $rootScope, $state){
             var param = {
                 "sessionId" : $localStorage.sessionId
             }
+
             // 创建用户页面
             userManageService.setUpUser(param, function(res){
 
@@ -53,7 +54,6 @@ define([
                             }
                         })
                     }
-
                 }
 
                 // 点击提交
@@ -64,20 +64,21 @@ define([
                     
                         //  提交请求
                         userManageService.UserSubmit($scope.putUp,function(rep){
-                            
                             $scope.showstatusMes = true;
+
+                            // 显示成功绿条
                             if(rep.code == 0){
                                 $scope.status = true;
                                 $scope.message = rep.message;
                                 $timeout(function() {
                                     $scope.showstatusMes = false;
+                                    $state.go('main.userManage');
                                 }, 1000);
                             }
                             else{
                                 $scope.message = rep.message;
                                 $scope.status = false;
                             }
-
                         },function(){
                             $scope.message = rep.message;
                             $scope.status = false;
@@ -90,29 +91,71 @@ define([
             })
 
             // 获取用户列表
-            userManageService.ObtainUserList(param, function(res){
-              //  console.log(angular.toJson(res.data));
-                var UserList = JSON.parse(res.data);
-                $scope.userOrgId = [];
+            $scope.wrapUserManage = function(){
+                userManageService.ObtainUserList(param, function(res){
+                    if(res.code == 0){
+                        $scope.UserList = JSON.parse(res.data);
+                        $scope.userOrgId = [];
 
-                // UserList.users.forEach(function(i){
-                //     console.log(angular.toJson(i.orgId))
-                //     $scope.userOrgId.push(i.orgId)
-                // })
+                        // 根据orgId的值  对应orgList的键  改变orgId的值
+                        $scope.UserList.users.forEach(function(user){
+                            user.orgId = $scope.UserList.orgList[user.orgId];
+                        });
 
+                        // 更新数据
+                        $scope.userUpdata = function(item){
+                            $scope.userUpdateConfig = {
+                                widgetTitle: "更新",
+                                widgetId: "userUpdate",
+                                isUserManageUpdate: true,
+                                data: item
+                            };
+                            $rootScope.widget.userUpdate = true;
+                            
+                            // 点击确定更新密码
+                            $scope.$on('submitUpdatePW', function(event, pwd) {
+                                var res = {
+                                    "op": Number($localStorage.userId),
+                                    "name": item.name,
+                                    "orgId": $localStorage.orgId,
+                                    "password": pwd,
+                                    "sessionId" : $localStorage.sessionId
+                                }
+                                userManageService.userUpData(res, function(){
+                                    $rootScope.widget.userUpdate = false;
+                                    $scope.wrapUserManage();
+                                },function(){})
+                            });
+                        }
+                        // 删除数据
+                        $scope.userDelete = function(item){
+                            $scope.userDelConfig = {
+                                widgetTitle: "删除",
+                                widgetId: "userDel",
+                                isUserManageDel: true,
+                                data: item
+                            };
+                            $rootScope.widget.userDel = true;
 
+                            // 删除数据传递的json
+                            var res = {
+                                "op":  Number($localStorage.userId),
+                                "userName": item.name,
+                                "sessionId" : $localStorage.sessionId
+                            }
 
-
-
-
-
-
-
-                // if(res.code == 0){
-                //     $scope.UserList = JSON.parse(res.data);
-                // }
-            })
-
+                            $scope.$on('submitDelete', function(event) {
+                                // 删除用户
+                                userManageService.delUserDate(res, function(){
+                                    $rootScope.widget.userDel = false;
+                                    $scope.wrapUserManage();
+                                },function(){})
+                            });
+                        }
+                    }
+                })
+            }
+            $scope.wrapUserManage()
 
         }];
 

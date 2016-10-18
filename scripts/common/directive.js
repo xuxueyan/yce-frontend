@@ -182,6 +182,59 @@ define([
                         }]
                     };
                 })
+
+                .directive('uiUserdataUpdate', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/userManageUpdate.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+                .directive('uiUserdataDelete', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/userManageDel.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+                .directive('uiDcdataDelete', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/dcDelete.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
+                .directive('uiUpdata', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/dcUpdata.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                            $scope.nodePort = JSON.parse($scope.originalData.nodePort).nodePort;
+                            
+                        }]
+                    };
+                })
+
+
                 .directive('uiOrgRollingUp',function (){
                     return {
                         restrict: 'A',

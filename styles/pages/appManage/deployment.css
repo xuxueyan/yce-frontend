@@ -3,7 +3,7 @@
     padding: 4px 12px;
 }
 
-.data-center label {
+/*.data-center label {
     height: 100px;
     width: 150px;
     line-height: 100px;
@@ -13,7 +13,7 @@
     margin-right: 10px;
     border: 1px solid #e1e1e1;
     cursor: pointer;
-}
+}*/
 
 .data-center label.checked {
     color: #3F51B5;

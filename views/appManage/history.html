@@ -38,7 +38,7 @@
                                 <div class="timeline-badge animated flipInY">
                                     <i class="fa fa-smile-o"></i>
                                 </div>
-                                <div class="timeline-panel animated flipInY" ng-click="historyLi(item)">
+                                <div class="timeline-panel animated flipInY hoverHand" ng-click="historyLi(item)">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">应用名 {{ item.records.name }}</h4>
                                         <p>
@@ -63,12 +63,11 @@
 </section>
 <div class="history-wrap" ng-show="historyShowbox">
     <div class="history-box1">
-        <p><span ng-click="historyShow()">×</span></p>
+        <p><span class="hoverHand" ng-click="historyShow()">×</span></p>
         <p> 副本： {{ Newreplicas }}</p>
         <p> 镜像： {{ Newimage }}</p>
         <p> 镜像获取策略： {{ NewimagePullPolicy }}</p>
         <p> cpu： {{ Newcpu }}</p>
         <p> memory： {{ Newmemory }}</p>
-
     </div>
 </div>

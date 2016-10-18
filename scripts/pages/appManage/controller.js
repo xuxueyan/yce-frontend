@@ -17,22 +17,7 @@ define([
                 if (data.code == 0) {
                     $scope.appList = JSON.parse(data.data);
                 }
-                // 根据返回状态对后台请求间隔，需要进行测试，暂不使用
-                // var interval_5s = setInterval(function() {
-                //     appManageService.getAppList($scope.param, function(data) {
-                //         if (data.code == 0) {
-                //             $scope.appList = JSON.parse(data.data);
-                //         }
-                //     })
-                // }, 5000)
-                // var interval_2m = setInterval(function() {
-                //         appManageService.getAppList($scope.param, function(data) {
-                //             if (data.code == 0) {
-                //                 $scope.appList = JSON.parse(data.data);
-                //             }
-                //         })
-                //     }, 1200000)
-                    // 进度条获取值
+                // 进度条获取值
                 JSON.parse(data.data).forEach(function(app) {
                     app.deployments.forEach(function(deployment) {
                         deployment.podList.items.forEach(function(item) {
@@ -42,40 +27,34 @@ define([
                                     value: "100",
                                     type: "success"
                                 }];
-                                // interval_2m();
                             } else if (a == 'Pending') {
                                 $scope.state = [{
                                     value: "75",
                                     type: "info"
                                 }];
-                                // interval_5s();
                             } else if (a == 'Failed') {
                                 $scope.state = [{
                                     value: "100",
                                     type: "danger"
                                 }];
-                                // interval_5s();
                             } else if (a == 'Succeeded') {
                                 $scope.state = [{
                                     value: "",
                                     type: ""
                                 }];
-                                // interval_2m();
                             } else if (a == 'Unknown') {
                                 $scope.state = [{
                                     value: "30",
                                     type: "warning"
                                 }];
-                                // interval_5s();
                             }
                         })
                     })
                 });
-
             });
+
         };
         $scope.loadAppList();
-
         // 发布详情
         $scope.showAppDeployDetail = function(item) {
             $scope.appDeployDetailConf = {
@@ -209,7 +188,6 @@ define([
         $scope.scale = function(item, dcId, appName) {
             $scope.param.dcId = dcId;
             $scope.param.appName = appName;
-
             $scope.appScaleConf = {
                 widgetId: 'widgetScale',
                 widgetTitle: '扩容',

@@ -1,1 +1,93 @@
-orgNanage页面orgManage
+<section class="wrapper main-wrapper row" style="">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">数据中心管理</h1>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12">
+        <section class="box ">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="row">
+                               <!--  <div class="col-xs-3 input-group primary pull-right appManageSearch">
+                                    <input type="text" value="" ng-model="data.search" placeholder="输入应用名称..." class="form-control search-page-input">
+                                    <span class="input-group-addon">
+                                        <span class="arrow"></span>
+                                    <i class="fa fa-search"></i>
+                                    </span>
+                                </div> -->
+                            </div>
+                            <table class="Images-tables">
+                                <thead class="appImages-headle">
+                                    <tr role="row">
+                                        <th>ID</th>
+                                        <th>数据中心名</th>
+                                        <th>地址</th>
+                                        <th>端口</th>
+                                        <th>NodePort</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="item in dcList.datacenters">
+                                    <tr ng-class="{odd:$odd,even:$even}">
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                            <p class="Images-more-p"> {{item.name}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="Images-more-p"> {{item.host}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="Images-more-p"> {{item.port}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="Images-more-p"> {{item.nodePort.nodePort[0]}} - {{item.nodePort.nodePort[1]}} </p>
+                                        </td>
+                                        <td>
+                                            <p class="Images-more-p"> {{item.modifiedAt}} </p>
+                                        </td>
+                                        <td class="img-last-td">
+                                            <p class="Images-more-p2">
+                                                <a href="javascript:void(0);" class="btn btn-warning" ng-click="dcUpdata(item)">更新</a>
+                                                <a href="javascript:void(0);" class="btn btn-success" ng-click="dcDelete(item)">删除</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dataTables_paginate paging_bootstrap" id="example_paginate">
+                                        <ul class="pagination pull-right">
+                                            <li class="prev disabled"><a href="#"><i
+                                                    class="fa fa-angle-double-left"></i></a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li class="next">
+                                                <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                        Showing 1 to 10 of 50 entries
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<ui-widget ng-if="widget.dcDeldate" config="dcDelConfig"></ui-widget>
+<ui-widget ng-if="widget.dcUpdate" config="dcUpdataConfig"></ui-widget>
