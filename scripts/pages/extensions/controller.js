@@ -150,7 +150,6 @@ define([
                     $scope.delLabels = function($index){
                         $scope.leis.splice($index,1)
                     }
-
                     //   port add....
                     $scope.ports = [];
                     $scope.addPort = function(){

@@ -565,6 +565,10 @@
     max-width: 700px;
 }
 
+#userUpdate .widget{
+    max-height:300px; max-width:450px;
+}
+
 
 
 

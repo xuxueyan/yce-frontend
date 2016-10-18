@@ -38,7 +38,7 @@
                                 <label class="form-label">数据中心：</label>
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="controls data-center">
-                                    <label ng-repeat="item in dcListDom" class="form-label" ng-class="{checked:dataCenters[$index]}">
+                                    <label ng-repeat="item in dcListDom" class="form-label server-servers" ng-class="{checked:dataCenters[$index]}">
                                         <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataCenters[$index]">{{item.name}}
                                     </label>
 
