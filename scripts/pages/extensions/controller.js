@@ -133,6 +133,7 @@ define([
             $scope.extentServerLei = JSON.parse($scope.extentServers.data);
             var demoss = $scope.extentServerLei.orgName;
             if($scope.extentServers.code == 0){
+                    $scope.serverDisabled = true;
                     $scope.serverClick1 = function(){
                         if($scope.serverRadios == 1){
                             $scope.serverDisabled = false;
