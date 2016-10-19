@@ -52,10 +52,13 @@ define([
                 $scope.selectText = "Selected: " + item.metadata.name;
                 $scope.selectName = item.metadata.name;
                 $scope.selectSpace = item.metadata.namespace;
+                $scope.selectTime = item.metadata.creationTimestamp;
                 angular.element(document.getElementById("selected")).text($scope.selectText).addClass('btn btn-primary');;
                 if ($scope.selectKind == 'ReplicaSet') {
                     $scope.Rshow = false;
                     $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
                     $scope.showSelect = function() {
                         $scope.Rshow = !$scope.Rshow;
                     }
@@ -64,7 +67,7 @@ define([
                     }
                     $scope.selectSpace = item.metadata.namespace;
                     $scope.selectImage = item.spec.template.spec.containers[0].image;
-                    $scope.selectTime = item.metadata.creationTimestamp;
+
                     angular.element(document.getElementById("selectRSpace")).text($scope.selectSpace);
                     angular.element(document.getElementById("selectRImage")).text($scope.selectImage);
                     angular.element(document.getElementById("selectRTime")).text($scope.selectTime);
@@ -72,17 +75,17 @@ define([
                     angular.element(document.getElementById('selectRKind')).text($scope.selectKind)
 
                 } else if ($scope.selectKind == 'Pod') {
-                    $scope.Pshow = false;
                     $scope.Rshow = false;
+                    $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
                     $scope.showSelect = function() {
                         $scope.Pshow = !$scope.Pshow;
                     }
                     $scope.close = function() {
                         $scope.Pshow = false;
                     }
-                    $scope.selectSpace = item.metadata.namespace;
                     $scope.selectImage = item.spec.containers[0].image;
-                    $scope.selectTime = item.metadata.creationTimestamp;
                     $scope.selectNode = item.spec.nodeName;
                     $scope.selectPhase = item.status.phase;
                     $scope.selectIp = item.status.podIP;
@@ -98,10 +101,55 @@ define([
                     angular.element(document.getElementById('selectPIp')).text($scope.selectIp);
                     angular.element(document.getElementById('selectPPort')).text($scope.selectPort);
                     angular.element(document.getElementById('selectPCount')).text($scope.selectCount);
-                } else if ($scope.selectKind != 'ReplicaSet' || 'Pod') {
+                } else if ($scope.selectKind == 'Node') {
+                    $scope.Rshow = false;
+                    $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
                     $scope.showSelect = function() {
-                        $scope.Pshow = false;
+                        $scope.Nshow = !$scope.Nshow;
+                    }
+                    $scope.close = function() {
+                        $scope.Nshow = false;
+                    }
+
+                    $scope.selectRequestC = item.status.capacity.cpu;
+                    $scope.selectRequestM = item.status.capacity.memory;
+                    $scope.selectSystem = item.status.nodeInfo.osImage;
+                    $scope.selectPort = item.status.daemonEndpoints.kubeletEndpoint.Port;
+                    $scope.selectHear = item.status.conditions[0].lastHeartbeatTime;
+                    angular.element(document.getElementById("selectNRequestC")).text($scope.selectRequestC);
+                    angular.element(document.getElementById("selectNRequestM")).text($scope.selectRequestM);
+                    angular.element(document.getElementById("selectNSystem")).text($scope.selectSystem);
+                    angular.element(document.getElementById("selectNPort")).text($scope.selectPort);
+                    angular.element(document.getElementById("selectNHear")).text($scope.selectHear);
+                    angular.element(document.getElementById("selectNTime")).text($scope.selectTime);
+                    angular.element(document.getElementById('selectNName')).text($scope.selectName);
+                    angular.element(document.getElementById('selectNKind')).text($scope.selectKind);
+                } else if ($scope.selectKind == 'Service') {
+                    $scope.Rshow = false;
+                    $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
+                    $scope.showSelect = function() {
+                        $scope.Sshow = !$scope.Sshow;
+                    }
+                    $scope.close = function() {
+                        $scope.Sshow = false;
+                    }
+                    $scope.selectType = item.spec.type
+                    $scope.selectClusterIP = item.spec.clusterIP
+                    angular.element(document.getElementById("selectSSpace")).text($scope.selectSpace);
+                    angular.element(document.getElementById("selectSTime")).text($scope.selectTime);
+                    angular.element(document.getElementById('selectSName')).text($scope.selectName);
+                    angular.element(document.getElementById('selectSType')).text($scope.selectType);
+                    angular.element(document.getElementById('selectSClusterIP')).text($scope.selectClusterIP);
+                } else if ($scope.selectKind != 'Service' || 'Node' || 'Pod' || 'ReplicaSet') {
+                    $scope.showSelect = function() {
                         $scope.Rshow = false;
+                        $scope.Pshow = false;
+                        $scope.Nshow = false;
+                        $scope.Sshow = false;
                     }
                 }
 

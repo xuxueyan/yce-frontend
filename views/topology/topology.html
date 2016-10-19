@@ -138,6 +138,90 @@
                     </div>
                 </div>
             </div>
+            <div class="selected-d" id="selected-N" ng-show="Nshow">
+                <div class="arrow-on"></div>
+                <div class="arrow-in"></div>
+                <div class="close" ng-click="close()">x</div>
+                <div class="selected-c">
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>应用名称 : </dt>
+                            <dd><span id="selectNName"></span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>类型 : </dt>
+                            <dd><span id="selectNKind"></span></dd>
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>CPU请求 : </dt>
+                            <dd><span id="selectNRequestC"></span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>内存使用: </dt>
+                            <dd><span id="selectNRequestM"></span></dd>
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>启动时间 : </dt>
+                            <dd><span id="selectNTime"></span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>最新监测时间: </dt>
+                            <dd><span id="selectNHear"></span></dd>
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>系统版本 : </dt>
+                            <dd><span id="selectNSystem"></span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>端口: </dt>
+                            <dd><span id="selectNPort"></span></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="selected-d" id="selected-S" ng-show="Sshow">
+                <div class="arrow-on"></div>
+                <div class="arrow-in"></div>
+                <div class="close" ng-click="close()">x</div>
+                <div class="selected-c">
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>应用名称 : </dt>
+                            <dd><span id="selectSName"></span></dd>
+                        </dl>
+<!--                         <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>类型: </dt>
+                            <dd><span id="selectSKind">{{originalData.spec.type}}</span></dd>
+                        </dl> -->
+                    </div>
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>组织名称 : </dt>
+                            <dd><span id="selectSSpace"></span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>类型: </dt>
+                            <dd><span id="selectSType">{{originalData.spec.type}}</span></dd>
+                        </dl>
+                    </div>
+                    <div class="row">
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>启动时间 : </dt>
+                            <dd><span id="selectSTime">{{originalData.metadata.creationTimestamp}}</span></dd>
+                        </dl>
+                        <dl class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <dt>ClusterIP: </dt>
+                            <dd><span id="selectSClusterIP">{{originalData.spec.clusterIP}}</span></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
             <svg class="kube-topology" hidden>
                 <defs>
                     <g class="Node" id="vertex-Node">
