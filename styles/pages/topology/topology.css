@@ -1,10 +1,12 @@
-.topology-box{
-    background-color: #fff ;
+.topology-box {
+    background-color: #fff;
+    height: 700px;
 }
+
 kubernetes-topology-graph {
     display: block;
     padding: 40px;
-    height: 550px;
+    height: 100%;
 }
 
 .kube-topology g {
@@ -42,7 +44,7 @@ kubernetes-topology-graph {
     font-family: FontAwesome;
     fill: #9467bd;
 }
-
+/*边框颜色*/
 .kube-topology g circle {
     stroke: #aaa;
     fill: #fff;
@@ -96,6 +98,7 @@ kubernetes-topology-icon:hover use {
 .topology-controls {
     background-color: lightgray;
     padding-left: 10px;
+    position: relative;
 }
 
 #selected {
