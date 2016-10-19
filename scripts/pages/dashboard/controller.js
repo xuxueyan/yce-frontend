@@ -134,7 +134,7 @@ define([
                                     "name": data,
                                     'itemStyle': {
                                         normal: {
-                                            color: '#00A2E8',
+                                            color: '#64d468',
                                         }
                                     }
                                 })
