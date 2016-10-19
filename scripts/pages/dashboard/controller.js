@@ -161,7 +161,7 @@ define([
                                 symbolSize: 20,
                                 layout: 'force',
                                 force: {
-                                    repulsion: 1500
+                                    repulsion: 500
                                 },
                                 label: {
                                     normal: {

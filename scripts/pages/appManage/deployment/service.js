@@ -16,6 +16,9 @@ define([
 		apis.deploymentSubmit = function(param, success, error){
 			return utils.http($http, 'post', ' /api/v1/organizations/' + param.orgId + '/users/' + param.userId + '/deployments/new', param, success, error);
 		};
+		apis.applyNameisExit = function(param, success, error){
+			return utils.http($http, 'post', '/api/v1/organizations/'+ param.orgId +'/users/'+param.userId +'/deployments/check', param, success, error);
+		};
 
 		return apis;
 
