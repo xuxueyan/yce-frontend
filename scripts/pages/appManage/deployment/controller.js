@@ -161,8 +161,9 @@ define([
 
                     }
                 });
-
-
+            }
+            else{
+                $scope.applyTips = true;
             }
         };
 
