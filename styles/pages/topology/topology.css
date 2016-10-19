@@ -1,11 +1,12 @@
 .topology-box {
     background-color: #fff;
+    height: 700px;
 }
 
 kubernetes-topology-graph {
     display: block;
     padding: 40px;
-    height: 550px;
+    height: 100%;
 }
 
 .kube-topology g {
