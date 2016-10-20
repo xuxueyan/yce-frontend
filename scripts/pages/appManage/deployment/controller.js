@@ -119,10 +119,10 @@ define([
         $scope.delPort = function($index) {
             $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
         }
-        //$scope.activities = [
-        //    "TCP",
-        //    "UDP"
-        //];
+        $scope.activities = [
+            "TCP",
+            "UDP"
+        ];
 
         /*滑块*/
         $scope.slider = {
