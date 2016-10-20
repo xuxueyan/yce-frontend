@@ -202,9 +202,17 @@ define([
             };
 
             // 选择器
-            $scope.Checkeds = [];
+            $scope.Checkeds = [
+                {
+                    mylistKey : '',
+                    mylistValue : ''
+                }
+            ];
             $scope.addCheckeds = function(){
-                $scope.Checkeds.push({});
+                $scope.Checkeds.push({
+                    mylistKey : '',
+                    mylistValue : ''
+                });
             }
             $scope.delCheckeds = function($index){
                 $scope.Checkeds.splice($index,1);
@@ -276,6 +284,8 @@ define([
                         $scope.amock = num.nodePort;
                     }
                 })
+
+                console.log(angular.toJson($scope.param))
                 /*  提交 post  */
                 $scope.param.service.spec.ports = $scope.ports;
 

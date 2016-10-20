@@ -36,7 +36,7 @@ define([
                                     limits: {}
                                 },
                                 ports: [{
-                                    name: '',
+                                    name: '11',
                                     hostPort: {},
                                     containerPort: {},
                                     protocol: '',
