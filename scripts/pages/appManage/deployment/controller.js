@@ -120,10 +120,7 @@ define([
             "TCP",
             "UDP"
         ];
-<<<<<<< HEAD
 
-=======
->>>>>>> 59bd500a260d01d0910af2572d730f7a1af3a2b5
         /*滑块*/
         $scope.slider = {
             value: 1,
@@ -137,7 +134,6 @@ define([
                 }
             }
         };
-<<<<<<< HEAD
 
         $scope.nameIsExit = function (){
 
@@ -168,9 +164,6 @@ define([
             }
         };
 
-
-=======
->>>>>>> 59bd500a260d01d0910af2572d730f7a1af3a2b5
         /*提交表单*/
         $scope.submit = function() {
 
