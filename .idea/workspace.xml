@@ -2,54 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/dcManage/controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/dcManage/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/dcManage/service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/orgManage/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/orgManage/service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/personalCenter/controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/personalCenter/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/personalCenter/service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/userManage/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/dcManage/addDcManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/dcManage/dcManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/orgManage/addOrgManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/orgManage/orgManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/personalCenter/eventAlert.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/personalCenter/personalCenter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/personalCenter/personalPassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/personalCenter/personalSetting.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/personalCenter/recharge.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/userManage/createUserManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/userManage/userManage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/widget/orgRollingUp.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/pages/organizManage/controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/pages/organizManage/router.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/pages/organizManage/service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/pages/rbdManage/router.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/organizManage/organizAppend.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/rbdManage/rbdManage.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/pages/rbdManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/userManage/controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/pages/rbdManage/service.js" afterPath="$PROJECT_DIR$/scripts/pages/userManage/service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.js" afterPath="$PROJECT_DIR$/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/common/controllers.js" afterPath="$PROJECT_DIR$/scripts/common/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/common/directive.js" afterPath="$PROJECT_DIR$/scripts/common/directive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/common/routers.js" afterPath="$PROJECT_DIR$/scripts/common/routers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/common/services.js" afterPath="$PROJECT_DIR$/scripts/common/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/main/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/main/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/appManage/deployment.css" afterPath="$PROJECT_DIR$/styles/pages/appManage/deployment.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/widget/status.css" afterPath="$PROJECT_DIR$/styles/pages/widget/status.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/widget/widget.css" afterPath="$PROJECT_DIR$/styles/pages/widget/widget.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/deployment/service.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/deployment/service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/extensions/service.js" afterPath="$PROJECT_DIR$/scripts/pages/extensions/service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/appManage/deployment.html" afterPath="$PROJECT_DIR$/views/appManage/deployment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/imageManage/base.html" afterPath="$PROJECT_DIR$/views/imageManage/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/widget/delete.html" afterPath="$PROJECT_DIR$/views/widget/delete.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/widget/widget.html" afterPath="$PROJECT_DIR$/views/widget/widget.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/extensions/endpoint.html" afterPath="$PROJECT_DIR$/views/extensions/endpoint.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/extensions/service.html" afterPath="$PROJECT_DIR$/views/extensions/service.html" />
     </list>
     <ignored path="frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,79 +34,33 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="180" column="29" selection-start-line="178" selection-start-column="20" selection-end-line="180" selection-end-column="29" />
-              <folding />
+            <state vertical-scroll-proportion="-17.777779">
+              <caret line="115" column="81" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
+              <folding>
+                <marker date="1476873608000" expanded="true" signature="7638:7782" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/controller.js">
+        <entry file="file://$PROJECT_DIR$/scripts/pages/dashboard/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32903227">
-              <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.68204486">
+              <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/common/routers.js">
+      <file leaf-file-name="deployment.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/appManage/deployment.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="42" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.777778">
-              <caret line="23" column="22" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="orgManage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/orgManage/orgManage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.041666">
-              <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delete.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/widget/delete.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375">
-              <caret line="7" column="83" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="widget.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/widget/widget.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.625">
-              <caret line="9" column="53" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="directive.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/common/directive.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.111111">
-              <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-              <folding />
+            <state vertical-scroll-proportion="-28.125">
+              <caret line="145" column="75" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="75" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#div#0;n#section#0;n#form#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,19 +82,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/styles/pages/topology/topology.css" />
-        <option value="$PROJECT_DIR$/scripts/pages/main/controller.js" />
-        <option value="$PROJECT_DIR$/views/topology/topology.html" />
         <option value="$PROJECT_DIR$/scripts/pages/topology/router.js" />
         <option value="$PROJECT_DIR$/views/main/main.html" />
         <option value="$PROJECT_DIR$/scripts/pages/topology/controller.js" />
         <option value="$PROJECT_DIR$/views/widget/statusMessage.html" />
         <option value="$PROJECT_DIR$/views/appManage/appManage.html" />
         <option value="$PROJECT_DIR$/views/widget/status.html" />
-        <option value="$PROJECT_DIR$/views/extensions/service.html" />
-        <option value="$PROJECT_DIR$/scripts/pages/extensions/controller.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
         <option value="$PROJECT_DIR$/scripts/pages/appManage/controller.js" />
         <option value="$PROJECT_DIR$/scripts/lib/rzslider/rzslider.js" />
         <option value="$PROJECT_DIR$/styles/common/base.css" />
@@ -190,7 +99,6 @@
         <option value="$PROJECT_DIR$/scripts/pages/dashboard/service.js" />
         <option value="$PROJECT_DIR$/views/dashboard/dashboard.html" />
         <option value="$PROJECT_DIR$/styles/pages/dashboard/dashboard.css" />
-        <option value="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
         <option value="$PROJECT_DIR$/styles/pages/organization.css" />
         <option value="$PROJECT_DIR$/styles/pages/organization/createOrg.css" />
         <option value="$PROJECT_DIR$/styles/import.css" />
@@ -205,19 +113,26 @@
         <option value="$PROJECT_DIR$/scripts/pages/organizManage/router.js" />
         <option value="$PROJECT_DIR$/views/organizManage/organizAppend.html" />
         <option value="$PROJECT_DIR$/views/orgManage/addOrgManage.html" />
-        <option value="$PROJECT_DIR$/views/widget/widget.html" />
         <option value="$PROJECT_DIR$/styles/pages/appManage/deployment.css" />
-        <option value="$PROJECT_DIR$/views/appManage/deployment.html" />
         <option value="$PROJECT_DIR$/views/widget/rollingup.html" />
         <option value="$PROJECT_DIR$/styles/pages/widget/widget.css" />
         <option value="$PROJECT_DIR$/styles/pages/widget/status.css" />
-        <option value="$PROJECT_DIR$/scripts/common/directive.js" />
         <option value="$PROJECT_DIR$/views/widget/orgRollingUp.html" />
         <option value="$PROJECT_DIR$/scripts/pages/appManage/service.js" />
         <option value="$PROJECT_DIR$/views/widget/delete.html" />
-        <option value="$PROJECT_DIR$/views/orgManage/orgManage.html" />
         <option value="$PROJECT_DIR$/scripts/pages/orgManage/service.js" />
         <option value="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" />
+        <option value="$PROJECT_DIR$/views/orgManage/orgManage.html" />
+        <option value="$PROJECT_DIR$/views/widget/widget.html" />
+        <option value="$PROJECT_DIR$/scripts/common/directive.js" />
+        <option value="$PROJECT_DIR$/scripts/pages/appManage/deployment/service.js" />
+        <option value="$PROJECT_DIR$/scripts/pages/extensions/service.js" />
+        <option value="$PROJECT_DIR$/views/extensions/endpoint.html" />
+        <option value="$PROJECT_DIR$/views/extensions/service.html" />
+        <option value="$PROJECT_DIR$/scripts/pages/extensions/controller.js" />
+        <option value="$PROJECT_DIR$/views/appManage/deployment.html" />
+        <option value="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
+        <option value="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
       </list>
     </option>
   </component>
@@ -255,7 +170,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -287,24 +201,6 @@
               <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -320,7 +216,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="orgManage" />
+              <option name="myItemId" value="extensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,7 +288,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="personalCenter" />
+              <option name="myItemId" value="extensions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -414,29 +310,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="orgManage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appManage" />
+              <option name="myItemId" value="dashboard" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -459,34 +333,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="appManage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="deployment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -506,7 +359,10 @@
       <recent name="$PROJECT_DIR$/scripts/lib/echarts" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.deployment.html">
+    <configuration default="false" name="deployment.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frontend/views/appManage/deployment.html">
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -555,6 +411,14 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.deployment.html" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.deployment.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -576,6 +440,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1726568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3904" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -587,7 +452,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -625,27 +489,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/podlist.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.692308">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/main/cancel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/main/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/common/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13059701">
@@ -707,28 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4048843">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/extensions/service.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34851485">
-          <caret line="23" column="187" selection-start-line="23" selection-start-column="187" selection-end-line="23" selection-end-column="187" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/extensions/endpoint.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2159383">
-          <caret line="23" column="195" selection-start-line="23" selection-start-column="195" selection-end-line="23" selection-end-column="195" />
         </state>
       </provider>
     </entry>
@@ -858,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.57583547">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -866,14 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7275064">
           <caret line="585" column="17" selection-start-line="585" selection-start-column="17" selection-end-line="585" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/appManage/deployment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88431877">
-          <caret line="357" column="44" selection-start-line="357" selection-start-column="38" selection-end-line="357" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -886,19 +698,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/dashboard/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.8902743">
-          <caret line="222" column="33" selection-start-line="222" selection-start-column="33" selection-end-line="222" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/widget/orgRollingUp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46272492">
           <caret line="24" column="79" selection-start-line="24" selection-start-column="79" selection-end-line="24" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -906,7 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.76863754">
           <caret line="53" column="109" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="109" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.703704">
           <caret line="227" column="26" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3653367">
           <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,70 +737,137 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.1979434">
           <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/common/directive.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.111111">
-          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/widget/widget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="53" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/widget/delete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="7" column="83" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/orgManage/orgManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.041666">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.777778">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.33830845">
+          <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/common/routers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.72761196">
           <caret line="39" column="42" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="29" selection-start-line="178" selection-start-column="20" selection-end-line="180" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.42910448">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/controller.js">
+    <entry file="file://$PROJECT_DIR$/views/orgManage/orgManage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32903227">
-          <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.86538464">
+          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/widget/delete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13461539">
+          <caret line="7" column="83" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/widget/widget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23076923">
+          <caret line="12" column="53" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/common/directive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.018656716">
+          <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3483871">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/extensions/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66334164">
+          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/extensions/endpoint.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9530387">
+          <caret line="90" column="1" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/extensions/extensions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/extensions/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.232258">
+          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/extensions/service.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33804628">
+          <caret line="104" column="90" selection-start-line="104" selection-start-column="83" selection-end-line="104" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/appManage/deployment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.125">
+          <caret line="145" column="75" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#div#0;n#section#0;n#form#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.777779">
+          <caret line="115" column="81" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
+          <folding>
+            <marker date="1476873608000" expanded="true" signature="7638:7782" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/dashboard/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68204486">
+          <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
           <folding />
         </state>
       </provider>

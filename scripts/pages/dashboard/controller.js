@@ -134,7 +134,7 @@ define([
                                     "name": data,
                                     'itemStyle': {
                                         normal: {
-                                            color: '#00A2E8',
+                                            color: '#64d468',
                                         }
                                     }
                                 })
@@ -161,7 +161,7 @@ define([
                                 symbolSize: 20,
                                 layout: 'force',
                                 force: {
-                                    repulsion: 1500
+                                    repulsion: 500
                                 },
                                 label: {
                                     normal: {

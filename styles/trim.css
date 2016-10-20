@@ -116,3 +116,67 @@
 }
 
 
+/*拓扑图详情*/
+
+.selected-d .row {
+    margin: 0;
+}
+
+.selected-d {
+    position: absolute;
+    width: 500px;
+    right: 0;
+    bottom: 100%;
+    border: 1px solid #3F51B5;
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+    -webkit-transition-property: all;
+    transition-property: all;
+    /*display: none;*/
+}
+
+.selected-d .selected-c {
+    padding-top: 10px;
+}
+
+.close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    text-align: center;
+    right: 10px;
+    cursor: pointer;
+    color: #000;
+    z-index: 1;
+}
+
+.close:hover {
+    color:
+}
+
+.arrow-on,
+.arrow-in {
+    border-width: 8px;
+    border-style: dashed solid dashed ;
+    font-size: 0;
+    line-height: 0;
+    margin-left: -4px;
+    position: absolute;
+}
+
+.arrow-on {
+    border-color: #3F51B5 transparent transparent transparent;
+    bottom: -17px;
+    left: 80%;
+}
+
+.arrow-in {
+    border-color: #fff transparent transparent transparent;
+    bottom: -16px;
+    left: 80%;
+}
+
+label:hover .selected-d {
+    right: 200px;
+}
