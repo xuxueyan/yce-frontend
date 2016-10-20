@@ -48,6 +48,7 @@ define([
 
         $scope.$on("select", function(ev, item) {
             if (item) {
+                console.log(item);
                 $scope.selectKind = item.kind
                 $scope.selectText = "Selected: " + item.metadata.name;
                 $scope.selectName = item.metadata.name;

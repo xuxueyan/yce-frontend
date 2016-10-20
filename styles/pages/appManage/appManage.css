@@ -42,10 +42,6 @@
     cursor: pointer;
 }
 
-.appManage table.dataTable tr td {
-    padding: 0 !important;
-}
-
 
 /*刷新样式*/
 

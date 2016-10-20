@@ -225,7 +225,7 @@ define([
                         data: ['发布', '扩容', '滚动升级', '回滚', '删除']
                     },
                     grid: {
-                        width: '730px',
+                        width: '600px',
                         height: '300px',
                         left: '17%',
                         containLabel: true
@@ -240,22 +240,27 @@ define([
                     series: [{
                         name: '发布',
                         type: 'bar',
+                        barWidth : 5,
                         data: dataHistogram.statistics.online
                     }, {
                         name: '扩容',
                         type: 'bar',
+                        barWidth : 5,
                         data: dataHistogram.statistics.scale
                     }, {
                         name: '滚动升级',
                         type: 'bar',
+                        barWidth : 5,
                         data: dataHistogram.statistics.rollingupgrade
                     }, {
                         name: '回滚',
                         type: 'bar',
+                        barWidth : 5,
                         data: dataHistogram.statistics.rollback
                     }, {
                         name: '删除',
                         type: 'bar',
+                        barWidth : 5,
                         data: dataHistogram.statistics.delete
                     }]
                 })

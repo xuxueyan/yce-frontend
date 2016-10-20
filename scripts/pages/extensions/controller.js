@@ -124,6 +124,8 @@ define([
         }
         $scope.extensionsPage();
 
+
+
         // 创建服务
         extensionsService.CreatService($scope.myParam,function(data){
             $scope.extentServers = data;
@@ -150,11 +152,8 @@ define([
                     }
                     //   port add....
                     $scope.ports = [];
-
-                    var i = 0;
                     $scope.addPort = function(){
-                        i++;
-                        $scope.ports.push({"name" : "port"+ i});
+                        $scope.ports.push({});
                     }
                     //   del
                     $scope.delPort = function($index){
@@ -219,30 +218,6 @@ define([
                 "TCP",
                 "UDP"
             ];
-
-            $scope.serviceNameExit = function(){
-
-                if( $scope.param.serviceName != undefined && $scope.param.serviceName != ''){
-                    var param = {
-                        orgId: $localStorage.orgId,
-                        userId: $localStorage.userId,
-                        sessionId: $localStorage.sessionId,
-                        "name": $scope.param.serviceName
-                    };
-                    extensionsService.serviceExit(param, function(res){
-                        if(res.code == 1415){
-                            $scope.nameExit = true;
-                            $scope.serversubmit = function(){
-                                return;
-                            }
-                        }else{
-                            $scope.nameExit = false;
-
-                        }
-
-                    });
-                }
-            };
 
             $scope.serversubmit = function(){
                 // 协议

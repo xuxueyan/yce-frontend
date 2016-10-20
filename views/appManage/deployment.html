@@ -1,41 +1,47 @@
 <section class="wrapper main-wrapper row deployment">
     <div class="col-xs-12">
         <div class="page-title">
+            <div class="pull-left">
                 <h1 class="title">应用发布</h1>
+            </div>
         </div>
     </div>
+    <div class="clearfix"></div>
     <div class="col-xs-12">
         <form ng-submit="submit()" name="login">
             <section class="box" ng-if="stepNum==1">
                 <header class="panel_header">
                     <h2 class="title pull-left">基本配置</h2>
                 </header>
-
                 <div class="content-body">
                     <div class="row">
                         <div class="col-xs-12 col-sm-9 col-md-8">
                             <div class="form-group">
-                                <label class="form-label">应用名：</label>
+                                <label class="form-label" for="field-name">应用名：</label>
                                 <span class="desc" ng-show="applyTips"
+<<<<<<< HEAD
                                       ng-init="applyTips = true"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
                                 <span class="warn" ng-show="login.applyName.$error.pattern">您的应用名不正确</span>
 
+=======
+                                      ng-init="applyTips = true"> 应用名是您将要创建的应用的名称，组织内唯一</span>
+                                <span class="warn" ng-show="login.applyName.$error.pattern">您的应用名格式不正确</span>
+>>>>>>> 59bd500a260d01d0910af2572d730f7a1af3a2b5
                                 <div class="controls">
-                                    <input type="text" name="applyName" class="form-control"
-                                           ng-model="param.deployment.metadata.name"
+                                    <input type="text" value="Color" name="applyName" class="form-control"
+                                           id="field-name" ng-model="param.deployment.metadata.name"
                                            ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false"
-                                           ng-blur="login.applyName.$error.pattern ? applyTips = false : nameIsExit();"
+                                           ng-blur="login.applyName.$error.pattern ? applyTips = false : applyTips = true"
                                            required>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">组织名：</label>
                                 <span class="desc">组织名是您所属的组织</span>
                                 <div class="controls">
                                     <input type="text" class="form-control"
-                                           value="{{param.deployment.metadata.namespace}}" readonly>
+                                           value="{{param.deployment.metadata.namespace}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -54,11 +60,11 @@
                                 <span class="desc">镜像是您创建应用的根据</span>
                                 <div class="controls">
                                     <input type="text" class="form-control" ng-click="showImageSelector()"
-                                           ng-model="param.deployment.spec.template.spec.containers[0].image" required readonly>
+                                           ng-model="param.deployment.spec.template.spec.containers[0].image" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">副本数：</label>
+                                <label class="form-label" for="field-replicas">副本数：</label>
                                 <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
                                 <!--                                 <div class="controls">
                                     <input type="number" value="color" ng-init="param.deployment.spec.replicas=1" min="1" max="10" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
@@ -87,6 +93,7 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">环境变量：</label>
+                                    <span class="desc"></span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addEnv()"></i>
                                     </span>
@@ -352,6 +359,7 @@
             </section>
         </form>
     </div>
+    statusMes
 </section>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
 <status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
