@@ -36,7 +36,7 @@ define([
                                     limits: {}
                                 },
                                 ports: [{
-                                    name: '11',
+                                    name: '',
                                     hostPort: {},
                                     containerPort: {},
                                     protocol: '',
@@ -110,20 +110,16 @@ define([
         $scope.param.deployment.spec.template.spec.containers[0].ports = [
             { protocol: "TCP" }
         ];
-
-
         $scope.addPort = function() {
-            $scope.param.deployment.spec.template.spec.containers[0].ports.push({
-            });
+            $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
         }
         $scope.delPort = function($index) {
             $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
         }
-        //$scope.activities = [
-        //    "TCP",
-        //    "UDP"
-        //];
-
+        $scope.activities = [
+            "TCP",
+            "UDP"
+        ];
         /*滑块*/
         $scope.slider = {
             value: 1,
@@ -137,36 +133,6 @@ define([
                 }
             }
         };
-
-        $scope.nameIsExit = function (){
-
-            if($scope.param.deployment.metadata.name !='' && $scope.param.deployment.metadata.name != undefined){
-                var param = {
-                    orgId: $localStorage.orgId,
-                    userId: $localStorage.userId,
-                    sessionId: $localStorage.sessionId,
-                    "name": $scope.param.deployment.metadata.name
-                };
-                deploymentService.applyNameisExit(param, function(res){
-                    if(res.code == 1415){
-                        $scope.applyTips = false;
-                        $scope.applyNameExit = true;
-                        $scope.submit = function(){
-                            return;
-                        }
-
-                    }else{
-                        $scope.applyTips = true;
-                        $scope.applyNameExit = false;
-
-                    }
-                });
-
-
-            }
-        };
-
-
         /*提交表单*/
         $scope.submit = function() {
 
@@ -216,9 +182,6 @@ define([
                 } else {
                     $scope.message = rep.message;
                     $scope.status = false;
-                    $timeout(function() {
-                        $state.go('main.appManage');
-                    }, 1000);
                 }
 
 
@@ -226,7 +189,6 @@ define([
                 $scope.showstatusMes = true;
                 $scope.message = '提交失败!';
                 $scope.status = false;
-
             });
         };
 
