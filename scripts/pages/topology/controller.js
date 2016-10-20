@@ -110,7 +110,11 @@ define([
                     }
 
                     $scope.selectRequestC = item.status.capacity.cpu;
-                    $scope.selectRequestM = item.status.capacity.memory;
+                    console.log($scope.selectRequestC)
+                    $scope.selectRequestm = item.status.capacity.memory;
+                    $scope.selectRequestM = $scope.selectRequestm.substring(0,2)+"G"
+                    console.log($scope.selectRequestm)
+                    console.log($scope.selectRequestM)
                     $scope.selectSystem = item.status.nodeInfo.osImage;
                     $scope.selectPort = item.status.daemonEndpoints.kubeletEndpoint.Port;
                     $scope.selectHear = item.status.conditions[0].lastHeartbeatTime;
