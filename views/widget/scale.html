@@ -19,24 +19,18 @@
                         <label class="form-label">应用名称：</label>
                         <span class="desc"></span>
                         <div class="controls">
-                            <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" disabled>
+                            <input type="text" class="form-control" ng-model="param.appName" ng-init="param.appName=originalData.deploy.metadata.name" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">镜像名称：</label>
                         <span class="desc"></span>
                         <div class="controls">
-                            <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" disabled>
+                            <input type="text" class="form-control" ng-model="param.imageName" ng-init="param.imageName=originalData.deploy.spec.template.spec.containers[0].image" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="field-replicas" class="form-label">实例个数：</label>
-                        <!--  <span class="desc" ng-show="newSize" ng-init="newSize = true">选择您要扩容的应用实例的数量</span> -->
-                        <!--  <span class="warn" ng-show="dilatation.size.$error.pattern"> 实例个数为1-10</span> -->
-                        <!--                         <div class="controls">
-                            <input type="number" name="size" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" id="field-replicas" class="form-control" ng-focus="newSize = false" ng-blur="dilatation.size.$error.pattern ? newSize = false : newSize = true;" ng-pattern="/^([1-9]|10)$/">
-                        </div> -->
-                        <!-- 滑块 2016/10/09 by licheng -->
+                        <label class="form-label">实例个数：</label>
                         <input type="text" ng-model="param.newSize" ng-init="param.newSize=originalData.deploy.spec.replicas" ng-focus="newSize = false" ng-blur="dilatation.size.$error.pattern ? newSize = false : newSize = true;" style="display: none;">
                         <rzslider rz-slider-model="param.newSize" rz-slider-options="slider.options"></rzslider>
                     </div>
