@@ -158,7 +158,7 @@
 .arrow-on,
 .arrow-in {
     border-width: 8px;
-    border-style: dashed solid dashed ;
+    border-style: dashed solid dashed;
     font-size: 0;
     line-height: 0;
     margin-left: -4px;
@@ -179,4 +179,40 @@
 
 label:hover .selected-d {
     right: 200px;
+}
+
+.timeline > li > .optype-1 {
+    background-color: #3F51B5;
+}
+
+.timeline > li > .optype-2 {
+    background-color: #3F51B5;
+}
+
+.timeline > li > .optype-3 {
+    background-color: #2E7D32;
+}
+
+.timeline > li > .optype-4 {
+    background-color: #FFC107;
+}
+
+.timeline > li > .optype-5 {
+    background-color: #03A9F4;
+}
+
+.timeline > li > .optype-6 {
+    background-color: #f44336;
+}
+
+.timeline > li > .optype-7 {
+    background-color: #f44336;
+}
+
+.timeline > li > .optype-8 {
+    background-color: #f44336;
+}
+
+.timeline > li > .optype-9 {
+    background-color: #f44336;
 }
