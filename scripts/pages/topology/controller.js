@@ -41,11 +41,6 @@ define([
             $scope.data = $scope.datasets[$scope.index % $scope.datasets.length];
         };
 
-
-
-
-
-
         $scope.$on("select", function(ev, item) {
             if (item) {
                 console.log(item);
@@ -145,21 +140,15 @@ define([
                     angular.element(document.getElementById('selectSName')).text($scope.selectName);
                     angular.element(document.getElementById('selectSType')).text($scope.selectType);
                     angular.element(document.getElementById('selectSClusterIP')).text($scope.selectClusterIP);
-                } else if ($scope.selectKind != 'Service' || 'Node' || 'Pod' || 'ReplicaSet') {
-                    $scope.showSelect = function() {
-                        $scope.Rshow = false;
-                        $scope.Pshow = false;
-                        $scope.Nshow = false;
-                        $scope.Sshow = false;
-                    }
                 }
-
+            } else {
+                $scope.Rshow = false;
+                $scope.Pshow = false;
+                $scope.Nshow = false;
+                $scope.Sshow = false;
             }
         });
     }];
-
-
-
 
     var controllers = [
         { module: 'topology', name: 'topologyController', ctrl: ctrl }
