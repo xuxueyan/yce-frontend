@@ -8,52 +8,66 @@ define([
 ], function(Base64, rzSlider, AngularUI) {
     'use strict';
 
-    var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', function($scope, $rootScope, appManageService, $localStorage, $http) {
+    var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', '$timeout', function($scope, $rootScope, appManageService, $localStorage, $http, $timeout) {
         $scope.canSubmit = true;
         $scope.param = { "orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId };
 
         $scope.loadAppList = function() {
             appManageService.getAppList($scope.param, function(data) {
                 if (data.code == 0) {
+
+
+                    //JSON.parse(data.data).forEach(function(app) {
+                    //
+                    //    app.deployments.forEach(function(deployment) {
+                    //
+                    //        deployment.podList.items.forEach(function(item) {
+                    //
+                    //            var a = item.status.phase;
+                    //            if (a == 'Running') {
+                    //
+                    //                $scope.stateArray.push({
+                    //                    value: "100",
+                    //                    type: "success"
+                    //                });
+                    //                //$scope.state = [{
+                    //                //    value: "100",
+                    //                //    type: "success"
+                    //                //}];
+                    //            } else if (a == 'Pending') {
+                    //                $scope.stateArray.push({
+                    //                    value: "75",
+                    //                    type: "info"
+                    //                });
+                    //                //$scope.state = [{
+                    //                //    value: "75",
+                    //                //    type: "info"
+                    //                //}];
+                    //            } else if (a == 'Failed') {
+                    //                $scope.state = [{
+                    //                    value: "100",
+                    //                    type: "danger"
+                    //                }];
+                    //            } else if (a == 'Succeeded') {
+                    //                $scope.state = [{
+                    //                    value: "",
+                    //                    type: ""
+                    //                }];
+                    //            } else if (a == 'Unknown') {
+                    //                $scope.state = [{
+                    //                    value: "30",
+                    //                    type: "warning"
+                    //                }];
+                    //            }
+                    //        })
+                    //    })
+                    //});
+
                     $scope.appList = JSON.parse(data.data);
                 }
-                // 进度条获取值
-                JSON.parse(data.data).forEach(function(app) {
-                    app.deployments.forEach(function(deployment) {
-                        deployment.podList.items.forEach(function(item) {
-                            var a = item.status.phase;
-                            if (a == 'Running') {
-                                $scope.state = [{
-                                    value: "100",
-                                    type: "success"
-                                }];
-                            } else if (a == 'Pending') {
-                                $scope.state = [{
-                                    value: "75",
-                                    type: "info"
-                                }];
-                            } else if (a == 'Failed') {
-                                $scope.state = [{
-                                    value: "100",
-                                    type: "danger"
-                                }];
-                            } else if (a == 'Succeeded') {
-                                $scope.state = [{
-                                    value: "",
-                                    type: ""
-                                }];
-                            } else if (a == 'Unknown') {
-                                $scope.state = [{
-                                    value: "30",
-                                    type: "warning"
-                                }];
-                            }
-                        })
-                    })
-                });
             });
-
         };
+
         $scope.loadAppList();
         // 发布详情
         $scope.showAppDeployDetail = function(item) {
@@ -176,8 +190,9 @@ define([
                 $scope.canSubmit = false;
                 appManageService.submitRollback(param, function(data) {
                     $rootScope.widget.widgetRollback = false;
-                    $scope.loadAppList();
                     $scope.canSubmit = true;
+
+
                 }, function() {
                     $scope.canSubmit = true;
                 });
@@ -198,17 +213,15 @@ define([
             $rootScope.widget.widgetScale = true;
         };
         $scope.$on('submitScale', function(event, param) {
-            param = angular.merge(param, $scope.param);
 
-            /************/
+            param = angular.merge(param, $scope.param);
 
             if ($scope.canSubmit) {
                 $scope.canSubmit = false;
                 appManageService.submitScale(param, function(rep) {
                     $rootScope.widget.widgetScale = false;
-                    $scope.loadAppList();
+                    $timeout
                     $scope.canSubmit = true;
-                    console.log(rep)
                 }, function() {
                     $scope.canSubmit = true;
                 });
