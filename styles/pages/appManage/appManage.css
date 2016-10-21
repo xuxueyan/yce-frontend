@@ -9,7 +9,7 @@
 .appManageTable {
     text-align: center;
     margin-top: 20px;
-/*    min-height: 500px;*/
+    /*    min-height: 500px;*/
 }
 
 .appManageTable th {
@@ -89,4 +89,54 @@
     to {
         -webkit-transform: rotate(360deg);
     }
+}
+
+
+/*进度条样式*/
+
+.state-back {
+    background-color: #e0e0e0;
+    border-top: 1px solid #bfbfbf;
+    border-left: 1px solid #bfbfbf;
+    border-right: 1px solid #bfbfbf;
+    padding: 0 44px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.state-defult {
+    border-radius: 15px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    padding: 8px 0;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+    -webkit-transition-property: all;
+    transition-property: all;
+}
+
+.state-running {
+    background-color: #4caf50;
+    padding: 8px 43px;
+}
+
+.state-pending {
+    background-color: #31708f;
+    padding: 8px 30px;
+}
+
+.state-failed {
+    background-color: #a94442;
+    padding: 8px 20px;
+}
+
+.state-unknown {
+    background-color: #fcf8e3;
+    padding: 8px 43px;
+}
+
+.state-succeeded {
+    background-color: #fff;
+    padding: 8px 43px;
 }
