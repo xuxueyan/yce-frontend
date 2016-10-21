@@ -93,6 +93,8 @@ define([
                     $scope.orgTips = true;
                 }
 
+
+
             };
 
             $scope.orgSubmit = function (){
@@ -121,6 +123,11 @@ define([
                     if(res.code == 0){
                         $scope.message = res.message;
                         $scope.status = true;
+
+                        //$timeout(function (){
+                        //
+                        //    $state.go('main.orgManage');
+                        //},500)
                     }else{
                         $scope.message = res.message;
                         $scope.status = false;

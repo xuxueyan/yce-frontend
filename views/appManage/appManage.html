@@ -49,9 +49,7 @@
                                         </td>
                                         <td class="appdemoS">
                                             <p ng-repeat="pod in item.podList.items">
-                                                <uib-progress>
-                                                    <uib-bar ng-repeat="state in state track by $index" value="state.value" type="{{state.type}}"></uib-bar>
-                                                </uib-progress>
+                                                {{pod.status.phase}}
                                             </p>
                                         </td>
                                         <td>

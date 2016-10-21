@@ -162,6 +162,10 @@ define([
             else{
                 $scope.applyTips = true;
             }
+
+            console.log($scope.applyTips);
+
+
         };
 
         /*提交表单*/
@@ -209,10 +213,13 @@ define([
 
                     $timeout(function() {
                         $state.go('main.appManage');
-                    }, 1000);
+                    }, 500);
                 } else {
                     $scope.message = rep.message;
                     $scope.status = false;
+                    $timeout(function() {
+                        $state.go('main.appManage');
+                    }, 500);
                 }
 
 
