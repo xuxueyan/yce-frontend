@@ -35,8 +35,7 @@
                     <div class="col-xs-12">
                         <ul class="timeline">
                             <li ng-repeat="item in historyList"  ng-class-odd="'timeline-inverted'">
-                                <div class="timeline-badge animated flipInY">
-                                    <i class="fa fa-smile-o"></i>
+                                <div class="timeline-badge animated flipInY" ng-class="{'optype-1': item.records.actionType == 1,'optype-2': item.records.actionType == 2,'optype-3': item.records.actionType == 3,'optype-4': item.records.actionType == 4,'optype-5': item.records.actionType == 5,'optype-6': item.records.actionType == 6,'optype-7': item.records.actionType == 7,'optype-8': item.records.actionType == 8,'optype-9': item.records.actionType == 9}">
                                 </div>
                                 <div class="timeline-panel animated flipInY hoverHand" ng-click="historyLi(item)">
                                     <div class="timeline-heading">
