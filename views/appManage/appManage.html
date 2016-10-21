@@ -5,7 +5,6 @@
                 <h1 class="title">应用管理</h1>
             </div>
             <div class="pull-right hidden-xs appManage-refresh">
-                
             </div>
         </div>
     </div>
@@ -49,9 +48,9 @@
                                         </td>
                                         <td class="appdemoS">
                                             <p ng-repeat="pod in item.podList.items">
-                                                <uib-progress>
-                                                    <uib-bar ng-repeat="state in state track by $index" value="state.value" type="{{state.type}}"></uib-bar>
-                                                </uib-progress>
+                                                <span class="state-back">
+                                                    <a  class="state-defult" ng-class="{'state-running': pod.status.phase == 'Running','state-pending': pod.status.phase == 'Pending','state-failed': pod.status.phase == 'Failed','state-succeeded': pod.status.phase == 'Succeeded','state-unknown': pod.status.phase == 'Unknown'}"></a>
+                                                </span>
                                             </p>
                                         </td>
                                         <td>
