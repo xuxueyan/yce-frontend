@@ -48,9 +48,13 @@
                                         </td>
                                         <td class="appdemoS">
                                             <p ng-repeat="pod in item.podList.items">
+<<<<<<< HEAD
                                                 <span class="state-back">
                                                     <a  class="state-defult" ng-class="{'state-running': pod.status.phase == 'Running','state-pending': pod.status.phase == 'Pending','state-failed': pod.status.phase == 'Failed','state-succeeded': pod.status.phase == 'Succeeded','state-unknown': pod.status.phase == 'Unknown'}"></a>
                                                 </span>
+=======
+                                                {{pod.status.phase}}
+>>>>>>> adbb2dab5eb117bfbae80361cee53bd58ee3ea8e
                                             </p>
                                         </td>
                                         <td>

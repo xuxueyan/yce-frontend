@@ -1,0 +1,23 @@
+.rateArea {
+    margin: 20px auto 0;
+    width: 300px;
+}
+.rateLine {
+    height: 5px;
+    width: 50px;
+    background-color: #ccc;
+    margin-top: 22px;
+
+}
+.rateCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+.rateActive {
+    background-color: #3F51B5;
+}
