@@ -99,7 +99,7 @@
     border-top: 1px solid #bfbfbf;
     border-left: 1px solid #bfbfbf;
     border-right: 1px solid #bfbfbf;
-    padding: 0 44px;
+    padding: 0 45%;
     border-radius: 15px;
     position: relative;
 }
@@ -118,25 +118,25 @@
 
 .state-running {
     background-color: #4caf50;
-    padding: 8px 43px;
+    padding: 8px 44%;
 }
 
 .state-pending {
     background-color: #31708f;
-    padding: 8px 30px;
+    padding: 8px 30%;
 }
 
 .state-failed {
     background-color: #a94442;
-    padding: 8px 20px;
+    padding: 8px 20%;
 }
 
 .state-unknown {
     background-color: #fcf8e3;
-    padding: 8px 43px;
+    padding: 8px 44%;
 }
 
 .state-succeeded {
     background-color: #fff;
-    padding: 8px 43px;
+    padding: 8px 44%;
 }
