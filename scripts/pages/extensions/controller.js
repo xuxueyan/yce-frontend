@@ -275,7 +275,7 @@ define([
                         $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
                     }
                 });
-                // label
+                // label **
                 $scope.leis.forEach(function(v){
                     for(var i in v){
                         $scope.param.service.metadata.labels[v.leiKey]= v.leiValue;
