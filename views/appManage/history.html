@@ -1,41 +1,38 @@
 <section class="wrapper main-wrapper row">
-
-         <div class='col-xs-12'>
-            <div class="page-title">
-
-                <div class="pull-left">
-                    <h1 class="title">历史发布</h1>
-                </div>
-
-                <div class="pull-right hidden-xs">
-                    <ol class="breadcrumb">
-                        <li class="hoverHand">
-                            <a >上线</a>
-                        </li>
-                        <li class="hoverHand">
-                            <a>升级</a>
-                        </li>
-                        <li class="hoverHand">
-                            <a>回滚</a>
-                        </li>
-                        <li class="hoverHand">
-                            <a>删除</a>
-                        </li>
-                    </ol>
-                </div>
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">历史发布</h1>
+            </div>
+            <div class="pull-right hidden-xs">
+                <ol class="breadcrumb">
+                    <li class="hoverHand">
+                        <a>上线</a>
+                    </li>
+                    <li class="hoverHand">
+                        <a>升级</a>
+                    </li>
+                    <li class="hoverHand">
+                        <a>回滚</a>
+                    </li>
+                    <li class="hoverHand">
+                        <a>删除</a>
+                    </li>
+                </ol>
             </div>
         </div>
-        <div class="clearfix"></div>
-        
+    </div>
+    <div class="clearfix"></div>
     <div class="col-lg-12">
         <section class="box ">
             <b class="pull-center-b"></b>
-            <div class="content-body">    
+            <div class="content-body">
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="timeline">
-                            <li ng-repeat="item in historyList"  ng-class-odd="'timeline-inverted'">
+                            <li ng-repeat="item in historyList" ng-class-odd="'timeline-inverted'">
                                 <div class="timeline-badge animated flipInY" ng-class="{'optype-1': item.records.actionType == 1,'optype-2': item.records.actionType == 2,'optype-3': item.records.actionType == 3,'optype-4': item.records.actionType == 4,'optype-5': item.records.actionType == 5,'optype-6': item.records.actionType == 6,'optype-7': item.records.actionType == 7,'optype-8': item.records.actionType == 8,'optype-9': item.records.actionType == 9}">
+                                    <img src="data/albums/text.png" style="width: 100%">
                                 </div>
                                 <div class="timeline-panel animated flipInY hoverHand" ng-click="historyLi(item)">
                                     <div class="timeline-heading">
@@ -58,7 +55,7 @@
                 </div>
             </div>
         </section>
-    </div>   
+    </div>
 </section>
 <div class="history-wrap" ng-show="historyShowbox">
     <div class="history-box1">
