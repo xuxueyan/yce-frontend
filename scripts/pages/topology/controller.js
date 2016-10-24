@@ -85,7 +85,6 @@ define([
                     $scope.selectNode = item.spec.nodeName;
                     $scope.selectPhase = item.status.phase;
                     $scope.selectIp = item.status.podIP;
-                    $scope.selectPort = item.spec.containers[0].ports[0].containerPort;
                     $scope.selectCount = item.status.containerStatuses[0].restartCount;
                     angular.element(document.getElementById("selectPSpace")).text($scope.selectSpace);
                     angular.element(document.getElementById("selectPImage")).text($scope.selectImage);
@@ -95,7 +94,6 @@ define([
                     angular.element(document.getElementById('selectPNode')).text($scope.selectNode);
                     angular.element(document.getElementById('selectPPhase')).text($scope.selectPhase);
                     angular.element(document.getElementById('selectPIp')).text($scope.selectIp);
-                    angular.element(document.getElementById('selectPPort')).text($scope.selectPort);
                     angular.element(document.getElementById('selectPCount')).text($scope.selectCount);
                 } else if ($scope.selectKind == 'Node') {
                     $scope.Rshow = false;
