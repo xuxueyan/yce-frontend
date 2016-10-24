@@ -288,7 +288,7 @@ define([
                     //   port add....
                     $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
 
-                    var i = 0;
+                    var i = 1;
                     $scope.addPort = function () {
                         i++;
                         $scope.ports.push({"name": "port" + i});
@@ -340,7 +340,7 @@ define([
                 };
 
                 // 选择器
-                $scope.Checkeds = [{"mylistKey":"name","mylistValue":''}];
+                $scope.Checkeds = [{"mylistKey":"name"}];
 
                 $scope.addCheckeds = function () {
                     $scope.Checkeds.push({});
@@ -420,15 +420,15 @@ define([
                     // 选择器
                     $scope.Checkeds.forEach(function (v) {
                         for (var i in v) {
-                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v[i]
+                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v[i];
                         }
-                    })
+                    });
                     // label
                     $scope.leis.forEach(function (v) {
                         for (var i in v) {
                             $scope.serviceParam.service.metadata.labels[v.leiKey] = v[i]
                         }
-                    })
+                    });
 
                     // 端口组  ok
                     $scope.ports.forEach(function (num) {

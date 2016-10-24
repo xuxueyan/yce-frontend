@@ -3,6 +3,15 @@
     width: 750px;
 
 }
+@media screen and (max-width: 1100px) {
+
+    .rateArea {
+        width: 510px;
+    }
+    .rateArea .rateLine {
+        width: 90px;
+    }
+}
 .rateLine {
     height: 5px;
     width: 150px;
