@@ -30,7 +30,7 @@
                                 <label class="form-label">应用名：</label>
                                 <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
-                                <span class="warn" ng-show="apply.applyName.$error.pattern">您的应用名不正确</span>
+                                <span class="warn" ng-show="applyNameExit ? false : apply.applyName.$error.pattern;">您的应用名不正确</span>
 
                                 <div class="controls">
                                     <input type="text" name="applyName" class="form-control"
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
-                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid"> 下一步</button>
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit"> 下一步</button>
                                     <!--<button class="btn btn-primary" ng-click="showService()"> 下一步</button>-->
 
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>

@@ -272,14 +272,13 @@ define([
                 // 选择器  
                 $scope.Checkeds.forEach(function(v){
                     for(var i in v){
-                        $scope.param.service.spec.selector[v.mylistKey]=v.mylistValue;
+                        $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
                     }
-                })
+                });
                 // label
                 $scope.leis.forEach(function(v){
                     for(var i in v){
-                        console.log(v[i])
-                        $scope.param.service.metadata.labels[v.leiKey]=v.leiValue;
+                        $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
                     }
                 })
 
