@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
     </list>
@@ -25,20 +24,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5225806">
-              <caret line="423" column="46" selection-start-line="423" selection-start-column="46" selection-end-line="423" selection-end-column="46" />
+            <state vertical-scroll-proportion="-16.666666">
+              <caret line="426" column="28" selection-start-line="426" selection-start-column="28" selection-end-line="426" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/pages/extensions/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.4862843">
               <caret line="276" column="19" selection-start-line="276" selection-start-column="19" selection-end-line="276" selection-end-column="19" />
               <folding />
             </state>
@@ -905,18 +904,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/extensions/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="276" column="19" selection-start-line="276" selection-start-column="19" selection-end-line="276" selection-end-column="19" />
+        <state vertical-scroll-proportion="-16.666666">
+          <caret line="426" column="28" selection-start-line="426" selection-start-column="28" selection-end-line="426" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/extensions/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5225806">
-          <caret line="423" column="46" selection-start-line="423" selection-start-column="46" selection-end-line="423" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.4862843">
+          <caret line="276" column="19" selection-start-line="276" selection-start-column="19" selection-end-line="276" selection-end-column="19" />
           <folding />
         </state>
       </provider>

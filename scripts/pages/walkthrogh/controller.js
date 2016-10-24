@@ -427,7 +427,7 @@ define([
                     // label
                     $scope.leis.forEach(function (v) {
                         for (var i in v) {
-                            $scope.serviceParam.service.metadata.labels[v.leiKey] = v[i]
+                            $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
                         }
                     });
 
