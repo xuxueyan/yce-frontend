@@ -112,7 +112,7 @@ define([
                     $scope.selectRequestC = item.status.capacity.cpu;
                     console.log($scope.selectRequestC)
                     $scope.selectRequestm = item.status.capacity.memory;
-                    $scope.selectRequestM = $scope.selectRequestm.substring(0,2)+"G"
+                    $scope.selectRequestM = $scope.selectRequestm.substring(0, 2) + "G"
                     console.log($scope.selectRequestm)
                     console.log($scope.selectRequestM)
                     $scope.selectSystem = item.status.nodeInfo.osImage;
@@ -146,12 +146,22 @@ define([
                     angular.element(document.getElementById('selectSClusterIP')).text($scope.selectClusterIP);
                 }
             } else {
-                $scope.Rshow = false;
-                $scope.Pshow = false;
-                $scope.Nshow = false;
-                $scope.Sshow = false;
+                $scope.showSelect = function() {
+                    $scope.Rshow = false;
+                    $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
+                }
             }
         });
+        // $scope.$on("select",function(ev,item){
+        //     if (item) {
+        //         $scope.selectText = "Selected: " + item.metadata.name;
+        //         angular.element(document.getElementById("selected")).text($scope.selectText).addClass('btn btn-primary');
+        //     }else{
+        //         angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
+        //     }
+        // })
     }];
 
     var controllers = [
