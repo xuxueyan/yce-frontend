@@ -120,6 +120,7 @@ define([
             "TCP",
             "UDP"
         ];
+
         /*滑块*/
         $scope.slider = {
             value: 1,
@@ -133,6 +134,40 @@ define([
                 }
             }
         };
+
+        $scope.nameIsExit = function (){
+
+            if($scope.param.deployment.metadata.name !='' && $scope.param.deployment.metadata.name != undefined){
+                var param = {
+                    orgId: $localStorage.orgId,
+                    userId: $localStorage.userId,
+                    sessionId: $localStorage.sessionId,
+                    "name": $scope.param.deployment.metadata.name
+                };
+                deploymentService.applyNameisExit(param, function(res){
+                    if(res.code == 1415){
+                        $scope.applyTips = false;
+                        $scope.applyNameExit = true;
+                        $scope.submit = function(){
+                            return;
+                        }
+
+                    }else{
+                        $scope.applyTips = true;
+                        $scope.applyNameExit = false;
+
+                    }
+                });
+            }
+            else{
+                $scope.applyTips = true;
+            }
+
+            console.log($scope.applyTips);
+
+
+        };
+
         /*提交表单*/
         $scope.submit = function() {
 
@@ -178,10 +213,13 @@ define([
 
                     $timeout(function() {
                         $state.go('main.appManage');
-                    }, 1000);
+                    }, 500);
                 } else {
                     $scope.message = rep.message;
                     $scope.status = false;
+                    $timeout(function() {
+                        $state.go('main.appManage');
+                    }, 500);
                 }
 
 

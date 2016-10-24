@@ -1,1 +1,693 @@
-绿色通道
+<section class="wrapper main-wrapper row deployment">
+    <div class="col-xs-12">
+        <div class="page-title">
+            <h1 class="title">绿色通道</h1>
+        </div>
+    </div>
+    <div class="col-xs-12" ng-show="applyShow" ng-init="applyShow = true">
+        <form name="apply">
+            <section class="box" ng-if="stepNum==1">
+                <header class="panel_header">
+
+                    <div class="rateArea clearfix">
+                        <div class="rateLine rateActive fl"></div>
+                        <div class="rateCircle rateActive fl">应用</div>
+                        <div class="rateLine fl"></div>
+                        <div class="rateCircle fl">服务</div>
+                        <div class="rateLine fl"></div>
+                        <div class="rateCircle fl">完成</div>
+                        <div class="rateLine fl"></div>
+
+
+                    </div>
+                    <h2 class="title pull-left">基本配置</h2>
+                </header>
+
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group" ng-init="applyTips = true">
+                                <label class="form-label">应用名：</label>
+                                <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
+                                <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
+                                <span class="warn" ng-show="apply.applyName.$error.pattern">您的应用名不正确</span>
+
+                                <div class="controls">
+                                    <input type="text" name="applyName" class="form-control"
+                                           ng-model="param.deployment.metadata.name"
+                                           ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false"
+                                           ng-blur="apply.applyName.$error.pattern ? return : nameIsExit();"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">组织名：</label>
+                                <span class="desc">组织名是您所属的组织</span>
+                                <div class="controls">
+                                    <input type="text" class="form-control"
+                                           value="{{param.deployment.metadata.namespace}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">数据中心：</label>
+                                <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                                <div class="controls data-center">
+                                    <label ng-repeat="item in initData.dataCenters" class=" server-servers form-label"
+                                           ng-class="{checked:dataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" name="dataCenters" value="{{item.id}}"
+                                               ng-model="dataTrans.dataCenters[$index]">{{item.name}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">镜像：</label>
+                                <span class="desc">镜像是您创建应用的根据</span>
+                                <div class="controls">
+                                    <input type="text" class="form-control" ng-click="showImageSelector()"
+                                           ng-model="param.deployment.spec.template.spec.containers[0].image" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">副本数：</label>
+                                <span class="desc">副本数是您创建应用的实例个数 （1-10）</span>
+                                <!--                                 <div class="controls">
+                                    <input type="number" value="color" ng-init="param.deployment.spec.replicas=1" min="1" max="10" pattern="[0-9]" class="form-control" id="field-replicas" ng-model="param.deployment.spec.replicas" ng-pattern="/^(?:[0-9]{1}|10)$/" required>
+                                </div> -->
+                                <!-- 滑块 2016/10/09 by licheng -->
+                                <input type="text" ng-model="param.deployment.spec.replicas"
+                                       ng-init="param.deployment.spec.replicas=1" style="display: none">
+                                <rzslider rz-slider-model="param.deployment.spec.replicas"
+                                          rz-slider-options="slider.options"></rzslider>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">规格：</label>
+                                <span class="desc">规格是您为应用所申请的资源规格</span>
+                                <div class="controls resource-spec">
+                                    <label ng-repeat="item in initData.quotas" class="form-label"
+                                           ng-class="{checked:(dataTrans.quotas==item.id)}">
+                                        <span class="resource-spec-title">{{item.name}}</span>
+                                        <p>
+                                            <input type="radio" name="limits" ng-checked="$first" value="{{item.id}}"
+                                                   ng-model="dataTrans.quotas"> &nbsp;CPU：{{item.cpu}}C
+                                            <br>MEM：{{item.mem}}G
+                                        </p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">环境变量：</label>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addEnv()"></i>
+                                    </span>
+                                </div>
+                                <div class="controls row"
+                                     ng-repeat="env in param.deployment.spec.template.spec.containers[0].env">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Name</span>
+                                            <input type="text" class="form-control" ng-model="env.name"
+                                                   ng-pattern="/^\S+[A-Z0-9-_]$/" required>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <input type="text" class="form-control" ng-model="env.value"
+                                                   ng-pattern="/^\S+$/" required>
+                                        </div>
+                                    </div>
+                                    <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-minus-square" ng-click="deleteEnv($index)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">开放端口：</label>
+                                    <span class="warn" ng-show="apply.portName.$error.pattern">名称格式不正确</span>
+                                    <span class="warn"
+                                          ng-show="apply.containerPort.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535</span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addApplyPort()"></i>
+                                    </span>
+                                </div>
+                                <div ng-repeat="port in param.deployment.spec.template.spec.containers[0].ports">
+                                    <div class="controls row">
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">名称</span>
+                                                <input type="text" class="form-control server-btn" name="portName"
+                                                       ng-model="port.name" ng-pattern="/^[a-z0-9_-]*$/" ng-init="port.name = 'port'+ ($index+1)" required>
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">端口</span>
+                                                <input type="number" class="form-control server-btn"
+                                                       name="containerPort" ng-model="port.containerPort"
+                                                       ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                                       required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">协议</span>
+                                                <select ng-model="port.protocol" class="form-control">
+                                                    <option ng-repeat="item in activities" ng-selected="$first"
+                                                            value="{{item}}">{{item}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-minus-square" ng-click="delApplyPort($index)"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 padding-bottom-30">
+                                <div class="text-left">
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid"> 下一步</button>
+
+                                    <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="box" ng-if="stepNum==2">
+                <header class="panel_header">
+                    <div class="rateArea clearfix">
+                        <div class="rateLine rateActive fl"></div>
+                        <div class="rateCircle rateActive fl">应用</div>
+                        <div class="rateLine rateActive fl"></div>
+                        <div class="rateCircle fl">服务</div>
+                        <div class="rateLine fl"></div>
+                    </div>
+                    <h2 class="title pull-left">高级配置</h2>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="form-group labels-group labels-group-box">
+                                    <div class="controls row">
+                                        <label class="form-label">标签组：</label>
+                                        <span class="desc"></span>
+                                        <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-plus-square" ng-click="addLabel()"></i>
+                                        </span>
+                                    </div>
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Key</span>
+                                                <p class="form-control">name</p>
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Value</span>
+                                                <p class="form-control">{{param.deployment.metadata.name}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Key</span>
+                                                <p class="form-control">version</p>
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Value</span>
+                                                <p class="form-control">{{version}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Key</span>
+                                                <p class="form-control">author</p>
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Value</span>
+                                                <p class="form-control">{{dataTrans.author}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="controls row" ng-repeat="label in dataTrans.labels">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Key</span>
+                                                <input type="text" class="form-control" ng-model="label.key" required>
+                                            </div>
+                                        </div>
+                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Value</span>
+                                                <input type="text" class="form-control" ng-model="label.value" required>
+                                            </div>
+                                        </div>
+                                        <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-minus-square" ng-click="deleteLabel($index)"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group dep-looks-1">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[0]">
+                                    <label class="form-label">健康检查</label>
+                                    <span class="desc">确定应用的健康程度</span>
+                                    <div class="row row-box-1">
+                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
+                                            <label class="form-label">HTTP</label>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">URL</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[0]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.path">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">Port</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[0]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.port">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">每隔</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[0]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.periodSeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">生效时间</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[0]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">
+                                            <span class="input-group-addon">秒</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[2]">
+                                    <label class="form-label">启动准备</label>
+                                    <span class="desc"></span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[2]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.postStart.exec.command[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[3]">
+                                    <label class="form-label">优雅停止</label>
+                                    <span class="desc">在应用结束后做好收尾工作</span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[3]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.preStop.exec.command[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[4]">
+                                    <label class="form-label">执行命令</label>
+                                    <span class="desc">除应用外还需执行的命令</span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[4]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].command[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[5]">
+                                    <label class="form-label">参数</label>
+                                    <span class="desc">执行命令所需的参数</span>
+                                    <div class="row">
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">脚本</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[5]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].args[0]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <span class="btn btn-primary" ng-click="showService()"> 下一步</span>
+
+                                    <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(1)">返回基础配置</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </form>
+    </div>
+
+    <div class="col-xs-12" ng-show="serviceShow">
+        <section class="box ">
+            <header class="panel_header">
+                <div class="rateArea clearfix">
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">应用</div>
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">服务</div>
+                    <div class="rateLine fl"></div>
+                    <div class="rateCircle fl">完成</div>
+                    <div class="rateLine fl"></div>
+
+
+                </div>
+                <h2 class="title pull-left">服务配置</h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <form name="service">
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                            <div class="form-group">
+                                <label class="form-label">服务名称：</label>
+                                <span class="desc" ng-show="serviceNameInit" ng-init="serviceNameInit = true">服务名是您将要创建的应用的名称，组织内唯一</span>
+                                <span class="warn" ng-show="service.serviceName.$error.pattern">您的应用名不正确</span>
+                                <span class="warn" ng-show="nameExit">服务名已存在,请重新输入</span>
+                                <div class="controls">
+                                    <input type="text" name="serviceName" class="form-control"
+                                           ng-model="serviceParam.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
+                                           ng-focus="serviceNameInit = false"
+                                           ng-blur="service.serviceName.$error.pattern ? return : serviceNameExit()"
+                                           required/>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">数据中心：</label>
+                                <span class="desc">数据中心是您的应用将要部署到的位置</span>
+                                <div class="data-center">
+                                    <label class="server-servers ngs_hide" ng-repeat="i in extentServerLei.dataCenters"
+                                           ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" ng-true-value="true" ng-false-value="false"
+                                               ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
+                                        {{ i.name }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">服务类型：</label>
+                                <span class="desc"></span>
+                                <div class="data-center" ng-init="serverRadios = 1">
+                                    <label class="server-servers" ng-class="{radio_bg: serverRadios == 0}">
+                                        <input type="radio" name="dataCenters" ng-model="serverRadios" value="0"
+                                               ng-click="serverClick1()"> ClusterIP
+                                    </label>
+                                    <label class="server-servers" ng-class="{radio_bg: serverRadios == 1}">
+                                        <input type="radio" name="dataCenters" ng-model="serverRadios" value="1"
+                                               ng-click="serverClick1()"> NodePort
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">选择器：</label>
+                                    <span class="desc show-spans-1"
+                                          ng-show="service.serviceLabelKey.$error.pattern || service.serviceLabelValue.$error.pattern">只允许字母数字下划线</span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-plus-square" ng-click="addCheckeds()"></i>
+                                    </span>
+                                </div>
+                                <div class="controls row" ng-repeat="newCheckeds in Checkeds">
+
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">key</span>
+                                            <input type="text" name="serviceLabelKey"
+                                                   class="form-control"
+                                                   ng-model="newCheckeds.mylistKey"
+                                                   ng-pattern="/^[A-Za-z0-9_-]*$/" required>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">value</span>
+                                            <input type="text" name="serviceLabelValue"
+                                                   class="form-control"
+                                                   ng-model="newCheckeds.mylistValue"
+                                                   ng-pattern="/^[A-Za-z0-9_-]*$/" required>
+                                        </div>
+                                    </div>
+                                    <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-minus-square" ng-click="delCheckeds($index)"></i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">端口组：</label>
+                                    <span class="desc show-spans-1" ng-show=" service.servicePortName.$error.pattern">您输入的格式不正确</span>
+                                    <span class="desc show-spans-1"
+                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
+
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-plus-square" ng-click="addPort()"></i>
+                                    </span>
+                                </div>
+
+                                <div class="controls row" ng-repeat="portlists in ports">
+
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">名称</span>
+                                                <input type="text" name="servicePortName"
+                                                       class="form-control server-btn" ng-model="portlists.name"
+                                                       ng-pattern="/^[a-z0-9_-]*$/" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Target Port</span>
+                                                <input type="text" name="serviceTargetPortName"
+                                                       class="form-control server-btn"
+                                                       ng-model="portlists.targetPort"
+                                                       ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                                       ng-init="portlists.targetPort = param.deployment.spec.template.spec.containers[0].ports[$index].containerPort"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-minus-square" ng-click="delPort($index)"></i>
+                                        </span>
+                                    </div>
+
+
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">port</span>
+                                                <input type="text" name="servicePortportName"
+                                                       class="form-control server-btn"
+                                                       ng-model="portlists.port"
+                                                       ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                                       ng-init="portlists.port = param.deployment.spec.template.spec.containers[0].ports[$index].containerPort"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">NodePort</span>
+                                                <input type="text" class="form-control server-btn"
+                                                       ng-disabled="serverDisabled"
+                                                       ng-model="portlists.nodePort"
+                                                       ng-pattern="/^(?:[0-9]{1,5})$/">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="controls row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">协议</span>
+                                                <!--<select ng-model="portlists.protocol" class="form-inputs"-->
+                                                <!--ng-options="act for act in activities" ></select>-->
+
+                                                <select ng-model="portlists.protocol" class="form-control">
+                                                    <option ng-repeat="act in activities" ng-selected="$first"
+                                                            value="{{act}}">{{act}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">标签组：</label>
+                                    <span class="desc show-spans-1"
+                                          ng-show="service.serviceLabelsKey.$error.pattern || service.serviceLabelsVal.$error.pattern">格式不正确，仅允许字母数字下划线</span>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-plus-square" ng-click="addLabels()"></i>
+                                    </span>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">key</span>
+                                            <input type="text" placeholder="name"
+                                                   class="form-control server-btn" ng-model="portsname"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">value</span>
+                                            <input type="text" placeholder="{{ serviceParam.serviceName }}"
+                                                   class="form-control server-btn" ng-model="portsarrange"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">key</span>
+                                            <input type="text" placeholder="author"
+                                                   class="form-control server-btn" ng-model="portsname"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">value</span>
+                                            <input type="text" placeholder="{{ sessionName }}"
+                                                   class="form-control server-btn" ng-model="portsarrange"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">key</span>
+                                            <input type="text" placeholder="type"
+                                                   class="form-control server-btn" ng-model="portsname"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">value</span>
+                                            <input type="text" placeholder="service"
+                                                   class="form-control server-btn" ng-model="portsarrange"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="controls row" ng-repeat="lei in leis">
+
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">key</span>
+                                            <input type="text" name="serviceLabelsKey"
+                                                   class="form-control server-btn" ng-model=" lei.leiKey "
+                                                   ng-pattern="/^[A-Za-z0-9_-]*$/" required>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">value</span>
+                                            <input type="text" name="serviceLabelsVal"
+                                                   class="form-control server-btn"
+                                                   ng-model=" lei.leiValue "
+                                                   ng-pattern="/^[A-Za-z0-9_-]*$/" required>
+                                        </div>
+                                    </div>
+                                    <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                            <i class="fa fa-minus-square" ng-click="delLabels($index)"></i>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button class="btn btn-primary pull-left" ng-disabled="service.$invalid" ng-click="applySerSubmit()">提交</button>
+                                    <span class="btn btn-primary pull-right" ng-click="showApply()"> 上一步</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12" ng-show="serviceAndApplySuc">
+        <section class="box">
+            <header class="panel_header">
+                <div class="rateArea clearfix">
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">应用</div>
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">服务</div>
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">完成</div>
+                    <div class="rateLine rateActive fl"></div>
+                </div>
+            </header>
+            <div class="rateBox">
+                <div class="rateMessage">
+                    <img src="images/success.png">
+                    <p>绿色通道创建完成</p>
+                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转之<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
+<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
