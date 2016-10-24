@@ -4,8 +4,7 @@
 define([
     'base64',
     'rzSlider',
-    'AngularUI'
-], function(Base64, rzSlider, AngularUI) {
+], function(Base64, rzSlider) {
     'use strict';
 
     var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', '$timeout', function($scope, $rootScope, appManageService, $localStorage, $http, $timeout) {
@@ -15,54 +14,6 @@ define([
         $scope.loadAppList = function() {
             appManageService.getAppList($scope.param, function(data) {
                 if (data.code == 0) {
-
-
-                    //JSON.parse(data.data).forEach(function(app) {
-                    //
-                    //    app.deployments.forEach(function(deployment) {
-                    //
-                    //        deployment.podList.items.forEach(function(item) {
-                    //
-                    //            var a = item.status.phase;
-                    //            if (a == 'Running') {
-                    //
-                    //                $scope.stateArray.push({
-                    //                    value: "100",
-                    //                    type: "success"
-                    //                });
-                    //                //$scope.state = [{
-                    //                //    value: "100",
-                    //                //    type: "success"
-                    //                //}];
-                    //            } else if (a == 'Pending') {
-                    //                $scope.stateArray.push({
-                    //                    value: "75",
-                    //                    type: "info"
-                    //                });
-                    //                //$scope.state = [{
-                    //                //    value: "75",
-                    //                //    type: "info"
-                    //                //}];
-                    //            } else if (a == 'Failed') {
-                    //                $scope.state = [{
-                    //                    value: "100",
-                    //                    type: "danger"
-                    //                }];
-                    //            } else if (a == 'Succeeded') {
-                    //                $scope.state = [{
-                    //                    value: "",
-                    //                    type: ""
-                    //                }];
-                    //            } else if (a == 'Unknown') {
-                    //                $scope.state = [{
-                    //                    value: "30",
-                    //                    type: "warning"
-                    //                }];
-                    //            }
-                    //        })
-                    //    })
-                    //});
-
                     $scope.appList = JSON.parse(data.data);
                 }
             });
@@ -79,9 +30,6 @@ define([
             };
             $rootScope.widget.widgetAppDeployDetail = true;
         };
-
-
-
 
         //----------- 时间
         $scope.consoleTime = function(pod) {

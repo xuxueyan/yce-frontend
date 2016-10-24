@@ -85,7 +85,6 @@ define([
                     $scope.selectNode = item.spec.nodeName;
                     $scope.selectPhase = item.status.phase;
                     $scope.selectIp = item.status.podIP;
-                    $scope.selectPort = item.spec.containers[0].ports[0].containerPort;
                     $scope.selectCount = item.status.containerStatuses[0].restartCount;
                     angular.element(document.getElementById("selectPSpace")).text($scope.selectSpace);
                     angular.element(document.getElementById("selectPImage")).text($scope.selectImage);
@@ -95,7 +94,6 @@ define([
                     angular.element(document.getElementById('selectPNode')).text($scope.selectNode);
                     angular.element(document.getElementById('selectPPhase')).text($scope.selectPhase);
                     angular.element(document.getElementById('selectPIp')).text($scope.selectIp);
-                    angular.element(document.getElementById('selectPPort')).text($scope.selectPort);
                     angular.element(document.getElementById('selectPCount')).text($scope.selectCount);
                 } else if ($scope.selectKind == 'Node') {
                     $scope.Rshow = false;
@@ -110,7 +108,11 @@ define([
                     }
 
                     $scope.selectRequestC = item.status.capacity.cpu;
-                    $scope.selectRequestM = item.status.capacity.memory;
+                    console.log($scope.selectRequestC)
+                    $scope.selectRequestm = item.status.capacity.memory;
+                    $scope.selectRequestM = $scope.selectRequestm.substring(0, 2) + "G"
+                    console.log($scope.selectRequestm)
+                    console.log($scope.selectRequestM)
                     $scope.selectSystem = item.status.nodeInfo.osImage;
                     $scope.selectPort = item.status.daemonEndpoints.kubeletEndpoint.Port;
                     $scope.selectHear = item.status.conditions[0].lastHeartbeatTime;
@@ -142,12 +144,23 @@ define([
                     angular.element(document.getElementById('selectSClusterIP')).text($scope.selectClusterIP);
                 }
             } else {
-                $scope.Rshow = false;
-                $scope.Pshow = false;
-                $scope.Nshow = false;
-                $scope.Sshow = false;
+                angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
+                $scope.showSelect = function() {
+                    $scope.Rshow = false;
+                    $scope.Pshow = false;
+                    $scope.Nshow = false;
+                    $scope.Sshow = false;
+                }
             }
         });
+        // $scope.$on("select",function(ev,item){
+        //     if (item) {
+        //         $scope.selectText = "Selected: " + item.metadata.name;
+        //         angular.element(document.getElementById("selected")).text($scope.selectText).addClass('btn btn-primary');
+        //     }else{
+        //         angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
+        //     }
+        // })
     }];
 
     var controllers = [
