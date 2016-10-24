@@ -16,7 +16,8 @@ define([
 	'./common/directive',
 	'./common/services',
 	'./common/routers',
-	'./common/controllers'
+	'./common/controllers',
+	'AngularDrag'
 ], function($, _, angular, uiRouter, ngStorage, kubernetesUI, rzSlider,AngularUI, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers){
 	'use strict';
 
@@ -37,7 +38,7 @@ define([
 
 
 	//主应用
-	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'kubernetesUI', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage', 'topology', 'orgManage', 'userManage','dcManage', 'personalCenter', 'walkthrogh']);
+	var app = angular.module('yce-manage', ['ui.router', 'common', 'ngStorage', 'kubernetesUI', 'dashboardManage', 'appManage', 'rbdManage', 'costManage', 'extensionsManage', 'imageManage', 'topology', 'orgManage', 'userManage','dcManage', 'personalCenter', 'walkthrogh', 'angular-drag']);
 	//路由引导
 	Mock.mockjax(app);
 
