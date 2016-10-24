@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="col-xs-12" ng-show="applyShow" ng-init="applyShow = true">
-        <form name="login">
+        <form name="apply">
             <section class="box" ng-if="stepNum==1">
                 <header class="panel_header">
 
@@ -15,6 +15,10 @@
                         <div class="rateLine fl"></div>
                         <div class="rateCircle fl">服务</div>
                         <div class="rateLine fl"></div>
+                        <div class="rateCircle fl">完成</div>
+                        <div class="rateLine fl"></div>
+
+
                     </div>
                     <h2 class="title pull-left">基本配置</h2>
                 </header>
@@ -26,13 +30,13 @@
                                 <label class="form-label">应用名：</label>
                                 <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
-                                <span class="warn" ng-show="login.applyName.$error.pattern">您的应用名不正确</span>
+                                <span class="warn" ng-show="apply.applyName.$error.pattern">您的应用名不正确</span>
 
                                 <div class="controls">
                                     <input type="text" name="applyName" class="form-control"
                                            ng-model="param.deployment.metadata.name"
                                            ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false"
-                                           ng-blur="login.applyName.$error.pattern ? return : nameIsExit();"
+                                           ng-blur="apply.applyName.$error.pattern ? return : nameIsExit();"
                                            required>
                                 </div>
                             </div>
@@ -123,9 +127,9 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">开放端口：</label>
-                                    <span class="warn" ng-show="login.portName.$error.pattern">名称格式不正确</span>
+                                    <span class="warn" ng-show="apply.portName.$error.pattern">名称格式不正确</span>
                                     <span class="warn"
-                                          ng-show="login.containerPort.$error.pattern && !login.portName.$error.pattern">端口值应为 1-65535</span>
+                                          ng-show="apply.containerPort.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addApplyPort()"></i>
                                     </span>
@@ -136,7 +140,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon">名称</span>
                                                 <input type="text" class="form-control server-btn" name="portName"
-                                                       ng-model="port.name" ng-pattern="/^[a-z-_]+$/" required>
+                                                       ng-model="port.name" ng-pattern="/^[a-z0-9_-]*$/" ng-init="port.name = 'port'+ ($index+1)" required>
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
@@ -167,8 +171,7 @@
                             </div>
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
-                                    <!--<button class="btn btn-primary" ng-disabled="login.$invalid" ng-click="serviceShow = true; applyShow = false;"> 下一步</button>-->
-                                    <span class="btn btn-primary" ng-click="showService()"> 下一步</span>
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid"> 下一步</button>
 
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
@@ -380,24 +383,28 @@
                     <div class="rateCircle rateActive fl">应用</div>
                     <div class="rateLine rateActive fl"></div>
                     <div class="rateCircle rateActive fl">服务</div>
-                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateLine fl"></div>
+                    <div class="rateCircle fl">完成</div>
+                    <div class="rateLine fl"></div>
+
+
                 </div>
                 <h2 class="title pull-left">服务配置</h2>
             </header>
             <div class="content-body">
                 <div class="row">
-                    <form name="login">
+                    <form name="service">
                         <div class="col-xs-12 col-sm-9 col-md-8">
                             <div class="form-group">
                                 <label class="form-label">服务名称：</label>
                                 <span class="desc" ng-show="serviceNameInit" ng-init="serviceNameInit = true">服务名是您将要创建的应用的名称，组织内唯一</span>
-                                <span class="warn" ng-show="login.serviceName.$error.pattern">您的应用名不正确</span>
+                                <span class="warn" ng-show="service.serviceName.$error.pattern">您的应用名不正确</span>
                                 <span class="warn" ng-show="nameExit">服务名已存在,请重新输入</span>
                                 <div class="controls">
                                     <input type="text" name="serviceName" class="form-control"
                                            ng-model="serviceParam.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
                                            ng-focus="serviceNameInit = false"
-                                           ng-blur="login.serviceName.$error.pattern ? return : serviceNameExit() "
+                                           ng-blur="service.serviceName.$error.pattern ? return : serviceNameExit()"
                                            required/>
 
                                 </div>
@@ -417,7 +424,7 @@
                             <div class="form-group">
                                 <label class="form-label">服务类型：</label>
                                 <span class="desc"></span>
-                                <div class="data-center" ng-init="serverRadios = 0">
+                                <div class="data-center" ng-init="serverRadios = 1">
                                     <label class="server-servers" ng-class="{radio_bg: serverRadios == 0}">
                                         <input type="radio" name="dataCenters" ng-model="serverRadios" value="0"
                                                ng-click="serverClick1()"> ClusterIP
@@ -433,7 +440,7 @@
                                 <div class="controls row">
                                     <label class="form-label">选择器：</label>
                                     <span class="desc show-spans-1"
-                                          ng-show="login.serviceLabelKey.$error.pattern || login.serviceLabelValue.$error.pattern">只允许字母数字下划线</span>
+                                          ng-show="service.serviceLabelKey.$error.pattern || service.serviceLabelValue.$error.pattern">只允许字母数字下划线</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                             <i class="fa fa-plus-square" ng-click="addCheckeds()"></i>
                                     </span>
@@ -470,9 +477,9 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">端口组：</label>
-                                    <span class="desc show-spans-1" ng-show=" login.servicePortName.$error.pattern">您输入的格式不正确</span>
+                                    <span class="desc show-spans-1" ng-show=" service.servicePortName.$error.pattern">您输入的格式不正确</span>
                                     <span class="desc show-spans-1"
-                                          ng-show=" !login.servicePortName.$error.pattern && (login.servicePortportName.$error.pattern || login.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
+                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
 
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                             <i class="fa fa-plus-square" ng-click="addPort()"></i>
@@ -497,6 +504,7 @@
                                                        class="form-control server-btn"
                                                        ng-model="portlists.targetPort"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                                       ng-init="portlists.targetPort = param.deployment.spec.template.spec.containers[0].ports[$index].containerPort"
                                                        required>
                                             </div>
                                         </div>
@@ -515,6 +523,7 @@
                                                        class="form-control server-btn"
                                                        ng-model="portlists.port"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
+                                                       ng-init="portlists.port = param.deployment.spec.template.spec.containers[0].ports[$index].containerPort"
                                                        required>
                                             </div>
                                         </div>
@@ -555,7 +564,7 @@
                                 <div class="controls row">
                                     <label class="form-label">标签组：</label>
                                     <span class="desc show-spans-1"
-                                          ng-show="login.serviceLabelsKey.$error.pattern || login.serviceLabelsVal.$error.pattern">格式不正确，仅允许字母数字下划线</span>
+                                          ng-show="service.serviceLabelsKey.$error.pattern || service.serviceLabelsVal.$error.pattern">格式不正确，仅允许字母数字下划线</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                             <i class="fa fa-plus-square" ng-click="addLabels()"></i>
                                     </span>
@@ -647,12 +656,34 @@
                             </div>
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
                                 <div class="text-left">
-                                    <button class="btn btn-primary pull-left" ng-disabled="login.$invalid" ng-click="applySerSubmit()">提交</button>
+                                    <button class="btn btn-primary pull-left" ng-disabled="service.$invalid" ng-click="applySerSubmit()">提交</button>
                                     <span class="btn btn-primary pull-right" ng-click="showApply()"> 上一步</span>
                                 </div>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-xs-12" ng-show="serviceAndApplySuc">
+        <section class="box">
+            <header class="panel_header">
+                <div class="rateArea clearfix">
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">应用</div>
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">服务</div>
+                    <div class="rateLine rateActive fl"></div>
+                    <div class="rateCircle rateActive fl">完成</div>
+                    <div class="rateLine rateActive fl"></div>
+                </div>
+            </header>
+            <div class="rateBox">
+                <div class="rateMessage">
+                    <img src="images/success.png">
+                    <p>绿色通道创建完成</p>
+                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转之<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
                 </div>
             </div>
         </section>

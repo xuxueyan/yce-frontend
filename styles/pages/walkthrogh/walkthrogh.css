@@ -1,10 +1,11 @@
 .rateArea {
     margin: 20px auto 0;
-    width: 300px;
+    width: 800px;
+
 }
 .rateLine {
     height: 5px;
-    width: 50px;
+    width: 150px;
     background-color: #ccc;
     margin-top: 22px;
 
@@ -20,4 +21,22 @@
 }
 .rateActive {
     background-color: #3F51B5;
+}
+.rateBox {
+    height: 500px;
+    position: relative;
+}
+.rateMessage {
+    color: #3F51B5;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+}
+.rateMessage a{
+    text-decoration: underline;
 }
