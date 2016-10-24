@@ -146,6 +146,7 @@ define([
                     angular.element(document.getElementById('selectSClusterIP')).text($scope.selectClusterIP);
                 }
             } else {
+                angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
                 $scope.showSelect = function() {
                     $scope.Rshow = false;
                     $scope.Pshow = false;
