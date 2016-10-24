@@ -115,6 +115,13 @@
     border-radius: 15px;
 }
 
+.apply-tr .appdemoS {
+    line-height: 20px !important;
+}
+
+
+
+
 
 /*拓扑图详情*/
 
@@ -180,6 +187,9 @@
 label:hover .selected-d {
     right: 200px;
 }
+
+
+/*历史操作*/
 
 .timeline > li > .optype-1 {
     background-color: #3F51B5;

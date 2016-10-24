@@ -6,7 +6,6 @@ define([
 	'ngStorage',
 	'kubernetesUI',
 	'rzSlider',
-	'AngularUI',
 	'mock',
 	'mockAngular',
 	'mockData',
@@ -17,13 +16,13 @@ define([
 	'./common/services',
 	'./common/routers',
 	'./common/controllers'
-], function($, _, angular, uiRouter, ngStorage, kubernetesUI, rzSlider,AngularUI, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers){
+], function($, _, angular, uiRouter, ngStorage, kubernetesUI, rzSlider, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers){
 	'use strict';
 
 	//通用模块
 	angular.module('common', []);
 	angular.module('dashboardManage', ['common']);
-	angular.module('appManage', ['common','rzModule','ui.bootstrap']);
+	angular.module('appManage', ['common','rzModule']);
 	angular.module('rbdManage', ['common']);
 	angular.module('costManage', ['common']);
 	angular.module('extensionsManage', ['common']);
