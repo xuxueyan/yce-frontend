@@ -90,7 +90,9 @@ define([
                 $scope.canSubmit = false;
                 appManageService.submitRollingup(param, function(data) {
                     $rootScope.widget.widgetRollingup = false;
-                    $scope.loadAppList();
+                    $timeout(function(){
+                        $scope.loadAppList();
+                    },1000);
                     $scope.canSubmit = true;
 
                 }, function() {
@@ -140,7 +142,6 @@ define([
                     $rootScope.widget.widgetRollback = false;
                     $scope.canSubmit = true;
 
-
                 }, function() {
                     $scope.canSubmit = true;
                 });
@@ -168,7 +169,9 @@ define([
                 $scope.canSubmit = false;
                 appManageService.submitScale(param, function(rep) {
                     $rootScope.widget.widgetScale = false;
-                    $timeout
+                    $timeout(function(){
+                        $scope.loadAppList();
+                    },1000);
                     $scope.canSubmit = true;
                 }, function() {
                     $scope.canSubmit = true;
@@ -195,7 +198,9 @@ define([
                 $scope.canSubmit = false;
                 appManageService.submitDelete($scope.param, function(data) {
                     $rootScope.widget.widgetDelete = false;
-                    $scope.loadAppList();
+                    $timeout(function(){
+                        $scope.loadAppList();
+                    },1000);
                     $scope.canSubmit = true;
                 }, function() {
                     $scope.canSubmit = true;
