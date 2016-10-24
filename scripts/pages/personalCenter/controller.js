@@ -9,12 +9,15 @@ define([
 
         var ctrl = ['$scope', 'personalCenterService', '$localStorage', function($scope, personalCenterService, $localStorage){
             
+            personalCenterService.eventAlertData('',function(res){
 
+                if(res.code == 0){
+                    $scope.eventAlertList = res.data;
+                }
+
+            })
 
         }];
-
-
-
 
     var controllers = [
             {module: 'personalCenter', name: 'personalCenterController', ctrl: ctrl}

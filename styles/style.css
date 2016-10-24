@@ -9068,12 +9068,11 @@ table.dataTable.display tbody tr:first-child td {
     padding: 4px 15px;
     display: inline-block;
 }
-
-
-
-
-
-
-
+/*
+    eventAlert  css
+*/
+.eventAlert_tr td{
+    padding: 10px 0;
+}
 
 

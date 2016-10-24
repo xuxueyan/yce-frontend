@@ -5,6 +5,10 @@ define([
 
 	var getApis = function($http){
 		var apis = {};
+
+		apis.eventAlertData = function(param, success, error){
+			return utils.http($http, 'get', 'myData.json', param, success, error)
+		}
 		
 		
 		return apis;
