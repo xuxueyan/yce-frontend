@@ -17,7 +17,16 @@ define([
             // 创建用户页面
             userManageService.setUpUser(param, function(res){
 
-                $scope.activities = JSON.parse(res.data)
+                var activeList = JSON.parse(res.data);
+                $scope.activities = [];
+
+                angular.forEach(activeList,function(key,val){
+                    $scope.activities.push({
+                        'name': key 
+                    });
+                
+                });
+
                 $scope.putUp = {
                     "sessionId" : $localStorage.sessionId,
                     "userName": "",
@@ -26,8 +35,7 @@ define([
                     "orgId": $localStorage.orgId, 
                     "op": $localStorage.userId
                 }
-                $scope.againPwJudge = function(){
-                }
+
                 //  失焦时判断
                 $scope.myUsernameBlur = function(){
                     $scope.showUsernams = false;
@@ -36,7 +44,7 @@ define([
                         "userName": $scope.putUp.userName,
                         "orgName": $scope.putUp.orgName,
                         "orgId": $localStorage.orgId
-                    }
+                    };
                     // 用户名和组织不为空时  判断用户名是否重复
                     if($scope.putUp.userName != "" && $scope.putUp.orgName != ""){
 

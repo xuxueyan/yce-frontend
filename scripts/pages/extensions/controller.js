@@ -93,20 +93,11 @@ define([
                                 $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(rep){
                                     $scope.showstatusMes = true;
                                     if(rep.code == 0){
-                                        $scope.status = true;
-                                        $scope.message = rep.message;
                                         $timeout(function() {
                                             $scope.extensionsPage();
                                         }, 1000);
                                     }
-                                    else{
-                                        $scope.message = rep.message;
-                                        $scope.status = false;
-                                    }
                                 }).error(function(data) {
-                                    $scope.message = '操作失败！';
-                                    $scope.status = false;
-                                    $scope.showstatusMes = true;
                                 });
                             }
                         }
