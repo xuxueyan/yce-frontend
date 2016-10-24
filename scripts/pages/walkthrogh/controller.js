@@ -19,6 +19,9 @@ define([
                 $scope.applyShow = false;
 
                 $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
+                $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+                $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+                $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
             };
 
             $scope.showApply = function () {
@@ -283,7 +286,7 @@ define([
                         $scope.leis.splice($index, 1)
                     };
                     //   port add....
-                    $scope.ports = [];
+                    $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
 
                     var i = 0;
                     $scope.addPort = function () {
@@ -337,7 +340,8 @@ define([
                 };
 
                 // 选择器
-                $scope.Checkeds = [];
+                $scope.Checkeds = [{"mylistKey":"name","mylistValue":''}];
+
                 $scope.addCheckeds = function () {
                     $scope.Checkeds.push({});
                 };
