@@ -19,7 +19,8 @@ requirejs.config({
         kubernetesUI: 'lib/topology-graph/topology-graph',
         mockAngular: 'mock/mock.angular',
         mock: 'mock/mock',
-        mockData: 'mock/mockData'
+        mockData: 'mock/mockData',
+        AngularDrag: 'lib/angular-drag/angular-drag'
     },
     shim: {
         'Angular': {
@@ -47,6 +48,9 @@ requirejs.config({
             deps: ['Angular']
         },
         'rzSlider': {
+            deps: ['Angular']
+        },
+        'AngularDrag': {
             deps: ['Angular']
         }
     }

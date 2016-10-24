@@ -21,8 +21,9 @@
                                 <label class="form-label" for="field-1678">所属组织：</label>
 
                                 <select ng-model="putUp.orgName" class="form-inputs">
-                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item}}</option>
+                                    <option ng-repeat="item in activities" ng-selected="$first" value="{{item}}">{{item.name}}</option>
                                 </select>
+
                             </div>
 
                             <div class="form-group">
