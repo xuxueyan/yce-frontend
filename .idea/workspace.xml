@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/success.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/common/utils.js" afterPath="$PROJECT_DIR$/scripts/common/utils.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/import.css" afterPath="$PROJECT_DIR$/styles/import.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/widget/status.css" afterPath="$PROJECT_DIR$/styles/pages/widget/status.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/appManage/appManage.html" afterPath="$PROJECT_DIR$/views/appManage/appManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/appManage/deployment.html" afterPath="$PROJECT_DIR$/views/appManage/deployment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/extensions/service.html" afterPath="$PROJECT_DIR$/views/extensions/service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/orgManage/addOrgManage.html" afterPath="$PROJECT_DIR$/views/orgManage/addOrgManage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" afterPath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" afterPath="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" />
     </list>
     <ignored path="frontend.iws" />
@@ -35,33 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0">
-              <caret line="9" column="94" selection-start-line="9" selection-start-column="88" selection-end-line="9" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="walkthrogh.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/walkthrogh/walkthrogh.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41944075">
-              <caret line="382" column="51" selection-start-line="382" selection-start-column="51" selection-end-line="382" selection-end-column="51" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#div#0;n#section#0;n#form#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="walkthrogh.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5">
-              <caret line="20" column="11" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="11" />
+            <state vertical-scroll-proportion="-24.375">
+              <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -70,18 +41,30 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.7777777">
-              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+            <state vertical-scroll-proportion="-11.111111">
+              <caret line="20" column="97" selection-start-line="20" selection-start-column="97" selection-end-line="20" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/router.js">
+      <file leaf-file-name="walkthrogh.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/walkthrogh/walkthrogh.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="8.030626">
+              <caret line="685" column="24" selection-start-line="685" selection-start-column="24" selection-end-line="685" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#div#0;n#section#0;n#form#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/main/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-61.875">
+              <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -104,7 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/widget/status.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/lib/rzslider/rzslider.js" />
         <option value="$PROJECT_DIR$/styles/common/base.css" />
@@ -151,9 +133,10 @@
         <option value="$PROJECT_DIR$/styles/pages/widget/status.css" />
         <option value="$PROJECT_DIR$/views/extensions/service.html" />
         <option value="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
-        <option value="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
         <option value="$PROJECT_DIR$/styles/import.css" />
+        <option value="$PROJECT_DIR$/scripts/common/utils.js" />
         <option value="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" />
+        <option value="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
         <option value="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" />
       </list>
     </option>
@@ -252,7 +235,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userManage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -266,33 +253,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="walkthrogh" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -328,6 +293,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -360,6 +339,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/scripts/lib/rzslider" />
       <recent name="$PROJECT_DIR$/scripts/lib/echarts" />
     </key>
@@ -367,11 +347,14 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.controller.js">
+  <component name="RunManager" selected="JavaScript Debug.walkthrogh.html">
     <configuration default="false" name="deployment.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frontend/views/appManage/deployment.html">
       <method />
     </configuration>
     <configuration default="false" name="controller.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="controller.js" working-dir="$PROJECT_DIR$/scripts/pages/walkthrogh">
+      <method />
+    </configuration>
+    <configuration default="false" name="walkthrogh.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frontend/views/walkthrogh/walkthrogh.html">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -422,14 +405,16 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.deployment.html" />
       <item index="1" class="java.lang.String" itemvalue="Node.js.controller.js" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.walkthrogh.html" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.controller.js" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.deployment.html" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.walkthrogh.html" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.controller.js" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.deployment.html" />
       </list>
     </recent_temporary>
   </component>
@@ -484,27 +469,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37406483">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/dashboard/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4048843">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/costManage/costManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42416453">
-          <caret line="22" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="216" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/pages/dashboard/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -676,14 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/main/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7616512">
-          <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/pages/main/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2167742">
@@ -756,14 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/common/routers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69077307">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/pages/orgManage/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5798005">
@@ -830,22 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7777777">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/import.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.625">
@@ -854,9 +786,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/common/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56109726">
+          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/favicon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/login-bg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/common/routers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="94" selection-start-line="9" selection-start-column="88" selection-end-line="9" selection-end-column="94" />
           <folding />
         </state>
@@ -864,16 +830,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="11" />
+        <state vertical-scroll-proportion="-24.375">
+          <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.111111">
+          <caret line="20" column="97" selection-start-line="20" selection-start-column="97" selection-end-line="20" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/main/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-61.875">
+          <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/walkthrogh/walkthrogh.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41944075">
-          <caret line="382" column="51" selection-start-line="382" selection-start-column="51" selection-end-line="382" selection-end-column="51" />
+        <state vertical-scroll-proportion="8.030626">
+          <caret line="685" column="24" selection-start-line="685" selection-start-column="24" selection-end-line="685" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#div#0;n#div#0;n#section#0;n#form#0;n#div#1;n#section#0;n#!!top" expanded="true" />
           </folding>

@@ -9,12 +9,16 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope', '$rootScope', 'walkthroghService', '$localStorage', 'deploymentService', 'extensionsService', '$timeout', '$state', function ($scope, $rootScope, walkthroghService, $localStorage, deploymentService, extensionsService, $timeout, $state) {
+        var ctrl = ['$scope', '$rootScope', 'walkthroghService', '$localStorage', 'deploymentService', 'extensionsService', '$timeout', '$state', '$interval',  function ($scope, $rootScope, walkthroghService, $localStorage, deploymentService, extensionsService, $timeout, $state, $interval) {
 
             $scope.stepNum = 1;
+
+            var completeAjax = 0;
             $scope.showService = function () {
                 $scope.serviceShow = true;
                 $scope.applyShow = false;
+
+                $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
             };
 
             $scope.showApply = function () {
@@ -179,7 +183,7 @@ define([
 
                 $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                     m.containerPort = Number(m.containerPort);
-                })
+                });
 
 
                 $scope.param.deployment.metadata.labels = {
@@ -212,29 +216,9 @@ define([
 
                 deploymentService.deploymentSubmit($scope.param, function(rep) {
 
-                    $scope.showstatusMes = true;
                     if (rep.code == 0) {
-                        $scope.message = rep.message;
-                        $scope.status = true;
-
-                        $timeout(function() {
-                            $state.go('main.appManage');
-                            $scope.loadAppList();
-
-                        }, 500);
-                    } else {
-                        $scope.message = rep.message;
-                        $scope.status = false;
-                        $timeout(function() {
-                            $state.go('main.appManage');
-                        }, 500);
+                        completeAjax++;
                     }
-
-
-                }, function() {
-                    $scope.showstatusMes = true;
-                    $scope.message = '提交失败!';
-                    $scope.status = false;
                 });
             };
 
@@ -273,115 +257,6 @@ define([
                 sessionId: $localStorage.sessionId,
             };
 
-            $scope.extensionsPage = function () {
-                extensionsService.serviceManages($scope.myParam, function (data) {
-                    if (data.code == 0) {
-                        $scope.newExtensions = JSON.parse(data.data);
-                        var NewExtensions = JSON.parse(data.data);
-                        NewExtensions.forEach(function (v) {
-                            for (var itemLength in v.serviceList.items) {
-                            }
-                            $scope.itemLength = itemLength;
-                        });
-
-                        /*  点击服务的删除 */
-                        $scope.alertBox1 = false;   //  alert的文本框
-                        $scope.delItem = function (dcIds, item) {
-                            $scope.alertBox1 = !false;
-                            /*  确定删除按钮  内为删除函数  */
-                            $scope.extnesionsDel = function () {
-                                $scope.alertBox1 = false;
-                                var serverNP = item.spec.ports[0].nodePort;
-                                var lebelType = item.metadata.labels.type;
-                                var nodePorts = Number(serverNP);
-                                $scope.LebeltypeParameter = {
-                                    userId: "",
-                                    dcId: "",
-                                    nodePort: "",
-                                    orgId: "",
-                                    sessionId: "",
-                                    serversName: ""
-                                }
-                                $scope.LebeltypeParameter.serversName = String(item.metadata.name);
-                                $scope.LebeltypeParameter.sessionId = $localStorage.sessionId;
-                                $scope.LebeltypeParameter.orgId = $localStorage.orgId;
-                                $scope.LebeltypeParameter.userId = Number($localStorage.userId);
-                                $scope.LebeltypeParameter.dcId = Number(dcIds);
-                                $scope.LebeltypeParameter.nodePort = nodePorts;
-
-                                if (lebelType == "service") {
-                                    extensionsService.lebelTypes($scope.LebeltypeParameter, function (rep) {
-                                        $scope.showstatusMes = true;
-                                        if (rep.code == 0) {
-                                            $scope.status = true;
-                                            $scope.message = rep.message;
-                                            $timeout(function () {
-                                                $scope.extensionsPage();
-                                            }, 1000);
-                                        }
-                                        else {
-                                            $scope.message = rep.message;
-                                            $scope.status = false;
-                                        }
-                                    }, function () {
-                                        $scope.message = '操作失败！';
-                                        $scope.status = false;
-                                        $scope.showstatusMes = true;
-                                    })
-                                }
-                            }
-                            /*  取消删除按钮  */
-                            $scope.extnesionsBack = function () {
-                                $scope.alertBox1 = false;
-                            }
-                        }
-
-                        /*  点击访问点的删除 */
-                        $scope.cutItem = function (dcIds, item) {
-                            $scope.alertBox1 = !false;
-                            /*  确定删除按钮  内为删除函数  */
-                            $scope.extnesionsDel = function () {
-                                $scope.alertBox1 = false;
-                                var lebelType = item.metadata.labels.type;
-                                var serversName = String(item.metadata.name);
-                                $scope.np2 = {
-                                    dcId: ""
-                                }
-                                $scope.np2.dcId = Number(dcIds)
-                                if (lebelType == "endpoints") {
-                                    $http.post('/api/v1/organizations/' + orgId + '/endpoints/' + serversName, $scope.np2).success(function (rep) {
-                                        $scope.showstatusMes = true;
-                                        if (rep.code == 0) {
-                                            $scope.status = true;
-                                            $scope.message = rep.message;
-                                            $timeout(function () {
-                                                $scope.extensionsPage();
-                                            }, 1000);
-                                        }
-                                        else {
-                                            $scope.message = rep.message;
-                                            $scope.status = false;
-                                        }
-                                    }).error(function (data) {
-                                        $scope.message = '操作失败！';
-                                        $scope.status = false;
-                                        $scope.showstatusMes = true;
-                                    });
-                                }
-                            }
-                            /*  取消删除按钮  */
-                            $scope.extnesionsBack = function () {
-                                $scope.alertBox1 = false;
-                            }
-                        }
-                    }
-                }, function () {
-                    if (data.code != 0) {
-                        alert(data.message);
-                    }
-                })
-            }
-            $scope.extensionsPage();
 
             // 创建服务
             extensionsService.CreatService($scope.myParam, function (data) {
@@ -390,7 +265,7 @@ define([
                 $scope.extentServerLei = JSON.parse($scope.extentServers.data);
                 var demoss = $scope.extentServerLei.orgName;
                 if ($scope.extentServers.code == 0) {
-                    $scope.serverDisabled = true;
+                    $scope.serverDisabled = false;
                     $scope.serverClick1 = function () {
                         if ($scope.serverRadios == 1) {
                             $scope.serverDisabled = false;
@@ -568,173 +443,40 @@ define([
 
                     extensionsService.CreatServicePost($scope.serviceParam, function (rep) {
 
-                        $scope.showstatusMes = true;
                         if (rep.code == 0) {
-                            $scope.message = rep.message;
-                            $scope.status = true;
-                            $timeout(function () {
-                                $state.go('main.extensions')
-                            }, 1000);
+                            completeAjax++;
                         }
-                        else {
-                            $scope.message = rep.message;
-                            $scope.status = false;
-                        }
-
-                    }, function () {
-                        $scope.message = '提交失败';
-                        $scope.status = false;
-                        $scope.showstatusMes = true;
 
                     })
                 }
 
             }, function () {
                 alert(extentServers.message)
-            })
+            });
 
 
-            //创建访问点
-            extensionsService.CreatAccessPoint($scope.myParam, function (data) {
-                $scope.endpointsData = JSON.parse(data.data);
-
-                if (data.code == 0) {
-                    // add label
-                    $scope.endleis = [];
-                    $scope.addendpointjlabel = function () {
-                        $scope.endleis.push({})
-                    }
-                    // del label
-                    $scope.delendpointjlabel = function ($index) {
-                        $scope.endleis.splice($index, 1);
-                    }
-                    // add Ex
-                    $scope.mockEnd = [];
-                    $scope.addendpointEx = function () {
-                        $scope.mockEnd.push({});
-                    }
-                    // del Ex
-                    $scope.delendpointEx = function ($index) {
-                        $scope.mockEnd.splice($index, 1);
-                    }
-                }
-
-                $scope.endpointsJson = {
-                    "endpointsName": "",
-                    "orgName": "minimini",
-                    "dcIdList": [],
-                    "endpoints": {
-                        "kind": "Endpoints",
-                        "apiVersion": "v1",
-                        "metadata": {
-                            "name": "",
-                            "namespace": "",
-                            "labels": {
-                                "name": "",
-                                "author": "",
-                                "type": "endpoints"
-                            }
-                        },
-                        "subsets": []
-                    }
-                }
-                $scope.endDataTrans = {
-                    endDataCenters: []
-                };
-                var adds = [];
-                adds.addresses = [];
-                adds.ports = [];
-
-                // 访问点的协议
-                $scope.epiPro = [
-                    "TCP",
-                    "UDP"
-                ];
-
-                // 提交
-                $scope.endpointBtn = function () {
-
-                    // 数据中心 ok
-                    $scope.endDataTrans.endDataCenters.forEach(function (elem, index) {
-                        if (elem) {
-                            $scope.endpointsJson.dcIdList.push($scope.endpointsData.dataCenters[index].id)
-                        }
-                    })
-                    $scope.endpointsJson.orgName = $scope.endpointsData.orgName;
-                    $scope.endpointsJson.endpoints.metadata.namespace = $scope.endpointsData.orgName;
-
-                    // 标签组 ok
-                    $scope.endpointsJson.endpoints.metadata.labels.name = $scope.endpointsJson.endpointsName;
-                    $scope.endpointsJson.endpoints.metadata.labels.author = $scope.sessionName;
-                    $scope.endleis.forEach(function (v) {
-                        for (var i in v) {
-                            $scope.endpointsJson.endpoints.metadata.labels[v.endlabelKey] = v[i]
-                        }
-                    })
-
-                    // 端口及地址
-                    for (var i = 0; i < $scope.mockEnd.length; i++) {
-                        adds.push({
-                            addresses: [
-                                $scope.mockEnd[i].addresses
-                            ],
-                            ports: [
-                                {
-                                    name: $scope.mockEnd[i].ports.name,
-                                    protocol: $scope.mockEnd[i].ports.protocol,
-                                    port: Number($scope.mockEnd[i].ports.port)
-                                }
-                            ]
-                        });
-                    }
-
-                    $scope.endpointsJson.endpoints.subsets = adds;
-
-                    $scope.endpointsJson.userId = $localStorage.userId;
-                    $scope.endpointsJson.orgId = $localStorage.orgId;
-                    $scope.endpointsJson.sessionId = $localStorage.sessionId;
-                    $scope.endpointsJson.endpoints.metadata.name = $scope.endpointsJson.endpointsName;
-
-                    extensionsService.CreatAccessPointPost($scope.endpointsJson, function (rep) {
-
-                        $scope.showstatusMes = true;
-                        if (rep.code == 0) {
-                            $scope.message = rep.message;
-                            $scope.status = true;
-                            $timeout(function () {
-                                $state.go('main.extensions');
-                            }, 1000);
-                        }
-                        else {
-                            $scope.message = rep.message;
-                            $scope.status = false;
-                        }
-
-                    }, function () {
-                        $scope.message = "提交失败！";
-                        $scope.status = false;
-                        $scope.showstatusMes = false;
-                    })
-
-                }
-            })
-
-            //  ******  扩展功能 详情
-            $scope.extensionsnameBtn = function (item) {
-
-                $scope.extensionsConfig = {
-                    widgetId: 'extensionDatails',
-                    widgetTitle: '服务详情',
-                    extensionsDatails: true,
-                    data: item
-                }
-                $rootScope.widget.extensionDatails = true;
-
-            };
 
             $scope.applySerSubmit = function(){
                 $scope.submit();
                 $scope.serverSubmit();
+
+                $scope.serviceAndApplySuc = true;
+                $scope.serviceShow = false;
+                $scope.successSecond = 3;
+                $interval(function (){
+                    $scope.successSecond--;
+                    if($scope.successSecond == 0){
+                        $state.go('main.topology');
+                    }
+                },1000);
+
+
+
+            };
+
+            $scope.goTopo = function(){
+                $state.go('main.topology');
+
             };
 
 

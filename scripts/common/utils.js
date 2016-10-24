@@ -20,5 +20,13 @@ define([
 		});
 	};
 
+	yce.findInArr = function(arr, str){
+		for(var i = 0, length = arr.length; i<length; i++){
+			if(str == arr[i])
+				return true;
+		}
+		return false;
+	};
+
 	return yce;
 });
