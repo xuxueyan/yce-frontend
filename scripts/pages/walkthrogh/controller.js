@@ -419,8 +419,9 @@ define([
 
                     // 选择器
                     $scope.Checkeds.forEach(function (v) {
+
                         for (var i in v) {
-                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v[i];
+                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
                         }
                     });
                     // label
