@@ -142,7 +142,6 @@ define([
                     $rootScope.widget.widgetRollback = false;
                     $scope.canSubmit = true;
 
-
                 }, function() {
                     $scope.canSubmit = true;
                 });

@@ -405,7 +405,9 @@ define([
                     })
 
                     // 数据中心 ok
-                    $scope.serviceDataTrans.dataCenters.forEach(function (elem, index) {
+                    //$scope.serviceDataTrans.dataCenters.forEach
+                    $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
+
                         if (elem) {
                             $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
                         }
