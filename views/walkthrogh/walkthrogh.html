@@ -411,6 +411,7 @@
                                            ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
                                         <input type="checkbox" ng-true-value="true" ng-false-value="false"
                                                ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
+                                        {{i.name}}
                                     </label>
                                 </div>
                             </div>
@@ -664,7 +665,7 @@
                 <div class="rateMessage">
                     <img src="images/success.png">
                     <p>绿色通道创建完成</p>
-                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转之<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
+                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转至<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
                 </div>
             </div>
         </section>

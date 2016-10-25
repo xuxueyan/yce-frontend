@@ -264,8 +264,11 @@ define([
             // 创建服务
             extensionsService.CreatService($scope.myParam, function (data) {
                 $scope.extentServers = data;
-                var extentServers = data;
-                $scope.extentServerLei = JSON.parse($scope.extentServers.data);
+
+
+                $scope.extentServerLei = JSON.parse(data.data);
+
+
                 var demoss = $scope.extentServerLei.orgName;
                 if ($scope.extentServers.code == 0) {
                     $scope.serverDisabled = false;
