@@ -418,7 +418,6 @@
                                            ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
                                         <input type="checkbox" ng-true-value="true" ng-false-value="false"
                                                ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
-                                        {{ i.name }}
                                     </label>
                                 </div>
                             </div>
@@ -446,7 +445,6 @@
                                             <i class="fa fa-plus-square" ng-click="addCheckeds()"></i>
                                     </span>
                                 </div>
-                                {{Checkeds}}
                                 <div class="controls row" ng-repeat="newCheckeds in Checkeds">
                                     <div class="col-sm-5">
                                         <div class="input-group">
