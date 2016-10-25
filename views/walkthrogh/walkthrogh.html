@@ -6,9 +6,8 @@
     </div>
     <div class="col-xs-12" ng-show="applyShow" ng-init="applyShow = true">
         <form name="apply">
-            <section class="box" ng-if="stepNum==1">
+            <section class="box" ng-show="stepNum==1">
                 <header class="panel_header">
-
                     <div class="rateArea clearfix">
                         <div class="rateLine rateActive fl"></div>
                         <div class="rateCircle rateActive fl">应用</div>
@@ -17,8 +16,6 @@
                         <div class="rateLine fl"></div>
                         <div class="rateCircle fl">完成</div>
                         <div class="rateLine fl"></div>
-
-
                     </div>
                     <h2 class="title pull-left">基本配置</h2>
                 </header>
@@ -31,7 +28,6 @@
                                 <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
                                 <span class="warn" ng-show="applyNameExit ? false : apply.applyName.$error.pattern;">您的应用名不正确</span>
-
                                 <div class="controls">
                                     <input type="text" name="applyName" class="form-control"
                                            ng-model="param.deployment.metadata.name"
@@ -173,7 +169,6 @@
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
                                     <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit"> 下一步</button>
-                                    <!--<button class="btn btn-primary" ng-click="showService()"> 下一步</button>-->
 
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
@@ -182,13 +177,15 @@
                     </div>
                 </div>
             </section>
-            <section class="box" ng-if="stepNum==2">
+            <section class="box" ng-show="stepNum==2">
                 <header class="panel_header">
                     <div class="rateArea clearfix">
                         <div class="rateLine rateActive fl"></div>
                         <div class="rateCircle rateActive fl">应用</div>
                         <div class="rateLine rateActive fl"></div>
                         <div class="rateCircle fl">服务</div>
+                        <div class="rateLine fl"></div>
+                        <div class="rateCircle fl">完成</div>
                         <div class="rateLine fl"></div>
                     </div>
                     <h2 class="title pull-left">高级配置</h2>
@@ -363,8 +360,7 @@
                                     </div>
                                 </div>
                                 <div class="text-left">
-                                    <span class="btn btn-primary" ng-click="showService()"> 下一步</span>
-
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit"> 下一步</button>
                                     <a class="pull-right" href="javascript:void(0);" ng-click="nextStep(1)">返回基础配置</a>
                                 </div>
                             </div>
@@ -372,8 +368,6 @@
                     </div>
                 </div>
             </section>
-
-
         </form>
     </div>
 
@@ -388,8 +382,6 @@
                     <div class="rateLine fl"></div>
                     <div class="rateCircle fl">完成</div>
                     <div class="rateLine fl"></div>
-
-
                 </div>
                 <h2 class="title pull-left">服务配置</h2>
             </header>
@@ -470,11 +462,8 @@
                                     <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-minus-square" ng-click="delCheckeds($index)"></i>
                                     </span>
-
                                 </div>
-
                             </div>
-
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">端口组：</label>
@@ -488,7 +477,6 @@
                                 </div>
 
                                 <div class="controls row" ng-repeat="portlists in ports">
-
                                     <div class="controls row">
                                         <div class="col-sm-5">
                                             <div class="input-group">
@@ -513,7 +501,6 @@
                                             <i class="fa fa-minus-square" ng-click="delPort($index)"></i>
                                         </span>
                                     </div>
-
 
                                     <div class="controls row">
                                         <div class="col-sm-5">
@@ -552,13 +539,9 @@
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">标签组：</label>
@@ -626,7 +609,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="controls row" ng-repeat="lei in leis">
 
                                     <div class="col-sm-5">
@@ -653,11 +635,11 @@
 
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
+                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30 walkthrogh_box">
                                 <div class="text-left">
                                     <span class="btn btn-primary pull-left" ng-click="showApply()"> 上一步</span>
 
-                                    <button class="btn btn-primary pull-right" ng-disabled="service.$invalid" ng-click="applySerSubmit()">提交</button>
+                                    <button class="btn btn-primary pull-right " ng-disabled="service.$invalid" ng-click="applySerSubmit()">提交</button>
                                 </div>
                             </div>
                         </div>
@@ -683,7 +665,7 @@
                 <div class="rateMessage">
                     <img src="images/success.png">
                     <p>绿色通道创建完成</p>
-                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转之<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
+                    <p><a href="javascript:;">{{successSecond}}</a>秒后跳转至<a href="javascript:;" ng-click="goTopo()">集群拓扑</a> </p>
                 </div>
             </div>
         </section>

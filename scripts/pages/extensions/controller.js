@@ -278,7 +278,7 @@ define([
                 // label **
                 $scope.leis.forEach(function(v){
                     for(var i in v){
-                        $scope.param.service.metadata.labels[v.leiKey]= v.leiValue;
+                        $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
                     }
                 })
 
@@ -300,7 +300,7 @@ define([
                 $scope.param.sessionId = $localStorage.sessionId;
 
                 extensionsService.CreatServicePost($scope.param,function(rep){
-
+                    console.log(JSON.stringify($scope.param)+"[][][][]")
                     $scope.showstatusMes = true;
                     if(rep.code == 0){
                         $scope.message = rep.message;

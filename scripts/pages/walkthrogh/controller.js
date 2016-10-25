@@ -422,7 +422,6 @@ define([
 
                     // 选择器
                     $scope.Checkeds.forEach(function (v) {
-
                         for (var i in v) {
                             $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
                         }
@@ -469,6 +468,8 @@ define([
             $scope.applySerSubmit = function(){
                 $scope.submit();
                 $scope.serverSubmit();
+
+                console.log($scope.serviceParam);
 
                 $scope.serviceAndApplySuc = true;
                 $scope.serviceShow = false;
