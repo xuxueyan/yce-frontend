@@ -98,6 +98,7 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">环境变量：</label>
+                                    <span class="warn" ng-show="apply.envName.$error.pattern">名称格式不正确</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addEnv()"></i>
                                     </span>
@@ -108,7 +109,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon">Name</span>
                                             <input type="text" class="form-control" ng-model="env.name"
-                                                   ng-pattern="/^\S+[A-Z0-9-_]$/" required>
+                                                   ng-pattern="/^\S+[A-Z0-9-_]$/" name="envName" required>
                                         </div>
                                     </div>
                                     <div class="delimiter"><i class="fa fa-minus"></i></div>
