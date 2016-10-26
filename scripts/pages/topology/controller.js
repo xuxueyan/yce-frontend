@@ -43,7 +43,8 @@ define([
 
         $scope.$on("select", function(ev, item) {
             if (item) {
-                console.log(item);
+                var
+                var reg = /[a-zA-Z]/g
                 $scope.selectKind = item.kind
                 $scope.selectText = "Selected: " + item.metadata.name;
                 $scope.selectName = item.metadata.name;
@@ -108,11 +109,10 @@ define([
                     }
 
                     $scope.selectRequestC = item.status.capacity.cpu;
-                    console.log($scope.selectRequestC)
                     $scope.selectRequestm = item.status.capacity.memory;
-                    $scope.selectRequestM = $scope.selectRequestm.substring(0, 3) + "G"
-                    console.log($scope.selectRequestm)
-                    console.log($scope.selectRequestM)
+                    $scope.selectRequestv = $scope.selectRequestm.replace(reg,"")
+                    $scope.selectRequestR = $scope.selectRequestv / (10*100000)
+                    $scope.selectRequestM = $scope.selectRequestR.toFixed(1)+"G"
                     $scope.selectSystem = item.status.nodeInfo.osImage;
                     $scope.selectPort = item.status.daemonEndpoints.kubeletEndpoint.Port;
                     $scope.selectHear = item.status.conditions[0].lastHeartbeatTime;
@@ -153,14 +153,6 @@ define([
                 }
             }
         });
-        // $scope.$on("select",function(ev,item){
-        //     if (item) {
-        //         $scope.selectText = "Selected: " + item.metadata.name;
-        //         angular.element(document.getElementById("selected")).text($scope.selectText).addClass('btn btn-primary');
-        //     }else{
-        //         angular.element(document.getElementById("selected")).text('').removeClass('btn btn-primary');
-        //     }
-        // })
     }];
 
     var controllers = [
