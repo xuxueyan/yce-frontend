@@ -2,8 +2,7 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-        'base64'
-    ], function(Base64){
+    ], function(){
         'use strict';
 
 
