@@ -2,33 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/apply.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dataset.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/handle.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/blo-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-chartjs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-easypie.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-echarts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-flot.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-knobs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-morris.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-rickshaw.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/chart-sparkline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/crm-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/eco-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/form-validation.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/frl-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/hos-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery-1.11.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery-ui.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.easing.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/messenger.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/scripts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/soc-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/uni-dashboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/autonumeric/autoNumeric-min.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/autonumeric/autoNumeric.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/autosize/autosize.min.js" afterPath="" />
@@ -1751,30 +1724,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/uikit/vendor/marked/marked.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/uikit/vendor/marked/marked.min.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/viewport/viewportchecker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/podlist.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resource.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/lib/jvectormap/jquery-jvectormap-2.0.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/lib/pace/pace.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/lib/perfect-scrollbar/perfect-scrollbar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/lib/viewport/viewportchecker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/mock/place.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/topology.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/main.js" afterPath="$PROJECT_DIR$/scripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/history/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/history/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/costManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/costManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/dcManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/dcManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/extensions/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/imageManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/imageManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/main/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/main/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/orgManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/topology/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/topology/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/userManage/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/userManage/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/extensions/service.html" afterPath="$PROJECT_DIR$/views/extensions/service.html" />
     </list>
     <ignored path="frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1944,64 +1893,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -2136,9 +2027,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1726568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1726568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3904" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
