@@ -264,8 +264,11 @@ define([
             // 创建服务
             extensionsService.CreatService($scope.myParam, function (data) {
                 $scope.extentServers = data;
-                var extentServers = data;
-                $scope.extentServerLei = JSON.parse($scope.extentServers.data);
+
+
+                $scope.extentServerLei = JSON.parse(data.data);
+
+
                 var demoss = $scope.extentServerLei.orgName;
                 if ($scope.extentServers.code == 0) {
                     $scope.serverDisabled = false;
@@ -288,7 +291,7 @@ define([
                     //   port add....
                     $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
 
-                    var i = 0;
+                    var i = 1;
                     $scope.addPort = function () {
                         i++;
                         $scope.ports.push({"name": "port" + i});
@@ -340,7 +343,7 @@ define([
                 };
 
                 // 选择器
-                $scope.Checkeds = [{"mylistKey":"name","mylistValue":''}];
+                $scope.Checkeds = [{"mylistKey":"name"}];
 
                 $scope.addCheckeds = function () {
                     $scope.Checkeds.push({});
@@ -405,7 +408,9 @@ define([
                     })
 
                     // 数据中心 ok
-                    $scope.serviceDataTrans.dataCenters.forEach(function (elem, index) {
+                    //$scope.serviceDataTrans.dataCenters.forEach
+                    $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
+
                         if (elem) {
                             $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
                         }
@@ -418,15 +423,15 @@ define([
                     // 选择器
                     $scope.Checkeds.forEach(function (v) {
                         for (var i in v) {
-                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v[i]
+                            $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
                         }
-                    })
+                    });
                     // label
                     $scope.leis.forEach(function (v) {
                         for (var i in v) {
-                            $scope.serviceParam.service.metadata.labels[v.leiKey] = v[i]
+                            $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
                         }
-                    })
+                    });
 
                     // 端口组  ok
                     $scope.ports.forEach(function (num) {
@@ -463,6 +468,8 @@ define([
             $scope.applySerSubmit = function(){
                 $scope.submit();
                 $scope.serverSubmit();
+
+                console.log($scope.serviceParam);
 
                 $scope.serviceAndApplySuc = true;
                 $scope.serviceShow = false;

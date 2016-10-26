@@ -1,7 +1,16 @@
 .rateArea {
     margin: 20px auto 0;
-    width: 800px;
+    width: 750px;
 
+}
+@media screen and (max-width: 1100px) {
+
+    .rateArea {
+        width: 510px;
+    }
+    .rateArea .rateLine {
+        width: 90px;
+    }
 }
 .rateLine {
     height: 5px;

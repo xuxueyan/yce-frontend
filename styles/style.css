@@ -9037,12 +9037,45 @@ table.dataTable.display tbody tr:first-child td {
     color: red;
 }
 
+  /*
+    
+    personalSetting 页面css
 
-
-
-
-
-
-
+  */
+.personalS_table tr{
+    height: 60px;
+}
+.personalS_table tr td:first-child{
+    width: 120px;
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #555;
+}
+.personalP_table tr td:last-child button:first-child{
+    text-align: center;
+}
+.personalP_box{
+    height: 46px;
+}
+.personalP_box:first-child{
+    margin-top: 20px;
+}
+.personalP_box span:first-child{
+    width: 100px;
+    display: inline-block;
+}
+.personalP_box button{
+    padding: 4px 15px;
+    display: inline-block;
+}
+/*
+    eventAlert  css
+*/
+.eventAlert_tr td{
+    padding: 10px 0;
+}
+.walkthrogh_box{
+    width: 84.6666667%;
+}
 
 
