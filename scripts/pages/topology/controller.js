@@ -107,7 +107,7 @@ define([
                     $scope.selectRequestC = item.status.capacity.cpu;
                     console.log($scope.selectRequestC)
                     $scope.selectRequestm = item.status.capacity.memory;
-                    $scope.selectRequestM = $scope.selectRequestm.substring(0, 2) + "G"
+                    $scope.selectRequestM = $scope.selectRequestm.substring(0, 3) + "G"
                     console.log($scope.selectRequestm)
                     console.log($scope.selectRequestM)
                     $scope.selectSystem = item.status.nodeInfo.osImage;
