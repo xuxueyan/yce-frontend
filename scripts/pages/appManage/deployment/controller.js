@@ -2,9 +2,8 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-    'base64',
     'rzSlider'
-], function(Base64, rzSlider) {
+], function(rzSlider) {
     'use strict';
 
     var ctrl = ['$scope', '$http', 'deploymentService', '$localStorage', '$rootScope', '$state', '$timeout', function($scope, $http, deploymentService, $localStorage, $rootScope, $state, $timeout) {

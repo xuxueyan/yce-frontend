@@ -2,11 +2,9 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-    'base64',
     'eCharts',
     'Angular',
-    'jQuery'
-], function(Base64, echarts, angular, $) {
+], function(echarts, angular) {
     'use strict';
 
     var ctrl = ['$scope', '$timeout', 'dashboardService', '$localStorage', function($scope, $timeout, dashboardService, $localStorage) {

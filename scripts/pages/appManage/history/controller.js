@@ -2,8 +2,7 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-    'base64'
-], function(Base64) {
+], function() {
     'use strict';
 
     var ctrl = ['$scope', '$http', 'historyService', '$localStorage', '$rootScope', '$state', function($scope, $http, historyService, $localStorage, $rootScope, $state) {
