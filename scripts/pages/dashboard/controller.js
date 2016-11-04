@@ -4,9 +4,8 @@
 define([
     'eCharts',
     'Angular',
-    'jQuery',
-    'AngularUI'
-], function(Base64, echarts, angular, $) {
+    'jQuery'
+], function( echarts, angular, $) {
     'use strict';
 
     var ctrl = ['$scope', '$timeout', 'dashboardService', '$localStorage', function($scope, $timeout, dashboardService, $localStorage) {
