@@ -16,9 +16,6 @@ define([
                 $scope.serviceShow = true;
                 $scope.applyShow = false;
 
-                angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
-                    $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
-                });
 
                 $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
                 $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
@@ -210,6 +207,15 @@ define([
 
             /*提交表单*/
             $scope.submit = function() {
+
+                if(!$scope.dataTrans.advancedChecked[1]){
+                    delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                    delete $scope.param.deployment.spec.template.spec.volumes;
+                }
+
+                angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
+                    $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
+                });
 
                 $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                     m.containerPort = Number(m.containerPort);

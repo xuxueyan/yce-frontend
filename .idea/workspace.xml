@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" afterPath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/appManage/deployment.html" afterPath="$PROJECT_DIR$/views/appManage/deployment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" afterPath="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" />
     </list>
     <ignored path="frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.814816">
-              <caret line="83" column="14" selection-start-line="35" selection-start-column="12" selection-end-line="83" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.92903227">
+              <caret line="243" column="43" selection-start-line="243" selection-start-column="43" selection-end-line="243" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -51,18 +48,18 @@
       <file leaf-file-name="deployment.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/appManage/deployment.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4166665">
-              <caret line="293" column="26" selection-start-line="293" selection-start-column="26" selection-end-line="293" selection-end-column="26" />
+            <state vertical-scroll-proportion="-16.791666">
+              <caret line="302" column="93" selection-start-line="302" selection-start-column="65" selection-end-line="302" selection-end-column="93" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5798005">
-              <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="200" column="12" selection-start-line="200" selection-start-column="12" selection-end-line="202" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -134,8 +131,8 @@
         <option value="$PROJECT_DIR$/views/walkthrogh/walkthrogh.html" />
         <option value="$PROJECT_DIR$/scripts/pages/dashboard/controller.js" />
         <option value="$PROJECT_DIR$/views/appManage/deployment.html" />
-        <option value="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
         <option value="$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js" />
+        <option value="$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js" />
       </list>
     </option>
   </component>
@@ -903,8 +900,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/appManage/deployment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4166665">
-          <caret line="293" column="26" selection-start-line="293" selection-start-column="26" selection-end-line="293" selection-end-column="26" />
+        <state vertical-scroll-proportion="-16.791666">
+          <caret line="302" column="93" selection-start-line="302" selection-start-column="65" selection-end-line="302" selection-end-column="93" />
           <folding />
         </state>
       </provider>
@@ -917,18 +914,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.814816">
-          <caret line="83" column="14" selection-start-line="35" selection-start-column="12" selection-end-line="83" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="200" column="12" selection-start-line="200" selection-start-column="12" selection-end-line="202" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/pages/appManage/deployment/controller.js">
+    <entry file="file://$PROJECT_DIR$/scripts/pages/walkthrogh/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5798005">
-          <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.92903227">
+          <caret line="243" column="43" selection-start-line="243" selection-start-column="43" selection-end-line="243" selection-end-column="43" />
           <folding />
         </state>
       </provider>
