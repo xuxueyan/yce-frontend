@@ -46,7 +46,9 @@ define([
                                     hostIP: ''
                                 }],
                                 volumeMounts: [{
-                                    name: ''
+                                    name: '',
+                                    mountPath: '',
+                                    readOnly: true
 
                                 }]
                             }]
@@ -87,6 +89,19 @@ define([
         /*删除标签*/
         $scope.deleteLabel = function($index) {
             $scope.dataTrans.labels.splice($index, 1);
+        };
+
+        $scope.addHostPath = function (){
+
+            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                name: '',
+                mountPath: '',
+                readOnly: true
+            });
+        };
+
+        $scope.delHostPath = function ($index){
+            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.splice($index, 1);
         };
 
         /*添加环境变量*/
@@ -179,7 +194,9 @@ define([
                 m.containerPort = Number(m.containerPort);
             });
 
-            $scope.param.deployment.spec.template.spec.volumes[0].name = $scope.param.deployment.spec.template.spec.containers[0].volumeMounts[0].name;
+            angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
+                $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
+            });
 
             $scope.param.deployment.metadata.labels = {
                 "name": $scope.param.deployment.metadata.name,
