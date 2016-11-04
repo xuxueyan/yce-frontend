@@ -4,7 +4,9 @@
 define([
     'eCharts',
     'Angular',
-], function(echarts, angular) {
+    'jQuery',
+    'AngularUI'
+], function(Base64, echarts, angular, $) {
     'use strict';
 
     var ctrl = ['$scope', '$timeout', 'dashboardService', '$localStorage', function($scope, $timeout, dashboardService, $localStorage) {
@@ -14,6 +16,7 @@ define([
             "sessionId": $localStorage.sessionId,
             "orgId": $localStorage.orgId
         };
+
 
         //  饼图
         dashboardService.getResData(param, function(res) {
@@ -264,6 +267,8 @@ define([
                 })
             }
         })
+
+        
 
     }];
 

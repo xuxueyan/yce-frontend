@@ -49,3 +49,6 @@
 .rateMessage a{
     text-decoration: underline;
 }
+.rateArea div{
+    cursor: default;
+}
