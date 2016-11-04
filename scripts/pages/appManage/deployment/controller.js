@@ -190,6 +190,10 @@ define([
         /*提交表单*/
         $scope.submit = function() {
 
+            if(!$scope.dataTrans.advancedChecked[1]){
+                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                delete $scope.param.deployment.spec.template.spec.volumes;
+            }
             $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                 m.containerPort = Number(m.containerPort);
             });
@@ -225,6 +229,7 @@ define([
             };
 
             $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
+
 
             deploymentService.deploymentSubmit($scope.param, function(rep) {
 
@@ -275,7 +280,7 @@ define([
                 });
             }
         }, function() {
-            alert("getImages error")
+            alert("getImages error");
         })
 
     }];
