@@ -16,11 +16,16 @@ define([
                 $scope.serviceShow = true;
                 $scope.applyShow = false;
 
+
+                $scope.param.deployment.spec.template.spec.volumes[0].name = $scope.param.deployment.spec.template.spec.containers[0].volumeMounts[0].name;
+
                 $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
                 $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
                 $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
                 $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
             };
+
+
 
             $scope.showApply = function () {
                 $scope.serviceShow = false;
@@ -41,6 +46,10 @@ define([
                     spec: {
                         template: {
                             spec: {
+                                volumes: [{
+                                    name: '',
+                                    hostPath: {}
+                                }],
                                 containers: [{
                                     env: [{
                                         name: 'DB_USER',
@@ -59,6 +68,10 @@ define([
                                         containerPort: {},
                                         protocol: '',
                                         hostIP: ''
+                                    }],
+                                    volumeMounts: [{
+                                        name: ''
+
                                     }]
                                 }]
                             }
@@ -66,6 +79,10 @@ define([
                     }
                 }
             };
+
+
+
+            console.log()
 
             $scope.dataTrans = {
                 dataCenters: [],

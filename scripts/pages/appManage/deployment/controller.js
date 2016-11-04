@@ -22,6 +22,10 @@ define([
                 spec: {
                     template: {
                         spec: {
+                            volumes: [{
+                                name: '',
+                                hostPath: {}
+                            }],
                             containers: [{
                                 env: [{
                                     name: 'DB_USER',
@@ -40,6 +44,10 @@ define([
                                     containerPort: {},
                                     protocol: '',
                                     hostIP: ''
+                                }],
+                                volumeMounts: [{
+                                    name: ''
+
                                 }]
                             }]
                         }
@@ -169,8 +177,9 @@ define([
 
             $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                 m.containerPort = Number(m.containerPort);
-            })
+            });
 
+            $scope.param.deployment.spec.template.spec.volumes[0].name = $scope.param.deployment.spec.template.spec.containers[0].volumeMounts[0].name;
 
             $scope.param.deployment.metadata.labels = {
                 "name": $scope.param.deployment.metadata.name,
