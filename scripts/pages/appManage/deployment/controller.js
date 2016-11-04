@@ -162,9 +162,6 @@ define([
                 $scope.applyTips = true;
             }
 
-            console.log($scope.applyTips);
-
-
         };
 
         /*提交表单*/
