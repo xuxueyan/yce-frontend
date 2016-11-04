@@ -266,7 +266,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-group dep-looks-1">
+                                <div class="form-group">
                                     <input type="checkbox" class="skin-square-blue"
                                            ng-model="dataTrans.advancedChecked[0]">
                                     <label class="form-label">健康检查</label>
@@ -300,6 +300,54 @@
                                                    ng-disabled="!dataTrans.advancedChecked[0]"
                                                    ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">
                                             <span class="input-group-addon">秒</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" class="skin-square-blue"
+                                           ng-model="dataTrans.advancedChecked[1]">
+                                    <label class="form-label">存储卷</label>
+                                    <span class="desc">提供持久化数据</span>
+                                    <div class="row row-box-1">
+                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
+                                            <label class="form-label">HostPath</label>
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">名称</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[1]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].name">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">应用文件</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[1]"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].mountPath">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">宿主文件</span>
+                                            <input type="text" class="form-control"
+                                                   ng-disabled="!dataTrans.advancedChecked[1]"
+                                                   ng-model="param.deployment.spec.template.spec.volumes[0].hostPath.path">
+                                        </div>
+                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                            <span class="input-group-addon">只读</span>
+                                            <!--<input type="radio" class="form-control"-->
+                                                   <!--ng-disabled="!dataTrans.advancedChecked[1]"-->
+                                                   <!--ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">-->
+                                            <input type="radio" class="hostReadonlyRadio fl"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].readOnly"
+                                                   name="HostPathReadonly"
+                                                   ng-value="true"
+                                                   ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly1">
+                                            <label for="hostReadonly1" class="hostReadonlyLable fl">是</label>
+                                            <input type="radio" class="hostReadonlyRadio fl"
+                                                   name="HostPathReadonly"
+                                                   ng-value="false"
+                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].readOnly"
+                                                   ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly2">
+                                            <label for="hostReadonly2" class="hostReadonlyLable fl">否</label>
+
                                         </div>
                                     </div>
                                 </div>

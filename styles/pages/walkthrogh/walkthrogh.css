@@ -52,3 +52,13 @@
 .rateArea div{
     cursor: default;
 }
+
+.hostReadonlyRadio {
+    margin: 6px 5px!important;
+}
+.hostReadonlyLable {
+    width: 70px;
+    text-align: left;
+    line-height: 28px;
+    margin-bottom: 0;
+}
