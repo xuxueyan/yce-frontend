@@ -84,8 +84,12 @@ define([
                 dataCenters: [],
                 labels: [],
                 quotas: '',
-                author: $localStorage.userName
+                author: $localStorage.userName,
+                advancedChecked: []
             };
+
+            $scope.dataTrans.advancedChecked[1] = false;
+
 
 
             deploymentService.getDeploymentIint({
