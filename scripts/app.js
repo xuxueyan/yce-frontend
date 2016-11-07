@@ -23,7 +23,7 @@ define([
     //通用模块
     angular.module('common', []);
     angular.module('dashboardManage', ['common']);
-    angular.module('appManage', ['common', 'rzModule']);
+    angular.module('appManage', ['common', 'rzModule', 'atomic-notify']);
     angular.module('rbdManage', ['common']);
     angular.module('costManage', ['common']);
     angular.module('extensionsManage', ['common']);

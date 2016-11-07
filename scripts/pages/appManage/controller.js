@@ -3,10 +3,11 @@
  */
 define([
     'rzSlider',
+    'atomicNotify'
 ], function(rzSlider) {
     'use strict';
 
-    var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', '$timeout', function($scope, $rootScope, appManageService, $localStorage, $http, $timeout) {
+    var ctrl = ['$scope', '$rootScope', 'appManageService', '$localStorage', '$http', '$timeout', 'atomicNotifyService', function($scope, $rootScope, appManageService, $localStorage, $http, $timeout, atomicNotifyService) {
         $scope.canSubmit = true;
         $scope.param = { "orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId };
 
@@ -29,11 +30,6 @@ define([
             };
             $rootScope.widget.widgetAppDeployDetail = true;
         };
-
-        //----------- 时间
-        $scope.consoleTime = function(pod) {
-            console.log(angular.toJson(pod))
-        }
 
 
         // 应用实例详情
@@ -87,15 +83,21 @@ define([
             param = angular.merge(param, $scope.param);
             if ($scope.canSubmit) {
                 $scope.canSubmit = false;
-                appManageService.submitRollingup(param, function(data) {
+                appManageService.submitRollingup(param, function(rep) {
                     $rootScope.widget.widgetRollingup = false;
-                    $timeout(function(){
-                        $scope.loadAppList();
-                    },1000);
-                    $scope.canSubmit = true;
+                    if(rep.code == 0){
+                        atomicNotifyService.success(rep.message, 2000);
+                        $timeout(function(){
+                            $scope.loadAppList();
+                        },1000);
+                        $scope.canSubmit = true;
+                    }else{
+                        atomicNotifyService.error(rep.message, 2000);
+                    }
 
-                }, function() {
+                }, function(rep) {
                     $scope.canSubmit = true;
+                    atomicNotifyService.success(rep.message, 2000);
                 });
             }
         });
@@ -137,12 +139,18 @@ define([
             param.appName = appName;
             if ($scope.canSubmit) {
                 $scope.canSubmit = false;
-                appManageService.submitRollback(param, function(data) {
-                    $rootScope.widget.widgetRollback = false;
-                    $scope.canSubmit = true;
+                appManageService.submitRollback(param, function(rep) {
+                    if(rep.code == 0){
+                        $rootScope.widget.widgetRollback = false;
+                        $scope.canSubmit = true;
+                        atomicNotifyService.success(rep.message, 2000);
+                    }else{
+                        atomicNotifyService.error(rep.message, 2000);
+                    }
 
-                }, function() {
+                }, function(rep) {
                     $scope.canSubmit = true;
+                    atomicNotifyService.error(rep.message, 2000);
                 });
             }
         });
@@ -168,12 +176,19 @@ define([
                 $scope.canSubmit = false;
                 appManageService.submitScale(param, function(rep) {
                     $rootScope.widget.widgetScale = false;
-                    $timeout(function(){
-                        $scope.loadAppList();
-                    },1000);
+                    if(rep.code == 0){
+                        $timeout(function(){
+                            $scope.loadAppList();
+                        },1000);
+                        $scope.canSubmit = true;
+                        atomicNotifyService.success(rep.message, 2000);
+                    }else{
+                        atomicNotifyService.error(rep.message, 2000);
+                    }
+                    
+                }, function(rep) {
                     $scope.canSubmit = true;
-                }, function() {
-                    $scope.canSubmit = true;
+                    atomicNotifyService.error(rep.message, 2000);
                 });
             }
         });
@@ -195,15 +210,22 @@ define([
         $scope.$on('submitDelete', function(event) {
             if ($scope.canSubmit) {
                 $scope.canSubmit = false;
-                appManageService.submitDelete($scope.param, function(data) {
+
+                appManageService.submitDelete($scope.param, function(rep) {
+
                     $rootScope.widget.widgetDelete = false;
+                    atomicNotifyService.success(rep.message, 2000);
+
                     $timeout(function(){
                         $scope.loadAppList();
                     },1000);
                     $scope.canSubmit = true;
-                }, function() {
+
+                }, function(rep) {
+                    atomicNotifyService.error(rep.message, 2000);
                     $scope.canSubmit = true;
                 });
+
             }
         });
 
