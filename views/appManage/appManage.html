@@ -38,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody ng-repeat="app in appList | filter:data.search">
-                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments">
+                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in pagList">
                                         <td>{{$index+1}}</td>
                                         <td class="sorting_1">
                                             <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
@@ -74,24 +74,21 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="dataTables_paginate paging_bootstrap" id="example_paginate">
-                                        <ul class="pagination pull-right">
-                                            <li class="prev disabled"><a href="#"><i
-                                                    class="fa fa-angle-double-left"></i></a></li>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li class="next">
-                                                <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
+                                        <paging class="fr"
+                                                page="1"
+                                                page-size="5"
+                                                total="totalNum"
+                                                paging-action="pagClick('Paging Clicked', page, 5, total)"
+                                                show-prev-next="true"
+                                                show-first-last="true">
+                                        </paging>
                                     </div>
                                     <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 50 entries
+                                        Showing 1 to 5
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
