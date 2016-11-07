@@ -4,9 +4,8 @@
 define([
     'eCharts',
     'Angular',
-    'jQuery',
-    'AngularUI'
-], function(Base64, echarts, angular, $) {
+    'jQuery'
+], function(echarts, angular, $) {
     'use strict';
 
     var ctrl = ['$scope', '$timeout', 'dashboardService', '$localStorage', function($scope, $timeout, dashboardService, $localStorage) {
@@ -198,6 +197,7 @@ define([
 
         //  柱状图
         dashboardService.getHandleData(param, function(res) {
+            console.log(res.data)
             if (res.code == 0) {
 
                 var dataHistogram = JSON.parse(res.data);
