@@ -19,11 +19,25 @@ define([
             extensionsService.serviceManages($scope.myParam,function(data){
                 if(data.code == 0){
                     $scope.newExtensions = JSON.parse(data.data);
-                    var NewExtensions = JSON.parse(data.data);
-                    NewExtensions.forEach(function(v){
+                    
+                    $scope.newExtensions.forEach(function(v){
                         for(var itemLength in v.serviceList.items){ }
                         $scope.itemLength = itemLength;
                     });
+                    console.log(angular.toJson($scope.newExtensions[0].serviceList.items.length));
+
+                    $scope.totalNum = $scope.newExtensions[0].serviceList.items.length
+                    $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(0,5);
+
+                    $scope.pageClick = function(page, pageSize, total){
+                    
+                        $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
+                    
+                    }
+
+
+
+
 
                     /*  点击服务的删除 */
                     $scope.alertBox1 = false;   //  alert的文本框

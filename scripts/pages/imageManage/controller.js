@@ -18,15 +18,8 @@ define([
             });
 
             $scope.pagClick = function (page, pageSize, total){
-                if(page == 1){
-                    $scope.pagList = $scope.newImage.slice(0, 5);
-
-                }else{
-                    if(total - page * pageSize >= pageSize)
-                        $scope.pagList = $scope.newImage.slice(pageSize * (page - 1), pageSize * page);
-                    else
-                        $scope.pagList = $scope.newImage.slice(pageSize * (page - 1), total);
-                }
+                
+                $scope.pagList = $scope.newImage.slice(pageSize * (page - 1), pageSize * page);
 
             };
 
