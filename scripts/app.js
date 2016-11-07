@@ -28,7 +28,7 @@ define([
     angular.module('rbdManage', ['common']);
     angular.module('costManage', ['common']);
     angular.module('extensionsManage', ['common']);
-    angular.module('imageManage', ['common']);
+    angular.module('imageManage', ['common', 'bw.paging']);
     angular.module('topology', ['common']);
     angular.module('orgManage', ['common']);
     angular.module('userManage', ['common']);
