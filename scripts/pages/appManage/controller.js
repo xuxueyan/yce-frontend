@@ -3,7 +3,8 @@
  */
 define([
     'rzSlider',
-    'atomicNotify'
+    'atomicNotify',
+    'ngPaging'
 ], function(rzSlider) {
     'use strict';
 
@@ -15,8 +16,25 @@ define([
             appManageService.getAppList($scope.param, function(data) {
                 if (data.code == 0) {
                     $scope.appList = JSON.parse(data.data);
+                    $scope.pagList = $scope.appList[0].deployments.slice(0, 5);
+                    $scope.totalNum = $scope.appList[0].deployments.length;
+
                 }
             });
+        };
+
+        $scope.pagClick = function (page, pageSize, total){
+
+            if(page == 1){
+                $scope.pagList = $scope.appList[0].deployments.slice(0, 5);
+
+            }else{
+                if(total - page * pageSize >= pageSize)
+                    $scope.pagList = $scope.appList[0].deployments.slice(pageSize * (page - 1), pageSize * page);
+                else
+                    $scope.pagList = $scope.appList[0].deployments.slice(pageSize * (page - 1), total);
+            }
+
         };
 
         $scope.loadAppList();
@@ -30,6 +48,7 @@ define([
             };
             $rootScope.widget.widgetAppDeployDetail = true;
         };
+
 
 
         // 应用实例详情

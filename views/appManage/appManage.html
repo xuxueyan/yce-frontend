@@ -14,7 +14,7 @@
             <div class="content-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
+                        <div class="dataTables_wrapper form-inline ">
                             <div class="row">
                                 <div class="col-xs-3 input-group primary pull-right appManageSearch">
                                     <input type="text" value="" ng-model="data.search" placeholder="输入应用名称..." class="form-control search-page-input">
@@ -24,29 +24,29 @@
                                     </span>
                                 </div>
                             </div>
-                            <table id="appList" class="display table table-hover table-condensed dataTable no-footer appList-table appManageTable" role="grid" aria-describedby="example_info">
+                            <table class="display table table-hover table-condensed dataTable appList-table appManageTable">
                                 <thead class="appManage-headle">
-                                    <tr role="row">
-                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ID">ID</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用名称</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1">应用实例</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">运行状态</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">创建时间</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">数据中心</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">发布人员</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1">操作</th>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>应用名称</th>
+                                        <th>应用实例</th>
+                                        <th>运行状态</th>
+                                        <th>创建时间</th>
+                                        <th>数据中心</th>
+                                        <th>发布人员</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody ng-repeat="app in appList | filter:data.search">
-                                    <tr role="row" class="apply-tr" ng-class="{odd:$odd,even:$even}" ng-repeat="item in app.deployments">
+                                    <tr ng-class="{odd:$odd,even:$even}" ng-repeat="item in pagList">
                                         <td>{{$index+1}}</td>
-                                        <td class="sorting_1">
+                                        <td>
                                             <p ng-click="showAppDeployDetail(item.deploy)">{{item.deploy.metadata.name}}</p>
                                         </td>
                                         <td>
                                             <p class="hoverHand" ng-click="showAppPodDetail(pod, app.dcId)" ng-repeat="pod in item.podList.items">{{pod.metadata.name}}</p>
                                         </td>
-                                        <td class="appdemoS">
+                                        <td>
                                             <p ng-repeat="pod in item.podList.items">
                                                 <span class="state-back">
                                                     <a  class="state-defult" ng-class="{'state-running': pod.status.phase == 'Running','state-pending': pod.status.phase == 'Pending','state-failed': pod.status.phase == 'Failed','state-succeeded': pod.status.phase == 'Succeeded','state-unknown': pod.status.phase == 'Unknown'}"></a>
@@ -73,25 +73,19 @@
                             </table>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="dataTables_paginate paging_bootstrap" id="example_paginate">
-                                        <ul class="pagination pull-right">
-                                            <li class="prev disabled"><a href="#"><i
-                                                    class="fa fa-angle-double-left"></i></a></li>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li class="next">
-                                                <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 50 entries
+                                    <div class="dataTables_paginate paging_bootstrap">
+                                        <paging class="fr"
+                                                page="1"
+                                                page-size="5"
+                                                total="totalNum"
+                                                paging-action="pagClick(page, 5, total)"
+                                                show-prev-next="true"
+                                                show-first-last="true">
+                                        </paging>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
