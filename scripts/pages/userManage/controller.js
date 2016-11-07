@@ -15,20 +15,13 @@ define([
             userManageService.setUpUser(param, function(res){
 
                 var activeList = JSON.parse(res.data);
-                $scope.activities = [];
-
-                angular.forEach(activeList,function(key,val){
-                    $scope.activities.push({
-                        'name': key 
-                    });
-                
-                });
+                $scope.activities = activeList;
 
                 $scope.putUp = {
                     "sessionId" : $localStorage.sessionId,
                     "userName": "",
                     "password": "",
-                    "orgName": $scope.activities[0],
+                    "orgName": "dev",
                     "orgId": $localStorage.orgId, 
                     "op": $localStorage.userId
                 }

@@ -197,7 +197,6 @@
                                 <div class="form-group labels-group labels-group-box">
                                     <div class="controls row">
                                         <label class="form-label">标签组：</label>
-                                        <span class="desc"></span>
                                         <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                             <i class="fa fa-plus-square" ng-click="addLabel()"></i>
                                         </span>
@@ -306,34 +305,34 @@
                                 <div class="form-group">
                                     <input type="checkbox" class="skin-square-blue"
                                            ng-model="dataTrans.advancedChecked[1]">
-                                    <label class="form-label">存储卷</label>
-                                    <span class="desc">提供持久化数据</span>
+                                    <label class="form-label">存储卷(HostPath)</label>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
-                                        <i class="fa fa-plus-square" ng-click="addStorageVolume()"></i>
+                                            <i class="fa fa-plus-square" ng-click="addHostPath()"></i>
                                     </span>
+                                    <div class="row row-box-1" ng-repeat="item in param.deployment.spec.template.spec.containers[0].volumeMounts">
 
-
-                                    <div class="row row-box-1">
-                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
-                                            <label class="form-label">HostPath</label>
-                                        </div>
+                                        <span class="icon-minus fr" ng-hide="$index == 0">
+                                            <i class="fa fa-minus-square" ng-click="delHostPath($index)"></i>
+                                        </span>
                                         <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
                                             <span class="input-group-addon">名称</span>
                                             <input type="text" class="form-control"
                                                    ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].name">
+                                                   ng-model="item.name">
                                         </div>
+
+
                                         <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">应用文件</span>
+                                            <span class="input-group-addon">应用目录</span>
                                             <input type="text" class="form-control"
                                                    ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].mountPath">
+                                                   ng-model="item.mountPath">
                                         </div>
                                         <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
                                             <span class="input-group-addon">宿主文件</span>
                                             <input type="text" class="form-control"
                                                    ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="param.deployment.spec.template.spec.volumes[0].hostPath.path">
+                                                   ng-model="param.deployment.spec.template.spec.volumes[$index].hostPath.path">
                                         </div>
                                         <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
                                             <span class="input-group-addon">只读</span>
@@ -341,15 +340,15 @@
                                                    <!--ng-disabled="!dataTrans.advancedChecked[1]"-->
                                                    <!--ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">-->
                                             <input type="radio" class="hostReadonlyRadio fl"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].readOnly"
-                                                   name="HostPathReadonly"
+                                                   ng-model="item.readOnly"
+                                                   name="HostPathReadonly{{$index}}"
                                                    ng-value="true"
                                                    ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly1">
                                             <label for="hostReadonly1" class="hostReadonlyLable fl">是</label>
                                             <input type="radio" class="hostReadonlyRadio fl"
-                                                   name="HostPathReadonly"
+                                                   name="HostPathReadonly{{$index}}"
                                                    ng-value="false"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].volumeMounts[0].readOnly"
+                                                   ng-model="item.readOnly"
                                                    ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly2">
                                             <label for="hostReadonly2" class="hostReadonlyLable fl">否</label>
 
