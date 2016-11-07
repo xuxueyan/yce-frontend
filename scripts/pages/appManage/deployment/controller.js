@@ -62,8 +62,11 @@ define([
             dataCenters: [],
             labels: [],
             quotas: '',
-            author: $localStorage.userName
+            author: $localStorage.userName,
+            advancedChecked: []
         };
+
+        $scope.dataTrans.advancedChecked[1] = false;
         $scope.stepNum = 1;
 
         deploymentService.getDeploymentIint({
@@ -190,10 +193,7 @@ define([
         /*提交表单*/
         $scope.submit = function() {
 
-            if(!$scope.dataTrans.advancedChecked[1]){
-                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
-                delete $scope.param.deployment.spec.template.spec.volumes;
-            }
+
             $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                 m.containerPort = Number(m.containerPort);
             });
@@ -230,6 +230,11 @@ define([
 
             $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
+
+            if(!$scope.dataTrans.advancedChecked[1]){
+                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                delete $scope.param.deployment.spec.template.spec.volumes;
+            }
 
             deploymentService.deploymentSubmit($scope.param, function(rep) {
 
