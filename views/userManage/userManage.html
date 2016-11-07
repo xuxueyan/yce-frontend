@@ -47,7 +47,7 @@
                                         <td class="img-last-td">
                                             <p class="Images-more-p2">
                                                 <a href="javascript:void(0);" class="btn btn-warning" ng-click="userUpdata(item)">更新</a>
-                                                <a href="javascript:void(0);" class="btn btn-success" ng-click="userDelete(item)">删除</a>
+                                                <a href="javascript:void(0);" class="btn btn-danger" ng-click="userDelete(item)">删除</a>
                                             </p>
                                         </td>
                                     </tr>
@@ -83,4 +83,4 @@
 </section>
 <ui-widget ng-if="widget.userUpdate" config="userUpdateConfig"></ui-widget>
 <ui-widget ng-if="widget.userDel" config="userDelConfig"></ui-widget>
-<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
+<ng-atomic-notify></ng-atomic-notify>

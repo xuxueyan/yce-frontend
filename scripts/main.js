@@ -20,6 +20,7 @@ requirejs.config({
         mock: 'mock/mock',
         mockData: 'mock/mockData',
         AngularDrag: 'lib/angular-drag/angular-drag',
+        atomicNotify: 'lib/atomicNotify/angular-atomic-notify',
         ngPaging: 'lib/angular-paging/paging'
     },
     shim: {
@@ -51,6 +52,9 @@ requirejs.config({
             deps: ['Angular']
         },
         'AngularDrag': {
+            deps: ['Angular']
+        },
+        'atomicNotify': {
             deps: ['Angular']
         },
         'ngPaging': {

@@ -2,11 +2,12 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-    'rzSlider'
+    'rzSlider',
+    'atomicNotify'
 ], function(rzSlider) {
     'use strict';
 
-    var ctrl = ['$scope', '$http', 'deploymentService', '$localStorage', '$rootScope', '$state', '$timeout', function($scope, $http, deploymentService, $localStorage, $rootScope, $state, $timeout) {
+    var ctrl = ['$scope', '$http', 'deploymentService', '$localStorage', '$rootScope', '$state', '$timeout', 'atomicNotifyService', function($scope, $http, deploymentService, $localStorage, $rootScope, $state, $timeout, atomicNotifyService) {
 
         $scope.param = {
             orgId: $localStorage.orgId,
@@ -238,27 +239,20 @@ define([
 
             deploymentService.deploymentSubmit($scope.param, function(rep) {
 
-                $scope.showstatusMes = true;
                 if (rep.code == 0) {
-                    $scope.message = rep.message;
-                    $scope.status = true;
-
+                    atomicNotifyService.success(rep.message, 2000);
                     $timeout(function() {
                         $state.go('main.appManage');
                     }, 500);
                 } else {
-                    $scope.message = rep.message;
-                    $scope.status = false;
+                    atomicNotifyService.error(rep.message, 2000);
                     $timeout(function() {
                         $state.go('main.appManage');
                     }, 500);
                 }
-
-
-            }, function() {
-                $scope.showstatusMes = true;
-                $scope.message = '提交失败!';
-                $scope.status = false;
+                
+            }, function(rep) {
+                atomicNotifyService.error(rep.message, 2000);
             });
         };
 

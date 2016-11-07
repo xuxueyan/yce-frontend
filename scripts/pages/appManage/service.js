@@ -80,7 +80,6 @@ define([
                 sessionId: param.sessionId,
                 comments: "delete app: " + param.appName
             };
-            console.log(request);
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/delete', request, success, error);
 		}
 
@@ -101,7 +100,6 @@ define([
                 }
 		    }
 
-		    console.log(request)
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/pods/' + podName + '/logs', request, success, error);
 		}
 

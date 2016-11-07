@@ -2,11 +2,12 @@
  * Created by Jora on 2016/7/29.
  */
 define([
+    'atomicNotify'
     ], function(){
         'use strict';
 
 
-        var ctrl = ['$scope', 'userManageService', '$localStorage', '$timeout', '$rootScope', '$state', function($scope, userManageService, $localStorage, $timeout, $rootScope, $state){
+        var ctrl = ['$scope', 'userManageService', '$localStorage', '$timeout', '$rootScope', '$state', 'atomicNotifyService', function($scope, userManageService, $localStorage, $timeout, $rootScope, $state, atomicNotifyService){
             var param = {
                 "sessionId" : $localStorage.sessionId
             }
@@ -62,24 +63,26 @@ define([
                     
                         //  提交请求
                         userManageService.UserSubmit($scope.putUp,function(rep){
-                            $scope.showstatusMes = true;
+                            // $scope.showstatusMes = true;
 
                             // 显示成功绿条
                             if(rep.code == 0){
-                                $scope.status = true;
-                                $scope.message = rep.message;
+                                // $scope.status = true;
+                                // $scope.message = rep.message;
+                                atomicNotifyService.success(rep.message, 2000);
                                 $timeout(function() {
-                                    $scope.showstatusMes = false;
                                     $state.go('main.userManage');
                                 }, 1000);
                             }
                             else{
-                                $scope.message = rep.message;
-                                $scope.status = false;
+                                // $scope.message = rep.message;
+                                // $scope.status = false;
+                                atomicNotifyService.error(rep.message, 2000);
                             }
-                        },function(){
-                            $scope.message = rep.message;
-                            $scope.status = false;
+                        },function(rep){
+                            // $scope.message = rep.message;
+                            // $scope.status = false;
+                            atomicNotifyService.error(rep.message, 2000);
                         })
                     }else{
                         $scope.againPasswordShow = true;
@@ -144,10 +147,22 @@ define([
 
                             $scope.$on('submitDelete', function(event) {
                                 // 删除用户
-                                userManageService.delUserDate(res, function(){
+                                userManageService.delUserDate(res, function(rep){
                                     $rootScope.widget.userDel = false;
-                                    $scope.wrapUserManage();
-                                },function(){})
+                                    
+                                    if(rep.code == 0){
+                                        atomicNotifyService.success(rep.message, 2000);
+                                        $timeout(function() {
+                                            $scope.wrapUserManage();
+                                        }, 1000);
+                                    }
+                                    else{
+                                        atomicNotifyService.error(rep.message, 2000);
+                                    }
+
+                                },function(rep){
+                                    atomicNotifyService.error(rep.message, 2000);
+                                })
                             });
                         }
                     }

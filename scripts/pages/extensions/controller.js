@@ -2,10 +2,11 @@
  * Created by Jora on 2016/7/29.
  */
 define([
+    'atomicNotify'
     ], function(){
     'use strict';
 
-    var ctrl = ['$scope','$http','$localStorage','$timeout','$state','extensionsService','$rootScope', function($scope,$http,$localStorage,$timeout,$state,extensionsService,$rootScope){
+    var ctrl = ['$scope', '$http', '$localStorage', '$timeout', '$state', 'extensionsService', '$rootScope', 'atomicNotifyService', function($scope, $http, $localStorage, $timeout, $state, extensionsService, $rootScope, atomicNotifyService){
         $scope.sessionName = $localStorage.userName;
 
         $scope.myParam = {
@@ -51,22 +52,18 @@ define([
 
                             if(lebelType == "service"){
                                 extensionsService.lebelTypes($scope.LebeltypeParameter,function(rep){
-                                    $scope.showstatusMes = true;
+                                    
                                     if(rep.code == 0){
-                                        $scope.status = true;
-                                        $scope.message = rep.message;
+                                        atomicNotifyService.success(rep.message, 2000);
                                         $timeout(function() {
                                             $scope.extensionsPage();
                                         }, 1000);
                                     }
                                     else{
-                                        $scope.message = rep.message;
-                                        $scope.status = false;
+                                        atomicNotifyService.error(rep.message, 2000);
                                     }
-                                },function(){
-                                    $scope.message = '操作失败！';
-                                    $scope.status = false;
-                                    $scope.showstatusMes = true;
+                                },function(rep){
+                                    atomicNotifyService.error(rep.message, 2000);
                                 })
                             }
                         }
@@ -90,13 +87,17 @@ define([
                             $scope.np2.dcId = Number(dcIds)
                             if(lebelType == "endpoints"){
                                 $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(rep){
-                                    $scope.showstatusMes = true;
+                                    
                                     if(rep.code == 0){
+                                        atomicNotifyService.success(rep.message, 2000);
                                         $timeout(function() {
                                             $scope.extensionsPage();
                                         }, 1000);
+                                    }else{
+                                        atomicNotifyService.success(rep.message, 2000);
                                     }
-                                }).error(function(data) {
+                                }).error(function(rep) {
+                                    atomicNotifyService.success(rep.message, 2000);
                                 });
                             }
                         }
@@ -299,25 +300,19 @@ define([
                 $scope.param.sessionId = $localStorage.sessionId;
 
                 extensionsService.CreatServicePost($scope.param,function(rep){
-                    console.log(JSON.stringify($scope.param)+"[][][][]")
-                    $scope.showstatusMes = true;
+
                     if(rep.code == 0){
-                        $scope.message = rep.message;
-                        $scope.status = true;
+                        atomicNotifyService.success(rep.message, 2000);
                         $timeout(function() {
                             $state.go('main.extensions')
                         }, 1000);
                     }
                     else{
-                        $scope.message = rep.message;
-                        $scope.status = false;
+                        atomicNotifyService.error(rep.message, 2000);
                     }
 
-                },function(){
-                    $scope.message = '提交失败';
-                    $scope.status = false;
-                    $scope.showstatusMes = true;
-
+                },function(rep){
+                    atomicNotifyService.error(rep.message, 2000);
                 })
             }
             
@@ -432,21 +427,17 @@ define([
 
                     $scope.showstatusMes = true;
                     if(rep.code == 0){
-                        $scope.message = rep.message;
-                        $scope.status = true;
+                        atomicNotifyService.success(rep.message, 2000);
                         $timeout(function(){
                             $state.go('main.extensions');
                         },1000);
                     }
                     else{
-                        $scope.message = rep.message;
-                        $scope.status = false;
+                        atomicNotifyService.error(rep.message, 2000);
                     }
 
-                },function(){
-                    $scope.message = "提交失败！";
-                    $scope.status = false;
-                    $scope.showstatusMes = false;
+                },function(rep){
+                    atomicNotifyService.error(rep.message, 2000);
                 })
 
             }

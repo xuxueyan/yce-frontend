@@ -28,8 +28,6 @@ define([
         /*  historyPage  */
         historyService.getOperationLog($scope.param, function(data) {
 
-            console.log(data);
-            //  console.log(angular.toJson(data))
             if (data.code == 0) {
                 $scope.historyList = JSON.parse(data.data).operationLog;
 
