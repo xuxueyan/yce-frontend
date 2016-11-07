@@ -19,7 +19,8 @@ requirejs.config({
         mockAngular: 'mock/mock.angular',
         mock: 'mock/mock',
         mockData: 'mock/mockData',
-        AngularDrag: 'lib/angular-drag/angular-drag'
+        AngularDrag: 'lib/angular-drag/angular-drag',
+        ngPaging: 'lib/angular-paging/paging'
     },
     shim: {
         'Angular': {
@@ -50,6 +51,9 @@ requirejs.config({
             deps: ['Angular']
         },
         'AngularDrag': {
+            deps: ['Angular']
+        },
+        'ngPaging': {
             deps: ['Angular']
         }
     }

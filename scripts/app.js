@@ -16,14 +16,15 @@ define([
     './common/directive',
     './common/services',
     './common/routers',
-    './common/controllers'
+    './common/controllers',
+    'ngPaging'
 ], function($, _, angular, uiRouter, ngStorage, kubernetesUI, rzSlider, AngularUI, Mock, mockAngular, mockData, constant, factory, filter, directive, services, routers, controllers) {
     'use strict';
 
     //通用模块
     angular.module('common', []);
     angular.module('dashboardManage', ['common']);
-    angular.module('appManage', ['common', 'rzModule']);
+    angular.module('appManage', ['common', 'rzModule', 'bw.paging']);
     angular.module('rbdManage', ['common']);
     angular.module('costManage', ['common']);
     angular.module('extensionsManage', ['common']);
