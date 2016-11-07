@@ -95,10 +95,6 @@
 /*进度条样式*/
 
 .state-back {
-    background-color: #e0e0e0;
-    border-top: 1px solid #bfbfbf;
-    border-left: 1px solid #bfbfbf;
-    border-right: 1px solid #bfbfbf;
     padding: 0 45%;
     border-radius: 15px;
     position: relative;

@@ -22,14 +22,7 @@ define([
             });
         };
 
-
-        $scope.pagClick = function (text, page, pageSize, total){
-            console.log({
-                text: text,
-                page: page,
-                pageSize: pageSize,
-                total: total
-            });
+        $scope.pagClick = function (page, pageSize, total){
 
             if(page == 1){
                 $scope.pagList = $scope.appList[0].deployments.slice(0, 5);
@@ -55,7 +48,6 @@ define([
             $rootScope.widget.widgetAppDeployDetail = true;
         };
 
-        //----------- 时间
         $scope.consoleTime = function(pod) {
             console.log(angular.toJson(pod))
         }
