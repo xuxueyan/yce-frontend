@@ -197,7 +197,6 @@ define([
 
         //  柱状图
         dashboardService.getHandleData(param, function(res) {
-            console.log(res.data)
             if (res.code == 0) {
 
                 var dataHistogram = JSON.parse(res.data);
