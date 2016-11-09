@@ -285,9 +285,6 @@ blockquote.background {
 a {
     color: #3F51B5;
 }
-a:hover, a:focus {
-    color: #333333;
-}
 
 .text-dark {
     color: #333333;
@@ -8273,11 +8270,6 @@ border-left: 3px solid transparent;
 
     .main-wrapper{
         padding:15px 0 0 0px;
-    }
-
-    .page-topbar .logo-area,
-    .page-topbar.sidebar_shift .logo-area{
-        width: 100%;
     }
 
     .page-topbar.sidebar_shift .logo-area{
