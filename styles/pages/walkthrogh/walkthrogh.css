@@ -62,3 +62,16 @@
     line-height: 28px;
     margin-bottom: 0;
 }
+.importTemplate {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    padding: 7px 10px ;
+    background-color: #3F51B5;
+}
+.importTemplate:hover {
+    background: #fff;
+    color: #3F51B5;
+    text-decoration: none;
+}
+

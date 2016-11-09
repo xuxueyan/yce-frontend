@@ -14,7 +14,7 @@ ng-atomic-notify {
 .atomic-notify .atomic-notify-item {
     display: table;
     position: relative;
-    margin: 40px auto 0;
+    margin: 60px auto 0;
     width: 500px;
     background-color: #0074D9;
     color: #fff;
