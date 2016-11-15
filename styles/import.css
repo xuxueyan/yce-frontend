@@ -8,5 +8,5 @@
 @import "pages/dashboard/dashboard.css";
 @import "pages/organization/createOrg.css";
 @import "pages/walkthrogh/walkthrogh.css";
-
+@import "pages/template/addTemplate.css";
 @import "common/base.css";
