@@ -363,12 +363,20 @@ define([
                                 });
                             }
                         },
-
-
                     }
-
                 })
+                .directive('uiDeltemplate', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/templateDel.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
 
+                        }]
+                    };
+                })
 
 
 

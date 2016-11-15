@@ -570,7 +570,41 @@
 }
 
 
+/*模板删除*/
 
+#tpDeldate .widget { 
+    max-height:200px; max-width:400px;
+}
+#tpDeldate .app-detail { 
+    padding:10px 20px;
+}
+#tpDeldate .app-detail dl { 
+    font-size:14px; margin-top:20px; margin-bottom:0;
+}
+#tpDeldate .app-detail dt { 
+    float:left; line-height:25px; font-weight:bold; text-align:right; width:70px;
+}
+#tpDeldate .app-detail dd { 
+    margin-left:80px; line-height:25px; font-weight:normal;
+}
+#tpDeldate .app-detail dd span { 
+    border-bottom:2px solid #d4d4d4;
+}
+#tpDeldate .labels-table { 
+    margin-top:20px;
+}
+#tpDeldate .labels-table table { 
+    border:none;
+}
+#tpDeldate .labels-table th { 
+    text-align:left; border:none !important;
+}
+#tpDeldate .labels-table td { 
+    padding:5px 10px !important; border:none;}
+
+#tpDeldate .labels-table td:first-child { 
+    width:1px; white-space:nowrap; text-align:right;
+}
 
 
 
