@@ -35,6 +35,7 @@ define([
 			return utils.http($http, 'post', '/api/v1/organizations/'+endpointsJson.orgId+'/users/'+endpointsJson.userId+'/endpoints/new',endpointsJson,success,error)
 		};
 
+		// 创建服务名字验证
 		apis.serviceExit = function (param, success, error){
 			return utils.http($http, 'post', '/api/v1/organizations/'+ param.orgId+'/users/'+ param.userId+'/services/check', param, success, error);
 		};

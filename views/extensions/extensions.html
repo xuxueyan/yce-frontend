@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody ng-repeat="app in newExtensions ">
-                        <tr class="tr-length" ng-repeat="item in app.serviceList.items | filter:data.search">
+                        <tr class="tr-length" ng-repeat="item in pagList | filter:data.search">
                             <td>{{$index+1}}</td>
                             <td class="hoverHand" ng-click="extensionsnameBtn(item)">{{ item.metadata.name }}</td>
                             <td>{{ item.metadata.labels["author"] }}</td>
@@ -72,6 +72,20 @@
                         
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="dataTables_paginate paging_bootstrap">
+                            <paging class="fr"
+                                    page="1"
+                                    page-size="5"
+                                    total="totalNum"
+                                    paging-action="pageClick(page, 5, total)"
+                                    show-prev-next="true"
+                                    show-first-last="true">
+                            </paging>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

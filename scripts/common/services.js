@@ -12,8 +12,10 @@ define([
 	'../pages/userManage/service',
 	'../pages/dcManage/service',
 	'../pages/personalCenter/service',
-	'../pages/walkthrogh/service'
-], function(mainService, dashboardService, appManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService, historyService, orgManageService, userManageService, dcManageService, personalCenterService, walkthroghService){
+	'../pages/walkthrogh/service',
+	'../pages/template/service',
+	'../pages/template/addTemplate/service'
+], function(mainService, dashboardService, appManageService, costManageService, extensionsService, imageManageService, topologyService, deploymentService, historyService, orgManageService, userManageService, dcManageService, personalCenterService, walkthroghService, templateService, addTemplateService){
 
 	'use strict';
 	//获取全部service
