@@ -7,29 +7,6 @@ define([], function() {
 
     var ctrl = ['$scope', 'addTemplateService', '$localStorage', 'deploymentService', 'extensionsService', '$rootScope', 'templateService', 'atomicNotifyService',  function($scope, addTemplateService, $localStorage, deploymentService, extensionsService, $rootScope, templateService, atomicNotifyService) {
 
-
-
-        $scope.appTem = function (){
-            $scope.applyShow = true;
-            $scope.serviceShow = false;
-            $scope.serviceTemplate = false;
-            $scope.choseBox = false;
-        };
-        $scope.serTem = function (){
-            $scope.applyShow = false;
-            $scope.serviceShow = true;
-            $scope.serviceTemplate = false;
-            $scope.choseBox = false;
-
-        };
-        $scope.appAndSerTem = function (){
-
-            $scope.applyShow = true;
-            $scope.serviceShow = false;
-            $scope.serviceTemplate = true;
-            $scope.choseBox = false;
-
-        };
         $scope.showService = function () {
             $scope.serviceShow = true;
             $scope.applyShow = false;
@@ -38,7 +15,7 @@ define([], function() {
             $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
             $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
 
-            if($scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort!= undefined)
+            if($scope.param.deployment.spec.template.spec.containers[0].ports[0]!= undefined)
                 $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
 
             $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
