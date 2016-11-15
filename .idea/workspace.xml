@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f81c163-4eb1-4b0b-b421-d5906a685140" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/styles/pages/template/addTemplate.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/template/addTemplate/controller.js" afterPath="$PROJECT_DIR$/scripts/pages/template/addTemplate/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/pages/template/service.js" afterPath="$PROJECT_DIR$/scripts/pages/template/service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/import.css" afterPath="$PROJECT_DIR$/styles/import.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" afterPath="$PROJECT_DIR$/styles/pages/walkthrogh/walkthrogh.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/template/addTemplate.html" afterPath="$PROJECT_DIR$/views/template/addTemplate.html" />
     </list>
     <ignored path="frontend.iws" />
@@ -32,8 +27,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/pages/template/addTemplate/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.7957745">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4225352">
+              <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -42,8 +37,8 @@
       <file leaf-file-name="addTemplate.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/template/addTemplate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75">
-              <caret line="6" column="49" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="49" />
+            <state vertical-scroll-proportion="-24.375">
+              <caret line="421" column="65" selection-start-line="421" selection-start-column="65" selection-end-line="421" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -774,16 +769,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/template/addTemplate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="49" />
+        <state vertical-scroll-proportion="-24.375">
+          <caret line="421" column="65" selection-start-line="421" selection-start-column="65" selection-end-line="421" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/pages/template/addTemplate/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7957745">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.4225352">
+          <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
           <folding />
         </state>
       </provider>

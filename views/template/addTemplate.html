@@ -1,20 +1,11 @@
-<section class="wrapper main-wrapper row deployment" ng-init="choseBox = true">
+<section class="wrapper main-wrapper row deployment" ng-init="applyShow = true">
     <div class="col-xs-12">
         <div class="page-title">
             <h1 class="title">创建模版</h1>
         </div>
-
-        <div class="chose-type" ng-show="choseBox">
-            <button class="btn btn-primary" ng-click="appTem()"> 单独创建应用模版</button>
-            <button class="btn btn-primary" ng-click="serTem()"> 单独创建服务模版</button>
-            <button class="btn btn-primary" ng-click="appAndSerTem()"> 创建应用与服务模版</button>
-
-        </div>
-
     </div>
 
     <div class="col-xs-12" ng-show="applyShow" ng-init="stepNum = 1">
-
         <form name="apply">
             <section class="box" ng-show="stepNum==1">
                 <header class="panel_header">
@@ -175,8 +166,7 @@
                             </div>
                             <div class="col-xs-12 padding-bottom-30">
                                 <div class="text-left">
-                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit" ng-show="serviceTemplate"> 下一步</button>
-                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: submit()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit" ng-show="!serviceTemplate"> 创建模版</button>
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit"> 下一步</button>
                                     <a class="pull-right walkthrogh_more" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
                             </div>
@@ -410,7 +400,7 @@
                                     </div>
                                 </div>
                                 <div class="text-left">
-                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit" ng-show="serviceTemplate"> 下一步</button>
+                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit"> 下一步</button>
                                     <a class="pull-right walkthrogh_more" href="javascript:void(0);" ng-click="nextStep(1)">返回基础配置</a>
                                 </div>
                             </div>
@@ -430,14 +420,6 @@
                 <div class="row">
                     <form name="service">
                         <div class="col-xs-12 col-sm-9 col-md-8">
-                            <div class="form-group" ng-init="templateNameTips = true" ng-show="!serviceTemplate">
-                                <label class="form-label">模版名：</label>
-                                <span class="desc" ng-show="templateNameTips">模版名是您将要创建的模版的名称,组织内唯一</span>
-                                <span class="warn" ng-show="templateNameExit">模版名已存在,请重新输入</span>
-                                <div class="controls">
-                                    <input type="text" class="form-control" ng-model="templateName" ng-focus="templateNameTips = false" ng-blur="templateNameIsExit()" required>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label class="form-label">服务名称：</label>
                                 <span class="desc" ng-show="serviceNameInit" ng-init="serviceNameInit = true">服务名是您将要创建的应用的名称，组织内唯一</span>
@@ -686,10 +668,8 @@
                             </div>
                             <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30 walkthrogh_box">
                                 <div class="text-left">
-                                    <span class="btn btn-primary pull-left" ng-click="showApply()" ng-show="serviceTemplate"> 上一步</span>
-                                    <button class="btn btn-primary pull-left " ng-disabled="service.$invalid || templateNameExit" ng-click="serverSubmit()" ng-show="!serviceTemplate">创建模版</button>
-
-                                    <button class="btn btn-primary pull-right " ng-disabled="service.$invalid" ng-click="applySerSubmit()" ng-show="serviceTemplate">创建双模版</button>
+                                    <span class="btn btn-primary pull-left" ng-click="showApply()"> 上一步</span>
+                                    <button class="btn btn-primary pull-right " ng-disabled="service.$invalid" ng-click="applySerSubmit()">创建模版</button>
                                 </div>
                             </div>
                         </div>
