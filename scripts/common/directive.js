@@ -52,6 +52,30 @@ define([
                         }]
 			        };
     			})
+                .directive('uiImportTemplate', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/importTemplate.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope', 'templateService', function($scope, $rootScope, templateService){
+                            var param = {
+                                "sessionId" : localStorage.sessionId,
+                                "orgId" : localStorage.orgId,
+                                "userId" : localStorage.userId
+                            };
+                            templateService.getTemplateList(param, function(data){
+                                if(data.code ==0){
+                                    $scope.templateList = JSON.parse(data.data);
+                                }
+                            });
+                            $scope.clickSelector = function(item){
+                                $scope.$emit('templateSelector',item);
+                            };
+                        }]
+                    };
+                })
     			.directive('uiAppPodDetail', function(){
         			return {
             			restrict: 'A',
