@@ -7,13 +7,9 @@ define([], function() {
 
     var ctrl = ['$scope', 'addTemplateService', '$localStorage', 'deploymentService', 'extensionsService', '$rootScope', 'templateService', 'atomicNotifyService',  function($scope, addTemplateService, $localStorage, deploymentService, extensionsService, $rootScope, templateService, atomicNotifyService) {
 
-<<<<<<< HEAD
-    
-=======
         $scope.showService = function () {
             $scope.serviceShow = true;
             $scope.applyShow = false;
->>>>>>> 0c20063db0b7582ccaebc04109da3321241c6a1d
 
             //$scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
             //$scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
