@@ -19,7 +19,9 @@ define([
 
                 $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
                 $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+
                 $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+
                 $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
             };
 
@@ -138,6 +140,27 @@ define([
             $scope.deleteEnv = function ($index) {
                 $scope.param.deployment.spec.template.spec.containers[0].env.splice($index, 1);
             };
+
+            $scope.showImportTem = function (){
+
+                $scope.importTemplateConf = {
+                    widgetId: 'widgetImportTemplate',
+                    widgetTitle: '选择模版',
+                    importTemplate: true
+                };
+
+                $rootScope.widget.widgetImportTemplate = true;
+            };
+
+            $scope.$on('templateSelector', function(event, data){
+
+                $rootScope.widget.widgetImportTemplate = false;
+
+                $scope.param = JSON.parse(data.deployment);
+                $scope.serviceParam = JSON.parse(data.service);
+
+            });
+
             /*选择镜像*/
             $scope.showImageSelector = function () {
                 $scope.imageSelectorConf = {
@@ -147,6 +170,7 @@ define([
                 };
                 $rootScope.widget.widgetImageSelector = true;
             };
+
             $scope.version = "";
             /*监听imageSelector(子)页面的emit*/
             $scope.$on('imageSelector', function (event, data) {

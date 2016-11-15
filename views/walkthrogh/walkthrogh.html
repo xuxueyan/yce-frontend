@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <div class="page-title">
             <h1 class="title">绿色通道
-                <button class="btn btn-primary fr"> 导入模版</button>
+                <button class="btn btn-primary fr" ng-click="showImportTem()"> 导入模版</button>
 
 
             </h1>
@@ -730,4 +730,4 @@
     </div>
 </section>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
-<status-mes message="message" status="status" ng-if="showstatusMes"></status-mes>
+<ui-widget ng-if="widget.widgetImportTemplate" config="importTemplateConf"></ui-widget>

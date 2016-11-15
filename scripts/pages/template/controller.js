@@ -11,7 +11,7 @@ define([], function() {
             "sessionId" : $localStorage.sessionId,
             "orgId" : $localStorage.orgId,
             "userId" : $localStorage.userId
-        }
+        };
 
     	templateService.getTemplateList(param, function(data){
     		if(data.code == 0){
