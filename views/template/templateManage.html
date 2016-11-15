@@ -1,1 +1,79 @@
-我是template
+<section class="wrapper main-wrapper row">
+    <div class='col-xs-12'>
+        <div class="page-title">
+            <div class="pull-left">
+                <h1 class="title">服务管理</h1>                            
+            </div>
+            <div class="pull-right hidden-xs appManage-refresh">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                <span class="glyphicon-class" ng-click="extensionsPage()">刷新</span>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">服务和访问点</h2>
+            </header>
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-3 input-group primary pull-right appManageSearch">
+                        <input type="text" ng-model="data.search" placeholder="输入应用名称..." class="form-control search-page-input">
+                        <span class="input-group-addon">
+                            <span class="arrow"></span>
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="extensions-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>模板名称</th>
+                            <th>应用信息</th>
+                            <th>服务信息</th>
+                            <th>创建时间</th>
+                            <th>创建人员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="item in templateList.templates track by $index ">
+                        <tr class="tr-length" >
+                            <td> {{ $index+1 }} </td>
+                            <td> {{ item.name }} </td>
+                            <td class="hoverHand"><!--  {{ item.deployment }}  --></td>
+
+                            <td class="hoverHand"> <!-- {{ item.service }}  --></td>
+                            <td> {{ item.createdAt }} </td>
+                            <td> {{ templateList.users[item.modifiedOp] }} </td>
+                            <td>
+                                <p class="Images-more-p2">
+                                    <a href="javascript:void(0);" class="ex-up-a1">修改</a>
+                                    <a href="javascript:void(0);" class="ex-del-a1" ng-click="delItem(item,item.name,item.id)">删除</a>
+                                </p>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="dataTables_paginate paging_bootstrap">
+                            <paging class="fr"
+                                    page="1"
+                                    page-size="5"
+                                    total="totalNum"
+                                    paging-action="pageClick(page, 5, total)"
+                                    show-prev-next="true"
+                                    show-first-last="true">
+                            </paging>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<ui-widget ng-if="widget.tpDeldate" config="tpDelConfig"></ui-widget>
+<ng-atomic-notify></ng-atomic-notify>

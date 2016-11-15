@@ -7,7 +7,7 @@ define([], function() {
 
     var ctrl = ['$scope', 'addTemplateService', '$localStorage', function($scope, addTemplateService, $localStorage) {
 
-    console.log("我是add")
+    
 
         
         
