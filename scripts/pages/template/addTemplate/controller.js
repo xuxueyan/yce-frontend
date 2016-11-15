@@ -11,14 +11,13 @@ define([], function() {
             $scope.serviceShow = true;
             $scope.applyShow = false;
 
-
-            $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
-            $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
-
-            if($scope.param.deployment.spec.template.spec.containers[0].ports[0]!= undefined)
-                $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
-
-            $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+            //$scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
+            //$scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+            //
+            //if($scope.param.deployment.spec.template.spec.containers[0].ports[0]!= undefined)
+            //    $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+            //
+            //$scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
         };
 
 
@@ -226,77 +225,13 @@ define([], function() {
                 $scope.applyTips = true;
             }
         };
-
-        /*提交表单*/
-        $scope.submit = function() {
-
-            if(!$scope.dataTrans.advancedChecked[1]){
-                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
-                delete $scope.param.deployment.spec.template.spec.volumes;
-            }
-
-            angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
-                $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
-            });
-
-            $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
-                m.containerPort = Number(m.containerPort);
-            });
-
-
-            $scope.param.deployment.metadata.labels = {
-                "name": $scope.param.deployment.metadata.name,
-                "author": $localStorage.userName,
-                "version": $scope.version
-            };
-            $scope.param.appName = $scope.param.deployment.metadata.name;
-            $scope.dataTrans.dataCenters.forEach(function(elem, index) {
-                if (elem) {
-                    $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
-                }
-            });
-            $scope.dataTrans.labels.forEach(function(elem, index) {
-                $scope.param.deployment.metadata.labels[elem.key] = elem.value;
-            });
-            var limits = $scope.initData.quotas.filter(function(item) {
-                return item.id == $scope.dataTrans.quotas;
-            })[0];
-            $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
-                cpu: limits.cpu + '000m',
-                memory: limits.mem + '000M'
-            };
-
-            $scope.param.deployment.spec.template.metadata = {
-                labels: $scope.param.deployment.metadata.labels
-            };
-
-            $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
-
-            var data = {
-                "name": $scope.templateName,
-                "deployment": $scope.param,
-                "service": {},
-                "orgId": localStorage.orgId,
-                "userId": localStorage.userId,
-                "sessionId": localStorage.sessionId
-            };
-            templateService.createTemplate(data, function(rep) {
-
-                if (rep.code == 0) {
-                    atomicNotifyService.success(rep.message, 2000);
-                }else {
-                    atomicNotifyService.error(rep.message, 2000);
-                }
-            });
-        };
-
         // Image
         deploymentService.delploymentImage('', function (data) {
             var dataObject = JSON.parse(data.data);
 
             // make new images:tags
             var imageArr = new Array();
-            var k = 0
+            var k = 0;
             for (var i in dataObject) {
                 var list = dataObject[i].tags;
                 for (var j in list) {
@@ -334,7 +269,6 @@ define([], function() {
             $scope.extentServerLei = JSON.parse(data.data);
 
 
-            var demoss = $scope.extentServerLei.orgName;
             if ($scope.extentServers.code == 0) {
                 $scope.serverDisabled = false;
                 $scope.serverClick1 = function () {
@@ -401,7 +335,6 @@ define([], function() {
             };
 
             $scope.formData = {};
-            var demo = [];
             $scope.mocks = {};
             $scope.serviceDataTrans = {
                 dataCenters: []
@@ -449,91 +382,6 @@ define([], function() {
                 }
             };
 
-            $scope.serverSubmit = function () {
-                // 协议
-                $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
-                // 服务类型  ok
-                var type = "NodePort";
-                if ($scope.serverRadios == 0) {
-                    var type = "ClusterIP";
-                }
-                else if ($scope.serverRadios == 1) {
-                    var type = "NodePort";
-                }
-                $scope.serviceParam.service.spec.type = type;
-                $scope.serviceParam.service.metadata.name = $scope.serviceParam.serviceName;
-                demo.push($scope.formData.Case);
-                $scope.objs = [];
-                demo.forEach(function (v) {
-                    for (var i in v) {
-                        if (v[i] != false) {
-                            $scope.objs.push(i)
-                        }
-                    }
-                });
-
-                // 数据中心 ok
-                //$scope.serviceDataTrans.dataCenters.forEach
-                $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
-
-                    if (elem) {
-                        $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
-                    }
-                });
-                $scope.serviceParam.service.metadata.labels.name = $scope.serviceParam.serviceName;
-                $scope.serviceParam.service.metadata.labels.author = $scope.sessionName;
-                $scope.serviceParam.service.metadata.labels.namespace = demoss;
-                $scope.serviceParam.orgName = demoss;
-
-                // 选择器
-                $scope.Checkeds.forEach(function (v) {
-                    for (var i in v) {
-                        $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
-                    }
-                });
-                // label
-                $scope.leis.forEach(function (v) {
-                    for (var i in v) {
-                        $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
-                    }
-                });
-
-                // 端口组  ok
-                $scope.ports.forEach(function (num) {
-                    num.port = Number(num.port);
-                    num.targetPort = Number(num.targetPort);
-
-                    if (num.nodePort != null) {
-                        num.nodePort = Number(num.nodePort);
-                        $scope.amock = num.nodePort;
-                    }
-                })
-                /*  提交 post  */
-                $scope.serviceParam.service.spec.ports = $scope.ports;
-
-
-
-                var data = {
-                    "name": $scope.templateName,
-                    "deployment": {},
-                    "service": $scope.serviceParam,
-                    "orgId": $localStorage.orgId,
-                    "userId": $localStorage.userId,
-                    "sessionId": $localStorage.sessionId,
-                };
-
-                templateService.createTemplate(data, function (rep) {
-
-                    if (rep.code == 0) {
-                        atomicNotifyService.success(rep.message, 2000);
-                    }else {
-                        atomicNotifyService.error(rep.message, 2000);
-
-                    }
-
-                })
-            }
-
         }, function () {
             alert(extentServers.message)
         });
@@ -541,8 +389,135 @@ define([], function() {
 
 
         $scope.applySerSubmit = function(){
-            $scope.submit();
-            $scope.serverSubmit();
+
+            if(!$scope.dataTrans.advancedChecked[1]){
+                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                delete $scope.param.deployment.spec.template.spec.volumes;
+            }
+
+            angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
+                $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
+            });
+
+            $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
+                m.containerPort = Number(m.containerPort);
+            });
+
+
+            $scope.param.deployment.metadata.labels = {
+                "name": $scope.param.deployment.metadata.name,
+                "author": $localStorage.userName,
+                "version": $scope.version
+            };
+            $scope.param.appName = $scope.param.deployment.metadata.name;
+            $scope.dataTrans.dataCenters.forEach(function(elem, index) {
+                if (elem) {
+                    $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
+                }
+            });
+            $scope.dataTrans.labels.forEach(function(elem, index) {
+                $scope.param.deployment.metadata.labels[elem.key] = elem.value;
+            });
+            var limits = $scope.initData.quotas.filter(function(item) {
+                return item.id == $scope.dataTrans.quotas;
+            })[0];
+            $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
+                cpu: limits.cpu + '000m',
+                memory: limits.mem + '000M'
+            };
+
+            $scope.param.deployment.spec.template.metadata = {
+                labels: $scope.param.deployment.metadata.labels
+            };
+
+            $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
+
+            // 协议
+            $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
+            // 服务类型  ok
+            var type = "NodePort";
+            if ($scope.serverRadios == 0) {
+                var type = "ClusterIP";
+            }
+            else if ($scope.serverRadios == 1) {
+                var type = "NodePort";
+            }
+
+            var demo = [];
+            $scope.serviceParam.service.spec.type = type;
+            $scope.serviceParam.service.metadata.name = $scope.serviceParam.serviceName;
+            demo.push($scope.formData.Case);
+            $scope.objs = [];
+            demo.forEach(function (v) {
+                for (var i in v) {
+                    if (v[i] != false) {
+                        $scope.objs.push(i)
+                    }
+                }
+            });
+
+            // 数据中心 ok
+            //$scope.serviceDataTrans.dataCenters.forEach
+            $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
+
+                if (elem) {
+                    $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                }
+            });
+            var demoss = $scope.extentServerLei.orgName;
+            $scope.serviceParam.service.metadata.labels.name = $scope.serviceParam.serviceName;
+            $scope.serviceParam.service.metadata.labels.author = $scope.sessionName;
+            $scope.serviceParam.service.metadata.labels.namespace = demoss;
+            $scope.serviceParam.orgName = demoss;
+
+            // 选择器
+            $scope.Checkeds.forEach(function (v) {
+                for (var i in v) {
+                    $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
+                }
+            });
+            // label
+            $scope.leis.forEach(function (v) {
+                for (var i in v) {
+                    $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
+                }
+            });
+
+            // 端口组  ok
+            $scope.ports.forEach(function (num) {
+                num.port = Number(num.port);
+                num.targetPort = Number(num.targetPort);
+
+                if (num.nodePort != null) {
+                    num.nodePort = Number(num.nodePort);
+                    $scope.amock = num.nodePort;
+                }
+            })
+            /*  提交 post  */
+            $scope.serviceParam.service.spec.ports = $scope.ports;
+
+
+            var data = {
+                "name": $scope.templateName,
+                "deployment": $scope.param,
+                "service": $scope.serviceParam,
+                "orgId": $localStorage.orgId,
+                "userId": $localStorage.userId,
+                "sessionId": $localStorage.sessionId
+            };
+
+            templateService.createTemplate(data, function (rep) {
+
+                if (rep.code == 0) {
+                    atomicNotifyService.success(rep.message, 2000);
+                }else {
+                    atomicNotifyService.error(rep.message, 2000);
+                }
+
+            })
+
+
+
 
         };
 
