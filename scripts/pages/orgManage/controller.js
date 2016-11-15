@@ -6,7 +6,7 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope', 'orgManageService', '$localStorage','$rootScope','$timeout', function($scope, orgManageService, $localStorage, $rootScope, $timeout){
+        var ctrl = ['$scope', 'orgManageService', '$localStorage','$rootScope','$timeout', '$state', function($scope, orgManageService, $localStorage, $rootScope, $timeout, $state){
 
             $scope.param = {
                 "orgId": $localStorage.orgId,
@@ -121,10 +121,10 @@ define([
                         $scope.message = res.message;
                         $scope.status = true;
 
-                        //$timeout(function (){
-                        //
-                        //    $state.go('main.orgManage');
-                        //},500)
+                        $timeout(function (){
+                        
+                           $state.go('main.orgManage');
+                        },500)
                     }else{
                         $scope.message = res.message;
                         $scope.status = false;

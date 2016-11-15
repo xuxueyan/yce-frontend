@@ -12,8 +12,10 @@ define([
 	'../pages/userManage/router',
 	'../pages/dcManage/router',
 	'../pages/personalCenter/router',
-	'../pages/walkthrogh/router'
-		], function(mainRouter, dashboardRouter, appManageRouter, costManageRouter, extensionsRouter, imageManageRouter, topologyRouter, deploymentRouter, historyRouter, orgManageRouter, userManageRouter, dcManageRouter, personalCenterRouter, walkthroghRouter){
+	'../pages/walkthrogh/router',
+	'../pages/template/router',
+	'../pages/template/addTemplate/router'
+		], function(mainRouter, dashboardRouter, appManageRouter, costManageRouter, extensionsRouter, imageManageRouter, topologyRouter, deploymentRouter, historyRouter, orgManageRouter, userManageRouter, dcManageRouter, personalCenterRouter, walkthroghRouter, templateRouter, addTemplateRouter){
 
 		'use strict';
 
@@ -49,6 +51,8 @@ define([
 					.state('main.eventAlert',personalCenterRouter.eventAlert)
 					.state('main.recharge',personalCenterRouter.recharge)
 					.state('main.walkthrogh',walkthroghRouter.walkthrogh)
+					.state('main.tpManage',templateRouter.template)
+					.state('main.addTp',addTemplateRouter.addTp)
 
 			}]);
 		};

@@ -24,7 +24,6 @@ define([
                         for(var itemLength in v.serviceList.items){ }
                         $scope.itemLength = itemLength;
                     });
-                    console.log(angular.toJson($scope.newExtensions[0].serviceList.items.length));
 
                     $scope.totalNum = $scope.newExtensions[0].serviceList.items.length
                     $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(0,5);

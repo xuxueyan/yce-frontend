@@ -12,8 +12,10 @@ define([
 	'../pages/userManage/controller',
 	'../pages/dcManage/controller',
 	'../pages/personalCenter/controller',
-	'../pages/walkthrogh/controller'
-	], function(mainController, dashboardController, appManageController,  costManageController, extensionsController, imageManageController, topologyController, deploymentController, historyController, orgManageController, userManageController, dcManageController, personalCenterController, walkthroghController){
+	'../pages/walkthrogh/controller',
+	'../pages/template/controller',
+	'../pages/template/addTemplate/controller'
+	], function(mainController, dashboardController, appManageController,  costManageController, extensionsController, imageManageController, topologyController, deploymentController, historyController, orgManageController, userManageController, dcManageController, personalCenterController, walkthroghController, templateController, addTemplateController){
 
 		'use strict';
 		//获取全部controller
