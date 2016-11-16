@@ -121,11 +121,18 @@ define([
 
             $scope.addHostPath = function (){
 
-                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                    name: '',
-                    mountPath: '',
-                    readOnly: true
-                });
+                if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
+                    $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                        name: '',
+                        mountPath: '',
+                        readOnly: true
+                    });
+                else
+                    $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
+                        name: '',
+                        mountPath: '',
+                        readOnly: true
+                    }];
             };
 
             $scope.delHostPath = function ($index){
@@ -160,9 +167,14 @@ define([
                 $rootScope.widget.widgetImportTemplate = false;
 
                 $scope.param = JSON.parse(data.deployment);
+                $scope.param.orgId = $localStorage.orgId;
+                $scope.param.userId = $localStorage.userId;
+                $scope.param.sessionId = $localStorage.sessionId;
                 $scope.serviceParam = JSON.parse(data.service);
+                $scope.serviceParam.orgId = $localStorage.orgId;
+                $scope.serviceParam.userId = $localStorage.userId;
+                $scope.serviceParam.sessionId = $localStorage.sessionId;
 
-                console.log($scope.param);
 
             });
 
@@ -300,7 +312,7 @@ define([
 
                 // make new images:tags
                 var imageArr = new Array();
-                var k = 0
+                var k = 0;
                 for (var i in dataObject) {
                     var list = dataObject[i].tags;
                     for (var j in list) {
@@ -537,8 +549,6 @@ define([
             $scope.applySerSubmit = function(){
                 $scope.submit();
                 $scope.serverSubmit();
-
-                console.log($scope.serviceParam);
 
                 $scope.serviceAndApplySuc = true;
                 $scope.serviceShow = false;

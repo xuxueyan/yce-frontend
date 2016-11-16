@@ -11,7 +11,7 @@ define([], function() {
             "sessionId" : $localStorage.sessionId,
             "orgId" : $localStorage.orgId,
             "userId" : $localStorage.userId
-        }
+        };
 	    function getTemplateList(){
 	    	templateService.getTemplateList(param, function(data){
 	    		if(data.code == 0){
@@ -41,12 +41,10 @@ define([], function() {
             	var data = {
 		            "sessionId" : $localStorage.sessionId,
 		            "orgId" : $localStorage.orgId,
-		            "userId" : $localStorage.userIds,
-		            "orgId": $localStorage.orgId,
 		            "userId": $localStorage.userId,
 		            "name": item.name,
 		            "id": item.id
-		        }
+		        };
                     
             	templateService.TemplateDelete(data, function(res){
 
@@ -56,7 +54,7 @@ define([], function() {
                 },function(){});
 
             })
-    	}
+    	};
 
     	/*更新模板*/
     	$scope.upItem = function(item){
