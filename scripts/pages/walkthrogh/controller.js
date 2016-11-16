@@ -2,8 +2,8 @@
  * Created by Jora on 2016/7/29.
  */
 define([
-
-    ], function () {
+    'utils'
+    ], function (utils) {
         'use strict';
 
 
@@ -175,6 +175,16 @@ define([
                 $scope.serviceParam.userId = $localStorage.userId;
                 $scope.serviceParam.sessionId = $localStorage.sessionId;
 
+                angular.forEach($scope.param.dcIdList, function (data, index ,array){
+                    var dcId = data;
+                    angular.forEach($scope.initData.dataCenters, function (data, index, array){
+                        if(dcId == data.id){
+                            $scope.dataTrans.dataCenters[index] = true;
+                        }
+
+                    });
+                });
+
 
             });
 
@@ -256,29 +266,28 @@ define([
             /*提交表单*/
             $scope.submit = function() {
 
-                if(!$scope.dataTrans.advancedChecked[1]){
-                    delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
-                    delete $scope.param.deployment.spec.template.spec.volumes;
-                }
-
-                angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
-                    $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
-                });
-
                 $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
                     m.containerPort = Number(m.containerPort);
                 });
 
+                angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
+                    $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
+                });
 
                 $scope.param.deployment.metadata.labels = {
                     "name": $scope.param.deployment.metadata.name,
                     "author": $localStorage.userName,
                     "version": $scope.version
                 };
+
                 $scope.param.appName = $scope.param.deployment.metadata.name;
+
                 $scope.dataTrans.dataCenters.forEach(function(elem, index) {
                     if (elem) {
-                        $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
+                        if(! utils.findInArr($scope.param.dcIdList, $scope.initData.dataCenters[index].id))
+                            $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
+                    }else {
+                        $scope.param.dcIdList.shift($scope.initData.dataCenters[index].id);
                     }
                 });
                 $scope.dataTrans.labels.forEach(function(elem, index) {
@@ -298,11 +307,17 @@ define([
 
                 $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
+
+                if(!$scope.dataTrans.advancedChecked[1]){
+                    delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                    delete $scope.param.deployment.spec.template.spec.volumes;
+                }
+
                 deploymentService.deploymentSubmit($scope.param, function(rep) {
 
-                    if (rep.code == 0) {
-                        completeAjax++;
-                    }
+
+                }, function(rep) {
+
                 });
             };
 
@@ -493,7 +508,8 @@ define([
                     $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
 
                         if (elem) {
-                            $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                            if(! utils.findInArr($scope.serviceParam.dcIdList, $scope.extentServerLei.dataCenters[index].id))
+                                $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
                         }
                     })
                     $scope.serviceParam.service.metadata.labels.name = $scope.serviceParam.serviceName;
