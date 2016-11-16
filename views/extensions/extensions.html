@@ -54,22 +54,6 @@
                                 </p>
                             </td>
                         </tr>
-
-                        <tr ng-repeat="item in app.endpointsList.items">
-                            <td>{{ itemLength-(-$index-2) }}</td>
-                            <td ng-click="extensionsnameBtn(item)">{{ item.metadata.name }}</td>
-                            <td>{{ item.metadata.labels["author"] }}</td>
-                            <td>{{ app.dcName }}</td>
-                            <td>访问点</td>
-                            <td>{{ item.metadata.creationTimestamp }}</td>
-                            <td>
-                                <p class="Images-more-p2">
-                                    <a href="javascript:void(0);" class="ex-up-a1">修改</a>
-                                    <a href="javascript:void(0);" class="ex-del-a1" ng-click="cutItem(app.dcId,item)">删除</a>
-                                </p>
-                            </td>
-                        </tr>
-                        
                     </tbody>
                 </table>
                 <div class="row">

@@ -19,20 +19,15 @@ define([
             extensionsService.serviceManages($scope.myParam,function(data){
                 if(data.code == 0){
                     $scope.newExtensions = JSON.parse(data.data);
-                    
-                    $scope.newExtensions.forEach(function(v){
-                        for(var itemLength in v.serviceList.items){ }
-                        $scope.itemLength = itemLength;
-                    });
 
-                    $scope.totalNum = $scope.newExtensions[0].serviceList.items.length
+                    $scope.totalNum = $scope.newExtensions[0].serviceList.items.length;
                     $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(0,5);
 
                     $scope.pageClick = function(page, pageSize, total){
                     
                         $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
                     
-                    }
+                    };
 
                     /*  点击服务的删除 */
                     $scope.alertBox1 = false;   //  alert的文本框
@@ -73,102 +68,68 @@ define([
                                     }
                                 },function(rep){
                                     atomicNotifyService.error(rep.message, 2000);
-                                })
-                            }
-                        }
-                        /*  取消删除按钮  */
-                        $scope.extnesionsBack = function(){
-                            $scope.alertBox1 = false;
-                        }
-                    }
-
-                    /*  点击访问点的删除 */
-                    $scope.cutItem = function(dcIds,item){
-                        $scope.alertBox1 = !false;
-                        /*  确定删除按钮  内为删除函数  */
-                        $scope.extnesionsDel = function(){
-                            $scope.alertBox1 = false;
-                            var lebelType = item.metadata.labels.type;
-                            var serversName = String(item.metadata.name);
-                            $scope.np2 = {
-                                dcId: ""
-                            }
-                            $scope.np2.dcId = Number(dcIds)
-                            if(lebelType == "endpoints"){
-                                $http.post('/api/v1/organizations/'+orgId+'/endpoints/'+serversName, $scope.np2).success(function(rep){
-                                    
-                                    if(rep.code == 0){
-                                        atomicNotifyService.success(rep.message, 2000);
-                                        $timeout(function() {
-                                            $scope.extensionsPage();
-                                        }, 1000);
-                                    }else{
-                                        atomicNotifyService.success(rep.message, 2000);
-                                    }
-                                }).error(function(rep) {
-                                    atomicNotifyService.success(rep.message, 2000);
                                 });
                             }
-                        }
+                        };
                         /*  取消删除按钮  */
                         $scope.extnesionsBack = function(){
                             $scope.alertBox1 = false;
-                        }
-                    }
+                        };
+                    };
+
+                    
                 }
             },function(){
                 if(data.code != 0){
                     alert(data.message);
                 }
-            })
-        }
+            });
+        };
         $scope.extensionsPage();
 
         var demoss = "";
 
         // 创建服务
         extensionsService.CreatService($scope.myParam,function(data){
-            $scope.extentServers = data;
-            var extentServers = data;
-            $scope.extentServerLei = JSON.parse($scope.extentServers.data);
+            $scope.extentServerLei = JSON.parse(data.data);
             demoss = $scope.extentServerLei.orgName;
-            if($scope.extentServers.code == 0){
-                    $scope.serverDisabled = true;
-                    $scope.serverClick1 = function(){
-                        if($scope.serverRadios == 1){
-                            $scope.serverDisabled = false;
-                        }else if($scope.serverRadios == 0){
-                            $scope.serverDisabled = true;
-                        }
+            if(data.code == 0){
+                $scope.serverDisabled = true;
+                $scope.serverClick1 = function(){
+                    if($scope.serverRadios == 1){
+                        $scope.serverDisabled = false;
+                    }else if($scope.serverRadios == 0){
+                        $scope.serverDisabled = true;
                     }
-                    //   label add....
-                    $scope.leis = [];
-                    $scope.addLabels = function(){
-                        $scope.leis.push({})
-                    }
-                    //   del
-                    $scope.delLabels = function($index){
-                        $scope.leis.splice($index,1)
-                    }
-                    //   port add....
-                    $scope.ports = [];
-
-                    var i = 0;
-                    $scope.addPort = function(){
-                        i++;
-                        $scope.ports.push({"name" : "port"+ i});
-                    }
-                    //   del
-                    $scope.delPort = function($index){
-                        $scope.ports.splice($index,1)
-                    }
-
+                };
             }
-            
-            
-         },function(){
-            alert(extentServers.message)
-         });
+        },function(data){
+            alert(data.message);
+        });
+
+        //   label add....
+        $scope.leis = [];
+        //   port add....
+        $scope.ports = [];
+
+
+        $scope.addLabels = function(){
+            $scope.leis.push({});
+        };
+        //   del
+        $scope.delLabels = function($index){
+            $scope.leis.splice($index,1);
+        };
+        var i = 0;
+        $scope.addPort = function(){
+            i++;
+            $scope.ports.push({"name" : "port"+ i});
+        };
+        //   del
+        $scope.delPort = function($index){
+            $scope.ports.splice($index,1);
+        };
+
 
         // 拼接json
         $scope.param = {
@@ -203,9 +164,9 @@ define([
             }
         }
 
-        $scope.formData={}
+        $scope.formData = {};
         var demo = [];
-        $scope.mocks ={};
+        $scope.mocks = {};
         $scope.dataTrans = {
             dataCenters : []
         };
@@ -214,10 +175,10 @@ define([
         $scope.Checkeds = [];
         $scope.addCheckeds = function(){
             $scope.Checkeds.push({});
-        }
+        };
         $scope.delCheckeds = function($index){
             $scope.Checkeds.splice($index,1);
-        }
+        };
 
         // 协议
         $scope.portlists = [
@@ -266,21 +227,21 @@ define([
             $scope.param.service.spec.type = type;
             $scope.param.service.metadata.name = $scope.param.serviceName;
             demo.push($scope.formData.Case);
-                $scope.objs=[];
-                demo.forEach(function(v){
-                    for(var i in v){
-                        if(v[i] != false){
-                            $scope.objs.push(i)
-                        }
+            $scope.objs=[];
+            demo.forEach(function(v){
+                for(var i in v){
+                    if(v[i] != false){
+                        $scope.objs.push(i)
                     }
-                })
+                }
+            });
 
             // 数据中心 ok
             $scope.dataTrans.dataCenters.forEach(function(elem,index){
                 if(elem){
                     $scope.param.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
                 }
-            })
+            });
             $scope.param.service.metadata.labels.name = $scope.param.serviceName;
             $scope.param.service.metadata.labels.author = $scope.sessionName;
             $scope.param.service.metadata.labels.namespace = demoss;
@@ -288,16 +249,12 @@ define([
 
             // 选择器  
             $scope.Checkeds.forEach(function(v){
-                for(var i in v){
-                    $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
-                }
+                $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
             });
             // label **
             $scope.leis.forEach(function(v){
-                for(var i in v){
-                    $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
-                }
-            })
+                $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
+            });
 
             // 端口组  ok  
             $scope.ports.forEach(function(num){
@@ -308,7 +265,7 @@ define([
                     num.nodePort=Number(num.nodePort);
                     $scope.amock = num.nodePort;
                 }
-            })
+            });
             /*  提交 post  */
             $scope.param.service.spec.ports = $scope.ports;
 
@@ -317,21 +274,19 @@ define([
             $scope.param.sessionId = $localStorage.sessionId;
 
             extensionsService.CreatServicePost($scope.param,function(rep){
-
                 if(rep.code == 0){
                     atomicNotifyService.success(rep.message, 2000);
                     $timeout(function() {
-                        $state.go('main.extensions')
+                        $state.go('main.extensions');
                     }, 1000);
                 }
                 else{
                     atomicNotifyService.error(rep.message, 2000);
                 }
-
             },function(rep){
                 atomicNotifyService.error(rep.message, 2000);
-            })
-        }
+            });
+        };
 
 
 
@@ -343,21 +298,21 @@ define([
                 // add label
                 $scope.endleis = [];
                 $scope.addendpointjlabel = function(){
-                    $scope.endleis.push({})
-                }
+                    $scope.endleis.push({});
+                };
                 // del label
                 $scope.delendpointjlabel = function($index){
                     $scope.endleis.splice($index,1);
-                }
+                };
                 // add Ex
                 $scope.mockEnd = [];
                 $scope.addendpointEx = function(){
                     $scope.mockEnd.push({});
-                }
+                };
                 // del Ex
                 $scope.delendpointEx = function($index){
                     $scope.mockEnd.splice($index,1);
-                }
+                };
             }
 
             $scope.endpointsJson = {
@@ -378,7 +333,7 @@ define([
                     },
                     "subsets": []
                 }
-            }
+            };
             $scope.endDataTrans = {
                 endDataCenters : []
             };
@@ -398,9 +353,9 @@ define([
                 // 数据中心 ok
                 $scope.endDataTrans.endDataCenters.forEach(function(elem,index){
                     if(elem){
-                        $scope.endpointsJson.dcIdList.push($scope.endpointsData.dataCenters[index].id)
+                        $scope.endpointsJson.dcIdList.push($scope.endpointsData.dataCenters[index].id);
                     }
-                })
+                });
                 $scope.endpointsJson.orgName = $scope.endpointsData.orgName;
                 $scope.endpointsJson.endpoints.metadata.namespace = $scope.endpointsData.orgName;
 
@@ -409,9 +364,9 @@ define([
                 $scope.endpointsJson.endpoints.metadata.labels.author = $scope.sessionName;
                 $scope.endleis.forEach(function(v){
                     for(var i in v){
-                        $scope.endpointsJson.endpoints.metadata.labels[v.endlabelKey]=v[i]
+                        $scope.endpointsJson.endpoints.metadata.labels[v.endlabelKey]=v[i];
                     }
-                })
+                });
 
                 // 端口及地址
                 for(var i = 0; i < $scope.mockEnd.length; i++) {
@@ -451,25 +406,9 @@ define([
 
                 },function(rep){
                     atomicNotifyService.error(rep.message, 2000);
-                })
-
-            }
-        })
-
-        //  ******  扩展功能 详情
-        $scope.extensionsnameBtn = function(item){
-
-            $scope.extensionsConfig = {
-                widgetId : 'extensionDatails',
-                widgetTitle : '服务详情',
-                extensionsDatails : true,
-                data : item
-            }
-            $rootScope.widget.extensionDatails = true;
-
-        }
-
-
+                });
+            };
+        });
     }]; 
 
     var controllers = [
