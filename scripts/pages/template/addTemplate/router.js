@@ -3,6 +3,9 @@ define([], function(){
 
 	var router = {
 		addTp: {
+			params:{
+				'message': null
+			},
 			url: '/addTp',
 			templateUrl: 'views/template/addTemplate.html',
 			controller: 'addTemplateController'

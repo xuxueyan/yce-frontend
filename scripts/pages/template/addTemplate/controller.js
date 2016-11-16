@@ -5,7 +5,7 @@ define([], function() {
     'use strict';
 
 
-    var ctrl = ['$scope', 'addTemplateService', '$localStorage', 'deploymentService', 'extensionsService', '$rootScope', 'templateService', 'atomicNotifyService',  function($scope, addTemplateService, $localStorage, deploymentService, extensionsService, $rootScope, templateService, atomicNotifyService) {
+    var ctrl = ['$scope', 'addTemplateService', '$localStorage', 'deploymentService', 'extensionsService', '$rootScope', 'templateService', 'atomicNotifyService', '$stateParams', function($scope, addTemplateService, $localStorage, deploymentService, extensionsService, $rootScope, templateService, atomicNotifyService, $stateParams) {
 
         $scope.showService = function () {
             $scope.serviceShow = true;
@@ -20,8 +20,9 @@ define([], function() {
             //$scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
         };
 
-
-
+        
+        
+        
         $scope.showApply = function () {
             $scope.serviceShow = false;
             $scope.applyShow = true;
@@ -515,11 +516,42 @@ define([], function() {
                 }
 
             })
-
-
-
-
         };
+
+        /*点击更新，跳到创建模板页面，被传递过来的参数填充创建模板页面，作为修改*/
+        if($stateParams.message){
+            $scope.param = JSON.parse($stateParams.message.deployment);
+            $scope.serviceParam = JSON.parse($stateParams.message.service);
+            $scope.templateName = $stateParams.message.name;
+
+
+            console.log(angular.toJson($scope.param));
+            console.log(angular.toJson($scope.serviceParam)+"   @@@");
+
+
+
+
+
+            // $scope.version = "";
+            // /*监听imageSelector(子)页面的emit*/
+            // $scope.$on('imageSelector', function (event, data) {
+            //     $scope.param.deployment.spec.template.spec.containers[0].image = data;
+            //     $rootScope.widget.widgetImageSelector = false;
+            //     $scope.version = data.split(":")[2];
+            // });
+
+
+
+
+
+
+
+
+
+
+
+
+        }
 
 
     }];

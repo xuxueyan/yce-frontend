@@ -5,63 +5,65 @@ define([], function() {
     'use strict';
 
 
-    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', function($scope, templateService, $localStorage, $rootScope) {
+    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', "$state", function($scope, templateService, $localStorage, $rootScope, $state) {
     	
     	var param = {
             "sessionId" : $localStorage.sessionId,
             "orgId" : $localStorage.orgId,
             "userId" : $localStorage.userId
         }
+	    function getTemplateList(){
+	    	templateService.getTemplateList(param, function(data){
+	    		if(data.code == 0){
 
-    	templateService.getTemplateList(param, function(data){
-    		if(data.code == 0){
+	    			$scope.templateList = JSON.parse(data.data);
+	    		//	console.log(angular.toJson($scope.templateList)+"     @@@@")
 
-    			$scope.templateList = JSON.parse(data.data);
+	    		}
+	    	});
+	    }
+	    getTemplateList();
 
+    	/* 删除 */
+    	$scope.delItem = function(item){
 
-		    	/* 删除 */
-		    	$scope.delItem = function(item, name, id){
+    		$scope.tpDelConfig = {
+                widgetTitle: "删除",
+                widgetId: "tpDeldate",
+                isDelTemplate: true,
+                data: item
+            };
 
-		    		//console.log(name,id)
+            $rootScope.widget.tpDeldate = true;
 
-		    		$scope.tpDelConfig = {
-		                widgetTitle: "删除",
-		                widgetId: "tpDeldate",
-		                isDelTemplate: true,
-		                data: item
-		            };
+            $scope.$on('submitDelete', function(event, pwd) {
 
-		            $rootScope.widget.tpDeldate = true;
+            	var data = {
+		            "sessionId" : $localStorage.sessionId,
+		            "orgId" : $localStorage.orgId,
+		            "userId" : $localStorage.userIds,
+		            "orgId": $localStorage.orgId,
+		            "userId": $localStorage.userId,
+		            "name": item.name,
+		            "id": item.id
+		        }
+                    
+            	templateService.TemplateDelete(data, function(res){
 
-		          //   $scope.$on('submitDelete', function(event, pwd) {
-		          //   	var data = {
-				        //     "sessionId" : $localStorage.sessionId,
-				        //     "orgId" : $localStorage.orgId,
-				        //     "userId" : $localStorage.userIds,
-				        //     "orgId": item.orgId,
-				        //     "userId": item.userId
-				        // }
-		                    
+                    $rootScope.widget.tpDeldate = false;
+                    getTemplateList();
 
-		          //   	templateService.TemplateDelete(data, function(res){
+                },function(){});
 
-		          //           $rootScope.widget.tpDeldate = false;
+            })
+    	}
 
-		          //       },function(){})
+    	/*更新模板*/
+    	$scope.upItem = function(item){
+    		// console.log(angular.toJson(item))
+    		$state.go('main.addTp',{message: item});
 
-		          //   })
-		    	}
-
-
-
-
-
-
-
-    		}
-    	});
-
-
+    	}
 
 
         
