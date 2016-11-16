@@ -405,18 +405,18 @@
 }
 
 /*选择镜像*/
-#widgetImageSelector .widget {
+#widgetImageSelector .widget,#widgetImportTemplate .widget {
     max-height: 500px;
     max-width: 800px;
 }
 
-#widgetImageSelector .filter-input {
+#widgetImageSelector .filter-input,#widgetImportTemplate .filter-input {
     height: 45px;
     display: block;
     margin: 0 50px;
 }
 
-#widgetImageSelector .filter-input input {
+#widgetImageSelector .filter-input input,#widgetImportTemplate .filter-input input{
     height: 100%;
     width: 100%;
     display: block;
@@ -425,7 +425,7 @@
     box-sizing: border-box;
 }
 
-#widgetImageSelector .image-list {
+#widgetImageSelector .image-list,#widgetImportTemplate .image-list{
     position: absolute;
     min-height: 100px;
     top: 140px;
@@ -437,7 +437,7 @@
     padding: 0;
 }
 
-#widgetImageSelector .image-list li {
+#widgetImageSelector .image-list li,#widgetImportTemplate .image-list li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -447,11 +447,11 @@
     cursor: pointer;
 }
 
-#widgetImageSelector .image-list li:hover {
+#widgetImageSelector .image-list li:hover,#widgetImportTemplate .image-list li:hover {
     background: #e1e1e1;
 }
 
-#widgetImageSelector .image-list i {
+#widgetImageSelector .image-list i,#widgetImportTemplate .image-list i {
     width: 40px;
     border-right: 1px solid #e1e1e1;
     display: inline-block;

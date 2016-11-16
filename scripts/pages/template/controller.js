@@ -63,14 +63,7 @@ define([], function() {
     		// console.log(angular.toJson(item))
     		$state.go('main.addTp',{message: item});
 
-    	}
-
-
-        
-        
-
-
-
+    	};
 
     }];
 
