@@ -46,7 +46,7 @@ define([
                                 orgId : "",
                                 sessionId : "",
                                 serversName : ""
-                            }
+                            };
                             $scope.LebeltypeParameter.serversName = String(item.metadata.name);
                             $scope.LebeltypeParameter.sessionId = $localStorage.sessionId;
                             $scope.LebeltypeParameter.orgId = $localStorage.orgId;
