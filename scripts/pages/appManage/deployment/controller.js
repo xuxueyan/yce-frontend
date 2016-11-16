@@ -97,11 +97,19 @@ define([
 
         $scope.addHostPath = function (){
 
-            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                name: '',
-                mountPath: '',
-                readOnly: true
-            });
+            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                });
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                }];
+
         };
 
         $scope.delHostPath = function ($index){
@@ -109,13 +117,40 @@ define([
         };
 
         /*添加环境变量*/
-        $scope.addEnv = function() {
-            $scope.param.deployment.spec.template.spec.containers[0].env.push({ name: '', value: '' });
+        $scope.addEnv = function () {
+            if($scope.param.deployment.spec.template.spec.containers[0].env)
+                $scope.param.deployment.spec.template.spec.containers[0].env.push({name: '', value: ''});
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].env = [{name: '', value: ''}];
         };
+
         /*删除环境变量*/
         $scope.deleteEnv = function($index) {
             $scope.param.deployment.spec.template.spec.containers[0].env.splice($index, 1);
         };
+        $scope.showImportTem = function (){
+
+            $scope.importTemplateConf = {
+                widgetId: 'widgetImportTemplate',
+                widgetTitle: '选择模版',
+                importTemplate: true
+            };
+
+            $rootScope.widget.widgetImportTemplate = true;
+        };
+        $scope.$on('templateSelector', function(event, data){
+
+            $rootScope.widget.widgetImportTemplate = false;
+
+            $scope.param = JSON.parse(data.deployment);
+            $scope.param.orgId = $localStorage.orgId;
+            $scope.param.userId = $localStorage.userId;
+            $scope.param.sessionId = $localStorage.sessionId;
+
+
+        });
+
+
         /*选择镜像*/
         $scope.showImageSelector = function() {
             $scope.imageSelectorConf = {
@@ -137,11 +172,14 @@ define([
             { protocol: "TCP" }
         ];
         $scope.addPort = function() {
-            $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
-        }
+            if($scope.param.deployment.spec.template.spec.containers[0].ports)
+                $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].ports = [{}];
+        };
         $scope.delPort = function($index) {
             $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
-        }
+        };
         $scope.activities = [
             "TCP",
             "UDP"
@@ -262,7 +300,7 @@ define([
 
             // make new images:tags
             var imageArr = new Array();
-            var k = 0
+            var k = 0;
             for (var i in dataObject) {
                 var list = dataObject[i].tags;
                 for (var j in list) {

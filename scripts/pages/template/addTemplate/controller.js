@@ -114,11 +114,18 @@ define([], function() {
 
         $scope.addHostPath = function (){
 
-            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                name: '',
-                mountPath: '',
-                readOnly: true
-            });
+            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                });
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                }];
         };
 
         $scope.delHostPath = function ($index){
@@ -267,7 +274,7 @@ define([], function() {
         extensionsService.CreatService({
             orgId: $localStorage.orgId,
             userId: $localStorage.userId,
-            sessionId: $localStorage.sessionId,
+            sessionId: $localStorage.sessionId
         }, function (data) {
             $scope.extentServers = data;
 
@@ -282,9 +289,8 @@ define([], function() {
                         $scope.serverDisabled = true;
                     }
                 };
-                //   del
                 $scope.delLabels = function ($index) {
-                    $scope.leis.splice($index, 1)
+                    $scope.leis.splice($index, 1);
                 };
                 var i = 1;
                 $scope.addPort = function () {
@@ -293,8 +299,8 @@ define([], function() {
                 };
                 //   del
                 $scope.delPort = function ($index) {
-                    $scope.ports.splice($index, 1)
-                }
+                    $scope.ports.splice($index, 1);
+                };
             }
         }, function () {
             alert(extentServers.message)
@@ -350,7 +356,7 @@ define([], function() {
         ];
 
         // 选择器
-        $scope.Checkeds = [{"mylistKey":"name"}];
+        $scope.Checkeds = [{}];
 
         //   port add....
         $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
@@ -367,7 +373,6 @@ define([], function() {
             $scope.Checkeds.splice($index, 1);
         };
 
-        /*提交服务*/
         $scope.serviceNameExit = function () {
             if ($scope.serviceParam.serviceName != undefined && $scope.serviceParam.serviceName != '') {
                 var param = {
@@ -377,7 +382,7 @@ define([], function() {
                     "name": $scope.serviceParam.serviceName
                 };
                 extensionsService.serviceExit(param, function (res) {
-                    if (res.code == 1415) {
+                    if(res.code == 1415) {
                         $scope.nameExit = true;
                     } else {
                         $scope.nameExit = false;
@@ -494,7 +499,7 @@ define([], function() {
                     num.nodePort = Number(num.nodePort);
                     $scope.amock = num.nodePort;
                 }
-            })
+            });
             /*  提交 post  */
             $scope.serviceParam.service.spec.ports = $scope.ports;
 
@@ -525,7 +530,7 @@ define([], function() {
             $scope.templateName = $stateParams.message.name;
             $scope.serviceParam = JSON.parse($stateParams.message.service);
 
-
+            console.log($scope.serviceParam);
             // $scope.version = "";
             // /*监听imageSelector(子)页面的emit*/
             // $scope.$on('imageSelector', function (event, data) {
@@ -533,13 +538,7 @@ define([], function() {
             //     $rootScope.widget.widgetImageSelector = false;
             //     $scope.version = data.split(":")[2];
             // });
-
-
-
-
-
         }
-
 
     }];
 

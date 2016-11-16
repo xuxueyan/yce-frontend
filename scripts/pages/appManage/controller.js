@@ -12,23 +12,31 @@ define([
         $scope.canSubmit = true;
         $scope.param = { "orgId": $localStorage.orgId, "userId": $localStorage.userId, "sessionId": $localStorage.sessionId };
 
-        $scope.loadAppList = function() {
+        $scope.nowPage = 1;
+        $scope.loadAppList = function(page) {
             appManageService.getAppList($scope.param, function(data) {
                 if (data.code == 0) {
                     $scope.appList = JSON.parse(data.data);
-                    $scope.pagList = $scope.appList[0].deployments.slice(0, 5);
+
                     $scope.totalNum = $scope.appList[0].deployments.length;
+
+                    if($scope.appList[0].deployments.length == 5)
+                        page = 1;
+
+                    $scope.pagList = $scope.appList[0].deployments.slice((page - 1) * 5, page * 5);
                 }
             });
         };
 
         $scope.pagClick = function (page, pageSize, total){
+            //记录当前页
+            $scope.nowPage = page;
 
-            $scope.pagList = $scope.appList[0].deployments.slice(pageSize*(page-1), pageSize*page);
+            $scope.pagList = $scope.appList[0].deployments.slice(pageSize * (page-1), pageSize*page);
 
         };
 
-        $scope.loadAppList();
+        $scope.loadAppList(1);
         // 发布详情
         $scope.showAppDeployDetail = function(item) {
             $scope.appDeployDetailConf = {
@@ -85,7 +93,7 @@ define([
                 $scope.$broadcast('showTips', false);
                 $scope.canSubmit = true;
             }
-        })
+        });
 
         $scope.endImgs = "";
 
@@ -98,7 +106,7 @@ define([
                     if(rep.code == 0){
                         atomicNotifyService.success(rep.message, 2000);
                         $timeout(function(){
-                            $scope.loadAppList();
+                            $scope.loadAppList($scope.nowPage);
                         },1000);
                         $scope.canSubmit = true;
                     }else{
@@ -188,7 +196,8 @@ define([
                     $rootScope.widget.widgetScale = false;
                     if(rep.code == 0){
                         $timeout(function(){
-                            $scope.loadAppList();
+                            $scope.loadAppList($scope.nowPage);
+
                         },1000);
                         $scope.canSubmit = true;
                         atomicNotifyService.success(rep.message, 2000);
@@ -227,7 +236,7 @@ define([
                     atomicNotifyService.success(rep.message, 2000);
 
                     $timeout(function(){
-                        $scope.loadAppList();
+                        $scope.loadAppList($scope.nowPage);
                     },1000);
                     $scope.canSubmit = true;
 

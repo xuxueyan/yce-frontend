@@ -1,7 +1,9 @@
 <section class="wrapper main-wrapper row deployment">
     <div class="col-xs-12">
         <div class="page-title">
-                <h1 class="title">应用发布</h1>
+                <h1 class="title">应用发布
+                    <button class="btn btn-primary fr" ng-click="showImportTem()"> 导入模版</button>
+                </h1>
         </div>
     </div>
     <div class="col-xs-12">
@@ -18,7 +20,7 @@
                                 <label class="form-label">应用名：</label>
                                 <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
-                                <span class="warn" ng-show="login.applyName.$error.pattern">您的应用名不正确</span>
+                                <span class="warn" ng-show="applyNameExit? false : login.applyName.$error.pattern;">您的应用名不正确</span>
 
                                 <div class="controls">
                                     <input type="text" name="applyName" class="form-control"
@@ -128,7 +130,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon">名称</span>
                                                 <input type="text" class="form-control server-btn" name="portName"
-                                                       ng-model="port.name" ng-pattern="/^[a-z-_]+$/" required>
+                                                       ng-model="port.name" ng-pattern="/^[a-z0-9_-]*$/" required>
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
@@ -409,3 +411,4 @@
 </section>
 <ui-widget ng-if="widget.widgetImageSelector" config="imageSelectorConf"></ui-widget>
 <ng-atomic-notify></ng-atomic-notify>
+<ui-widget ng-if="widget.widgetImportTemplate" config="importTemplateConf"></ui-widget>

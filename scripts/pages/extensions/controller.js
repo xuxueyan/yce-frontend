@@ -25,14 +25,14 @@ define([
                         $scope.itemLength = itemLength;
                     });
 
-                    $scope.totalNum = $scope.newExtensions[0].serviceList.items.length
+                    $scope.totalNum = $scope.newExtensions[0].serviceList.items.length;
                     $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(0,5);
 
                     $scope.pageClick = function(page, pageSize, total){
                     
                         $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
                     
-                    }
+                    };
 
                     /*  点击服务的删除 */
                     $scope.alertBox1 = false;   //  alert的文本框
@@ -51,7 +51,7 @@ define([
                                 orgId : "",
                                 sessionId : "",
                                 serversName : ""
-                            }
+                            };
                             $scope.LebeltypeParameter.serversName = String(item.metadata.name);
                             $scope.LebeltypeParameter.sessionId = $localStorage.sessionId;
                             $scope.LebeltypeParameter.orgId = $localStorage.orgId;
