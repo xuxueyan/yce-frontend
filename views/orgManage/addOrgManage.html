@@ -17,7 +17,6 @@
             <div class="content-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-9 col-md-8">
-
                         <form name="orgForm">
                             <div class="form-group" ng-init="orgTips = true">
                                 <label class="form-label" for="field-name">组织名称：</label>
@@ -31,7 +30,6 @@
                                            ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
                                            ng-blur="orgForm.organization.$error.pattern ? return : nameExit();" required>
                                 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -41,22 +39,16 @@
                                     <label ng-repeat="item in dcListDom" class="form-label server-servers" ng-class="{checked:dataCenters[$index]}">
                                         <input type="checkbox" name="dataCenters" value="{{item.id}}" ng-model="dataCenters[$index]">{{item.name}}
                                     </label>
-
                                 </div>
 
                                 <button class="btn btn-primary" ng-click="orgSubmit()" ng-disabled="orgForm.$invalid">提交</button>
 
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>
-
-
         </section>
-
     </div>
 </section>
 

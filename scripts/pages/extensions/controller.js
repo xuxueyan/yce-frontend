@@ -34,10 +34,6 @@ define([
                     
                     }
 
-
-
-
-
                     /*  点击服务的删除 */
                     $scope.alertBox1 = false;   //  alert的文本框
                     $scope.delItem = function(dcIds,item){
@@ -128,12 +124,14 @@ define([
         }
         $scope.extensionsPage();
 
+        var demoss = "";
+
         // 创建服务
         extensionsService.CreatService($scope.myParam,function(data){
             $scope.extentServers = data;
             var extentServers = data;
             $scope.extentServerLei = JSON.parse($scope.extentServers.data);
-            var demoss = $scope.extentServerLei.orgName;
+            demoss = $scope.extentServerLei.orgName;
             if($scope.extentServers.code == 0){
                     $scope.serverDisabled = true;
                     $scope.serverClick1 = function(){
@@ -166,172 +164,174 @@ define([
                     }
 
             }
-            // 拼接json
-            $scope.param = {
-                "serviceName": "",
-                "orgName": "",
-                "dcIdList": [],
-                "service": {
-                    "kind": "Service",
-                    "apiVersion": "v1",
-                    "metadata": {
-                        "name": "",
-                        "labels": {
-                            "name": "",
-                            "namespace":"",
-                            "author" : "",
-                            "type" : "service"
-                        }
-                    },
-                    "spec": {
-                        "type": "",
-                        "selector": {},
-                        "ports": [
-                            {
-                                "name": "",
-                                "protocol": "",
-                                "port": "",
-                                "targetPort": "",
-                                "nodePort": ""
-                            }
-                        ]
-                    }
-                }
-            }
-
-            $scope.formData={}
-            var demo = [];
-            $scope.mocks ={};
-            $scope.dataTrans = {
-                dataCenters : []
-            };
-
-            // 选择器
-            $scope.Checkeds = [];
-            $scope.addCheckeds = function(){
-                $scope.Checkeds.push({});
-            }
-            $scope.delCheckeds = function($index){
-                $scope.Checkeds.splice($index,1);
-            }
-
-            // 协议
-            $scope.portlists = [
-                {protocol : "TCP"}
-            ];
-            $scope.activities =[
-                "TCP",
-                "UDP"
-            ];
-
-            $scope.serviceNameExit = function(){
-
-                if( $scope.param.serviceName != undefined && $scope.param.serviceName != ''){
-                    var param = {
-                        orgId: $localStorage.orgId,
-                        userId: $localStorage.userId,
-                        sessionId: $localStorage.sessionId,
-                        "name": $scope.param.serviceName
-                    };
-                    extensionsService.serviceExit(param, function(res){
-                        if(res.code == 1415){
-                            $scope.nameExit = true;
-                            $scope.serversubmit = function(){
-                                return;
-                            }
-                        }else{
-                            $scope.nameExit = false;
-
-                        }
-
-                    });
-                }
-            };
-
-            $scope.serversubmit = function(){
-                // 协议
-                $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
-                // 服务类型  ok
-                var type = "NodePort";
-                if($scope.serverRadios == 0){
-                    var type="ClusterIP";
-                }
-                else if($scope.serverRadios == 1){
-                    var type="NodePort";
-                }
-                $scope.param.service.spec.type = type;
-                $scope.param.service.metadata.name = $scope.param.serviceName;
-                demo.push($scope.formData.Case);
-                    $scope.objs=[];
-                    demo.forEach(function(v){
-                        for(var i in v){
-                            if(v[i] != false){
-                                $scope.objs.push(i)
-                            }
-                        }
-                    })
-
-                // 数据中心 ok
-                $scope.dataTrans.dataCenters.forEach(function(elem,index){
-                    if(elem){
-                        $scope.param.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
-                    }
-                })
-                $scope.param.service.metadata.labels.name = $scope.param.serviceName;
-                $scope.param.service.metadata.labels.author = $scope.sessionName;
-                $scope.param.service.metadata.labels.namespace = demoss;
-                $scope.param.orgName = demoss;
-
-                // 选择器  
-                $scope.Checkeds.forEach(function(v){
-                    for(var i in v){
-                        $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
-                    }
-                });
-                // label **
-                $scope.leis.forEach(function(v){
-                    for(var i in v){
-                        $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
-                    }
-                })
-
-                // 端口组  ok  
-                $scope.ports.forEach(function(num){
-                    num.port=Number(num.port);
-                    num.targetPort=Number(num.targetPort);
-
-                    if(num.nodePort != null){
-                        num.nodePort=Number(num.nodePort);
-                        $scope.amock = num.nodePort;
-                    }
-                })
-                /*  提交 post  */
-                $scope.param.service.spec.ports = $scope.ports;
-
-                $scope.param.userId = $localStorage.userId;
-                $scope.param.orgId = $localStorage.orgId;
-                $scope.param.sessionId = $localStorage.sessionId;
-
-                extensionsService.CreatServicePost($scope.param,function(rep){
-
-                    if(rep.code == 0){
-                        atomicNotifyService.success(rep.message, 2000);
-                        $timeout(function() {
-                            $state.go('main.extensions')
-                        }, 1000);
-                    }
-                    else{
-                        atomicNotifyService.error(rep.message, 2000);
-                    }
-
-                },function(rep){
-                    atomicNotifyService.error(rep.message, 2000);
-                })
-            }
+            
             
          },function(){
             alert(extentServers.message)
-         })
+         });
+
+        // 拼接json
+        $scope.param = {
+            "serviceName": "",
+            "orgName": "",
+            "dcIdList": [],
+            "service": {
+                "kind": "Service",
+                "apiVersion": "v1",
+                "metadata": {
+                    "name": "",
+                    "labels": {
+                        "name": "",
+                        "namespace":"",
+                        "author" : "",
+                        "type" : "service"
+                    }
+                },
+                "spec": {
+                    "type": "",
+                    "selector": {},
+                    "ports": [
+                        {
+                            "name": "",
+                            "protocol": "",
+                            "port": "",
+                            "targetPort": "",
+                            "nodePort": ""
+                        }
+                    ]
+                }
+            }
+        }
+
+        $scope.formData={}
+        var demo = [];
+        $scope.mocks ={};
+        $scope.dataTrans = {
+            dataCenters : []
+        };
+
+        // 选择器
+        $scope.Checkeds = [];
+        $scope.addCheckeds = function(){
+            $scope.Checkeds.push({});
+        }
+        $scope.delCheckeds = function($index){
+            $scope.Checkeds.splice($index,1);
+        }
+
+        // 协议
+        $scope.portlists = [
+            {protocol : "TCP"}
+        ];
+        $scope.activities =[
+            "TCP",
+            "UDP"
+        ];
+
+        $scope.serviceNameExit = function(){
+
+            if( $scope.param.serviceName != undefined && $scope.param.serviceName != ''){
+                var param = {
+                    orgId: $localStorage.orgId,
+                    userId: $localStorage.userId,
+                    sessionId: $localStorage.sessionId,
+                    "name": $scope.param.serviceName
+                };
+                extensionsService.serviceExit(param, function(res){
+                    if(res.code == 1415){
+                        $scope.nameExit = true;
+                        $scope.serversubmit = function(){
+                            return;
+                        }
+                    }else{
+                        $scope.nameExit = false;
+
+                    }
+
+                });
+            }
+        };
+
+        $scope.serversubmit = function(){
+            // 协议
+            $scope.param.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
+            // 服务类型  ok
+            var type = "NodePort";
+            if($scope.serverRadios == 0){
+                var type="ClusterIP";
+            }
+            else if($scope.serverRadios == 1){
+                var type="NodePort";
+            }
+            $scope.param.service.spec.type = type;
+            $scope.param.service.metadata.name = $scope.param.serviceName;
+            demo.push($scope.formData.Case);
+                $scope.objs=[];
+                demo.forEach(function(v){
+                    for(var i in v){
+                        if(v[i] != false){
+                            $scope.objs.push(i)
+                        }
+                    }
+                })
+
+            // 数据中心 ok
+            $scope.dataTrans.dataCenters.forEach(function(elem,index){
+                if(elem){
+                    $scope.param.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                }
+            })
+            $scope.param.service.metadata.labels.name = $scope.param.serviceName;
+            $scope.param.service.metadata.labels.author = $scope.sessionName;
+            $scope.param.service.metadata.labels.namespace = demoss;
+            $scope.param.orgName = demoss;
+
+            // 选择器  
+            $scope.Checkeds.forEach(function(v){
+                for(var i in v){
+                    $scope.param.service.spec.selector[v.mylistKey] = v.mylistValue;
+                }
+            });
+            // label **
+            $scope.leis.forEach(function(v){
+                for(var i in v){
+                    $scope.param.service.metadata.labels[v.leiKey] = v.leiValue;
+                }
+            })
+
+            // 端口组  ok  
+            $scope.ports.forEach(function(num){
+                num.port=Number(num.port);
+                num.targetPort=Number(num.targetPort);
+
+                if(num.nodePort != null){
+                    num.nodePort=Number(num.nodePort);
+                    $scope.amock = num.nodePort;
+                }
+            })
+            /*  提交 post  */
+            $scope.param.service.spec.ports = $scope.ports;
+
+            $scope.param.userId = $localStorage.userId;
+            $scope.param.orgId = $localStorage.orgId;
+            $scope.param.sessionId = $localStorage.sessionId;
+
+            extensionsService.CreatServicePost($scope.param,function(rep){
+
+                if(rep.code == 0){
+                    atomicNotifyService.success(rep.message, 2000);
+                    $timeout(function() {
+                        $state.go('main.extensions')
+                    }, 1000);
+                }
+                else{
+                    atomicNotifyService.error(rep.message, 2000);
+                }
+
+            },function(rep){
+                atomicNotifyService.error(rep.message, 2000);
+            })
+        }
 
 
 
