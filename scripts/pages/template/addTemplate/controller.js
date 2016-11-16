@@ -113,19 +113,11 @@ define([], function() {
         };
 
         $scope.addHostPath = function (){
-
-            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
-                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                    name: '',
-                    mountPath: '',
-                    readOnly: true
-                });
-            else
-                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
-                    name: '',
-                    mountPath: '',
-                    readOnly: true
-                }];
+            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                name: '',
+                mountPath: '',
+                readOnly: true
+            });
         };
 
         $scope.delHostPath = function ($index){
@@ -231,7 +223,6 @@ define([], function() {
                     } else {
                         $scope.applyTips = true;
                         $scope.applyNameExit = false;
-
                     }
                 });
             }
@@ -265,16 +256,19 @@ define([], function() {
             alert("getImages error");
         });
 
-
         $scope.sessionName = $localStorage.userName;
         
+
+
+
+
 
 
         // 创建服务
         extensionsService.CreatService({
             orgId: $localStorage.orgId,
             userId: $localStorage.userId,
-            sessionId: $localStorage.sessionId
+            sessionId: $localStorage.sessionId,
         }, function (data) {
             $scope.extentServers = data;
 
@@ -288,18 +282,6 @@ define([], function() {
                     } else if ($scope.serverRadios == 0) {
                         $scope.serverDisabled = true;
                     }
-                };
-                $scope.delLabels = function ($index) {
-                    $scope.leis.splice($index, 1);
-                };
-                var i = 1;
-                $scope.addPort = function () {
-                    i++;
-                    $scope.ports.push({"name": "port" + i});
-                };
-                //   del
-                $scope.delPort = function ($index) {
-                    $scope.ports.splice($index, 1);
                 };
             }
         }, function () {
@@ -338,6 +320,27 @@ define([], function() {
             }
         };
 
+
+        //   del
+        $scope.delLabels = function ($index) {
+            $scope.leis.splice($index, 1);
+        };
+        var i = 1;
+        $scope.addPort = function () {
+            console.log(1234567)
+            $scope.serviceParam.service.spec.ports.push({
+                            "name": "",
+                            "protocol": "",
+                            "port": "",
+                            "targetPort": "",
+                            "nodePort": ""
+                        });
+        };
+        //   del
+        $scope.delPort = function ($index) {
+            $scope.serviceParam.service.spec.ports.splice($index, 1);
+        };
+
         $scope.formData = {};
         $scope.mocks = {};
         $scope.serviceDataTrans = {
@@ -356,16 +359,15 @@ define([], function() {
         ];
 
         // 选择器
-        $scope.Checkeds = [{}];
+        $scope.Checkeds = [{"mylistKey":"name","mylistValue":""}];
 
-        //   port add....
-        $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
+        // //   port add....
+        // $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
 
         //   label add....
         $scope.addLabels = function () {
-            $scope.leis.push({})
+            $scope.leis.push({});
         };
-
         $scope.addCheckeds = function () {
             $scope.Checkeds.push({});
         };
@@ -373,6 +375,7 @@ define([], function() {
             $scope.Checkeds.splice($index, 1);
         };
 
+        /*提交服务*/
         $scope.serviceNameExit = function () {
             if ($scope.serviceParam.serviceName != undefined && $scope.serviceParam.serviceName != '') {
                 var param = {
@@ -382,7 +385,7 @@ define([], function() {
                     "name": $scope.serviceParam.serviceName
                 };
                 extensionsService.serviceExit(param, function (res) {
-                    if(res.code == 1415) {
+                    if (res.code == 1415) {
                         $scope.nameExit = true;
                     } else {
                         $scope.nameExit = false;
@@ -406,9 +409,9 @@ define([], function() {
                 $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
             });
 
-            $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
-                m.containerPort = Number(m.containerPort);
-            });
+            // $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
+            //     m.containerPort = Number(m.containerPort);
+            // });
 
 
             $scope.param.deployment.metadata.labels = {
@@ -440,7 +443,7 @@ define([], function() {
             $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
             // 协议
-            $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
+            //$scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
             // 服务类型  ok
             var type = "NodePort";
             if ($scope.serverRadios == 0) {
@@ -479,29 +482,22 @@ define([], function() {
 
             // 选择器
             $scope.Checkeds.forEach(function (v) {
-                for (var i in v) {
-                    $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
-                }
+                $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
             });
             // label
             $scope.leis.forEach(function (v) {
-                for (var i in v) {
-                    $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
-                }
+                $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
             });
 
             // 端口组  ok
-            $scope.ports.forEach(function (num) {
-                num.port = Number(num.port);
-                num.targetPort = Number(num.targetPort);
-
+            var NewPort = $scope.serviceParam.service.spec.ports;
+            NewPort.forEach(function (num) {
                 if (num.nodePort != null) {
-                    num.nodePort = Number(num.nodePort);
                     $scope.amock = num.nodePort;
                 }
-            });
+            })
             /*  提交 post  */
-            $scope.serviceParam.service.spec.ports = $scope.ports;
+          //  $scope.serviceParam.service.spec.ports = $scope.ports;
 
 
             var data = {
@@ -528,9 +524,9 @@ define([], function() {
         if($stateParams.message){
             $scope.param = JSON.parse($stateParams.message.deployment);
             $scope.templateName = $stateParams.message.name;
+
             $scope.serviceParam = JSON.parse($stateParams.message.service);
 
-            console.log($scope.serviceParam);
             // $scope.version = "";
             // /*监听imageSelector(子)页面的emit*/
             // $scope.$on('imageSelector', function (event, data) {
@@ -538,7 +534,16 @@ define([], function() {
             //     $rootScope.widget.widgetImageSelector = false;
             //     $scope.version = data.split(":")[2];
             // });
+            
+
+            var NewSelector = $scope.serviceParam.service.spec.selector;
+            $scope.Checkeds =[];
+            for(var i in NewSelector){
+                $scope.Checkeds.push({"mylistKey":i,"mylistValue":NewSelector[i]});
+            }
+
         }
+
 
     }];
 

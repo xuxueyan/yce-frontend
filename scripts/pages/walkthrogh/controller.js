@@ -12,10 +12,9 @@ define([
             $scope.stepNum = 1;
 
             var completeAjax = 0;
-            $scope.showService = function () {
+            $scope.showService = function() {
                 $scope.serviceShow = true;
                 $scope.applyShow = false;
-
 
                 $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
                 $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
@@ -24,8 +23,6 @@ define([
 
                 $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
             };
-
-
 
             $scope.showApply = function () {
                 $scope.serviceShow = false;
@@ -92,8 +89,6 @@ define([
 
             $scope.dataTrans.advancedChecked[1] = false;
 
-
-
             deploymentService.getDeploymentIint({
                 sessionId: $localStorage.sessionId,
                 orgId: $localStorage.orgId,
@@ -107,7 +102,7 @@ define([
                 }
                 $scope.nextStep = function (stepNum) {
                     $scope.stepNum = stepNum;
-                };
+                }
             });
 
             /*添加标签*/
@@ -120,7 +115,6 @@ define([
             };
 
             $scope.addHostPath = function (){
-
                 if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
                     $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
                         name: '',
@@ -184,8 +178,6 @@ define([
 
                     });
                 });
-
-
             });
 
             /*选择镜像*/
@@ -216,7 +208,7 @@ define([
                     $scope.param.deployment.spec.template.spec.containers[0].ports = [{}];
             };
             $scope.delApplyPort = function ($index) {
-                $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
+                $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1);
             };
             $scope.activities = [
                 "TCP",
@@ -237,7 +229,7 @@ define([
                 }
             };
 
-            $scope.nameIsExit = function () {
+            $scope.nameIsExit = function() {
 
                 if ($scope.param.deployment.metadata.name != '' && $scope.param.deployment.metadata.name != undefined) {
                     var param = {
@@ -342,30 +334,28 @@ define([
                     x.replace(/:(\S+)$/, function ($0, $1) {
                         $scope.param.deployment.metadata.labels.version = $1;
                     });
-                }
-            }, function () {
-                alert("getImages error")
+                };
+            }, function() {
+                alert("getImages error");
             });
-
 
             $scope.sessionName = $localStorage.userName;
 
             $scope.myParam = {
                 orgId: $localStorage.orgId,
                 userId: $localStorage.userId,
-                sessionId: $localStorage.sessionId,
+                sessionId: $localStorage.sessionId
             };
 
 
             // 创建服务
-            extensionsService.CreatService($scope.myParam, function (data) {
+            var demoss = "";
+            extensionsService.CreatService($scope.myParam, function(data) {
                 $scope.extentServers = data;
-
 
                 $scope.extentServerLei = JSON.parse(data.data);
 
-
-                var demoss = $scope.extentServerLei.orgName;
+                demoss = $scope.extentServerLei.orgName;
                 if ($scope.extentServers.code == 0) {
                     $scope.serverDisabled = false;
                     $scope.serverClick1 = function () {
@@ -375,138 +365,109 @@ define([
                             $scope.serverDisabled = true;
                         }
                     };
-                    //   label add....
-                    $scope.leis = [];
-                    $scope.addLabels = function () {
-                        $scope.leis.push({})
-                    };
-                    //   del
-                    $scope.delLabels = function ($index) {
-                        $scope.leis.splice($index, 1)
-                    };
-                    //   port add....
-                    $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
-
-                    var i = 1;
-                    $scope.addPort = function () {
-                        i++;
-                        $scope.ports.push({"name": "port" + i});
-                    };
-                    //   del
-                    $scope.delPort = function ($index) {
-                        $scope.ports.splice($index, 1)
-                    }
-
                 }
-                // 拼接json
-                $scope.serviceParam = {
-                    "serviceName": "",
-                    "orgName": "",
-                    "dcIdList": [],
-                    "service": {
-                        "kind": "Service",
-                        "apiVersion": "v1",
-                        "metadata": {
+            }, function () {
+                alert(extentServers.message);
+            });
+
+
+            //   label add....
+            $scope.leis = [];
+            $scope.addLabels = function () {
+                $scope.leis.push({});
+            };
+            //   del
+            $scope.delLabels = function ($index) {
+                $scope.leis.splice($index, 1);
+            };
+            //   port add....
+            $scope.ports = [{"name":"port1","targetPort":"","port":"","nodePort":""}];
+
+            var i = 1;
+            $scope.addPort = function () {
+                i++;
+                $scope.ports.push({"name": "port" + i});
+            };
+            //   del
+            $scope.delPort = function ($index) {
+                $scope.ports.splice($index, 1);
+            };
+
+            // 拼接json
+            $scope.serviceParam = {
+                "serviceName": "",
+                "orgName": "",
+                "dcIdList": [],
+                "service": {
+                    "kind": "Service",
+                    "apiVersion": "v1",
+                    "metadata": {
+                        "name": "",
+                        "labels": {
                             "name": "",
-                            "labels": {
+                            "namespace": "",
+                            "author": "",
+                            "type": "service"
+                        }
+                    },
+                    "spec": {
+                        "type": "",
+                        "selector": {},
+                        "ports": [
+                            {
                                 "name": "",
-                                "namespace": "",
-                                "author": "",
-                                "type": "service"
+                                "protocol": "",
+                                "port": "",
+                                "targetPort": "",
+                                "nodePort": ""
                             }
-                        },
-                        "spec": {
-                            "type": "",
-                            "selector": {},
-                            "ports": [
-                                {
-                                    "name": "",
-                                    "protocol": "",
-                                    "port": "",
-                                    "targetPort": "",
-                                    "nodePort": ""
-                                }
-                            ]
-                        }
+                        ]
                     }
-                };
+                }
+            };
 
-                $scope.formData = {};
-                var demo = [];
-                $scope.mocks = {};
-                $scope.serviceDataTrans = {
-                    dataCenters: []
-                };
+            $scope.formData = {};
+            var demo = [];
+            $scope.mocks = {};
+            $scope.serviceDataTrans = {
+                dataCenters: []
+            };
 
-                // 选择器
-                $scope.Checkeds = [{"mylistKey":"name"}];
+            // 选择器
+            $scope.Checkeds = [{"mylistKey":"name"}];
 
-                $scope.addCheckeds = function () {
-                    $scope.Checkeds.push({});
-                };
-                $scope.delCheckeds = function ($index) {
-                    $scope.Checkeds.splice($index, 1);
-                };
+            $scope.addCheckeds = function () {
+                $scope.Checkeds.push({});
+            };
+            $scope.delCheckeds = function ($index) {
+                $scope.Checkeds.splice($index, 1);
+            };
 
-                // 协议
-                $scope.portlists = [
-                    {protocol: "TCP"}
-                ];
-                $scope.activities = [
-                    "TCP",
-                    "UDP"
-                ];
+            // 协议
+            $scope.portlists = [
+                {protocol: "TCP"}
+            ];
+            $scope.activities = [
+                "TCP",
+                "UDP"
+            ];
 
-                $scope.serviceNameExit = function () {
+            $scope.serviceNameExit = function () {
 
-                    if ($scope.serviceParam.serviceName != undefined && $scope.serviceParam.serviceName != '') {
-                        var param = {
-                            orgId: $localStorage.orgId,
-                            userId: $localStorage.userId,
-                            sessionId: $localStorage.sessionId,
-                            "name": $scope.serviceParam.serviceName
+                if ($scope.serviceParam.serviceName != undefined && $scope.serviceParam.serviceName != '') {
+                    var param = {
+                        orgId: $localStorage.orgId,
+                        userId: $localStorage.userId,
+                        sessionId: $localStorage.sessionId,
+                        "name": $scope.serviceParam.serviceName
+                    };
+                    extensionsService.serviceExit(param, function (res) {
+                        if (res.code == 1415) {
+                            $scope.nameExit = true;
+                        } else {
+                            $scope.nameExit = false;
+
                         };
-                        extensionsService.serviceExit(param, function (res) {
-                            if (res.code == 1415) {
-                                $scope.nameExit = true;
-                            } else {
-                                $scope.nameExit = false;
-
-                            }
-
-                        });
-                    }else{
-                        $scope.serviceNameInit = true;
-                    }
-                };
-
-                $scope.serverSubmit = function () {
-                    // 协议
-                    $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
-                    // 服务类型  ok
-                    var type = "NodePort";
-                    if ($scope.serverRadios == 0) {
-                        var type = "ClusterIP";
-                    }
-                    else if ($scope.serverRadios == 1) {
-                        var type = "NodePort";
-                    }
-                    $scope.serviceParam.service.spec.type = type;
-                    $scope.serviceParam.service.metadata.name = $scope.serviceParam.serviceName;
-                    demo.push($scope.formData.Case);
-                    $scope.objs = [];
-                    demo.forEach(function (v) {
-                        for (var i in v) {
-                            if (v[i] != false) {
-                                $scope.objs.push(i)
-                            }
-                        }
-                    })
-
-                    // 数据中心 ok
-                    //$scope.serviceDataTrans.dataCenters.forEach
-                    $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
-
                         if (elem) {
                             if(! utils.findInArr($scope.serviceParam.dcIdList, $scope.extentServerLei.dataCenters[index].id))
                                 $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
@@ -523,43 +484,80 @@ define([
                             $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
                         }
                     });
-                    // label
-                    $scope.leis.forEach(function (v) {
-                        for (var i in v) {
-                            $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;
-                        }
-                    });
+                }else{
+                    $scope.serviceNameInit = true;
+                };
+            };
 
-                    // 端口组  ok
-                    $scope.ports.forEach(function (num) {
-                        num.port = Number(num.port);
-                        num.targetPort = Number(num.targetPort);
-
-                        if (num.nodePort != null) {
-                            num.nodePort = Number(num.nodePort);
-                            $scope.amock = num.nodePort;
-                        }
-                    })
-                    /*  提交 post  */
-                    $scope.serviceParam.service.spec.ports = $scope.ports;
-
-                    $scope.serviceParam.userId = $localStorage.userId;
-                    $scope.serviceParam.orgId = $localStorage.orgId;
-                    $scope.serviceParam.sessionId = $localStorage.sessionId;
-
-                    extensionsService.CreatServicePost($scope.serviceParam, function (rep) {
-
-                        if (rep.code == 0) {
-                            completeAjax++;
-                        }
-
-                    })
+            $scope.serverSubmit = function () {
+                // 协议
+                $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
+                // 服务类型  ok
+                var type = "NodePort";
+                if ($scope.serverRadios == 0) {
+                    var type = "ClusterIP";
                 }
+                else if ($scope.serverRadios == 1) {
+                    var type = "NodePort";
+                }
+                $scope.serviceParam.service.spec.type = type;
+                $scope.serviceParam.service.metadata.name = $scope.serviceParam.serviceName;
+                demo.push($scope.formData.Case);
+                $scope.objs = [];
+                demo.forEach(function (v) {
+                    for (var i in v) {
+                        if (v[i] != false) {
+                            $scope.objs.push(i);
+                        }
+                    }
+                })
 
-            }, function () {
-                alert(extentServers.message)
-            });
+                // 数据中心 ok
+                //$scope.serviceDataTrans.dataCenters.forEach
+                $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
 
+                    if (elem) {
+                        $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                    }
+                })
+                $scope.serviceParam.service.metadata.labels.name = $scope.serviceParam.serviceName;
+                $scope.serviceParam.service.metadata.labels.author = $scope.sessionName;
+                $scope.serviceParam.service.metadata.labels.namespace = demoss;
+                $scope.serviceParam.orgName = demoss;
+
+                // 选择器
+                $scope.Checkeds.forEach(function (v) {
+                    $scope.serviceParam.service.spec.selector[v.mylistKey] = v.mylistValue;
+                });
+                // label
+                $scope.leis.forEach(function (v) {
+                    $scope.serviceParam.service.metadata.labels[v.leiKey] = v.leiValue;                    
+                });
+
+                // 端口组  ok
+                $scope.ports.forEach(function (num) {
+                    num.port = Number(num.port);
+                    num.targetPort = Number(num.targetPort);
+
+                    if (num.nodePort != null) {
+                        num.nodePort = Number(num.nodePort);
+                        $scope.amock = num.nodePort;
+                    }
+                })
+                /*  提交 post  */
+                $scope.serviceParam.service.spec.ports = $scope.ports;
+                $scope.serviceParam.userId = $localStorage.userId;
+                $scope.serviceParam.orgId = $localStorage.orgId;
+                $scope.serviceParam.sessionId = $localStorage.sessionId;
+
+                extensionsService.CreatServicePost($scope.serviceParam, function (rep) {
+
+                    if (rep.code == 0) {
+                        completeAjax++;
+                    };
+
+                });
+            };
 
 
             $scope.applySerSubmit = function(){
@@ -575,17 +573,12 @@ define([
                         $state.go('main.topology');
                     }
                 },1000);
-
-
-
             };
 
             $scope.goTopo = function(){
                 $state.go('main.topology');
 
             };
-
-
         }];
 
 
