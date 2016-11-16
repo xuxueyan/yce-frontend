@@ -134,7 +134,10 @@ define([
 
             /*添加环境变量*/
             $scope.addEnv = function () {
-                $scope.param.deployment.spec.template.spec.containers[0].env.push({name: '', value: ''});
+                if($scope.param.deployment.spec.template.spec.containers[0].env)
+                    $scope.param.deployment.spec.template.spec.containers[0].env.push({name: '', value: ''});
+                else
+                    $scope.param.deployment.spec.template.spec.containers[0].env = [{name: '', value: ''}];
             };
             /*删除环境变量*/
             $scope.deleteEnv = function ($index) {
@@ -158,6 +161,8 @@ define([
 
                 $scope.param = JSON.parse(data.deployment);
                 $scope.serviceParam = JSON.parse(data.service);
+
+                console.log($scope.param);
 
             });
 
@@ -183,11 +188,14 @@ define([
                 {protocol: "TCP"}
             ];
             $scope.addApplyPort = function () {
-                $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
-            }
+                if($scope.param.deployment.spec.template.spec.containers[0].ports)
+                    $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
+                else
+                    $scope.param.deployment.spec.template.spec.containers[0].ports = [{}];
+            };
             $scope.delApplyPort = function ($index) {
                 $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
-            }
+            };
             $scope.activities = [
                 "TCP",
                 "UDP"
