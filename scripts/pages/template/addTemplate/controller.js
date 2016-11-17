@@ -309,8 +309,8 @@ define([], function() {
                     "selector": {},
                     "ports": [
                         {
-                            "name": "",
-                            "protocol": "",
+                            "name": "port",
+                            "protocol": "TCP",
                             "port": "",
                             "targetPort": "",
                             "nodePort": ""
@@ -319,6 +319,17 @@ define([], function() {
                 }
             }
         };
+
+        $scope.leis = [];
+
+        // // 协议
+        // $scope.portlists = [
+        //     {protocol: "TCP"}
+        // ];
+        $scope.activities = [
+            "TCP",
+            "UDP"
+        ];
 
 
         //   del
@@ -329,7 +340,7 @@ define([], function() {
         $scope.addPort = function () {
             console.log(1234567)
             $scope.serviceParam.service.spec.ports.push({
-                            "name": "",
+                            "name": "port",
                             "protocol": "",
                             "port": "",
                             "targetPort": "",
@@ -346,17 +357,6 @@ define([], function() {
         $scope.serviceDataTrans = {
             dataCenters: []
         };
-
-        $scope.leis = [];
-
-        // 协议
-        $scope.portlists = [
-            {protocol: "TCP"}
-        ];
-        $scope.activities = [
-            "TCP",
-            "UDP"
-        ];
 
         // 选择器
         $scope.Checkeds = [{"mylistKey":"name","mylistValue":""}];
@@ -510,7 +510,7 @@ define([], function() {
             };
 
             templateService.createTemplate(data, function (rep) {
-
+                console.log(angular.toJson(data)+"   --@@== ")
                 if (rep.code == 0) {
                     atomicNotifyService.success(rep.message, 2000);
                 }else {

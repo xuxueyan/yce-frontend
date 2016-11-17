@@ -500,7 +500,7 @@
                                           ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
 
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
-                                            <i class="fa fa-plus-square" ng-click="addPort()"></i>
+                                            <i class="fa fa-plus-square" ng-click="addPort($index)"></i>
                                     </span>
                                 </div>
 
@@ -517,7 +517,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Target Port</span>
-                                                <input type="text" name="serviceTargetPortName"
+                                                <input type="number" name="serviceTargetPortName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.targetPort"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/">
@@ -533,7 +533,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">port</span>
-                                                <input type="text" name="servicePortportName"
+                                                <input type="number" name="servicePortportName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.port"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/">
@@ -543,7 +543,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">NodePort</span>
-                                                <input type="text" class="form-control server-btn"
+                                                <input type="number" class="form-control server-btn"
                                                        ng-disabled="serverDisabled"
                                                        ng-model="portlists.nodePort"
                                                        ng-pattern="/^(?:[0-9]{1,5})$/">
@@ -555,9 +555,6 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <!--<select ng-model="portlists.protocol" class="form-inputs"-->
-                                                <!--ng-options="act for act in activities" ></select>-->
-
                                                 <select ng-model="portlists.protocol" class="form-control">
                                                     <option ng-repeat="act in activities" ng-selected="$first"
                                                             value="{{act}}">{{act}}
