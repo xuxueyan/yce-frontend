@@ -42,16 +42,14 @@ define([
                                 },
                                 ports: [{
                                     name: '',
-                                    hostPort: {},
-                                    containerPort: {},
-                                    protocol: '',
-                                    hostIP: ''
+                                    containerPort: '',
+                                    protocol: ''
+
                                 }],
                                 volumeMounts: [{
                                     name: '',
                                     mountPath: '',
                                     readOnly: true
-
                                 }]
                             }]
                         }
@@ -68,138 +66,7 @@ define([
             advancedChecked: []
         };
 
-        $scope.dataTrans.advancedChecked[1] = false;
-        $scope.stepNum = 1;
-
-        deploymentService.getDeploymentIint({
-            sessionId: $localStorage.sessionId,
-            orgId: $localStorage.orgId,
-            userId: $localStorage.userIid
-        }, function(data) {
-            if (data.code == 0) {
-                $scope.initData = JSON.parse(data.data);
-                //组织名
-                $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
-                $scope.param.orgName = $scope.initData.orgName;
-
-                $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
-            }
-            $scope.nextStep = function(stepNum) {
-                $scope.stepNum = stepNum;
-            };
-        });
-
-        /*添加标签*/
-        $scope.addLabel = function() {
-            $scope.dataTrans.labels.push({ key: '', value: '' });
-        };
-        /*删除标签*/
-        $scope.deleteLabel = function($index) {
-            $scope.dataTrans.labels.splice($index, 1);
-        };
-
-        $scope.addHostPath = function (){
-
-            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
-                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                    name: '',
-                    mountPath: '',
-                    readOnly: true
-                });
-            else
-                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
-                    name: '',
-                    mountPath: '',
-                    readOnly: true
-                }];
-
-        };
-
-        $scope.delHostPath = function ($index){
-            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.splice($index, 1);
-        };
-
-        /*添加环境变量*/
-        $scope.addEnv = function () {
-            if($scope.param.deployment.spec.template.spec.containers[0].env)
-                $scope.param.deployment.spec.template.spec.containers[0].env.push({name: '', value: ''});
-            else
-                $scope.param.deployment.spec.template.spec.containers[0].env = [{name: '', value: ''}];
-        };
-
-        /*删除环境变量*/
-        $scope.deleteEnv = function($index) {
-            $scope.param.deployment.spec.template.spec.containers[0].env.splice($index, 1);
-        };
-        $scope.showImportTem = function (){
-
-            $scope.importTemplateConf = {
-                widgetId: 'widgetImportTemplate',
-                widgetTitle: '选择模版',
-                importTemplate: true
-            };
-
-            $rootScope.widget.widgetImportTemplate = true;
-        };
-        $scope.$on('templateSelector', function(event, data){
-
-            $rootScope.widget.widgetImportTemplate = false;
-
-            $scope.param = JSON.parse(data.deployment);
-            $scope.param.orgId = $localStorage.orgId;
-            $scope.param.userId = $localStorage.userId;
-            $scope.param.sessionId = $localStorage.sessionId;
-
-            angular.forEach($scope.param.dcIdList, function (data, index ,array){
-                var dcId = data;
-                angular.forEach($scope.initData.dataCenters, function (data, index, array){
-                    if(dcId == data.id){
-                        $scope.dataTrans.dataCenters[index] = true;
-                    }
-
-                });
-            });
-
-
-
-        });
-
-
-        /*选择镜像*/
-        $scope.showImageSelector = function() {
-            $scope.imageSelectorConf = {
-                widgetId: 'widgetImageSelector',
-                widgetTitle: '选择镜像',
-                isImageSelector: true
-            };
-            $rootScope.widget.widgetImageSelector = true;
-        };
-        $scope.version = "";
-        /*监听imageSelector(子)页面的emit*/
-        $scope.$on('imageSelector', function(event, data) {
-            $scope.param.deployment.spec.template.spec.containers[0].image = data;
-            $rootScope.widget.widgetImageSelector = false;
-            $scope.version = data.split(":")[2];
-        });
-
-        $scope.param.deployment.spec.template.spec.containers[0].ports = [
-            { protocol: "TCP" }
-        ];
-        $scope.addPort = function() {
-            if($scope.param.deployment.spec.template.spec.containers[0].ports)
-                $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
-            else
-                $scope.param.deployment.spec.template.spec.containers[0].ports = [{}];
-        };
-        $scope.delPort = function($index) {
-            $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
-        };
-        $scope.activities = [
-            "TCP",
-            "UDP"
-        ];
-
-        /*滑块*/
+        //副本数 插件配置
         $scope.slider = {
             value: 1,
             options: {
@@ -213,23 +80,142 @@ define([
             }
         };
 
-        $scope.nameIsExit = function (){
+        //基础,高级选项显示切换
+        $scope.stepNum = 1;
 
+        $scope.nextStep = function(stepNum) {
+            $scope.stepNum = stepNum;
+        };
+
+        var param = {
+            'sessionId': $localStorage.sessionId,
+            'orgId': $localStorage.orgId,
+            'userId': $localStorage.userIid
+        };
+        //创建服务初始化,获取数据中心信息
+        deploymentService.getDeploymentIint(param, function(data) {
+            if (data.code == 0) {
+                $scope.initData = JSON.parse(data.data);
+                //组织名获取
+                $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
+                $scope.param.orgName = $scope.initData.orgName;
+                $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
+            }
+        });
+        //环境变量 添加
+        $scope.addEnv = function () {
+            //导入模版处理
+            if($scope.param.deployment.spec.template.spec.containers[0].env)
+                $scope.param.deployment.spec.template.spec.containers[0].env.push({});
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].env = [{}];
+        };
+        //环境变量 删除
+        $scope.deleteEnv = function($index) {
+            $scope.param.deployment.spec.template.spec.containers[0].env.splice($index, 1);
+        };
+        //开放端口 添加
+        $scope.addPort = function() {
+            if($scope.param.deployment.spec.template.spec.containers[0].ports)
+                $scope.param.deployment.spec.template.spec.containers[0].ports.push({});
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].ports = [{
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                }];
+        };
+        //开放端口 删除
+        $scope.delPort = function($index) {
+            $scope.param.deployment.spec.template.spec.containers[0].ports.splice($index, 1)
+        };
+        //开放端口 协议静态 options
+        $scope.protocolArray = ['TCP', 'UDP'];
+
+        //标签组 添加
+        $scope.addLabel = function() {
+            if($scope.dataTrans.labels)
+                $scope.dataTrans.labels.push({});
+            else
+                $scope.dataTrans.labels = [{}];
+        };
+        //标签组 删除
+        $scope.deleteLabel = function($index) {
+            $scope.dataTrans.labels.splice($index, 1);
+        };
+        //存储卷 添加
+        $scope.addHostPath = function (){
+            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({});
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{}];
+        };
+        //存储卷 删除
+        $scope.delHostPath = function ($index){
+            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.splice($index, 1);
+        };
+        //导入模版 弹窗
+        $scope.showImportTem = function (){
+            $scope.importTemplateConf = {
+                widgetId: 'widgetImportTemplate',
+                widgetTitle: '选择模版',
+                importTemplate: true
+            };
+
+            $rootScope.widget.widgetImportTemplate = true;
+        };
+        //选择模版
+        $scope.$on('templateSelector', function(event, data){
+            $rootScope.widget.widgetImportTemplate = false;
+
+            $scope.param = JSON.parse(data.deployment);
+            $scope.param.orgId = $localStorage.orgId;
+            $scope.param.userId = $localStorage.userId;
+            $scope.param.sessionId = $localStorage.sessionId;
+            $scope.param.deployment.metadata.name = '';
+            $scope.version = $scope.param.deployment.spec.template.spec.containers[0].image.split(":")[2];
+
+            //数据中心选中 dcList -> BUG
+            angular.forEach($scope.param.dcIdList, function (data){
+                var dcId = data;
+                angular.forEach($scope.initData.dataCenters, function (data, index){
+                    if(dcId == data.id){
+                        $scope.dataTrans.dataCenters[index] = true;
+                    }
+                });
+            });
+        });
+
+        //选择镜像 弹窗
+        $scope.showImageSelector = function() {
+            $scope.imageSelectorConf = {
+                widgetId: 'widgetImageSelector',
+                widgetTitle: '选择镜像',
+                isImageSelector: true
+            };
+            $rootScope.widget.widgetImageSelector = true;
+        };
+
+        //选择镜像后操作
+        $scope.$on('imageSelector', function(event, data) {
+            $rootScope.widget.widgetImageSelector = false;
+            $scope.param.deployment.spec.template.spec.containers[0].image = data;
+            $scope.version = data.split(":")[2];
+        });
+
+        //验证应用名是否存在
+        $scope.nameIsExit = function (){
             if($scope.param.deployment.metadata.name !='' && $scope.param.deployment.metadata.name != undefined){
                 var param = {
                     orgId: $localStorage.orgId,
                     userId: $localStorage.userId,
                     sessionId: $localStorage.sessionId,
-                    "name": $scope.param.deployment.metadata.name
+                    name: $scope.param.deployment.metadata.name
                 };
                 deploymentService.applyNameisExit(param, function(res){
                     if(res.code == 1415){
                         $scope.applyTips = false;
                         $scope.applyNameExit = true;
-                        $scope.submit = function(){
-                            return;
-                        }
-
                     }else{
                         $scope.applyTips = true;
                         $scope.applyNameExit = false;
@@ -242,13 +228,10 @@ define([
             }
         };
 
-        /*提交表单*/
-        $scope.submit = function() {
+        //发布应用
+        $scope.submitApply = function() {
 
-            $scope.param.deployment.spec.template.spec.containers[0].ports.forEach(function(m) {
-                m.containerPort = Number(m.containerPort);
-            });
-
+            //HostPath Name值传入param .. volumes中
             angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
                 $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
             });
@@ -261,6 +244,7 @@ define([
 
             $scope.param.appName = $scope.param.deployment.metadata.name;
 
+            //dcLict BUG -> 数组去重等处理
             $scope.dataTrans.dataCenters.forEach(function(elem, index) {
                 if (elem) {
                     if(! utils.findInArr($scope.param.dcIdList, $scope.initData.dataCenters[index].id))
@@ -269,12 +253,14 @@ define([
                     $scope.param.dcIdList.shift($scope.initData.dataCenters[index].id);
                 }
             });
+
             $scope.dataTrans.labels.forEach(function(elem, index) {
                 $scope.param.deployment.metadata.labels[elem.key] = elem.value;
             });
             var limits = $scope.initData.quotas.filter(function(item) {
                 return item.id == $scope.dataTrans.quotas;
             })[0];
+
             $scope.param.deployment.spec.template.spec.containers[0].resources.limits = {
                 cpu: limits.cpu + '000m',
                 memory: limits.mem + '000M'
@@ -298,14 +284,14 @@ define([
                     atomicNotifyService.success(rep.message, 2000);
                     $timeout(function() {
                         $state.go('main.appManage');
-                    }, 500);
+                    }, 1000);
                 } else {
                     atomicNotifyService.error(rep.message, 2000);
                     $timeout(function() {
                         $state.go('main.appManage');
-                    }, 500);
+                    }, 1000);
                 }
-                
+
             }, function(rep) {
                 atomicNotifyService.error(rep.message, 2000);
             });
@@ -314,7 +300,6 @@ define([
         // Image
         deploymentService.delploymentImage('', function(data) {
             var dataObject = JSON.parse(data.data);
-
             // make new images:tags
             var imageArr = new Array();
             var k = 0;
@@ -333,8 +318,6 @@ define([
                     $scope.param.deployment.metadata.labels.version = $1;
                 });
             }
-        }, function() {
-            alert("getImages error");
         })
 
     }];

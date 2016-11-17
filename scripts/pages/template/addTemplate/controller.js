@@ -1,34 +1,27 @@
 /**
  * Created by Jora on 2016/7/29.
  */
-define([], function() {
+define([
+    'utils'
+    ], function(utils) {
     'use strict';
-
-
     var ctrl = ['$scope', 'addTemplateService', '$localStorage', 'deploymentService', 'extensionsService', '$rootScope', 'templateService', 'atomicNotifyService', '$stateParams', function($scope, addTemplateService, $localStorage, deploymentService, extensionsService, $rootScope, templateService, atomicNotifyService, $stateParams) {
 
         $scope.showService = function () {
             $scope.serviceShow = true;
             $scope.applyShow = false;
 
-            //$scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
-            //$scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
-            //
-            //if($scope.param.deployment.spec.template.spec.containers[0].ports[0]!= undefined)
-            //    $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
-            //
-            //$scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
         };
 
-        
-        
-        
         $scope.showApply = function () {
             $scope.serviceShow = false;
             $scope.applyShow = true;
         };
 
         $scope.param = {
+            orgId: $localStorage.orgId,
+            userId: $localStorage.userId,
+            sessionId: $localStorage.sessionId,
             dcIdList: [],
             deployment: {
                 metadata: {
@@ -83,9 +76,8 @@ define([], function() {
             advancedChecked: []
         };
 
+
         $scope.dataTrans.advancedChecked[1] = false;
-
-
 
         deploymentService.getDeploymentIint({
             sessionId: $localStorage.sessionId,
@@ -113,11 +105,18 @@ define([], function() {
         };
 
         $scope.addHostPath = function (){
-            $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
-                name: '',
-                mountPath: '',
-                readOnly: true
-            });
+            if($scope.param.deployment.spec.template.spec.containers[0].volumeMounts)
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts.push({
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                });
+            else
+                $scope.param.deployment.spec.template.spec.containers[0].volumeMounts = [{
+                    name: '',
+                    mountPath: '',
+                    readOnly: true
+                }];
         };
 
         $scope.delHostPath = function ($index){
@@ -325,16 +324,17 @@ define([], function() {
         $scope.delLabels = function ($index) {
             $scope.leis.splice($index, 1);
         };
-        var i = 1;
+
         $scope.addPort = function () {
-            console.log(1234567)
+
             $scope.serviceParam.service.spec.ports.push({
-                            "name": "",
+                            "name": "name",
                             "protocol": "",
                             "port": "",
                             "targetPort": "",
                             "nodePort": ""
-                        });
+            });
+
         };
         //   del
         $scope.delPort = function ($index) {
@@ -420,9 +420,13 @@ define([], function() {
                 "version": $scope.version
             };
             $scope.param.appName = $scope.param.deployment.metadata.name;
+
             $scope.dataTrans.dataCenters.forEach(function(elem, index) {
                 if (elem) {
-                    $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
+                    if(! utils.findInArr($scope.param.dcIdList, $scope.initData.dataCenters[index].id))
+                        $scope.param.dcIdList.push($scope.initData.dataCenters[index].id);
+                }else {
+                    $scope.param.dcIdList.shift($scope.initData.dataCenters[index].id);
                 }
             });
             $scope.dataTrans.labels.forEach(function(elem, index) {
@@ -467,9 +471,7 @@ define([], function() {
             });
 
             // 数据中心 ok
-            //$scope.serviceDataTrans.dataCenters.forEach
             $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
-
                 if (elem) {
                     $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
                 }

@@ -20,9 +20,11 @@ define([
 
                     $scope.totalNum = $scope.appList[0].deployments.length;
 
-                    if($scope.appList[0].deployments.length % 5 == 0)
-                        page = page -1;
-
+                    if($scope.appList[0].deployments.length % 5 == 0){
+                        page = page -1 ;
+                        if(page == 0)
+                            page = 1;
+                    }
 
                     $scope.pagList = $scope.appList[0].deployments.slice((page - 1) * 5, page * 5);
                 }
