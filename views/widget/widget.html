@@ -5,7 +5,7 @@
             <div ui-app-pod-detail ng-if="config.isAppPodDetail" original-data="config.data"></div>
             <div ui-app-deploy-detail ng-if="config.isAppDeployDetail" original-data="config.data"></div>
             <div ui-app-rollingup ng-if="config.isRollingup" original-data="config.data"></div>
-            <div ui-app-rollback ng-if="config.isRollback" original-data="config.data"></div>
+            <div ui-app-rollback ng-if="config.isRollback" original-data="confaig.data"></div>
             <div ui-app-scale ng-if="config.isScale" original-data="config.data"></div>
             <div ui-app-delete ng-if="config.isDelete" original-data="config.data"></div>
             <div ui-image-selector ng-if="config.isImageSelector"></div>
@@ -20,6 +20,7 @@
             <div ui-dcdata-delete ng-if="config.isDcManageDel" original-data="config.data"></div>
             <div ui-updata ng-if="config.isDcManageUpdata" original-data="config.data"></div>
             <div ui-deltemplate ng-if="config.isDelTemplate" original-data="config.data"></div>
+            <div ui-extensions-del ng-if="config.isDelExtensions" original-data="config.data"></div>
 
         </div>
         <div class="widget-close" ng-click="closeWidget(config.widgetId)">×</div>

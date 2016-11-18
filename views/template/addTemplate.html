@@ -123,7 +123,7 @@
                                     <label class="form-label">开放端口：</label>
                                     <span class="warn" ng-show="apply.portName.$error.pattern">名称格式不正确</span>
                                     <span class="warn"
-                                          ng-show="apply.containerPortName.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535</span>
+                                          ng-show="apply.containerPortName.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535 之间的数字</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addApplyPort()"></i>
                                     </span>
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 padding-bottom-30">
-                                <div class="text-left">
+                                <div class="form-group">
                                     <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit"> 下一步</button>
                                     <a class="pull-right walkthrogh_more" href="javascript:void(0);" ng-click="nextStep(2)">更多高级配置</a>
                                 </div>
@@ -179,228 +179,226 @@
                 <div class="content-body">
                     <div class="row">
                         <div class="col-xs-12 col-sm-9 col-md-8">
-                            <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
-                                <div class="form-group labels-group labels-group-box">
-                                    <div class="controls row">
-                                        <label class="form-label">标签组：</label>
-                                        <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
-                                            <i class="fa fa-plus-square" ng-click="addLabel()"></i>
-                                        </span>
-                                    </div>
-                                    <div class="controls row">
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Key</span>
-                                                <p class="form-control">name</p>
-                                            </div>
-                                        </div>
-                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Value</span>
-                                                <p class="form-control">{{param.deployment.metadata.name}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="controls row">
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Key</span>
-                                                <p class="form-control">version</p>
-                                            </div>
-                                        </div>
-                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Value</span>
-                                                <p class="form-control">{{version}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="controls row">
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Key</span>
-                                                <p class="form-control">author</p>
-                                            </div>
-                                        </div>
-                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Value</span>
-                                                <p class="form-control">{{dataTrans.author}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="controls row" ng-repeat="label in dataTrans.labels">
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Key</span>
-                                                <input type="text" class="form-control" ng-model="label.key">
-                                            </div>
-                                        </div>
-                                        <div class="delimiter"><i class="fa fa-minus"></i></div>
-                                        <div class="col-sm-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">Value</span>
-                                                <input type="text" class="form-control" ng-model="label.value">
-                                            </div>
-                                        </div>
-                                        <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
-                                            <i class="fa fa-minus-square" ng-click="deleteLabel($index)"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[0]">
-                                    <label class="form-label">健康检查</label>
-                                    <span class="desc">确定应用的健康程度</span>
-                                    <div class="row row-box-1">
-                                        <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
-                                            <label class="form-label">HTTP</label>
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">URL</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[0]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.path">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">Port</span>
-                                            <input type="number" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[0]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.port">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">每隔</span>
-                                            <input type="number" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[0]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.periodSeconds">
-                                            <span class="input-group-addon">秒</span>
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">生效时间</span>
-                                            <input type="number" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[0]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">
-                                            <span class="input-group-addon">秒</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[1]">
-                                    <label class="form-label">存储卷(HostPath)</label>
+                            <div class="form-group">
+                                <div class="controls row">
+                                    <label class="form-label">标签组：</label>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
-                                            <i class="fa fa-plus-square" ng-click="addHostPath()"></i>
+                                        <i class="fa fa-plus-square" ng-click="addLabel()"></i>
                                     </span>
-                                    <div class="row row-box-1" ng-repeat="item in param.deployment.spec.template.spec.containers[0].volumeMounts">
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">name</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{param.deployment.metadata.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">version</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{version}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <p class="form-control">author</p>
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <p class="form-control">{{dataTrans.author}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="controls row" ng-repeat="label in dataTrans.labels">
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Key</span>
+                                            <input type="text" class="form-control" ng-model="label.key">
+                                        </div>
+                                    </div>
+                                    <div class="delimiter"><i class="fa fa-minus"></i></div>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Value</span>
+                                            <input type="text" class="form-control" ng-model="label.value">
+                                        </div>
+                                    </div>
+                                    <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-minus-square" ng-click="deleteLabel($index)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[0]">
+                                <label class="form-label">健康检查</label>
+                                <span class="desc">确定应用的健康程度</span>
+                                <div class="row row-box-1">
+                                    <div class="controls col-sm-10 col-sm-push-1 col-xs-12">
+                                        <label class="form-label">HTTP</label>
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">URL</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[0]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.path">
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">Port</span>
+                                        <input type="number" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[0]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.httpGet.port">
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">每隔</span>
+                                        <input type="number" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[0]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.periodSeconds">
+                                        <span class="input-group-addon">秒</span>
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">生效时间</span>
+                                        <input type="number" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[0]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">
+                                        <span class="input-group-addon">秒</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[1]">
+                                <label class="form-label">存储卷(HostPath)</label>
+                                <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
+                                        <i class="fa fa-plus-square" ng-click="addHostPath()"></i>
+                                </span>
+                                <div class="row row-box-1" ng-repeat="item in param.deployment.spec.template.spec.containers[0].volumeMounts">
 
-                                        <span class="icon-minus fr" ng-hide="$index == 0">
-                                            <i class="fa fa-minus-square" ng-click="delHostPath($index)"></i>
-                                        </span>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">名称</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="item.name">
-                                        </div>
+                                    <span class="icon-minus fr" ng-hide="$index == 0">
+                                        <i class="fa fa-minus-square" ng-click="delHostPath($index)"></i>
+                                    </span>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">名称</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[1]"
+                                               ng-model="item.name">
+                                    </div>
 
 
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">应用目录</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="item.mountPath">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">宿主文件</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[1]"
-                                                   ng-model="param.deployment.spec.template.spec.volumes[$index].hostPath.path">
-                                        </div>
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">只读</span>
-                                            <!--<input type="radio" class="form-control"-->
-                                            <!--ng-disabled="!dataTrans.advancedChecked[1]"-->
-                                            <!--ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">-->
-                                            <input type="radio" class="hostReadonlyRadio fl"
-                                                   ng-model="item.readOnly"
-                                                   name="HostPathReadonly{{$index}}"
-                                                   ng-value="true"
-                                                   ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly1">
-                                            <label for="hostReadonly1" class="hostReadonlyLable fl">是</label>
-                                            <input type="radio" class="hostReadonlyRadio fl"
-                                                   name="HostPathReadonly{{$index}}"
-                                                   ng-value="false"
-                                                   ng-model="item.readOnly"
-                                                   ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly2">
-                                            <label for="hostReadonly2" class="hostReadonlyLable fl">否</label>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">应用目录</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[1]"
+                                               ng-model="item.mountPath">
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">宿主文件</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[1]"
+                                               ng-model="param.deployment.spec.template.spec.volumes[$index].hostPath.path">
+                                    </div>
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">只读</span>
+                                        <!--<input type="radio" class="form-control"-->
+                                        <!--ng-disabled="!dataTrans.advancedChecked[1]"-->
+                                        <!--ng-model="param.deployment.spec.template.spec.containers[0].livenessProbe.initialDelaySeconds">-->
+                                        <input type="radio" class="hostReadonlyRadio fl"
+                                               ng-model="item.readOnly"
+                                               name="HostPathReadonly{{$index}}"
+                                               ng-value="true"
+                                               ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly1">
+                                        <label for="hostReadonly1" class="hostReadonlyLable fl">是</label>
+                                        <input type="radio" class="hostReadonlyRadio fl"
+                                               name="HostPathReadonly{{$index}}"
+                                               ng-value="false"
+                                               ng-model="item.readOnly"
+                                               ng-disabled="!dataTrans.advancedChecked[1]" id="hostReadonly2">
+                                        <label for="hostReadonly2" class="hostReadonlyLable fl">否</label>
 
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[2]">
-                                    <label class="form-label">启动准备</label>
-                                    <span class="desc"></span>
-                                    <div class="row">
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">脚本</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[2]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.postStart.exec.command[0]">
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[2]">
+                                <label class="form-label">启动准备</label>
+                                <span class="desc"></span>
+                                <div class="row">
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">脚本</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[2]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.postStart.exec.command[0]">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[3]">
-                                    <label class="form-label">优雅停止</label>
-                                    <span class="desc">在应用结束后做好收尾工作</span>
-                                    <div class="row">
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">脚本</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[3]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.preStop.exec.command[0]">
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[3]">
+                                <label class="form-label">优雅停止</label>
+                                <span class="desc">在应用结束后做好收尾工作</span>
+                                <div class="row">
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">脚本</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[3]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].lifecycle.preStop.exec.command[0]">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[4]">
-                                    <label class="form-label">执行命令</label>
-                                    <span class="desc">除应用外还需执行的命令</span>
-                                    <div class="row">
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">脚本</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[4]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].command[0]">
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[4]">
+                                <label class="form-label">执行命令</label>
+                                <span class="desc">除应用外还需执行的命令</span>
+                                <div class="row">
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">脚本</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[4]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].command[0]">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" class="skin-square-blue"
-                                           ng-model="dataTrans.advancedChecked[5]">
-                                    <label class="form-label">参数</label>
-                                    <span class="desc">执行命令所需的参数</span>
-                                    <div class="row">
-                                        <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
-                                            <span class="input-group-addon">脚本</span>
-                                            <input type="text" class="form-control"
-                                                   ng-disabled="!dataTrans.advancedChecked[5]"
-                                                   ng-model="param.deployment.spec.template.spec.containers[0].args[0]">
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="skin-square-blue"
+                                       ng-model="dataTrans.advancedChecked[5]">
+                                <label class="form-label">参数</label>
+                                <span class="desc">执行命令所需的参数</span>
+                                <div class="row">
+                                    <div class="controls input-group col-sm-10 col-sm-push-1 col-xs-12">
+                                        <span class="input-group-addon">脚本</span>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!dataTrans.advancedChecked[5]"
+                                               ng-model="param.deployment.spec.template.spec.containers[0].args[0]">
                                     </div>
                                 </div>
-                                <div class="text-left">
-                                    <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit"> 下一步</button>
-                                    <a class="pull-right walkthrogh_more" href="javascript:void(0);" ng-click="nextStep(1)">返回基础配置</a>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" ng-click="apply.$invalid? return: showService()" ng-disabled="apply.$invalid || applyNameExit || templateNameExit"> 下一步</button>
+                                <a class="pull-right walkthrogh_more" href="javascript:void(0);" ng-click="nextStep(1)">返回基础配置</a>
                             </div>
                         </div>
                     </div>
@@ -436,11 +434,11 @@
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="data-center">
                                     <label class="server-servers ngs_hide" ng-repeat="i in extentServerLei.dataCenters"
-                                           ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
-                                        <input type="checkbox" ng-true-value="true" ng-false-value="false"
-                                               ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
+                                           ng-class="{radio_bg:serviceDataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" ng-model="serviceDataTrans.dataCenters[$index]" value="{{i.id}}">
                                         {{i.name}}
                                     </label>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -497,10 +495,10 @@
                                     <label class="form-label">端口组：</label>
                                     <span class="desc show-spans-1" ng-show=" service.servicePortName.$error.pattern">您输入的格式不正确</span>
                                     <span class="desc show-spans-1"
-                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
+                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">Target Port、Port值应为1 - 65525之间的数字</span>
 
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
-                                            <i class="fa fa-plus-square" ng-click="addPort()"></i>
+                                            <i class="fa fa-plus-square" ng-click="addPort($index)"></i>
                                     </span>
                                 </div>
 
@@ -517,7 +515,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Target Port</span>
-                                                <input type="text" name="serviceTargetPortName"
+                                                <input type="number" name="serviceTargetPortName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.targetPort"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/">
@@ -532,8 +530,8 @@
                                     <div class="controls row">
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <span class="input-group-addon">port</span>
-                                                <input type="text" name="servicePortportName"
+                                                <span class="input-group-addon">Port</span>
+                                                <input type="number" name="servicePortportName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.port"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/">
@@ -543,7 +541,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">NodePort</span>
-                                                <input type="text" class="form-control server-btn"
+                                                <input type="number" class="form-control server-btn"
                                                        ng-disabled="serverDisabled"
                                                        ng-model="portlists.nodePort"
                                                        ng-pattern="/^(?:[0-9]{1,5})$/">
@@ -555,9 +553,6 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <!--<select ng-model="portlists.protocol" class="form-inputs"-->
-                                                <!--ng-options="act for act in activities" ></select>-->
-
                                                 <select ng-model="portlists.protocol" class="form-control">
                                                     <option ng-repeat="act in activities" ng-selected="$first"
                                                             value="{{act}}">{{act}}
