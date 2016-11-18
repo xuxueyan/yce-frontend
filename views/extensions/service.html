@@ -114,7 +114,7 @@
                                                 <span class="input-group-addon">名称</span>
                                                 <input type="text" name="servicePortName"
                                                        class="form-control server-btn" ng-model="portlists.name"
-                                                       ng-pattern="/^[a-z0-9_-]*$/" required readonly>
+                                                       ng-pattern="/^[a-z0-9_-]*$/" ng-init="portlists.name = 'name' +($index + 1)" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -161,14 +161,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <!--<select ng-model="portlists.protocol" class="form-inputs"-->
-                                                        <!--ng-options="act for act in activities" ></select>-->
-
-                                                <select ng-model="portlists.protocol" class="form-control">
-                                                    <option ng-repeat="act in activities" ng-selected="$first"
-                                                            value="{{act}}">{{act}}
-                                                    </option>
-                                                </select>
+                                                <select ng-model="portlists.protocol" class="form-control" ng-options="x for x in protocolArray"></select>
                                             </div>
                                         </div>
 
@@ -274,7 +267,7 @@
 
                                 <div class="col-xs-12 col-sm-9 col-md-8 padding-bottom-30">
                                     <div class="text-left">
-                                        <button class="btn btn-primary" ng-disabled="login.$invalid">提交</button>
+                                        <button class="btn btn-primary" ng-disabled="login.$invalid || nameExit">提交</button>
                                     </div>
                                 </div>
                             </div>

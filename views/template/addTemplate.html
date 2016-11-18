@@ -123,7 +123,7 @@
                                     <label class="form-label">开放端口：</label>
                                     <span class="warn" ng-show="apply.portName.$error.pattern">名称格式不正确</span>
                                     <span class="warn"
-                                          ng-show="apply.containerPortName.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535</span>
+                                          ng-show="apply.containerPortName.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535 之间的数字</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addApplyPort()"></i>
                                     </span>
@@ -134,7 +134,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon">名称</span>
                                                 <input type="text" class="form-control server-btn" name="portName"
-                                                       ng-model="port.name" ng-pattern="/^[a-z0-9_-]*$/" ng-init="port.name = 'port'+ ($index+1)">
+                                                       ng-model="port.name" ng-pattern="/^[a-z0-9_-]*$/">
                                             </div>
                                         </div>
                                         <div class="delimiter"><i class="fa fa-minus"></i></div>
@@ -149,11 +149,7 @@
                                         <div class="col-sm-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <select ng-model="port.protocol" class="form-control">
-                                                    <option ng-repeat="item in activities" ng-selected="$first"
-                                                            value="{{item}}">{{item}}
-                                                    </option>
-                                                </select>
+                                                <select ng-model="port.protocol" class="form-control" ng-options="x for x in protocolArray"></select>
                                             </div>
                                         </div>
                                         <span class="icon-minus col-sm-1 pull-right col-sm-pull-1">
@@ -434,17 +430,17 @@
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="data-center">
                                     <label class="server-servers ngs_hide" ng-repeat="i in extentServerLei.dataCenters"
-                                           ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
-                                        <input type="checkbox" ng-true-value="true" ng-false-value="false"
-                                               ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
+                                           ng-class="{radio_bg:serviceDataTrans.dataCenters[$index]}">
+                                        <input type="checkbox" ng-model="serviceDataTrans.dataCenters[$index]" value="{{i.id}}">
                                         {{i.name}}
                                     </label>
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">服务类型：</label>
                                 <span class="desc"></span>
-                                <div class="data-center" ng-init="serverRadios = 1">
+                                <div class="data-center" ng-init="serverRadios = 0">
                                     <label class="server-servers" ng-class="{radio_bg: serverRadios == 0}">
                                         <input type="radio" name="dataCenters" ng-model="serverRadios" value="0"
                                                ng-click="serverClick1()"> ClusterIP
@@ -495,7 +491,7 @@
                                     <label class="form-label">端口组：</label>
                                     <span class="desc show-spans-1" ng-show=" service.servicePortName.$error.pattern">您输入的格式不正确</span>
                                     <span class="desc show-spans-1"
-                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">请输入1 - 65525之间的数字</span>
+                                          ng-show=" !service.servicePortName.$error.pattern && (service.servicePortportName.$error.pattern || service.serviceTargetPortName.$error.pattern)">Target Port、Port值应为1 - 65525之间的数字</span>
 
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                             <i class="fa fa-plus-square" ng-click="addPort($index)"></i>
@@ -509,7 +505,7 @@
                                                 <span class="input-group-addon">名称</span>
                                                 <input type="text" name="servicePortName"
                                                        class="form-control server-btn" ng-model="portlists.name"
-                                                       ng-pattern="/^[a-z0-9_-]*$/" readonly>
+                                                       ng-pattern="/^[a-z0-9_-]*$/" ng-init="portlists.name = 'name'+ ($index + 1)">
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -530,7 +526,7 @@
                                     <div class="controls row">
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <span class="input-group-addon">port</span>
+                                                <span class="input-group-addon">Port</span>
                                                 <input type="number" name="servicePortportName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.port"
@@ -553,10 +549,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">协议</span>
-                                                <select ng-model="portlists.protocol" class="form-control">
-                                                    <option ng-repeat="act in activities" ng-selected="$first"
-                                                            value="{{act}}">{{act}}
-                                                    </option>
+                                                <select ng-model="portlists.protocol" class="form-control" ng-options="x for x in protocolArray">
                                                 </select>
                                             </div>
                                         </div>
