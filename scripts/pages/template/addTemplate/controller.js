@@ -492,7 +492,7 @@ define([
         /*点击更新，跳到创建模板页面，被传递过来的参数填充创建模板页面，作为修改*/
         if($stateParams.message){
 
-            $scope.param = JSON.parse($stateParams.message.deployment);
+            $scope.param = $stateParams.message.deployment;
             //应用模版 数据中心选中
 
             var activeAppDc = function (){
@@ -517,7 +517,7 @@ define([
             //模版名称
             $scope.templateName = $stateParams.message.name;
 
-            $scope.serviceParam = JSON.parse($stateParams.message.service);
+            $scope.serviceParam = $stateParams.message.service;
 
 
             var NewSelector = $scope.serviceParam.service.spec.selector;
