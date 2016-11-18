@@ -270,12 +270,7 @@ define([
                 "spec": {
                     "type": "",
                     "selector": {},
-                    "ports": [
-                        {
-                            "name": "name1",
-                            "protocol": "TCP"
-                      }
-                    ]
+                    "ports": [{}]
                 }
             }
         };
@@ -292,10 +287,6 @@ define([
             dataCenters : []
         };
         var demoss = "";
-        $scope.activities =[
-            "TCP",
-            "UDP"
-        ];
 
         extensionsService.CreatService(myParam,function(data){
             $scope.extentServerLei = JSON.parse(data.data);
@@ -322,12 +313,8 @@ define([
             $scope.leis.splice($index,1);
         };
         //端口 添加
-        var i = 1;
         $scope.addPort = function () {
-            i++;
-            $scope.serviceParam.service.spec.ports.push({
-                "name": "name"+i
-            });
+            $scope.serviceParam.service.spec.ports.push({});
         };
         //端口 删除
         $scope.delPort = function ($index) {
@@ -450,6 +437,8 @@ define([
                 }
             });
             var demoss = $scope.extentServerLei.orgName;
+
+            $scope.sessionName = $localStorage.userName;
             $scope.serviceParam.service.metadata.labels.name = $scope.serviceParam.serviceName;
             $scope.serviceParam.service.metadata.labels.author = $scope.sessionName;
             $scope.serviceParam.service.metadata.labels.namespace = demoss;
