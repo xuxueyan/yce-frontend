@@ -3,6 +3,6 @@
         <input type="text" ng-model="filterTemplate">
     </div>
     <ul class="image-list">
-        <li ng-repeat="item in templateList.templates" ng-click="clickSelector(item)"><i>{{$index+1}}</i>{{item.name}}</li>
+        <li ng-repeat="item in templateList.templates | filter:filterTemplate" ng-click="clickSelector(item)"><i>{{$index+1}}</i>{{item.name}}</li>
     </ul>
 </div>
