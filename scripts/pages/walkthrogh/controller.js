@@ -15,12 +15,15 @@ define([
                 $scope.serviceShow = true;
                 $scope.applyShow = false;
 
-                $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
-                $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+                if($scope.param.deployment.metadata.name){
+                    $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
+                    $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+                }
+                if($scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort){
+                    $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+                    $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+                }
 
-                $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
-
-                $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
             };
 
             $scope.showApply = function () {
