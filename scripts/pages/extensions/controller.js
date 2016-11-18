@@ -114,7 +114,7 @@ define([
                     "ports": [
                         {
                             "name": "name1",
-                            "protocol": "TCP",
+                            "protocol": "TCP"
                         }
                     ]
                 }
@@ -190,9 +190,6 @@ define([
                 extensionsService.serviceExit(param, function(res){
                     if(res.code == 1415){
                         $scope.nameExit = true;
-                        $scope.serversubmit = function(){
-                            return;
-                        }
                     }else{
                         $scope.nameExit = false;
                     }

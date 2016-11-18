@@ -101,6 +101,9 @@ define([
                 $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
                 $scope.param.orgName = $scope.initData.orgName;
                 $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
+
+                if($stateParams.message)
+                    activeAppDc();
             }
         });
 
@@ -112,9 +115,11 @@ define([
                 $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
                 $scope.param.orgName = $scope.initData.orgName;
                 $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
+
+                if($stateParams.message)
+                    activeSvcDc();
             }
         });
-            console.log($scope.initData)
         //环境变量 添加
         $scope.addEnv = function () {
             //导入模版处理
@@ -268,7 +273,7 @@ define([
                     "ports": [
                         {
                             "name": "name1",
-                            "protocol": "TCP",
+                            "protocol": "TCP"
                       }
                     ]
                 }
@@ -277,7 +282,7 @@ define([
         var myParam = {
             orgId: $localStorage.orgId,
             userId: $localStorage.userId,
-            sessionId: $localStorage.sessionId,
+            sessionId: $localStorage.sessionId
         };
         $scope.leis = [];
         $scope.formData = {};
@@ -435,10 +440,13 @@ define([
                 }
             });
 
-            // 数据中心 
-            $scope.extentServerLei.dataCenters.forEach(function (elem, index) {
+            // 数据中心 BUG
+            $scope.serviceDataTrans.dataCenters.forEach(function (elem, index) {
                 if (elem) {
-                    $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                    if(! utils.findInArr($scope.serviceParam.dcIdList, $scope.extentServerLei.dataCenters[index].id))
+                        $scope.serviceParam.dcIdList.push($scope.extentServerLei.dataCenters[index].id);
+                }else{
+                    $scope.serviceParam.dcIdList.shift($scope.extentServerLei.dataCenters[index].id);
                 }
             });
             var demoss = $scope.extentServerLei.orgName;
@@ -462,7 +470,7 @@ define([
                 if (num.nodePort != null) {
                     $scope.amock = num.nodePort;
                 }
-            })
+            });
            
 
 
@@ -493,23 +501,56 @@ define([
 
         /*点击更新，跳到创建模板页面，被传递过来的参数填充创建模板页面，作为修改*/
         if($stateParams.message){
-            $scope.param = JSON.parse($stateParams.message.deployment);
 
-        
+            $scope.param = JSON.parse($stateParams.message.deployment);
+            //应用模版 数据中心选中
+
+            console.log($scope.param);
+
+            var activeAppDc = function (){
+                if($scope.initData){
+                    angular.forEach($scope.param.dcIdList, function (data){
+                        var dcId = data;
+                        angular.forEach($scope.initData.dataCenters, function (data, index){
+                            if(dcId == data.id){
+                                $scope.dataTrans.dataCenters[index] = true;
+                            }
+                        });
+                    });
+                }
+            };
+
+
+
+
+
+
+
+            //模版名称
             $scope.templateName = $stateParams.message.name;
+
             $scope.serviceParam = JSON.parse($stateParams.message.service);
+
+
             var NewSelector = $scope.serviceParam.service.spec.selector;
             $scope.Checkeds =[];
             for(var i in NewSelector){
                 $scope.Checkeds.push({"mylistKey":i,"mylistValue":NewSelector[i]});
             }
 
+            var activeSvcDc = function (){
+                if($scope.extentServerLei){
+                    angular.forEach($scope.serviceParam.dcIdList, function (data){
+                        var dcId = data;
+                        angular.forEach($scope.extentServerLei.dataCenters, function (data, index){
+                            if(dcId == data.id){
+                                $scope.serviceDataTrans.dataCenters[index] = true;
+                            }
+                        });
+                    });
+                }
 
-
-
-
-
-
+            };
 
 
 
