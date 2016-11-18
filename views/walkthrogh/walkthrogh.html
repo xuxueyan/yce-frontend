@@ -3,13 +3,11 @@
         <div class="page-title">
             <h1 class="title">绿色通道
                 <button class="btn btn-primary fr" ng-click="showImportTem()"> 导入模版</button>
-
-
             </h1>
         </div>
     </div>
     <div class="col-xs-12" ng-show="applyShow" ng-init="applyShow = true">
-        <form name="login">
+        <form name="apply">
             <section class="box" ng-show="stepNum == 1">
                 <header class="panel_header">
                     <div class="rateArea clearfix">
@@ -31,14 +29,13 @@
                                 <label class="form-label">应用名：</label>
                                 <span class="desc" ng-show="applyTips"> 应用名是您将要创建的应用的名称,组织内唯一</span>
                                 <span class="warn" ng-show="applyNameExit">应用名已存在,请重新输入</span>
-                                <span class="warn" ng-show="applyNameExit? false : login.applyName.$error.pattern;">您的应用名不正确</span>
+                                <span class="warn" ng-show="applyNameExit? false : apply.applyName.$error.pattern;">您的应用名不正确</span>
 
                                 <div class="controls">
                                     <input type="text" name="applyName" class="form-control"
-                                           ng-model="param.deployment.metadata.name"
-
+                                           ng-model="param.deployment.metadata.name" 
                                            ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/" ng-focus="applyTips = false"
-                                           ng-blur="login.applyName.$error.pattern ? return : nameIsExit();"
+                                           ng-blur="apply.applyName.$error.pattern ? return : nameIsExit();"
                                            required>
                                 </div>
                             </div>
@@ -126,9 +123,9 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <label class="form-label">开放端口：</label>
-                                    <span class="warn" ng-show="login.portName.$error.pattern">名称格式不正确</span>
+                                    <span class="warn" ng-show="apply.portName.$error.pattern">名称格式不正确</span>
                                     <span class="warn"
-                                          ng-show="login.containerPort.$error.pattern && !login.portName.$error.pattern">端口值应为 1-65535 之间的数字</span>
+                                          ng-show="apply.containerPort.$error.pattern && !apply.portName.$error.pattern">端口值应为 1-65535 之间的数字</span>
                                     <span class="icon-plus col-sm-1 pull-right col-sm-pull-1">
                                         <i class="fa fa-plus-square" ng-click="addApplyPort()"></i>
                                     </span>
@@ -166,7 +163,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary" ng-disabled="login.$invalid || applyNameExit" ng-click="showService()"> 下一步</button>
+                                <button class="btn btn-primary" ng-disabled="apply.$invalid || applyNameExit" ng-click="showService()"> 下一步</button>
                                 <a class="pull-right walkthrogh_more" href="javascript:;" ng-click="nextStep(2)">更多高级配置</a>
                             </div>
                         </div>
@@ -407,7 +404,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary" ng-disabled="login.$invalid || applyNameExit" ng-click="showService()"> 下一步</button>
+                                <button class="btn btn-primary" ng-disabled="apply.$invalid || applyNameExit" ng-click="showService()"> 下一步</button>
                                 <a class="pull-right walkthrogh_more" href="javascript:;" ng-click="nextStep(1)">返回基础配置</a>
 
                             </div>
