@@ -15,21 +15,36 @@ define([
             sessionId: $localStorage.sessionId,
         };
         //服务管理列表
-        $scope.extensionsPage = function(){
-            extensionsService.serviceManages(myParam,function(data){
+        $scope.nowPage = 1;
+        $scope.extensionsPage = function(page){
+            extensionsService.serviceManages(myParam, function(data){
                 if(data.code == 0){
                     $scope.newExtensions = JSON.parse(data.data);
+
                     //列表分页处理
                     $scope.totalNum = $scope.newExtensions[0].serviceList.items.length;
-                    $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(0,5);
-                    $scope.pageClick = function(page, pageSize, total){
-                        $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
-                    };
+
+                    if($scope.totalNum % 5 == 0){
+                        page = page - 1;
+                        if(page == 0)
+                            page = 1;
+                    }
+
+                    $scope.pagList = $scope.newExtensions[0].serviceList.items.slice((page - 1) * 5, page * 5);
                 }
             },function(data){
                 alert(data.message);
             });
         };
+
+        $scope.pagClick = function(page, pageSize, total){
+
+            $scope.nowPage = page;
+            
+            $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
+
+        };
+        $scope.extensionsPage($scope.nowPage);
 
         //点击服务的删除
         $scope.delItem = function(dcIds, item){
@@ -68,7 +83,7 @@ define([
                             atomicNotifyService.success(rep.message, 2000);
                             $rootScope.widget.exDeldate = false;
                             $timeout(function() {
-                                $scope.extensionsPage();
+                                $scope.extensionsPage($scope.nowPage);
                             }, 1000);
                         }
                         else{
@@ -80,7 +95,6 @@ define([
                 }
             });
         };
-        $scope.extensionsPage();
 
         var demoss = "";
         $scope.leis = [];
