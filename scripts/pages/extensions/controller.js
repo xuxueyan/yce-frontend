@@ -25,7 +25,7 @@ define([
 
                     $scope.pageClick = function(page, pageSize, total){
                     
-                        $scope.pagList = $scope.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
+                        $scope.pagList = $scop.newExtensions[0].serviceList.items.slice(pageSize*(page-1), pageSize*page);
                     
                     };
 
@@ -49,7 +49,7 @@ define([
                             };
                             $scope.LebeltypeParameter.serversName = String(item.metadata.name);
                             $scope.LebeltypeParameter.sessionId = $localStorage.sessionId;
-                            $scope.LebeltypeParameter.orgId = $localStorage.orgId;
+                            $scope.Lebeltypearameter.orgId = $localStorage.orgId;
                             $scope.LebeltypeParameter.userId = Number($localStorage.userId);
                             $scope.LebeltypeParameter.dcId = Number(dcIds);
                             $scope.LebeltypeParameter.nodePort = nodePorts;

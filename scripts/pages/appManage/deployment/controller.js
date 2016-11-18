@@ -175,6 +175,7 @@ define([
             $scope.param.deployment.metadata.name = '';
             $scope.version = $scope.param.deployment.spec.template.spec.containers[0].image.split(":")[2];
 
+            console.log($scope.param);
             //数据中心选中 dcList -> BUG
             angular.forEach($scope.param.dcIdList, function (data){
                 var dcId = data;
