@@ -83,6 +83,8 @@ define([
         //基础,高级选项显示切换
         $scope.stepNum = 1;
 
+        $scope.dataTrans.advancedChecked[1] = false;
+
         $scope.nextStep = function(stepNum) {
             $scope.stepNum = stepNum;
         };
@@ -231,6 +233,11 @@ define([
         //发布应用
         $scope.submitApply = function() {
 
+            if(!$scope.dataTrans.advancedChecked[1]){
+                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
+                delete $scope.param.deployment.spec.template.spec.volumes;
+            }
+
             //HostPath Name值传入param .. volumes中
             angular.forEach($scope.param.deployment.spec.template.spec.containers[0].volumeMounts, function (data, index){
                 $scope.param.deployment.spec.template.spec.volumes[index].name = data.name;
@@ -272,12 +279,6 @@ define([
 
             $scope.param.deployment.spec.template.spec.containers[0].name = $scope.param.deployment.metadata.name;
 
-
-            if(!$scope.dataTrans.advancedChecked[1]){
-                delete $scope.param.deployment.spec.template.spec.containers[0].volumeMounts;
-                delete $scope.param.deployment.spec.template.spec.volumes;
-            }
-
             deploymentService.deploymentSubmit($scope.param, function(rep) {
 
                 if (rep.code == 0) {
@@ -296,29 +297,6 @@ define([
                 atomicNotifyService.error(rep.message, 2000);
             });
         };
-
-        // Image
-        deploymentService.delploymentImage('', function(data) {
-            var dataObject = JSON.parse(data.data);
-            // make new images:tags
-            var imageArr = new Array();
-            var k = 0;
-            for (var i in dataObject) {
-                var list = dataObject[i].tags;
-                for (var j in list) {
-                    imageArr[k] = dataObject[i].name + ":" + list[j];
-                    k = k + 1
-                }
-            }
-
-            $scope.imageList = imageArr;
-            $scope.getImages = function(x) {
-                $scope.param.deployment.spec.template.spec.containers[0].image = x;
-                x.replace(/:(\S+)$/, function($0, $1) {
-                    $scope.param.deployment.metadata.labels.version = $1;
-                });
-            }
-        })
 
     }];
     var controllers = [

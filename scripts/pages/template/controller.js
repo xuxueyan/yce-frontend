@@ -5,26 +5,34 @@ define([], function() {
     'use strict';
 
 
-    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', "$state", function($scope, templateService, $localStorage, $rootScope, $state) {
+    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', "$state", '$timeout', function($scope, templateService, $localStorage, $rootScope, $state, $timeout) {
     	
     	var param = {
             "sessionId" : $localStorage.sessionId,
             "orgId" : $localStorage.orgId,
             "userId" : $localStorage.userId
         };
-	    function getTemplateList(){
+        $scope.getTemplateList =  function(page){
 	    	templateService.getTemplateList(param, function(data){
 	    		if(data.code == 0){
+                    $scope.templateList = JSON.parse(data.data);
 
-	    			$scope.templateList = JSON.parse(data.data);
-	    		//	console.log(angular.toJson($scope.templateList)+"     @@@@")
-
+                    //分页
+                    $scope.totalNum = $scope.templateList.templates.length;
+                    if($scope.totalNum % 5 == 0)
+                        page = page-1;
+                    $scope.pagList = $scope.templateList.templates.slice((page-1)*5, page*5);
 	    		}
 	    	});
 	    }
-	    getTemplateList();
+	    $scope.getTemplateList();
+        //分页点击传数字
+        $scope.pagClick = function(page, pageSize, total){
+            $scope.nowPage = page;
+            $scope.pagList = $scope.templateList.templates.slice((page-1)*5, page*5);
+        }
 
-    	/* 删除 */
+    	//删除 
     	$scope.delItem = function(item){
 
     		$scope.tpDelConfig = {
@@ -47,20 +55,22 @@ define([], function() {
 		        };
                     
             	templateService.TemplateDelete(data, function(res){
+                    if(res.code == 0){
+                        $rootScope.widget.tpDeldate = false;
+                        $scope.getTemplateList();
 
-                    $rootScope.widget.tpDeldate = false;
-                    getTemplateList();
-
+                        $timeout(function(){
+                            $scope.getTemplateList($scope.nowPage);
+                        }, 1000)
+                    }
                 },function(){});
 
             })
     	};
 
-    	/*更新模板*/
+    	/*点击更新模板按钮*/
     	$scope.upItem = function(item){
-    		// console.log(angular.toJson(item))
     		$state.go('main.addTp',{message: item});
-
     	};
 
     }];

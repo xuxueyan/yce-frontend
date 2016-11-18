@@ -401,6 +401,18 @@ define([
                         }]
                     };
                 })
+                .directive('uiExtensionsDel', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl : './views/widget/extensionsDel.html',
+                        scope : {
+                            originalData : '='
+                        },
+                        controller : ['$scope', '$rootScope',function($scope, $rootScope){
+
+                        }]
+                    };
+                })
 
 
 

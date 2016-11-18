@@ -9,7 +9,7 @@ define([
 		/* 获取镜像列表 */
 		apis.getImageList = function(param, success, error){
             return utils.http($http, 'get', '/api/v1/registry/images', param, success, error);
-		}
+		};
 
 		/* 获取应用列表 */
 		apis.getAppList = function(param, success, error){
@@ -37,7 +37,7 @@ define([
 		    var dcId = param.dcId;
 		    var appName = param.appName;
 		    return utils.http($http, 'get', '/api/v1/organizations/' + orgId + '/datacenters/' + dcId + '/deployments/' + appName + '/history', param, success, error);
-		}
+		};
 
 		/* 提交回滚 */
 		apis.submitRollback = function(param, success, error){
@@ -81,7 +81,7 @@ define([
                 comments: "delete app: " + param.appName
             };
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/deployments/' + appName + '/delete', request, success, error);
-		}
+		};
 
 		/* 查看pod日志 */
 		apis.getLogs = function(param, success, error){
@@ -98,10 +98,10 @@ define([
                     timeStamps: true,
                     tailLines: 100,
                 }
-		    }
+		    };
 
 		    return utils.http($http, 'post', '/api/v1/organizations/' + orgId + '/pods/' + podName + '/logs', request, success, error);
-		}
+		};
 
 		return apis;
 	};	

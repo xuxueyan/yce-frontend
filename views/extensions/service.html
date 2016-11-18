@@ -23,7 +23,7 @@
                                 <span class="warn" ng-show="nameExit">服务名已存在,请重新输入</span>
                                 <div class="controls">
                                     <input type="text" name="serviceName" class="form-control"
-                                           ng-model="param.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
+                                           ng-model="serviceParam.serviceName" ng-pattern="/^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/"
                                            ng-focus="serviceNameInit = false"
                                            ng-blur="login.serviceName.$error.pattern ? serviceNameInit = false : serviceNameExit() "
                                            required/>
@@ -34,9 +34,9 @@
                                 <span class="desc">数据中心是您的应用将要部署到的位置</span>
                                 <div class="data-center">
                                     <label class="server-servers ngs_hide" ng-repeat="i in extentServerLei.dataCenters"
-                                           ng-class="{radio_bg:dataTrans.dataCenters[$index]}">
+                                           ng-class="{radio_bg:serviceDataTrans.dataCenters[$index]}">
                                         <input type="checkbox" ng-true-value="true" ng-false-value="false"
-                                               ng-model="dataTrans.dataCenters[$index]" value="{{i.id}}">
+                                               ng-model="serviceDataTrans.dataCenters[$index]" value="{{i.id}}">
                                         {{ i.name }}
                                     </label>
                                 </div>
@@ -106,7 +106,7 @@
                                     </span>
                                 </div>
 
-                                <div class="controls row" ng-repeat="portlists in ports">
+                                <div class="controls row" ng-repeat="portlists in serviceParam.service.spec.ports">
 
                                     <div class="controls row">
                                         <div class="col-sm-5">
@@ -120,7 +120,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Target Port</span>
-                                                <input type="text" name="serviceTargetPortName"
+                                                <input type="number" name="serviceTargetPortName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.targetPort"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
@@ -138,7 +138,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">port</span>
-                                                <input type="text" name="servicePortportName"
+                                                <input type="number" name="servicePortportName"
                                                        class="form-control server-btn"
                                                        ng-model="portlists.port"
                                                        ng-pattern="/^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"
@@ -149,7 +149,7 @@
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-addon">NodePort</span>
-                                                <input type="text" class="form-control server-btn"
+                                                <input type="number" class="form-control server-btn"
                                                        ng-disabled="serverDisabled"
                                                        ng-model="portlists.nodePort"
                                                        ng-pattern="/^(?:[0-9]{1,5})$/">
@@ -199,7 +199,7 @@
                                     <div class="col-sm-5">
                                         <div class="input-group">
                                             <span class="input-group-addon">value</span>
-                                            <input type="text" placeholder="{{ param.serviceName }}"
+                                            <input type="text" placeholder="{{ serviceParam.serviceName }}"
                                                    class="form-control server-btn" ng-model="portsarrange"
                                                    readonly>
                                         </div>
