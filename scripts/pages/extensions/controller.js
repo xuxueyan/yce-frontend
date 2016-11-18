@@ -187,7 +187,7 @@ define([
         };
 
         //提交创建服务json
-        $scope.serversubmit = function(){
+        $scope.serverSubmit = function(){
             $scope.objs=[];
 
             //服务类型
