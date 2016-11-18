@@ -290,21 +290,23 @@ define([
         var demoss = "";
 
         extensionsService.CreatService(myParam,function(data){
-            $scope.extentServerLei = JSON.parse(data.data);
-            demoss = $scope.extentServerLei.orgName;
+            
             if(data.code == 0){
-                $scope.serverDisabled = true;
-                $scope.serverClick1 = function(){
-                    if($scope.serverRadios == 1){
-                        $scope.serverDisabled = false;
-                    }else if($scope.serverRadios == 0){
-                        $scope.serverDisabled = true;
-                    }
-                };
+                $scope.extentServerLei = JSON.parse(data.data);
+                demoss = $scope.extentServerLei.orgName;
             }
         },function(data){
             alert(data.message);
         });
+
+        $scope.serverDisabled = false;
+        $scope.serverClick1 = function(){
+            if($scope.serverRadios == 1){
+                $scope.serverDisabled = false;
+            }else if($scope.serverRadios == 0){
+                $scope.serverDisabled = true;
+            }
+        };
         //标签 添加
         $scope.addLabels = function(){
             $scope.leis.push({});
@@ -492,7 +494,7 @@ define([
         /*点击更新，跳到创建模板页面，被传递过来的参数填充创建模板页面，作为修改*/
         if($stateParams.message){
 
-            $scope.param = JSON.parse($stateParams.message.deployment);
+            $scope.param = $stateParams.message.deployment;
             //应用模版 数据中心选中
 
             var activeAppDc = function (){
@@ -508,16 +510,10 @@ define([
                 }
             };
 
-
-
-
-
-
-
             //模版名称
             $scope.templateName = $stateParams.message.name;
 
-            $scope.serviceParam = JSON.parse($stateParams.message.service);
+            $scope.serviceParam = $stateParams.message.service;
 
 
             var NewSelector = $scope.serviceParam.service.spec.selector;
@@ -537,8 +533,21 @@ define([
                         });
                     });
                 }
-
             };
+
+
+
+
+            
+            if($scope.serviceParam.service.spec.type == "ClusterIP"){
+                    $scope.serverRadios = 0;
+                    $scope.serverDisabled = true;
+
+                    angular.forEach($scope.serviceParam.service.spec.ports, function(item){
+                        delete item.nodePort;
+                    });
+            }
+
 
 
 

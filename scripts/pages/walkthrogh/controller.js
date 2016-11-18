@@ -17,12 +17,12 @@ define([
 
                 if($scope.param.deployment.metadata.name){
                     $scope.serviceParam.serviceName = $scope.param.deployment.metadata.name + '-svc';
-                    $scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
+                    //$scope.Checkeds[0].mylistValue = $scope.param.deployment.metadata.name;
                 }
-                if($scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort){
-                    $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
-                    $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
-                }
+                // if($scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort){
+                //     $scope.ports[0].targetPort = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+                //     $scope.ports[0].port = $scope.param.deployment.spec.template.spec.containers[0].ports[0].containerPort;
+                // }
 
             };
 
@@ -64,7 +64,7 @@ define([
                                     ports: [{
                                         name: '',
                                         containerPort: '',
-                                        protocol: 'TCP'
+                                        protocol: ''
 
                                     }],
                                     volumeMounts: [{
@@ -330,21 +330,22 @@ define([
 
             //创建服务
             extensionsService.CreatService(myParam,function(data){
-                $scope.extentServerLei = JSON.parse(data.data);
-                demoss = $scope.extentServerLei.orgName;
+                
                 if(data.code == 0){
-                    $scope.serverDisabled = true;
-                    $scope.serverClick1 = function(){
-                        if($scope.serverRadios == 1){
-                            $scope.serverDisabled = false;
-                        }else if($scope.serverRadios == 0){
-                            $scope.serverDisabled = true;
-                        }
-                    };
+                    $scope.extentServerLei = JSON.parse(data.data);
+                    demoss = $scope.extentServerLei.orgName;
                 }
             },function(data){
                 alert(data.message);
             });
+            $scope.serverDisabled = false;
+            $scope.serverClick1 = function(){
+                if($scope.serverRadios == 1){
+                    $scope.serverDisabled = false;
+                }else if($scope.serverRadios == 0){
+                    $scope.serverDisabled = true;
+                }
+            };
 
             //标签 添加
             $scope.addLabels = function(){
@@ -529,6 +530,15 @@ define([
                 $scope.serviceParam.userId = $localStorage.userId;
                 $scope.serviceParam.sessionId = $localStorage.sessionId;
 
+
+                if($scope.serviceParam.service.spec.type == "ClusterIP"){
+                    $scope.serverRadios = 0;
+                    $scope.serverDisabled = true;
+                }
+                //清空所有nodePort
+                angular.forEach($scope.serviceParam.service.spec.ports, function(item){
+                    delete item.nodePort;
+                });
                 var NewSelector = $scope.serviceParam.service.spec.selector;
                 $scope.Checkeds =[];
                 for(var i in NewSelector){
