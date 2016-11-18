@@ -61,7 +61,7 @@ define([
                                     ports: [{
                                         name: '',
                                         containerPort: '',
-                                        protocol: ''
+                                        protocol: 'TCP'
 
                                     }],
                                     volumeMounts: [{
