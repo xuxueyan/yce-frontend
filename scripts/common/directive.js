@@ -59,11 +59,11 @@ define([
                         scope : {
                             originalData : '='
                         },
-                        controller : ['$scope', '$rootScope', 'templateService', function($scope, $rootScope, templateService){
+                        controller : ['$scope', '$rootScope', 'templateService', '$localStorage', function($scope, $rootScope, templateService, $localStorage){
                             var param = {
-                                "sessionId" : localStorage.sessionId,
-                                "orgId" : localStorage.orgId,
-                                "userId" : localStorage.userId
+                                "sessionId" : $localStorage.sessionId,
+                                "orgId" : $localStorage.orgId,
+                                "userId" : $localStorage.userId
                             };
                             templateService.getTemplateList(param, function(data){
                                 if(data.code ==0){
