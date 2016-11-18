@@ -495,8 +495,6 @@ define([
             $scope.param = JSON.parse($stateParams.message.deployment);
             //应用模版 数据中心选中
 
-            console.log($scope.param);
-
             var activeAppDc = function (){
                 if($scope.initData){
                     angular.forEach($scope.param.dcIdList, function (data){
