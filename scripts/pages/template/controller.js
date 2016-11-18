@@ -5,32 +5,43 @@ define([], function() {
     'use strict';
 
 
-    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', "$state", '$timeout', function($scope, templateService, $localStorage, $rootScope, $state, $timeout) {
+    var ctrl = ['$scope', 'templateService', '$localStorage', '$rootScope', "$state", '$timeout', 'atomicNotifyService', function($scope, templateService, $localStorage, $rootScope, $state, $timeout, atomicNotifyService) {
     	
     	var param = {
             "sessionId" : $localStorage.sessionId,
             "orgId" : $localStorage.orgId,
             "userId" : $localStorage.userId
         };
+        $scope.nowPage = 1;
         $scope.getTemplateList =  function(page){
 	    	templateService.getTemplateList(param, function(data){
 	    		if(data.code == 0){
                     $scope.templateList = JSON.parse(data.data);
 
+                    angular.forEach($scope.templateList.templates, function(i){
+
+                        i.deployment = JSON.parse(i.deployment);
+                        i.service = JSON.parse(i.service);
+
+                    });
+
                     //分页
                     $scope.totalNum = $scope.templateList.templates.length;
-                    if($scope.totalNum % 5 == 0)
-                        page = page-1;
-                    $scope.pagList = $scope.templateList.templates.slice((page-1)*5, page*5);
+                    if($scope.totalNum % 5 == 0){
+                        page = page - 1;
+                        if(page == 0)
+                            page = 1;
+                    }
+                    $scope.pagList = $scope.templateList.templates.slice((page - 1) * 5, page * 5);
 	    		}
 	    	});
 	    }
-	    $scope.getTemplateList();
         //分页点击传数字
         $scope.pagClick = function(page, pageSize, total){
             $scope.nowPage = page;
-            $scope.pagList = $scope.templateList.templates.slice((page-1)*5, page*5);
+            $scope.pagList = $scope.templateList.templates.slice(pageSize*(page-1), pageSize*page);
         }
+        $scope.getTemplateList($scope.nowPage);
 
     	//删除 
     	$scope.delItem = function(item){
@@ -56,14 +67,17 @@ define([], function() {
                     
             	templateService.TemplateDelete(data, function(res){
                     if(res.code == 0){
+                        atomicNotifyService.success(res.message, 2000);
                         $rootScope.widget.tpDeldate = false;
-                        $scope.getTemplateList();
-
                         $timeout(function(){
                             $scope.getTemplateList($scope.nowPage);
                         }, 1000)
+                    }else{
+                        atomicNotifyService.error(res.message, 2000);
                     }
-                },function(){});
+                }, function(res){
+                    atomicNotifyService.error(res.message, 2000);
+                });
 
             })
     	};

@@ -103,18 +103,6 @@ define([
                 $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
             }
         });
-
-
-        deploymentService.getDeploymentIint(param, function(data) {
-            if (data.code == 0) {
-                $scope.initData = JSON.parse(data.data);
-                //组织名获取
-                $scope.param.deployment.metadata.namespace = $scope.initData.orgName;
-                $scope.param.orgName = $scope.initData.orgName;
-                $scope.dataTrans.quotas = $scope.initData.quotas[0].id;
-            }
-        });
-            console.log($scope.initData)
         //环境变量 添加
         $scope.addEnv = function () {
             //导入模版处理

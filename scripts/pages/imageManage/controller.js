@@ -8,11 +8,13 @@ define([
 
 
         var ctrl = ['$scope','$http','imageManageService', '$rootScope' ,function($scope,$http,imageManageService,$rootScope){
+            
             imageManageService.myImageManage('',function(data){
                 var newcode = data.code;
                 if(newcode == 0){
                     $scope.newImage = JSON.parse(data.data);
                     $scope.totalNum = $scope.newImage.length;
+
                     $scope.pagList = $scope.newImage.slice(0, 5);
                 }
             });

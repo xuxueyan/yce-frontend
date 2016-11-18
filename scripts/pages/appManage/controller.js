@@ -39,7 +39,7 @@ define([
 
         };
 
-        $scope.loadAppList(1);
+        $scope.loadAppList($scope.nowPage);
         // 发布详情
         $scope.showAppDeployDetail = function(item) {
             $scope.appDeployDetailConf = {
