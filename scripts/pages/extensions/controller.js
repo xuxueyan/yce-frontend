@@ -113,8 +113,8 @@ define([
                     "selector": {},
                     "ports": [
                         {
-                            "name": "name1",
-                            "protocol": "TCP"
+                            "name": "",
+                            "protocol": ""
                         }
                     ]
                 }
@@ -148,16 +148,8 @@ define([
             $scope.leis.splice($index,1);
         };
         //端口 添加
-        var i = 1;
         $scope.addPort = function () {
-            i++;
-            $scope.serviceParam.service.spec.ports.push({
-                "name": "name"+i,
-                "protocol": "",
-                "port": "",
-                "targetPort": "",
-                "nodePort": ""
-            });
+            $scope.serviceParam.service.spec.ports.push({});
         };
         //端口 删除
         $scope.delPort = function ($index) {
@@ -173,10 +165,7 @@ define([
             $scope.Checkeds.splice($index,1);
         };
 
-        $scope.activities =[
-            "TCP",
-            "UDP"
-        ];
+        $scope.protocolArray =["TCP", "UDP"];
 
         //文本框失焦的时候创建服务重名验证
         $scope.serviceNameExit = function(){
@@ -201,8 +190,6 @@ define([
         $scope.serversubmit = function(){
             $scope.objs=[];
 
-            //协议
-           // $scope.serviceParam.service.spec.ports[0].protocol = $scope.portlists[0].protocol;
             //服务类型
             var type = "NodePort";
             if($scope.serverRadios == 0){
@@ -243,7 +230,7 @@ define([
             });
 
             //端口组 
-            var portForEach = $scope.serviceParam.service.spec.ports
+            var portForEach = $scope.serviceParam.service.spec.ports;
             portForEach.forEach(function(num){
                 // num.port=Number(num.port);
                 // num.targetPort=Number(num.targetPort);
@@ -254,14 +241,12 @@ define([
                 }
             });
 
-          //  $scope.serviceParam.service.spec.ports = $scope.ports;
             $scope.serviceParam.userId = $localStorage.userId;
             $scope.serviceParam.orgId = $localStorage.orgId;
             $scope.serviceParam.sessionId = $localStorage.sessionId;
 
             //提交创建服务json发请求
             extensionsService.CreatServicePost($scope.serviceParam,function(rep){
-                console.log(angular.toJson($scope.serviceParam))
                 if(rep.code == 0){
                     atomicNotifyService.success(rep.message, 2000);
                     $timeout(function() {
