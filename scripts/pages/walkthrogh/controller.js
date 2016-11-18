@@ -313,31 +313,6 @@ define([
                 });
             };
 
-            // Image
-            deploymentService.delploymentImage('', function (data) {
-                var dataObject = JSON.parse(data.data);
-
-                // make new images:tags
-                var imageArr = new Array();
-                var k = 0;
-                for (var i in dataObject) {
-                    var list = dataObject[i].tags;
-                    for (var j in list) {
-                        imageArr[k] = dataObject[i].name + ":" + list[j];
-                        k = k + 1
-                    }
-                }
-
-                $scope.imageList = imageArr;
-                $scope.getImages = function (x) {
-                    $scope.param.deployment.spec.template.spec.containers[0].image = x;
-                    x.replace(/:(\S+)$/, function ($0, $1) {
-                        $scope.param.deployment.metadata.labels.version = $1;
-                    });
-                };
-            }, function() {
-                alert("getImages error");
-            });
 
             $scope.sessionName = $localStorage.userName;
 
