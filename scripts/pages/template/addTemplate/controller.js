@@ -290,21 +290,23 @@ define([
         var demoss = "";
 
         extensionsService.CreatService(myParam,function(data){
-            $scope.extentServerLei = JSON.parse(data.data);
-            demoss = $scope.extentServerLei.orgName;
+            
             if(data.code == 0){
-                $scope.serverDisabled = true;
-                $scope.serverClick1 = function(){
-                    if($scope.serverRadios == 1){
-                        $scope.serverDisabled = false;
-                    }else if($scope.serverRadios == 0){
-                        $scope.serverDisabled = true;
-                    }
-                };
+                $scope.extentServerLei = JSON.parse(data.data);
+                demoss = $scope.extentServerLei.orgName;
             }
         },function(data){
             alert(data.message);
         });
+
+        $scope.serverDisabled = false;
+        $scope.serverClick1 = function(){
+            if($scope.serverRadios == 1){
+                $scope.serverDisabled = false;
+            }else if($scope.serverRadios == 0){
+                $scope.serverDisabled = true;
+            }
+        };
         //标签 添加
         $scope.addLabels = function(){
             $scope.leis.push({});
@@ -508,12 +510,6 @@ define([
                 }
             };
 
-
-
-
-
-
-
             //模版名称
             $scope.templateName = $stateParams.message.name;
 
@@ -537,8 +533,21 @@ define([
                         });
                     });
                 }
-
             };
+
+
+
+
+            
+            if($scope.serviceParam.service.spec.type == "ClusterIP"){
+                    $scope.serverRadios = 0;
+                    $scope.serverDisabled = true;
+
+                    angular.forEach($scope.serviceParam.service.spec.ports, function(item){
+                        delete item.nodePort;
+                    });
+            }
+
 
 
 
