@@ -34,7 +34,7 @@
                                         <th>操作</th>
                                     </tr>
                                 </thead>
-                                <tbody ng-repeat="item in dcList.datacenters | filter:data.search">
+                                <tbody ng-repeat="item in pagList | filter:data.search">
                                     <tr ng-class="{odd:$odd,even:$even}">
                                         <td>{{$index+1}}</td>
                                         <td>
@@ -63,22 +63,15 @@
                             </table>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="dataTables_paginate paging_bootstrap" id="example_paginate">
-                                        <ul class="pagination pull-right">
-                                            <li class="prev disabled"><a href="#"><i
-                                                    class="fa fa-angle-double-left"></i></a></li>
-                                            <li class="active"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li class="next">
-                                                <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 50 entries
+                                    <div class="dataTables_paginate paging_bootstrap">
+                                        <paging class="fr"
+                                                page="1"
+                                                page-size="5"
+                                                total="totalNum"
+                                                paging-action="pagClick(page, 5, total)"
+                                                show-prev-next="true"
+                                                show-first-last="true">
+                                        </paging>
                                     </div>
                                 </div>
                             </div>
@@ -91,3 +84,4 @@
 </section>
 <ui-widget ng-if="widget.dcDeldate" config="dcDelConfig"></ui-widget>
 <ui-widget ng-if="widget.dcUpdate" config="dcUpdataConfig"></ui-widget>
+<ng-atomic-notify></ng-atomic-notify>

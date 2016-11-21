@@ -95,6 +95,17 @@ define([
                 }
             });
         };
+        $scope.extensionsnameBtn = function(item){
+            $scope.originalData = item;
+            //console.log(angular.toJson(item));
+            $scope.extensionsConfig = {
+                widgetTitle: "服务详情",
+                widgetId: "extensionDatails",
+                extensionsDatails: true,
+                data: item
+            };
+            $rootScope.widget.extensionDatails = true;
+        }
 
         var demoss = "";
         $scope.leis = [];

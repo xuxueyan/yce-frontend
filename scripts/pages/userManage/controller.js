@@ -63,25 +63,18 @@ define([
                     
                         //  提交请求
                         userManageService.UserSubmit($scope.putUp,function(rep){
-                            // $scope.showstatusMes = true;
 
                             // 显示成功绿条
                             if(rep.code == 0){
-                                // $scope.status = true;
-                                // $scope.message = rep.message;
                                 atomicNotifyService.success(rep.message, 2000);
                                 $timeout(function() {
                                     $state.go('main.userManage');
                                 }, 1000);
                             }
                             else{
-                                // $scope.message = rep.message;
-                                // $scope.status = false;
                                 atomicNotifyService.error(rep.message, 2000);
                             }
                         },function(rep){
-                            // $scope.message = rep.message;
-                            // $scope.status = false;
                             atomicNotifyService.error(rep.message, 2000);
                         })
                     }else{
@@ -92,11 +85,24 @@ define([
             })
 
             // 获取用户列表
-            $scope.wrapUserManage = function(){
+            $scope.nowPage = 1;
+            $scope.wrapUserManage = function(page){
                 userManageService.ObtainUserList(param, function(res){
                     if(res.code == 0){
                         $scope.UserList = JSON.parse(res.data);
                         $scope.userOrgId = [];
+
+                        //分页
+                        $scope.totalNum = $scope.UserList.users.length;
+                        //console.log(angular.toJson($scope.UserList.users.length));
+
+                        if($scope.totalNum % 5 == 0){
+                            page = page-1;
+                            if(page == 0)
+                                page=1;
+                        }
+
+                        $scope.pagList = $scope.UserList.users.slice((page -1) * 5, page * 5);
 
                         // 根据orgId的值  对应orgList的键  改变orgId的值
                         $scope.UserList.users.forEach(function(user){
@@ -119,13 +125,18 @@ define([
                                     "op": Number($localStorage.userId),
                                     "name": item.name,
                                     "orgId": $localStorage.orgId,
-                                    "password": pwd,
+                                    "password": pwd.password,
                                     "sessionId" : $localStorage.sessionId
                                 }
-                                userManageService.userUpData(res, function(){
-                                    $rootScope.widget.userUpdate = false;
-                                    $scope.wrapUserManage();
-                                },function(){})
+                                userManageService.userUpData(res, function(data){
+                                    if(data.code == 0){
+                                        atomicNotifyService.success(data.message, 2000);
+                                        $rootScope.widget.userUpdate = false;
+                                        $scope.wrapUserManage($scope.nowPage);
+                                    }
+                                },function(data){
+                                    atomicNotifyService.error(data.message, 2000);
+                                })
                             });
                         }
                         // 删除数据
@@ -153,7 +164,7 @@ define([
                                     if(rep.code == 0){
                                         atomicNotifyService.success(rep.message, 2000);
                                         $timeout(function() {
-                                            $scope.wrapUserManage();
+                                            $scope.wrapUserManage($scope.nowPage);
                                         }, 1000);
                                     }
                                     else{
@@ -167,8 +178,13 @@ define([
                         }
                     }
                 })
-            }
-            $scope.wrapUserManage()
+            };
+
+            $scope.pagClick = function(page, pageSize, total){
+                $scope.nowPage = page;
+                $scope.pagList = $scope.UserList.users.slice((page-1) * pageSize, page * pageSize)
+            };
+            $scope.wrapUserManage($scope.nowPage);
 
         }];
 

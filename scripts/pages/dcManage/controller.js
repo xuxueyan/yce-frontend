@@ -6,7 +6,7 @@ define([
         'use strict';
 
 
-        var ctrl = ['$scope', 'dcManageService', '$localStorage', '$timeout', '$state', '$rootScope', function($scope, dcManageService, $localStorage, $timeout, $state, $rootScope){
+        var ctrl = ['$scope', 'dcManageService', '$localStorage', '$timeout', '$state', '$rootScope', 'atomicNotifyService', function($scope, dcManageService, $localStorage, $timeout, $state, $rootScope, atomicNotifyService){
                 
             // 验证用户名
             $scope.DcManageNameBlur = function(){
@@ -42,36 +42,46 @@ define([
             // 提交  carry.secret
             $scope.addDcManageSubmit = function(){
 
-                $scope.carry.nodePort.push($scope.nodeportnum1);
-                $scope.carry.nodePort.push($scope.nodeportnum2);
+                $scope.carry.nodePort.push($scope.nodeportnum1,$scope.nodeportnum2);
+              //  $scope.carry.nodePort.push();
                 $scope.carry.name = $scope.DcManageNames;
 
                 dcManageService.addDcPostList($scope.carry, function(rep){
-                    $scope.showstatusMes = true;
-
+                    console.log(angular.toJson($scope.carry));
+                    console.log(angular.toJson(rep));
                     // 显示成功绿条
                     if(rep.code == 0){
-                        $scope.status = true;
-                        $scope.message = rep.message;
+                        atomicNotifyService.success(rep.message, 2000);
                         $timeout(function() {
-                            $scope.showstatusMes = false;
                             $state.go('main.dcManage');
                         }, 1000);
                     }
                     else{
-                        $scope.message = rep.message;
-                        $scope.status = false;
+                        atomicNotifyService.error(rep.message, 2000);
                     }
-                },function(){
-                    $scope.login.$invalid = true;
+
+
+
+                },function(rep){
+                    atomicNotifyService.error(rep.message, 2000);
+                    //$scope.login.$invalid = true;
                 })
             }
 
             // 数据中心列表
-            $scope.wrapDcManage = function(){
+            $scope.nowPage = 1;
+            $scope.wrapDcManage = function(page){
                 dcManageService.dcManageList({sessionId:$localStorage.sessionId},function(res){
 
                     $scope.dcList = JSON.parse(res.data);
+
+                    $scope.totalNum = $scope.dcList.datacenters.length;
+                    if($scope.totalNum % 5 == 0){
+                        page = page - 1;
+                        if(page == 0)
+                            page = 1;
+                    }
+                    $scope.pagList = $scope.dcList.datacenters.slice(5 * (page - 1), 5 * page);
 
                     // NodePort的转换
                     var dataCenterlist = $scope.dcList.datacenters;
@@ -97,10 +107,18 @@ define([
                                     "orgId": $localStorage.orgId,
                                     "sessionId" : $localStorage.sessionId
                                 }
-                                dcManageService.dcDelData(res, function(){
-                                    $rootScope.widget.dcDeldate = false;
-                                    $scope.wrapDcManage();
-                                },function(){})
+                                dcManageService.dcDelData(res, function(data){
+                                    if(data == 0){
+                                        atomicNotifyService.success(data.message, 2000);
+                                        $rootScope.widget.dcDeldate = false;
+                                        
+                                        $timeout(function() {
+                                            $scope.wrapDcManage($scope.nowPage);
+                                        }, 1000);
+                                    }
+                                },function(data){
+                                    atomicNotifyService.success(data.message, 2000);
+                                })
                             });
                         }
 
@@ -129,7 +147,10 @@ define([
 
                                 dcManageService.dcUpData($scope.dcdate, function(){
                                     $rootScope.widget.dcUpdate = false;
-                                    $scope.wrapDcManage();
+                                    
+                                    $timeout(function() {
+                                        $scope.wrapDcManage($scope.nowPage);
+                                    }, 1000);
                                 },function(){})
 
                             });
@@ -137,7 +158,13 @@ define([
                     }
                 })
             }
-            $scope.wrapDcManage();
+            $scope.pagClick = function(page, pageSize, total){
+
+                $scope.nowPage = page;
+                $scope.pagList = $scope.dcList.datacenters.slice(pageSize*(page-1), pageSize*page);
+
+            };
+            $scope.wrapDcManage($scope.nowPage);
         }];
 
 
