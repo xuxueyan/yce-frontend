@@ -32,12 +32,8 @@ define([
                     'username':  $localStorage.userName,
                     'sessionId': $localStorage.sessionId
                 }, function(data) {
-                    // if (data.code == 0) {
                     $localStorage.$reset();
-                        // alert("退出成功~");
                     $state.go('login');
-                    // }
-
                 });
             }
 
@@ -59,12 +55,18 @@ define([
                     $scope.data.showSubnav[index] = !$scope.data.showSubnav[index];
                 };
             };
+            $scope.enterDown = function($event){
+                if($event.keyCode == 13){
+                    $scope.login();
+                }
+            }
 
             if(!$localStorage.userId) {
                 $state.go('login');
             }else{
                 $scope.jump();
             }
+
         }];
 
 

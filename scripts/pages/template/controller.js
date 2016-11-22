@@ -55,7 +55,7 @@ define([], function() {
 
             $rootScope.widget.tpDeldate = true;
 
-            $scope.$on('submitDelete', function(event, pwd) {
+            $scope.$on('templateDelete', function(event) {
 
             	var data = {
 		            "sessionId" : $localStorage.sessionId,

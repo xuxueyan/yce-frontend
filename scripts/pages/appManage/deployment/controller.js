@@ -92,7 +92,7 @@ define([
         var param = {
             'sessionId': $localStorage.sessionId,
             'orgId': $localStorage.orgId,
-            'userId': $localStorage.userIid
+            'userId': $localStorage.userId
         };
         //创建服务初始化,获取数据中心信息
         deploymentService.getDeploymentIint(param, function(data) {
